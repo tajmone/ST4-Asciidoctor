@@ -1,0 +1,50 @@
+// SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.tmLanguage"
+= AsciiDoc Alternative Headings
+// *****************************************************************************
+// *                                                                           *
+// *                   AsciiDoc Alternative Headings Tests                     *
+// *                                                                           *
+// *****************************************************************************
+// This file tests the alternative syntaxes for Section Titles supported in
+// AsciiDoc (Python) or Asciidoctor (Ruby).
+
+// =============================================================================
+//                             Underlined Headings
+// =============================================================================
+// AsciiDoc supports Setext-style underlined Section Titles, but these are now
+// deprecated in Asciidoctor.
+
+// AsciiDoc Python: Underline length must match title length +/- 2 characters.
+// Asciidoctor: Underline length must match title length +/- 1 character.
+
+Level 1
+-------
+
+Level 2
+~~~~~~~
+
+Level 3
+^^^^^^^
+
+Level 4
++++++++
+
+// =============================================================================
+//                         Markdown Atx-Style Headings
+// =============================================================================
+// Asciidoctor aslo supports markdown atx-style headings:
+//      https://asciidoctor.org/docs/user-manual/#sections
+
+
+## Level 1 Section Title
+
+### Level 2 Section Title
+
+#### Level 3 Section Title
+
+##### Level 4 Section Title
+
+###### Level 5 Section Title
+
+
+// EOF //
