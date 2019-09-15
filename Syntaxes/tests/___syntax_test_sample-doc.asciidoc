@@ -1,6 +1,5 @@
 // SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
-Asciidoctor Demo
-================
+= Asciidoctor Demo
 ////
 Big ol' comment
 
