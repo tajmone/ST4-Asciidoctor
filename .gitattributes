@@ -1,3 +1,9 @@
+*.gitattributes   text
+*.sublime-syntax  text
+*.YAML-tmLanguage text
+*.tmLanguage      text
+
+
 # Settings for github/linguist
 *.sublime-keymap linguist-language=JSON
 *.sublime-macro linguist-language=JSON
