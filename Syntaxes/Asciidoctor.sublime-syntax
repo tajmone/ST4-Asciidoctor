@@ -1,6 +1,6 @@
 %YAML 1.2
 ---
-# "Asciidoctor.sublime-syntax" v0.0.2 | 2019/09/15
+# "Asciidoctor.sublime-syntax" v0.0.3 | 2019/09/15
 # ==============================================================================
 #                        AsciiDoc Syntax for Asciidoctor
 # ==============================================================================
@@ -104,13 +104,14 @@ contexts:
   #     '3': {name: variable.parameter.sourcelang.asciidoc}
   #     '4': {name: markup.underline.block.asciidoc}
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_example:
   #   comment: |
   #     Examples:
   #       ====
   #       Lorem ipsum.
   #       ====
-
+  #
   #     Note: Might need to add more includes, but these are the ones that arise in
   #     practice for me.
   #   name: string.unquoted.block.example.asciidoc
@@ -126,7 +127,9 @@ contexts:
   #   - include: lines
   #   - include: inline
   #   - include: characters
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_listing:
   #   comment: |
   #     Examples:
@@ -142,11 +145,13 @@ contexts:
   #   endCaptures:
   #     '0': {name: markup.underline.listing.end.asciidoc}
   #   - include: inline_callout
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_source_fenced:
   #   comment: |
   #     Fenced code block (ala Markdown)
-
+  #
   #     Examples:
   #       ```rb
   #       puts 'Hello world!'
@@ -160,7 +165,9 @@ contexts:
   #   endCaptures:
   #     '0': {name: constant.delimiter.listing.end.asciidoc}
   #   - include: inline_callout
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_literal:
   #   comment: |
   #     Examples:
@@ -176,7 +183,9 @@ contexts:
   #   endCaptures:
   #     '0': {name: constant.delimiter.block.literal.end.asciidoc}
   #   - include: inline_callout
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_open:
   #   comment: |
   #     Examples:
@@ -199,7 +208,9 @@ contexts:
   #   - include: lines
   #   - include: inline
   #   - include: characters
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_pass:
   #   name: meta.embedded.block.passthrough.asciidoc
   #   contentName: text.xml.block.passthrough.content.asciidoc
@@ -210,14 +221,16 @@ contexts:
   #   endCaptures:
   #     '0': {name: markup.underline.block.passthrough.end.asciidoc}
   #   - include: text.xml
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_quote:
   #   comment: >
   #     Examples:
   #       ____
   #       Lorem ipsum
   #       ____
-
+  #
   #     Note: Might need to add more includes, but these are the ones that arise
   #     for me in practice.
   #   name: markup.quote.block.asciidoc
@@ -231,14 +244,16 @@ contexts:
   #   - include: lines
   #   - include: inline
   #   - include: characters
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_sidebar:
   #   comment: |
   #     Examples:
   #       ****
   #       Lorem ipsum
   #       ****
-
+  #
   #     Note: Might need to add more includes, but these are the ones that arise
   #     for me in practice.
   #   name: string.quoted.block.sidebar.asciidoc
@@ -255,6 +270,7 @@ contexts:
   #   - include: lines
   #   - include: inline
   #   - include: characters
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 #  #block_paragraph:
 #  #  comment: |
@@ -264,10 +280,11 @@ contexts:
 #  #  begin: ^(?=\S)(?![\/|=\-_\.*`]{2,}(?=\s*$))(?!\.\S+)
 #  #  end: ^(?:\s*$|(?=[ ]{,3}>.))|(?=[ \t]*\n)(?<=^===|^====|=====|^---|^----|-----)[\t]*\n
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # inline_callout:
   #   comment: |
   #     Callout label
-
+  #
   #     Examples:
   #       <1>
   #       <42>
@@ -276,6 +293,7 @@ contexts:
   #   captures:
   #     '1': {name: punctuation.definition.callout.begin.asciidoc}
   #     '2': {name: punctuation.definition.callout.end.asciidoc}
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
 #-----------------------------------------------------------------------------#
@@ -295,6 +313,7 @@ contexts:
   #   - include: indexterm_triple
   #   - include: indexterm_double
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # attribute_reference:
   #   comment: |
   #     Examples:
@@ -305,11 +324,13 @@ contexts:
   #     '1': {name: constant.character.attributes.reference.begin.asciidoc}
   #     '2': {name: support.variable.attribute.asciidoc}
   #     '3': {name: constant.character.attributes.reference.end.asciidoc}
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # biblio_anchor:
   #   comment: |
   #     Bibliography anchor
-
+  #
   #     Examples:
   #       [[[Lorem ipsum]]]
   #   name: storage.type.reference.biblioanchor.asciidoc
@@ -317,30 +338,36 @@ contexts:
   #   captures:
   #     '1': {name: punctuation.definition.biblioanchor.begin.asciidoc}
   #     '2': {name: punctuation.definition.biblioanchor.end.asciidoc}
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # entity_number:
   #   comment: |
   #     Numeric character reference
-
+  #
   #     Examples:
   #       &#x278a;
   #       &#182;
   #   name: constant.character.entity.asciidoc
   #   match: (?<!\\)&#(x?[0-9a-fA-f]{2,4});
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # escape:
   #   comment: |
   #     List of special characters that may be escaped.
-
+  #
   #     Note: I do not really know if this is a good list, adopted wholesale from
   #     original bundle.
   #   name: constant.character.escape.asciidoc
   #   match: \\(?=[-`*_#+.!(){}\[\]\\>:])
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # indexterm_double:
   #   comment: |
   #     Double parenthesis indexterm.
-
+  #
   #     Examples:
   #       ((Arthur))
   #   name: variable.other.indexterm.double.asciidoc
@@ -348,11 +375,13 @@ contexts:
   #   captures:
   #     '1': {name: constant.character.indexterm.double.begin.asciidoc}
   #     '3': {name: constant.character.indexterm.double.end.asciidoc}
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # indexterm_triple:
   #   comment: |
   #     Triple parenthesis indexterm.
-
+  #
   #     Examples:
   #       (((Sword, Broadsword, Excalibur)))
   #   name: variable.other.indexterm.triple.asciidoc
@@ -360,7 +389,9 @@ contexts:
   #   captures:
   #     '1': {name: constant.character.indexterm.triple.begin.asciidoc}
   #     '3': {name: constant.character.indexterm.triple.end.asciidoc}
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # macro:
   #   comment: |
   #     Note: There are other macro notations, but I match only those that end in
@@ -386,11 +417,13 @@ contexts:
   #     '6': {name: constant.character.attributes.macro.begin.asciidoc}
   #     '7': {name: variable.parameter.attributes.macro.asciidoc}
   #     '8': {name: constant.character.attributes.macro.end.asciidoc}
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # macro_pass:
   #   comment: |
   #     Passthrough macro
-
+  #
   #     Examples:
   #       pass:[Lorem ipsum]
   #       pass::[Lorem ipsum]
@@ -411,7 +444,9 @@ contexts:
   #   endCaptures:
   #     '0': {name: constant.character.attributes.macro.end.asciidoc}
   #   - include: text.xml
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   #  replacement:
   #    name: constant.character.replacement.asciidoc
   #    match: |-
@@ -428,21 +463,25 @@ contexts:
   #        | =>
   #        | <=
   #      )
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # entity_name:
   #   comment: |
   #     Character entity reference
-
+  #
   #     Examples:
   #       &nbsp;
   #       &sup2;
   #   name: constant.character.entity.xml.asciidoc
   #   match: (?<!\\)&([a-zA-Z][a-zA-Z0-9]*);
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # xref:
   #   comment: |
   #     Internal cross-reference
-
+  #
   #     Examples:
   #       <<lorem>>
   #       <<lorem, see here>>
@@ -453,12 +492,14 @@ contexts:
   #     '2': {name: markup.underline.term.xref.asciidoc}
   #     '5': {name: variable.parameter.xref.asciidoc}
   #     '6': {name: constant.character.xref.end.asciidoc}
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
 #-----------------------------------------------------------------------------#
 #                                I N L I N E S                                #
 #-----------------------------------------------------------------------------#
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # inline:
   #   - include: passthrough
   #   - include: strong_double
@@ -471,11 +512,13 @@ contexts:
   #   - include: mark
   #   - include: superscript
   #   - include: subscript
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # strong_double:
   #   comment: |
   #     Strong (bold) text (unconstrained variant).
-
+  #
   #     Examples:
   #       Lo**re**m **ipsum dolor**.
   #       Lo[red]**re**m
@@ -501,11 +544,13 @@ contexts:
   #   - include: superscript
   #   - include: subscript
   #   - include: characters
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # emphasis_double:
   #   comment: |
   #     Emphasized (italic) text (unconstrained variant).
-
+  #
   #     Examples:
   #       Lo__re__m __ipsum dolor__.
   #       Lo[red]__re__m
@@ -531,11 +576,13 @@ contexts:
   #   - include: superscript
   #   - include: subscript
   #   - include: characters
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # monospaced_double:
   #   comment: |
   #     Monospaced text (unconstrained variant).
-
+  #
   #     Examples:
   #       Lo``re``m ``ipsum dolor``.
   #       Lo[red]``re``m
@@ -561,11 +608,13 @@ contexts:
   #   - include: superscript
   #   - include: subscript
   #   - include: characters
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # mark_double:
   #   comment: |
   #     Marked text (unconstrained variant).
-
+  #
   #     Examples:
   #       Lo##re##m ##ipsum dolor##.
   #       Lo[red]##re##m
@@ -591,15 +640,17 @@ contexts:
   #   - include: superscript
   #   - include: subscript
   #   - include: characters
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # passthrough:
   #   comment: |
   #     Inline triple-plus and double dolar passthrough.
-
+  #
   #     Examples:
   #       Lo+++re++++m +++ipsum dolor+++.
   #       Lo$$re$$m $$ipsum dolor$$.
-
+  #
   #     Note: Must be dead first among the inlines, so as to take priority.
   #   name: meta.passthru.inline.asciidoc
   #   contentName: variable.parameter.passthruinner.asciidoc
@@ -609,11 +660,13 @@ contexts:
   #   end: '\1'
   #   endCaptures:
   #     '0': {name: constant.character.passthru.end.asciidoc}
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # strong:
   #   comment: |
   #     Strong (bold) text (constrained variant).
-
+  #
   #     Examples:
   #       *Lorem ipsum* dolor
   #       [red]*Lorem ipsum* dolor
@@ -642,11 +695,13 @@ contexts:
   #   - include: superscript
   #   - include: subscript
   #   - include: characters
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # emphasis:
   #   comment: |
   #     Emphasized (italic) text (constrained variant).
-
+  #
   #     Examples:
   #       _Lorem ipsum_ dolor
   #       [red]_Lorem ipsum_ dolor
@@ -675,11 +730,13 @@ contexts:
   #   - include: superscript
   #   - include: subscript
   #   - include: characters
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # monospaced:
   #   comment: |
   #     Monospaced text (constrained variant).
-
+  #
   #     Examples:
   #       `Lorem ipsum` dolor
   #       [red]`Lorem ipsum` dolor
@@ -708,11 +765,13 @@ contexts:
   #   - include: superscript
   #   - include: subscript
   #   - include: characters
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # mark:
   #   comment: |
   #     Marked text (constrained variant).
-
+  #
   #     Examples:
   #       #Lorem ipsum# dolor
   #       [red]#Lorem ipsum# dolor
@@ -741,11 +800,13 @@ contexts:
   #   - include: superscript
   #   - include: subscript
   #   - include: characters
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # subscript:
   #   comment: |
   #     Subscript text.
-
+  #
   #     Examples:
   #       E=mc^2^
   #       E=mc[red]^2^
@@ -772,11 +833,13 @@ contexts:
   #   - include: mark
   #   - include: superscript
   #   - include: characters
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # superscript:
   #   comment: |
   #     Superscript text.
-
+  #
   #     Examples:
   #       H~2~O
   #       H[red]~2~O
@@ -803,6 +866,7 @@ contexts:
   #   - include: mark
   #   - include: subscript
   #   - include: characters
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
 #-----------------------------------------------------------------------------#
@@ -822,10 +886,11 @@ contexts:
   #   - include: attribute_list_line
   #   - include: attribute_entry
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # inline_comment:
   #   comment: |
   #     Inline comment.
-
+  #
   #     Examples:
   #       // This is just a comment!
   #   name: comment.line.double-slash.asciidoc
@@ -833,11 +898,13 @@ contexts:
   #   captures:
   #     '1': {name: punctuation.definition.comment.line.asciidoc}
   #     '2': {name: meta.line.comment.content.asciidoc}
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # attribute_entry:
   #   comment: |
   #     An attribute entry.
-
+  #
   #     Examples:
   #       :my-attribute: value
   #       :sectnums!:
@@ -860,7 +927,9 @@ contexts:
   #     '5': {name: punctuation.definition.attributeentry.attrname.end.asciidoc}
   #   end: $\n?
   #   - include: characters
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # attribute_list_line:
   #   comment: >
   #     Attribute list as paragraph: single brackets. No need for special
@@ -871,22 +940,26 @@ contexts:
   #   captures:
   #     '1': {name: punctuation.definition.attributelistline.begin.asciidoc}
   #     '2': {name: punctuation.definition.attributelistline.end.asciidoc}
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_title:
   #   comment: |
   #     Title of a block. Exludes custom block titles for better
   #     scoping / preventing overlap.
-
+  #
   #     Examples:
   #       .My title
   #       Lorem ipsum dolor.
   #   name: markup.heading.block.asciidoc
   #   match: ^(\.)\w.*$\n?
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_id:
   #   comment: |
   #     A block id (i.e. anchor).
-
+  #
   #     Examples:
   #       [[myid]]
   #       Lorem ipsum dolor.
@@ -896,7 +969,9 @@ contexts:
   #     '1': {name: punctuation.definition.blockid.begin.asciidoc}
   #     '2': {name: markup.underline.blockid.id.asciidoc}
   #     '3': {name: punctuation.definition.blockid.end.asciidoc}
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_req:
   #   comment: |
   #     A requirement id (i.e. anchor).
@@ -911,42 +986,52 @@ contexts:
   #     '4': {name: markup.underline.block.version.asciidoc}
   #     '6': {name: variable.parameter.reqversion.id.asciidoc}
   #     '7': {name: markup.underline.block.id.asciidoc}
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # inline_break:
   #   comment: |
   #     Line hard break with a plus sign (+).
-
+  #
   #     Examples:
   #       Rubies are red, +
   #       Topazes are blue.
   #   name: constant.linebreak.asciidoc
   #   match: (?<=\s)\+$\n?
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # list_continuation:
   #   name: constant.listcontinuation.asciidoc
   #   match: ^\+\s*$\n?
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_page_break:
   #   comment: |
   #     A page break.
-
+  #
   #     Examples:
   #       <<<
   #       <<<<<
   #   name: meta.separator.pagebreak.asciidoc
   #   match: ^<{3,}$\n?
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_thematic_break:
   #   comment: |
   #     A thematic break (aka horizontal rule).
-
+  #
   #     Examples:
   #       '''
   #       ''''''
   #   name: meta.separator.ruler.asciidoc
   #   match: ^'{3,}$\n?
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # section_template:
   #   comment: fixed list of known template names
   #   name: variable.parameter.sectiontemplate.asciidoc
@@ -964,6 +1049,7 @@ contexts:
   #     '4': {name: meta.tag.sectiontemplate.asciidoc}
   #     '6': {name: punctuation.definition.sectiontemplate.end.asciidoc}
   #     '7': {name: punctuation.definition.sectiontemplate.end.asciidoc}
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
 #-----------------------------------------------------------------------------#
@@ -980,20 +1066,23 @@ contexts:
   #   - include: dlist_item_label
   #   - include: colist_item_marker
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_admonition_label:
   #   comment: |
   #     Label of an admonition block.
-
+  #
   #     Examples:
   #       NOTE: This is a admonition block.
   #       WARNING:  Be aware of them!
   #   name: support.constant.admonitionword.asciidoc
   #   match: ^(NOTE|TIP|IMPORTANT|WARNING|CAUTION):(?=\s+)
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # ulist_item_marker:
   #   comment: |
   #     Marker of an unordered (bullet) list item.
-
+  #
   #     Examples:
   #       * level 1
   #       ** level 2
@@ -1010,11 +1099,13 @@ contexts:
   #   captures:
   #     '1': {name: string.unquoted.list.bullet.asciidoc}
   #     '2': {name: constant.numeric.list.bullet.asciidoc}
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # colist_item_marker:
   #   comment: |
   #     Marker of a callout list item.
-
+  #
   #     Examples:
   #       <1> a callout
   #       <42> another callout
@@ -1025,11 +1116,13 @@ contexts:
   #     '2': {name: constant.numeric.callout.asciidoc}
   #     '3': {name: punctuation.definition.calloutlistnumber.begin.asciidoc}
   #     '4': {name: punctuation.definition.calloutlistnumber.end.asciidoc}
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # dlist_item_label:
   #   comment: |
   #     Label of a definition (labeled) list item.
-
+  #
   #     Examples:
   #       Label level 1:: lorem ipsum
   #       Label level 2::: dolor sit amet
@@ -1038,7 +1131,7 @@ contexts:
   #         lorem ipsum
   #       Another label :: lorem ipsum
   #       Last::label:: dolor sit amet
-
+  #
   #     Note: This rule is not strictly correct, because Asciidoctor allows
   #     double colon followed by a space inside a label, i.e. it matches the
   #     *last* double colon, not the first. I don't know how to do that
@@ -1051,24 +1144,27 @@ contexts:
   #     '1': {name: constant.labeledlist.separator.asciidoc}
   #   - include: inline
   #   - include: characters
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # olist_item_marker:
   #   comment: |
   #     Marker of an ordered (numbered) list item.
-
+  #
   #     Examples:
   #       . level 1
   #       .. level 2
   #       ... level 3
   #       .... level 4
   #       ..... level 5
-
+  #
   #     Note: The space distinguishes it from a block title.
   #   name: markup.list.numbered.dotted.asciidoc
   #   match: ^(\s*(\.{1,5}))\s+(?=\S)
   #   captures:
   #     '1': {name: string.unquoted.list.dotted.asciidoc}
   #     '2': {name: constant.numeric.list.dot.asciidoc}
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
 #-----------------------------------------------------------------------------#
@@ -1078,11 +1174,11 @@ contexts:
   # section_titles:
   #   comment: |
   #     Examples:
-
+  #
   #       = Document Title (Level 0)
-
+  #
   #       == Level 1 Section
-
+  #
   #       === Level 2 Section
   #   - include: title_level_5
   #   - include: title_level_4
@@ -1091,47 +1187,59 @@ contexts:
   #   - include: title_level_1
   #   - include: title_level_0
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # title_level_0:
   #   name: markup.heading.level.0.asciidoc
   #   match: ^(=) (`?\w.*)$\n?
   #   captures:
   #     '1': {name: punctuation.definition.heading.asciidoc}
   #     '2': {name: entity.name.section.asciidoc}
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # title_level_1:
   #   name: markup.heading.level.1.asciidoc
   #   match: ^(==) (`?\w.*)$\n?
   #   captures:
   #     '1': {name: punctuation.definition.heading.asciidoc}
   #     '2': {name: entity.name.section.asciidoc}
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # title_level_2:
   #   name: markup.heading.level.2.asciidoc
   #   match: ^(===) (`?\w.*)$\n?
   #   captures:
   #     '1': {name: punctuation.definition.heading.asciidoc}
   #     '2': {name: entity.name.section.asciidoc}
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # title_level_3:
   #   name: markup.heading.level.3.asciidoc
   #   match: ^(====) (`?\w.*)$\n?
   #   captures:
   #     '1': {name: punctuation.definition.heading.asciidoc}
   #     '2': {name: entity.name.section.asciidoc}
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # title_level_4:
   #   name: markup.heading.level.4.asciidoc
   #   match: ^(=====) (`?\w.*)$\n?
   #   captures:
   #     '1': {name: punctuation.definition.heading.asciidoc}
   #     '2': {name: entity.name.section.asciidoc}
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # title_level_5:
   #   name: markup.heading.level.5.asciidoc
   #   match: ^(======) (`?\w.*)$\n?
   #   captures:
   #     '1': {name: punctuation.definition.heading.asciidoc}
   #     '2': {name: entity.name.section.asciidoc}
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 # /// EOF ///
 
