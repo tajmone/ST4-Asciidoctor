@@ -1,6 +1,6 @@
 %YAML 1.2
 ---
-# "Asciidoctor.sublime-syntax" v0.0.3 | 2019/09/15
+# "Asciidoctor.sublime-syntax" v0.0.4 | 2019/09/15
 # ==============================================================================
 #                        AsciiDoc Syntax for Asciidoctor
 # ==============================================================================
@@ -25,7 +25,7 @@ contexts:
   # - include: lists
   - include: blocks
   # - include: section_titles
-  # - include: lines
+  - include: lines
   # - include: inline
   # - include: characters
 
@@ -60,12 +60,12 @@ contexts:
     - match: ^(/{4,})\s*$\n?
       scope: punctuation.definition.comment.begin.asciidoc
       push:
-        - meta_scope: meta.block.comment.content.asciidoc
+        - meta_scope: comment.block.asciidoc
         - match: ^\1\s*$\n?
           scope: punctuation.definition.comment.end.asciidoc
           pop: true
         - match: (^.*)$\n?
-          scope: comment.block.asciidoc
+          scope: meta.block.comment.content.asciidoc
     # - include: macro
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -89,7 +89,6 @@ contexts:
 
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-
   # custom_block:
   #   name: markup.underline.block.id.def.asciidoc
   #   match: |
@@ -103,6 +102,7 @@ contexts:
   #     '2': {name: markup.underline.block.asciidoc}
   #     '3': {name: variable.parameter.sourcelang.asciidoc}
   #     '4': {name: markup.underline.block.asciidoc}
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_example:
@@ -873,8 +873,8 @@ contexts:
 #                                  L I N E S                                  #
 #-----------------------------------------------------------------------------#
 
-  # lines:
-  #   - include: inline_comment
+  lines:
+    - include: line_comment
   #   - include: list_continuation
   #   - include: inline_break
   #   - include: block_page_break
@@ -885,6 +885,18 @@ contexts:
   #   - include: section_template
   #   - include: attribute_list_line
   #   - include: attribute_entry
+
+  ######################
+  # SINGLE-LINE COMMENTS
+  ######################
+  # Examples:
+  #   // This is just a comment!
+  line_comment:
+    - match: ^(//)([^/\n].*|)$\n?
+      scope: comment.line.double-slash.asciidoc
+      captures:
+        1: punctuation.definition.comment.line.asciidoc
+        2: meta.line.comment.content.asciidoc
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # inline_comment:
