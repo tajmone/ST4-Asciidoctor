@@ -29,6 +29,14 @@ Block Comment
 ////
 //<^  punctuation.definition.comment.end.asciidoc
 
+///////
+//<^^^^ comment.block.asciidoc   punctuation.definition.comment.begin.asciidoc
+Block Comment
+// ^^^^^^^^^^ comment.block.asciidoc
+// ^^^^^^^^^^ meta.block.comment.content.asciidoc
+///////
+//<^^^^  punctuation.definition.comment.end.asciidoc
+
 Back to normal text.
 // <-^^^^^^^^^^^^^^^ - comment
 
