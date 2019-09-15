@@ -1,4 +1,4 @@
-// SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.tmLanguage"
+// SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
 = AsciiDoc Alternative Headings
 // *****************************************************************************
 // *                                                                           *
