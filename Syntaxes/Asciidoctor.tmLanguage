@@ -335,7 +335,7 @@ Examples:
 				<key>0</key>
 				<dict>
 					<key>name</key>
-					<string>constant.delimiter.listing.begin.asciidoc</string>
+					<string>markup.underline.listing.begin.asciidoc</string>
 				</dict>
 			</dict>
 			<key>comment</key>
@@ -353,7 +353,7 @@ Examples:
 				<key>0</key>
 				<dict>
 					<key>name</key>
-					<string>constant.delimiter.listing.end.asciidoc</string>
+					<string>markup.underline.listing.end.asciidoc</string>
 				</dict>
 			</dict>
 			<key>name</key>
@@ -415,7 +415,7 @@ Examples:
 				<key>0</key>
 				<dict>
 					<key>name</key>
-					<string>constant.delimiter.block.open.begin.asciidoc</string>
+					<string>markup.underline.block.open.begin.asciidoc</string>
 				</dict>
 			</dict>
 			<key>comment</key>
@@ -434,7 +434,7 @@ Note: Might need to check on these includes.
 				<key>0</key>
 				<dict>
 					<key>name</key>
-					<string>constant.delimiter.block.open.end.asciidoc</string>
+					<string>markup.underline.block.open.begin.asciidoc</string>
 				</dict>
 			</dict>
 			<key>name</key>
@@ -494,7 +494,7 @@ Examples:
 				<key>0</key>
 				<dict>
 					<key>name</key>
-					<string>constant.delimiter.block.passthrough.begin.asciidoc</string>
+					<string>markup.underline.block.passthrough.begin.asciidoc</string>
 				</dict>
 			</dict>
 			<key>contentName</key>
@@ -506,7 +506,7 @@ Examples:
 				<key>0</key>
 				<dict>
 					<key>name</key>
-					<string>constant.delimiter.block.passthrough.end.asciidoc</string>
+					<string>markup.underline.block.passthrough.end.asciidoc</string>
 				</dict>
 			</dict>
 			<key>name</key>
@@ -568,6 +568,47 @@ Note: Might need to add more includes, but these are the ones that arise for me 
 					<string>#characters</string>
 				</dict>
 			</array>
+		</dict>
+		<key>block_req</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>markup.underline.block.id.asciidoc</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>variable.parameter.reqid.id.asciidoc</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>markup.underline.block.version.asciidoc</string>
+				</dict>
+				<key>6</key>
+				<dict>
+					<key>name</key>
+					<string>variable.parameter.reqversion.id.asciidoc</string>
+				</dict>
+				<key>7</key>
+				<dict>
+					<key>name</key>
+					<string>markup.underline.block.id.asciidoc</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>A requirement id (i.e. anchor).
+Examples:
+  [req,id=ROPR1234,version=1]
+  Lorem ipsum dolor.
+</string>
+			<key>match</key>
+			<string>(\[req,(\s+)?id=)(.+?)(,(\s+)?version=)([0-9])(\])</string>
+			<key>name</key>
+			<string>meta.tag.blockid.req.asciidoc</string>
 		</dict>
 		<key>block_sidebar</key>
 		<dict>
@@ -690,16 +731,9 @@ Examples:
 		</dict>
 		<key>block_title</key>
 		<dict>
-			<key>captures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.definition.blockheading.asciidoc</string>
-				</dict>
-			</dict>
 			<key>comment</key>
-			<string>Title of a block.
+			<string>Title of a block. Exludes custom block titles for better
+scoping / preventing overlap.
 
 Examples:
   .My title
@@ -721,6 +755,10 @@ Examples:
 				<dict>
 					<key>include</key>
 					<string>#block_comment</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#custom_block</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -838,6 +876,41 @@ Examples:
 			<string>^(\s*((&lt;)\d+?(&gt;)))\s+(?=\S)</string>
 			<key>name</key>
 			<string>markup.list.numbered.callout.asciidoc</string>
+		</dict>
+		<key>custom_block</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>markup.underline.block.asciidoc</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>markup.underline.block.asciidoc</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>variable.parameter.sourcelang.asciidoc</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>markup.underline.block.asciidoc</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>(?x)^
+(\[)
+(sect\d|def|math|TODO|quote|example|source,?(\w+))
+(\s*\])  
+\s*$\n?
+</string>
+			<key>name</key>
+			<string>markup.underline.block.id.def.asciidoc</string>
 		</dict>
 		<key>dlist_item_label</key>
 		<dict>
@@ -1291,6 +1364,10 @@ Examples:
 				<dict>
 					<key>include</key>
 					<string>#block_id</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#block_req</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -1911,7 +1988,8 @@ Note: Must be dead first among the inlines, so as to take priority.
 sect\d|abstract|preface|colophon|dedication|glossary|bibliography|synopsis|appendix|index # fixed list of known templates
 )
 (".*(\])|(\]))  # either close the quote (and perhaps go on) and close the bracket, or close the bracket immediately
-\s*$\n?</string>
+\s*$\n?
+</string>
 			<key>name</key>
 			<string>variable.parameter.sectiontemplate.asciidoc</string>
 		</dict>
@@ -2304,7 +2382,7 @@ Examples:
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>^(=) (\w.*)$\n?</string>
+			<string>^(=) (`?\w.*)$\n?</string>
 			<key>name</key>
 			<string>markup.heading.level.0.asciidoc</string>
 		</dict>
@@ -2324,7 +2402,7 @@ Examples:
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>^(==) (\w.*)$\n?</string>
+			<string>^(==) (`?\w.*)$\n?</string>
 			<key>name</key>
 			<string>markup.heading.level.1.asciidoc</string>
 		</dict>
@@ -2344,7 +2422,7 @@ Examples:
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>^(===) (\w.*)$\n?</string>
+			<string>^(===) (`?\w.*)$\n?</string>
 			<key>name</key>
 			<string>markup.heading.level.2.asciidoc</string>
 		</dict>
@@ -2364,7 +2442,7 @@ Examples:
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>^(====) (\w.*)$\n?</string>
+			<string>^(====) (`?\w.*)$\n?</string>
 			<key>name</key>
 			<string>markup.heading.level.3.asciidoc</string>
 		</dict>
@@ -2384,7 +2462,7 @@ Examples:
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>^(=====) (\w.*)$\n?</string>
+			<string>^(=====) (`?\w.*)$\n?</string>
 			<key>name</key>
 			<string>markup.heading.level.4.asciidoc</string>
 		</dict>
@@ -2404,7 +2482,7 @@ Examples:
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>^(======) (\w.*)$\n?</string>
+			<string>^(======) (`?\w.*)$\n?</string>
 			<key>name</key>
 			<string>markup.heading.level.5.asciidoc</string>
 		</dict>
