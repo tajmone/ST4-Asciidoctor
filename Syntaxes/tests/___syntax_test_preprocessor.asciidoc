@@ -1,0 +1,116 @@
+// SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.tmLanguage"
+= AsciiDoc Preprocessor Directives
+// *****************************************************************************
+// *                                                                           *
+// *                      Preprocessor Directives Tests                        *
+// *                                                                           *
+// *****************************************************************************
+
+
+
+// =============================================================================
+//                                   Include
+// =============================================================================
+
+include::./relative/path/chapter01.adoc[leveloffset=+1]
+
+[source,java]
+----
+include::{sourcedir}/some/path/sourcefile.java[]
+----
+
+[source,ruby]
+----
+include::somefile.rb[tags=procs;clojures]
+----
+
+// =============================================================================
+//                           Conditional Preprocessor
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+// ifdef & ifndef
+// -----------------------------------------------------------------------------
+
+ifdef::env-github[]
+//<^^^ kwd
+//     ^^^^^^^^^^^^ std
+This content is for GitHub only.
+endif::[]
+//<^^^^ kwd
+//     ^^ std
+
+
+ifndef::env-github[]
+//<^^^^^ kwd
+//      ^^^^^^^^^^^^ std
+This content is not shown on GitHub.
+endif::[]
+
+// Shorthand ifdef single line example:
+ifdef::revnumber[This document has a version number of {revnumber}.]
+
+// Multiple Attributes (OR):
+ifdef::backend-html5,backend-docbook5[Only shown when converting to HTML5 or DocBook 5.]
+
+
+// Multiple Attributes (AND):
+ifdef::env-github+backend-html5[Only shown when converting to HTML5 on GitHub.]
+
+// -----------------------------------------------------------------------------
+// ifeval
+// -----------------------------------------------------------------------------
+// No single line shortand form for ifeval!
+
+ifeval::[{sectnumlevels} == 3]
+//<^^^^^ kwd
+//      ^^^^^^^^^^^^^^^^^^^^^^ std
+If the `sectnumlevels` attribute has the value 3, this sentence is included.
+endif::[]
+//<^^^^ kwd
+//     ^^ std
+
+
+// Supported Operators:
+
+ifeval::[0 > 1]
+==  !=  <  <=  >  >=
+endif::[]
+
+ifeval::[6 > 4]
+...
+endif::[]
+
+ifeval::[6 >= 4]
+...
+endif::[]
+
+ifeval::[4 < 6]
+...
+endif::[]
+
+ifeval::[4 <= 6]
+...
+endif::[]
+
+ifeval::["{backend}" == "html5"]
+...
+endif::[]
+
+ifeval::[{sectnumlevels} != 3]
+...
+endif::[]
+
+
+// ******************************************************************************
+// *                                                                            *
+// *                             Escaped Directives                             *
+// *                                                                            *
+// ******************************************************************************
+// Backslash-escaped directive won't be processed:
+
+\include::./relative/path/sourcefile.java[]
+//< ^^^^^ std
+
+
+// EOF //

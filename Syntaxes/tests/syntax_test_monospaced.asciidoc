@@ -1,0 +1,39 @@
+// SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.tmLanguage"
+= AsciiDoc Preprocessor Directives
+// *****************************************************************************
+// *                                                                           *
+// *                          Verbatim & Code Tests                            *
+// *                                                                           *
+// *****************************************************************************
+// Code, code blocks? as strings?
+
+
+Inline code: `Procedure("xyz")`.
+//           ^^^^^^^^^^^^^^^^^^           string.other.literal.single.asciidoc
+//            ^^^^^^^^^^^^^^^^                    meta.literalinner.single.asciidoc
+//           ^                  punctuation.definition.literal.single.begin.asciidoc
+//                            ^ punctuation.definition.literal.single.end.asciidoc
+
+// =============================================================================
+//                 Inline Monospaced Inside Typographic Quotes
+// =============================================================================
+// See: https://asciidoctor.org/docs/user-manual/#unconstrained-formatting-edge-cases
+
+// Unconstrained inline code within curly quotes "```Procedure("xyz")```".
+//                                               ^^^^^^^^^^^^^^^^^^
+//                                            ^^
+//                                                                  ^^
+
+
+// =============================================================================
+//                           Test for False-Positives
+// =============================================================================
+// Bacticks adjacent to single/double quote delimiters (straight) are for making
+// the quote curly, and should not be seen as monospaced/inline-code.
+
+These are just '`curly single quotes`', and "`curly double quotes`".
+//             ^^^^^^^^^^^^^^^^^^^^^^^
+//                                          ^^^^^^^^^^^^^^^^^^^^^^^
+
+
+// EOF //
