@@ -1,6 +1,6 @@
 %YAML 1.2
 ---
-# "Asciidoctor.sublime-syntax" v0.0.6 | 2019/09/15
+# "Asciidoctor.sublime-syntax" v0.0.7 | 2019/09/15
 # ==============================================================================
 #                        AsciiDoc Syntax for Asciidoctor
 # ==============================================================================
@@ -87,6 +87,9 @@ contexts:
   #   - include: macro
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  ###############
+  # CUSTOM BLOCKS
+  ###############
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # custom_block:
@@ -103,6 +106,10 @@ contexts:
   #     '3': {name: variable.parameter.sourcelang.asciidoc}
   #     '4': {name: markup.underline.block.asciidoc}
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+  #################
+  # EXAMPLE BLOCKS
+  #################
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_example:
@@ -129,6 +136,14 @@ contexts:
   #   - include: characters
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  ################
+  # LISTING BLOCKS
+  ################
+  # Examples:
+  #   ----
+  #   Lorem ipsum.
+  #   ----
+
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_listing:
   #   comment: |
@@ -146,6 +161,16 @@ contexts:
   #     '0': {name: markup.underline.listing.end.asciidoc}
   #   - include: inline_callout
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+  ######################
+  # FENCED SOURCE BLOCKS
+  ######################
+  # Fenced code block (ala Markdown)
+  #
+  # Examples:
+  #   ```rb
+  #   puts 'Hello world!'
+  #   ```
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_source_fenced:
@@ -203,6 +228,9 @@ contexts:
   #   - include: inline_callout
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  #############
+  # OPEN BLOCKS
+  #############
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_open:
   #   comment: |
@@ -228,6 +256,9 @@ contexts:
   #   - include: characters
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  #############
+  # PASS BLOCKS
+  #############
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_pass:
   #   name: meta.embedded.block.passthrough.asciidoc
@@ -241,6 +272,9 @@ contexts:
   #   - include: text.xml
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  ##############
+  # QUOTE BLOCKS
+  ##############
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_quote:
   #   comment: >
@@ -264,6 +298,9 @@ contexts:
   #   - include: characters
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  #################
+  # SIDEBAR BLOCKS
+  #################
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_sidebar:
   #   comment: |
@@ -298,6 +335,9 @@ contexts:
 #  #  begin: ^(?=\S)(?![\/|=\-_\.*`]{2,}(?=\s*$))(?!\.\S+)
 #  #  end: ^(?:\s*$|(?=[ ]{,3}>.))|(?=[ \t]*\n)(?<=^===|^====|=====|^---|^----|-----)[\t]*\n
 
+  #################
+  # INLINE CALLOUTS
+  #################
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # inline_callout:
   #   comment: |
@@ -331,6 +371,9 @@ contexts:
   #   - include: indexterm_triple
   #   - include: indexterm_double
 
+  #####################
+  # ATTRIBUTE REFERENCE
+  #####################
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # attribute_reference:
   #   comment: |
@@ -344,6 +387,9 @@ contexts:
   #     '3': {name: constant.character.attributes.reference.end.asciidoc}
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  ################
+  # BIBLIO ANCHORS
+  ################
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # biblio_anchor:
   #   comment: |
@@ -358,6 +404,9 @@ contexts:
   #     '2': {name: punctuation.definition.biblioanchor.end.asciidoc}
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  #################
+  # NUMBER ENTITIES
+  #################
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # entity_number:
   #   comment: |
@@ -370,6 +419,9 @@ contexts:
   #   match: (?<!\\)&#(x?[0-9a-fA-f]{2,4});
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  #########
+  # ESCAPES
+  #########
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # escape:
   #   comment: |
@@ -381,6 +433,9 @@ contexts:
   #   match: \\(?=[-`*_#+.!(){}\[\]\\>:])
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  ###################
+  # DOUBLE INDEXTERMS
+  ###################
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # indexterm_double:
   #   comment: |
@@ -395,6 +450,9 @@ contexts:
   #     '3': {name: constant.character.indexterm.double.end.asciidoc}
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  ###################
+  # TRIPLE INDEXTERMS
+  ###################
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # indexterm_triple:
   #   comment: |
@@ -409,6 +467,9 @@ contexts:
   #     '3': {name: constant.character.indexterm.triple.end.asciidoc}
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  ########
+  # MACROS
+  ########
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # macro:
   #   comment: |
@@ -437,6 +498,10 @@ contexts:
   #     '8': {name: constant.character.attributes.macro.end.asciidoc}
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  ############
+  # PASS MACRO
+  ############
+
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # macro_pass:
   #   comment: |
@@ -464,6 +529,9 @@ contexts:
   #   - include: text.xml
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  ##############
+  # REPLACEMENTS
+  ##############
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   #  replacement:
   #    name: constant.character.replacement.asciidoc
@@ -483,6 +551,10 @@ contexts:
   #      )
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  ################
+  # NAMED ENTITIES
+  ################
+
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # entity_name:
   #   comment: |
@@ -494,6 +566,10 @@ contexts:
   #   name: constant.character.entity.xml.asciidoc
   #   match: (?<!\\)&([a-zA-Z][a-zA-Z0-9]*);
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+  #######
+  # XREFS
+  #######
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # xref:
@@ -532,6 +608,9 @@ contexts:
   #   - include: subscript
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  ###############
+  # STRONG DOUBLE
+  ###############
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # strong_double:
   #   comment: |
@@ -564,6 +643,9 @@ contexts:
   #   - include: characters
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  #################
+  # EMPHASIS DOUBLE
+  #################
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # emphasis_double:
   #   comment: |
@@ -596,6 +678,9 @@ contexts:
   #   - include: characters
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  ###################
+  # MONOSPACED DOUBLE
+  ###################
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # monospaced_double:
   #   comment: |
@@ -628,6 +713,9 @@ contexts:
   #   - include: characters
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  #############
+  # MARK DOUBLE
+  #############
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # mark_double:
   #   comment: |
@@ -660,6 +748,9 @@ contexts:
   #   - include: characters
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  #############
+  # PASSTHROUGH
+  #############
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # passthrough:
   #   comment: |
@@ -680,6 +771,9 @@ contexts:
   #     '0': {name: constant.character.passthru.end.asciidoc}
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  ########
+  # STRONG
+  ########
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # strong:
   #   comment: |
@@ -715,6 +809,9 @@ contexts:
   #   - include: characters
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  ##########
+  # EMPHASIS
+  ##########
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # emphasis:
   #   comment: |
@@ -750,6 +847,9 @@ contexts:
   #   - include: characters
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  ############
+  # MONOSPACED
+  ############
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # monospaced:
   #   comment: |
@@ -785,6 +885,9 @@ contexts:
   #   - include: characters
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  ######
+  # MARK
+  ######
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # mark:
   #   comment: |
@@ -820,6 +923,9 @@ contexts:
   #   - include: characters
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  ###########
+  # SUBSCRIPT
+  ###########
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # subscript:
   #   comment: |
@@ -853,6 +959,9 @@ contexts:
   #   - include: characters
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  #############
+  # SUPERSCRIPT
+  #############
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # superscript:
   #   comment: |
@@ -930,6 +1039,10 @@ contexts:
   #     '2': {name: meta.line.comment.content.asciidoc}
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  #################
+  # ATTRIBUTE ENTRY
+  #################
+
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # attribute_entry:
   #   comment: |
@@ -959,6 +1072,10 @@ contexts:
   #   - include: characters
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  #####################
+  # ATTRIBUTE LIST LINE
+  #####################
+
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # attribute_list_line:
   #   comment: >
@@ -972,6 +1089,9 @@ contexts:
   #     '2': {name: punctuation.definition.attributelistline.end.asciidoc}
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  #############
+  # BLOCK TITLE
+  #############
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_title:
   #   comment: |
@@ -985,6 +1105,9 @@ contexts:
   #   match: ^(\.)\w.*$\n?
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  ##########
+  # BLOCK ID
+  ##########
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_id:
   #   comment: |
@@ -1001,6 +1124,9 @@ contexts:
   #     '3': {name: punctuation.definition.blockid.end.asciidoc}
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  ###########
+  # BLOCK REQ
+  ###########
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_req:
   #   comment: |
@@ -1019,6 +1145,10 @@ contexts:
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
+  ##############
+  # INLINE BREAK
+  ##############
+
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # inline_break:
   #   comment: |
@@ -1031,11 +1161,18 @@ contexts:
   #   match: (?<=\s)\+$\n?
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  ###################
+  # LIST CONTINUATION
+  ###################
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # list_continuation:
   #   name: constant.listcontinuation.asciidoc
   #   match: ^\+\s*$\n?
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+  ##################
+  # BLOCK PAGE BREAK
+  ##################
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_page_break:
@@ -1049,6 +1186,10 @@ contexts:
   #   match: ^<{3,}$\n?
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  ######################
+  # BLOCK THEMATIC BREAK
+  ######################
+
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_thematic_break:
   #   comment: |
@@ -1060,6 +1201,10 @@ contexts:
   #   name: meta.separator.ruler.asciidoc
   #   match: ^'{3,}$\n?
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+  ##################
+  # SECTION TEMPLATE
+  ##################
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # section_template:
@@ -1096,6 +1241,9 @@ contexts:
   #   - include: dlist_item_label
   #   - include: colist_item_marker
 
+  ########################
+  # ADMONITION BLOCK LABEL
+  ########################
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_admonition_label:
   #   comment: |
@@ -1108,6 +1256,9 @@ contexts:
   #   match: ^(NOTE|TIP|IMPORTANT|WARNING|CAUTION):(?=\s+)
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  ###################
+  # ULIST ITEM MARKER
+  ###################
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # ulist_item_marker:
   #   comment: |
@@ -1131,6 +1282,9 @@ contexts:
   #     '2': {name: constant.numeric.list.bullet.asciidoc}
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  ####################
+  # COLIST ITEM MARKER
+  ####################
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # colist_item_marker:
   #   comment: |
@@ -1148,6 +1302,9 @@ contexts:
   #     '4': {name: punctuation.definition.calloutlistnumber.end.asciidoc}
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+  ##################
+  # DLIST ITEM LABEL
+  ##################
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # dlist_item_label:
   #   comment: |
@@ -1175,6 +1332,10 @@ contexts:
   #   - include: inline
   #   - include: characters
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+  ###################
+  # OLIST ITEM MARKER
+  ###################
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # olist_item_marker:
