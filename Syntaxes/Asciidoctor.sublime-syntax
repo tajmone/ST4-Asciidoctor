@@ -1,11 +1,26 @@
 %YAML 1.2
 ---
-# "Asciidoctor.sublime-syntax" v0.0.7 | 2019/09/15
+# "Asciidoctor.sublime-syntax" v0.0.8 | 2019/09/22
 # ==============================================================================
 #                        AsciiDoc Syntax for Asciidoctor
 # ==============================================================================
 # Syntax definition for Asciidoctor:
 # -- https://asciidoctor.org/
+# ------------------------------------------------------------------------------
+# NOTE: This syntax was taken from @bsmith-n4, who slightly improved the
+# original syntax by Asciidoctor. I've annotated all changes by @bsmith-n4 in
+# the source, and included the original, in order to allow comparison.
+#
+# @bsmith-n4 changes include:
+#  -- scope renaming
+#  -- RegEx tweaks
+#  -- new elements
+#  -- element tweaks
+#
+#
+# Ultimately, I'll try to keep the scope names of the original syntax from the
+# Asciidoctor repo, but also keep the improvements by @bsmith-n4, except his own
+# custom elements.
 # ------------------------------------------------------------------------------
 # Copyright (c) Tristano Ajmone, 2019. MIT License.
 # ------------------------------------------------------------------------------
@@ -37,7 +52,7 @@ contexts:
   blocks:
     - include: block_literal
     - include: block_comment
-    # - include: custom_block
+    # - include: custom_block                           # <- ADDED by @bsmith-n4
     # - include: block_listing
     # - include: block_source_fenced
     # - include: block_sidebar
@@ -45,6 +60,7 @@ contexts:
     # - include: block_quote
     # - include: block_example
     # - include: block_open
+        #- include: '#block_paragraph'                # <- REMOVED by @bsmith-n4
 
   ################
   # BLOCK COMMENTS
@@ -92,7 +108,7 @@ contexts:
   ###############
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # custom_block:
+  # custom_block:                                       # <- ADDED by @bsmith-n4
   #   name: markup.underline.block.id.def.asciidoc
   #   match: |
   #     (?x)^
@@ -144,6 +160,14 @@ contexts:
   #   Lorem ipsum.
   #   ----
 
+  # IMPORTANT: This element was REMANED by @bsmith-n4! In the original:
+  #
+  #     '0': {name: constant.delimiter.listing.begin.asciidoc}
+  #   end: ^\1\s*$\n?
+  #   endCaptures:
+  #     '0': {name: constant.delimiter.listing.end.asciidoc}
+
+
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_listing:
   #   comment: |
@@ -155,10 +179,10 @@ contexts:
   #   contentName: source.block.listing.content.asciidoc
   #   begin: ^(\-{4,})\s*$\n?
   #   beginCaptures:
-  #     '0': {name: markup.underline.listing.begin.asciidoc}
+  #     '0': {name: markup.underline.listing.begin.asciidoc}  # <- RENAMED by @bsmith-n4
   #   end: ^\1\s*$\n?
   #   endCaptures:
-  #     '0': {name: markup.underline.listing.end.asciidoc}
+  #     '0': {name: markup.underline.listing.end.asciidoc}    # <- RENAMED by @bsmith-n4
   #   - include: inline_callout
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
@@ -231,6 +255,14 @@ contexts:
   #############
   # OPEN BLOCKS
   #############
+
+  # IMPORTANT: This element was REMANED by @bsmith-n4! In the original:
+  #
+  #    '0': {name: constant.delimiter.block.open.begin.asciidoc}
+  #  end: ^\-\-\s*$\n?
+  #  endCaptures:
+  #    '0': {name: constant.delimiter.block.open.end.asciidoc}
+
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_open:
   #   comment: |
@@ -243,10 +275,10 @@ contexts:
   #   contentName: meta.block.open.content.asciidoc
   #   begin: ^\-\-\s*$\n?
   #   beginCaptures:
-  #     '0': {name: markup.underline.block.open.begin.asciidoc}
+  #     '0': {name: markup.underline.block.open.begin.asciidoc}  # <- RENAMED by @bsmith-n4
   #   end: ^\-\-\s*$\n?
   #   endCaptures:
-  #     '0': {name: markup.underline.block.open.begin.asciidoc}
+  #     '0': {name: markup.underline.block.open.begin.asciidoc}  # <- RENAMED by @bsmith-n4
   #   - include: lists
   #   - include: block_comment
   #   - include: block_listing
@@ -259,16 +291,24 @@ contexts:
   #############
   # PASS BLOCKS
   #############
+
+  # IMPORTANT: This element was REMANED by @bsmith-n4! In the original:
+  #
+  #   '0': {name: constant.delimiter.block.passthrough.begin.asciidoc}
+  # end: ^\1\s*$\n?
+  # endCaptures:
+  #   '0': {name: constant.delimiter.block.passthrough.end.asciidoc}
+
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_pass:
   #   name: meta.embedded.block.passthrough.asciidoc
   #   contentName: text.xml.block.passthrough.content.asciidoc
   #   begin: ^(\+{4,})\s*$\n?
   #   beginCaptures:
-  #     '0': {name: markup.underline.block.passthrough.begin.asciidoc}
+  #     '0': {name: markup.underline.block.passthrough.begin.asciidoc}  # <- RENAMED by @bsmith-n4
   #   end: ^\1\s*$\n?
   #   endCaptures:
-  #     '0': {name: markup.underline.block.passthrough.end.asciidoc}
+  #     '0': {name: markup.underline.block.passthrough.end.asciidoc}    # <- RENAMED by @bsmith-n4
   #   - include: text.xml
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
@@ -1008,7 +1048,7 @@ contexts:
   #   - include: block_thematic_break
   #   - include: block_title
   #   - include: block_id
-  #   - include: block_req
+  #   - include: block_req                              # <- ADDED by @bsmith-n4
   #   - include: section_template
   #   - include: attribute_list_line
   #   - include: attribute_entry
@@ -1092,7 +1132,10 @@ contexts:
   #############
   # BLOCK TITLE
   #############
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+  # IMPORTANT: This element differs in @bsmith-n4 and original!
+
+  # >>>>>>>> bsmith-n4 >>>>>>>>
   # block_title:
   #   comment: |
   #     Title of a block. Exludes custom block titles for better
@@ -1103,6 +1146,20 @@ contexts:
   #       Lorem ipsum dolor.
   #   name: markup.heading.block.asciidoc
   #   match: ^(\.)\w.*$\n?
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+  # >>>>>>> Asciidoctor >>>>>>>
+  # block_title:
+  #   comment: |
+  #     Title of a block.
+  #
+  #     Examples:
+  #       .My title
+  #       Lorem ipsum dolor.
+  #   name: markup.heading.block.asciidoc
+  #   match: ^(\.)\w.*$\n?
+  #   captures:
+  #     '1': {name: punctuation.definition.blockheading.asciidoc}
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
   ##########
@@ -1127,7 +1184,10 @@ contexts:
   ###########
   # BLOCK REQ
   ###########
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+  # IMPORTANT: This element was ADDED by @bsmith-n4!
+
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>                         # <- ADDED by @bsmith-n4
   # block_req:
   #   comment: |
   #     A requirement id (i.e. anchor).
@@ -1206,11 +1266,20 @@ contexts:
   # SECTION TEMPLATE
   ##################
 
+  # IMPORTANT: This element differs in @bsmith-n4 and original!
+  #
+  # section_template:
+  #   comment: fixed list of known template names
+  #   name: variable.parameter.sectiontemplate.asciidoc
+  #   match: |-
+
+
+
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # section_template:
   #   comment: fixed list of known template names
   #   name: variable.parameter.sectiontemplate.asciidoc
-  #   match: |
+  #   match: |                       # <- CHANGED by @bsmith-n4 (was: match: |-)
   #     (?x)^
   #     (\[)  # in square brackets
   #     (template\s*=\s*)?(")?  # might start with template-equals and might have template name in quotes
@@ -1361,6 +1430,14 @@ contexts:
 #-----------------------------------------------------------------------------#
 #                                 T I T L E S                                 #
 #-----------------------------------------------------------------------------#
+
+# IMPORTANT: All Titles RegExs were tweaked by @bsmith-n4! Basically, every
+#            RegEx was tweaked to allow inline code inside the title:
+#
+#               match: ^(=) (\w.*)$\n?     <-- original
+#               match: ^(=) (`?\w.*)$\n?   <-- @bsmith-n4
+
+
 #     Examples:
 #
 #       = Document Title (Level 0)
@@ -1383,10 +1460,15 @@ contexts:
       captures:
         1: punctuation.definition.heading.asciidoc
         2: entity.name.section.asciidoc
+
+  # >>>>>>> Asciidoctor >>>>>>>
+  # match: ^(=) (\w.*)$\n?
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
+
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # title_level_0:
   #   name: markup.heading.level.0.asciidoc
-  #   match: ^(=) (`?\w.*)$\n?
+  #   match: ^(=) (`?\w.*)$\n?                        # <- TWEAKED by @bsmith-n4
   #   captures:
   #     '1': {name: punctuation.definition.heading.asciidoc}
   #     '2': {name: entity.name.section.asciidoc}
@@ -1398,10 +1480,15 @@ contexts:
       captures:
         1: punctuation.definition.heading.asciidoc
         2: entity.name.section.asciidoc
+
+  # >>>>>>> Asciidoctor >>>>>>>
+  #   match: ^(==) (\w.*)$\n?
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
+
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # title_level_1:
   #   name: markup.heading.level.1.asciidoc
-  #   match: ^(==) (`?\w.*)$\n?
+  #   match: ^(==) (`?\w.*)$\n?                       # <- TWEAKED by @bsmith-n4
   #   captures:
   #     '1': {name: punctuation.definition.heading.asciidoc}
   #     '2': {name: entity.name.section.asciidoc}
@@ -1413,10 +1500,15 @@ contexts:
       captures:
         1: punctuation.definition.heading.asciidoc
         2: entity.name.section.asciidoc
+
+  # >>>>>>> Asciidoctor >>>>>>>
+  #   match: ^(===) (\w.*)$\n?
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
+
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # title_level_2:
   #   name: markup.heading.level.2.asciidoc
-  #   match: ^(===) (`?\w.*)$\n?
+  #   match: ^(===) (`?\w.*)$\n?                      # <- TWEAKED by @bsmith-n4
   #   captures:
   #     '1': {name: punctuation.definition.heading.asciidoc}
   #     '2': {name: entity.name.section.asciidoc}
@@ -1428,10 +1520,15 @@ contexts:
       captures:
         1: punctuation.definition.heading.asciidoc
         2: entity.name.section.asciidoc
+
+  # >>>>>>> Asciidoctor >>>>>>>
+  #   match: ^(====) (\w.*)$\n?
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
+
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # title_level_3:
   #   name: markup.heading.level.3.asciidoc
-  #   match: ^(====) (`?\w.*)$\n?
+  #   match: ^(====) (`?\w.*)$\n?                     # <- TWEAKED by @bsmith-n4
   #   captures:
   #     '1': {name: punctuation.definition.heading.asciidoc}
   #     '2': {name: entity.name.section.asciidoc}
@@ -1443,10 +1540,15 @@ contexts:
       captures:
         1: punctuation.definition.heading.asciidoc
         2: entity.name.section.asciidoc
+
+  # >>>>>>> Asciidoctor >>>>>>>
+  #   match: ^(=====) (\w.*)$\n?
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
+
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # title_level_4:
   #   name: markup.heading.level.4.asciidoc
-  #   match: ^(=====) (`?\w.*)$\n?
+  #   match: ^(=====) (`?\w.*)$\n?                    # <- TWEAKED by @bsmith-n4
   #   captures:
   #     '1': {name: punctuation.definition.heading.asciidoc}
   #     '2': {name: entity.name.section.asciidoc}
@@ -1458,10 +1560,15 @@ contexts:
       captures:
         1: punctuation.definition.heading.asciidoc
         2: entity.name.section.asciidoc
+
+  # >>>>>>> Asciidoctor >>>>>>>
+  #   match: ^(======) (\w.*)$\n?
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
+
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # title_level_5:
   #   name: markup.heading.level.5.asciidoc
-  #   match: ^(======) (`?\w.*)$\n?
+  #   match: ^(======) (`?\w.*)$\n?                   # <- TWEAKED by @bsmith-n4
   #   captures:
   #     '1': {name: punctuation.definition.heading.asciidoc}
   #     '2': {name: entity.name.section.asciidoc}
