@@ -1,6 +1,6 @@
 %YAML 1.2
 ---
-# "Asciidoctor.sublime-syntax" v0.0.18 | 2019/09/22
+# "Asciidoctor.sublime-syntax" v0.0.19 | 2019/09/22
 # ==============================================================================
 #                        AsciiDoc Syntax for Asciidoctor
 # ==============================================================================
@@ -59,7 +59,7 @@ contexts:
     # - include: block_sidebar
     # - include: block_pass
     # - include: block_quote
-    # - include: block_example
+    - include: block_example
     # - include: block_open
         #- include: '#block_paragraph'                # <- REMOVED by @bsmith-n4
 
@@ -127,6 +127,25 @@ contexts:
   #################
   # EXAMPLE BLOCKS
   #################
+  # Examples:
+  #   ====
+  #   Lorem ipsum.
+  #   ====
+
+  block_example:
+    - match: ^(={4,})\s*$\n?
+      scope: constant.delimiter.example.begin.asciidoc
+      push:
+        - meta_scope: meta.block.example.content.asciidoc
+        - meta_content_scope: string.unquoted.block.example.asciidoc
+        - match: ^\1\s*$\n?
+          scope: constant.delimiter.example.end.asciidoc
+          pop: true
+          # - include: lists
+          # - include: block_listing
+        - include: lines
+        - include: inline
+          # - include: characters
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_example:

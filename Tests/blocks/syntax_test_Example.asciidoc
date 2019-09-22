@@ -1,0 +1,17 @@
+// SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+= Example Blocks
+// *****************************************************************************
+// *                                                                           *
+// *                           Example Blocks Tests                            *
+// *                                                                           *
+// *****************************************************************************
+
+==================================
+// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.block.example.content.asciidoc
+// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ constant.delimiter.example.begin.asciidoc
+Just an Example
+// <-^^^^^^^^^^  meta.block.example.content.asciidoc
+// <-^^^^^^^^^^  string.unquoted.block.example.asciidoc
+==================================
+
+// EOF //
