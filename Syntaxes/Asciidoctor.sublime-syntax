@@ -1,6 +1,6 @@
 %YAML 1.2
 ---
-# "Asciidoctor.sublime-syntax" v0.0.11 | 2019/09/22
+# "Asciidoctor.sublime-syntax" v0.0.12 | 2019/09/22
 # ==============================================================================
 #                        AsciiDoc Syntax for Asciidoctor
 # ==============================================================================
@@ -818,22 +818,6 @@ contexts:
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
-  ####################
-  # TYPOGRAPHIC QUOTES
-  ####################
-  # Added by me to prevent false-positives with monospace...
-  # STATUS: UNUSED DRAFT!
-
-  curly_quotes: # NOT USED!
-    - match: ("|')(`)
-      scope: punctuation.definition.string.begin.asciidoc
-    - match: (`)("|')
-      scope: punctuation.definition.string.end.asciidoc
-      # push:
-      #   - match: (`)(\1)
-      #     scope: punctuation.definition.string.end.asciidoc
-      #     pop: true
-      #   - include: monospaced_double # Single backticks are literals!
 
   ##########################
   # MONOSPACED UNCONSTRAINED
@@ -851,15 +835,18 @@ contexts:
         (\[[^\]]*?\])?  # might start with attribute list
         (?<!\\)         # must not be preceded by escape
         (``)
+        (?!"|')         # Avoid false positive for closing smart typography
       captures:
         1: support.variable.attributelist.asciidoc
         2: punctuation.definition.literal.double.begin.asciidoc
-      push:
-        - meta_content_scope: meta.literalinner.double.asciidoc
-        - meta_scope: string.other.literal.double.asciidoc
-        - match: '``'
-          scope: punctuation.definition.literal.double.end.asciidoc
-          pop: true
+      push: inside_monospaced_double
+
+  inside_monospaced_double:
+      - meta_content_scope: meta.literalinner.double.asciidoc
+      - meta_scope: string.other.literal.double.asciidoc
+      - match: '``'
+        scope: punctuation.definition.literal.double.end.asciidoc
+        pop: true
     # - include: strong_double
     # - include: emphasis_double
     # - include: mark_double
@@ -914,6 +901,17 @@ contexts:
   #   [red]`Lorem ipsum` dolor
 
   monospaced:
+    # False positive: typographic quotes followed by single backtick:
+    - match: (["']`)(`(?!`))?
+      captures:
+        1: punctuation.definition.string.begin.asciidoc
+      pop: true
+    # False positive: closing typographic quotes:
+    - match: (`["'])
+      captures:
+        1: punctuation.definition.string.end.asciidoc
+      pop: true
+    # Capture real monospaced formatting:
     - match: |
         (?x)
         (\[[^\]]*?\])?      # might start with attributes list
@@ -922,15 +920,17 @@ contexts:
       captures:
         1: support.variable.attributelist.asciidoc
         2: punctuation.definition.literal.single.begin.asciidoc
-      push:
-        - meta_content_scope: meta.literalinner.single.asciidoc
-        - meta_scope: string.other.literal.single.asciidoc
-        - match: |
-            (?x)
-            (?<=\S)(`)        # delimiter backtick that must be preceded by a nonspace character
-            (?!\w)            # ...and followed by a nonword character
-          scope: punctuation.definition.literal.single.end.asciidoc
-          pop: true
+      push: inside_monospaced
+
+  inside_monospaced:
+    - meta_content_scope: meta.literalinner.single.asciidoc
+    - meta_scope: string.other.literal.single.asciidoc
+    - match: |
+        (?x)
+        (?<=\S)(`)        # delimiter backtick that must be preceded by a nonspace character
+        (?!\w)            # ...and followed by a nonword character
+      scope: punctuation.definition.literal.single.end.asciidoc
+      pop: true
   #   - include: strong_double
   #   - include: emphasis_double
   #   - include: mark_double
@@ -1690,6 +1690,31 @@ contexts:
   #     '1': {name: punctuation.definition.heading.asciidoc}
   #     '2': {name: entity.name.section.asciidoc}
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+#*******************************************************************************
+#                                                                              *
+#                            M I S C E L A N N E A                             *
+#                                                                              *
+#*******************************************************************************
+# Various definitions added by me, some of which still unused except for tests!
+
+  ####################
+  # TYPOGRAPHIC QUOTES
+  ####################
+  # Added by me to prevent false-positives with monospace...
+  # STATUS: UNUSED DRAFT!
+
+  curly_quotes: # NOT USED!
+    - match: ("|')(`)
+      scope: punctuation.definition.string.begin.asciidoc
+    - match: (`)("|')
+      scope: punctuation.definition.string.end.asciidoc
+      # push:
+      #   - match: (`)(\1)
+      #     scope: punctuation.definition.string.end.asciidoc
+      #     pop: true
+      #   - include: monospaced_double # Single backticks are literals!
+
 
 # /// EOF ///
 
