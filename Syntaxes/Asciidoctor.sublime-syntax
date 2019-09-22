@@ -1,6 +1,6 @@
 %YAML 1.2
 ---
-# "Asciidoctor.sublime-syntax" v0.0.10 | 2019/09/22
+# "Asciidoctor.sublime-syntax" v0.0.11 | 2019/09/22
 # ==============================================================================
 #                        AsciiDoc Syntax for Asciidoctor
 # ==============================================================================
@@ -816,6 +816,24 @@ contexts:
   #   - include: subscript
   #   - include: characters
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+  ####################
+  # TYPOGRAPHIC QUOTES
+  ####################
+  # Added by me to prevent false-positives with monospace...
+  # STATUS: UNUSED DRAFT!
+
+  curly_quotes: # NOT USED!
+    - match: ("|')(`)
+      scope: punctuation.definition.string.begin.asciidoc
+    - match: (`)("|')
+      scope: punctuation.definition.string.end.asciidoc
+      # push:
+      #   - match: (`)(\1)
+      #     scope: punctuation.definition.string.end.asciidoc
+      #     pop: true
+      #   - include: monospaced_double # Single backticks are literals!
 
   ##########################
   # MONOSPACED UNCONSTRAINED
