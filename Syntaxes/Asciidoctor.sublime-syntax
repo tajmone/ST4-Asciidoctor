@@ -1,6 +1,6 @@
 %YAML 1.2
 ---
-# "Asciidoctor.sublime-syntax" v0.0.20 | 2019/09/22
+# "Asciidoctor.sublime-syntax" v0.0.21 | 2019/09/22
 # ==============================================================================
 #                        AsciiDoc Syntax for Asciidoctor
 # ==============================================================================
@@ -286,6 +286,10 @@ contexts:
   #############
   # OPEN BLOCKS
   #############
+  # Examples:
+  #   --
+  #   Lorem ipsum
+  #   --
 
   # IMPORTANT: This element was REMANED by @bsmith-n4! In the original:
   #
@@ -346,6 +350,11 @@ contexts:
   ##############
   # QUOTE BLOCKS
   ##############
+  # Examples:
+  #   ____
+  #   Lorem ipsum
+  #   ____
+
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_quote:
   #   comment: >
@@ -372,6 +381,11 @@ contexts:
   #################
   # SIDEBAR BLOCKS
   #################
+  # Examples:
+  #   ****
+  #   Lorem ipsum
+  #   ****
+
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_sidebar:
   #   comment: |
@@ -398,6 +412,9 @@ contexts:
   #   - include: characters
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+# -------------------------------------
+# @NOTE: Was commented out in original!
+# -------------------------------------
 #  #block_paragraph:
 #  #  comment: |
 #  #    TODO
@@ -409,6 +426,12 @@ contexts:
   #################
   # INLINE CALLOUTS
   #################
+  # Callout label
+  #
+  # Examples:
+  #   <1>
+  #   <42>
+
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # inline_callout:
   #   comment: |
@@ -445,6 +468,9 @@ contexts:
   #####################
   # ATTRIBUTE REFERENCE
   #####################
+  # Examples:
+  #   {my-attribute}
+
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # attribute_reference:
   #   comment: |
@@ -461,6 +487,10 @@ contexts:
   ################
   # BIBLIO ANCHORS
   ################
+  # Bibliography anchor
+  # Examples:
+  #   [[[Lorem ipsum]]]
+
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # biblio_anchor:
   #   comment: |
@@ -478,6 +508,11 @@ contexts:
   #################
   # NUMBER ENTITIES
   #################
+  # Numeric character reference
+  # Examples:
+  #   &#x278a;
+  #   &#182;
+
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # entity_number:
   #   comment: |
@@ -493,6 +528,11 @@ contexts:
   #########
   # ESCAPES
   #########
+  # List of special characters that may be escaped.
+
+  # @NOTE (IN ORIGINAL): I do not really know if this is a good list, adopted
+  #                      wholesale from original bundle.
+
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # escape:
   #   comment: |
@@ -507,6 +547,10 @@ contexts:
   ###################
   # DOUBLE INDEXTERMS
   ###################
+  # Double parenthesis indexterm.
+  # Examples:
+  #   ((Arthur))
+
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # indexterm_double:
   #   comment: |
@@ -524,6 +568,10 @@ contexts:
   ###################
   # TRIPLE INDEXTERMS
   ###################
+  # Triple parenthesis indexterm.
+  # Examples:
+  #   (((Sword, Broadsword, Excalibur)))
+
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # indexterm_triple:
   #   comment: |
@@ -541,6 +589,10 @@ contexts:
   ########
   # MACROS
   ########
+
+  # @NOTE (ORIGINAL): There are other macro notations, but I match only those
+  #                   that end in square brackets.
+
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # macro:
   #   comment: |
@@ -572,6 +624,10 @@ contexts:
   ############
   # PASS MACRO
   ############
+  # Passthrough macro
+  # Examples:
+  #   pass:[Lorem ipsum]
+  #   pass::[Lorem ipsum]
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # macro_pass:
@@ -625,6 +681,10 @@ contexts:
   ################
   # NAMED ENTITIES
   ################
+  # Character entity reference
+  # Examples:
+  #   &nbsp;
+  #   &sup2;
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # entity_name:
@@ -641,6 +701,10 @@ contexts:
   #######
   # XREFS
   #######
+  # Internal cross-reference
+  # Examples:
+  #   <<lorem>>
+  #   <<lorem, see here>>
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # xref:
@@ -698,6 +762,10 @@ contexts:
   # STRONG UNCONSTRAINED
   ######################
   # Was: "STRONG DOUBLE"
+  # Strong (bold) text (unconstrained variant).
+  # Examples:
+  #   Lo**re**m **ipsum dolor**.
+  #   Lo[red]**re**m
 
   strong_double:
     - match: |
@@ -765,6 +833,10 @@ contexts:
   # STRONG CONSTRAINED
   #####################
   # Was: "STRONG"
+  # Strong (bold) text (unconstrained variant).
+  # Examples:
+  #   Lo**re**m **ipsum dolor**.
+  #   Lo[red]**re**m
   strong:
     - match: |
         (?x)
@@ -837,6 +909,10 @@ contexts:
   # EMPHASIS UNCONSTRAINED
   ########################
   # Was: "EMPHASIS DOUBLE"
+  # Emphasized (italic) text (unconstrained variant).
+  # Examples:
+  #   Lo__re__m __ipsum dolor__.
+  #   Lo[red]__re__m
 
   emphasis_double:
     - match: |
@@ -1146,6 +1222,11 @@ contexts:
   #############
   # PASSTHROUGH
   #############
+  # Inline triple-plus and double dolar passthrough.
+  # Examples:
+  #   Lo+++re++++m +++ipsum dolor+++.
+  #   Lo$$re$$m $$ipsum dolor$$.
+
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # passthrough:
   #   comment: |
@@ -1171,6 +1252,10 @@ contexts:
   # MARK UNCONSTRAINED
   ####################
   # Was: "MARK DOUBLE"
+  # Marked text (unconstrained variant).
+  # Examples:
+  #   Lo##re##m ##ipsum dolor##.
+  #   Lo[red]##re##m
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # mark_double:
@@ -1208,6 +1293,11 @@ contexts:
   # MARK CONSTRAINED
   ##################
   # Was: "MARK"
+  # Marked text (constrained variant).
+  # Examples:
+  #   #Lorem ipsum# dolor
+  #   [red]#Lorem ipsum# dolor
+
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # mark:
   #   comment: |
@@ -1246,6 +1336,11 @@ contexts:
   ###########
   # SUBSCRIPT
   ###########
+  # Subscript text.
+  # Examples:
+  #   E=mc^2^
+  #   E=mc[red]^2^
+
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # subscript:
   #   comment: |
@@ -1282,6 +1377,11 @@ contexts:
   #############
   # SUPERSCRIPT
   #############
+  # Superscript text.
+  # Examples:
+  #   H~2~O
+  #   H[red]~2~O
+
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # superscript:
   #   comment: |
@@ -1337,6 +1437,7 @@ contexts:
   ######################
   # SINGLE-LINE COMMENTS
   ######################
+  # Inline comment. (?)
   # Examples:
   #   // This is just a comment!
   line_comment:
@@ -1363,6 +1464,11 @@ contexts:
   #################
   # ATTRIBUTE ENTRY
   #################
+  # An attribute entry.
+  # Examples:
+  #   :my-attribute: value
+  #   :sectnums!:
+  #   :!sectnums:
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # attribute_entry:
@@ -1396,6 +1502,9 @@ contexts:
   #####################
   # ATTRIBUTE LIST LINE
   #####################
+  # Attribute list as paragraph: single brackets. No need for special
+  # treatment of escape; follows literal block, section template as being a
+  # more general regex.
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # attribute_list_line:
@@ -1413,6 +1522,11 @@ contexts:
   #############
   # BLOCK TITLE
   #############
+  # Title of a block. Exludes custom block titles for better
+  # scoping / preventing overlap.
+  # Examples:
+  #   .My title
+  #   Lorem ipsum dolor.
 
   # IMPORTANT: This element differs in @bsmith-n4 and original!
 
@@ -1446,6 +1560,11 @@ contexts:
   ##########
   # BLOCK ID
   ##########
+  #A block id (i.e. anchor).
+  #Examples:
+  #  [[myid]]
+  #  Lorem ipsum dolor.
+
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_id:
   #   comment: |
@@ -1465,6 +1584,10 @@ contexts:
   ###########
   # BLOCK REQ
   ###########
+  # A requirement id (i.e. anchor).
+  # Examples:
+  #   [req,id=ROPR1234,version=1]
+  #   Lorem ipsum dolor.
 
   # IMPORTANT: This element was ADDED by @bsmith-n4!
 
@@ -1489,6 +1612,10 @@ contexts:
   ##############
   # INLINE BREAK
   ##############
+  # Line hard break with a plus sign (+).
+  # Examples:
+  #   Rubies are red, +
+  #   Topazes are blue.
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # inline_break:
@@ -1514,6 +1641,10 @@ contexts:
   ##################
   # BLOCK PAGE BREAK
   ##################
+  # A page break.
+  # Examples:
+  #   <<<
+  #   <<<<<
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_page_break:
@@ -1530,6 +1661,10 @@ contexts:
   ######################
   # BLOCK THEMATIC BREAK
   ######################
+  # A thematic break (aka horizontal rule).
+  # Examples:
+  #   '''
+  #   ''''''
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_thematic_break:
@@ -1546,6 +1681,7 @@ contexts:
   ##################
   # SECTION TEMPLATE
   ##################
+  # Fixed list of known template names
 
   # IMPORTANT: This element differs in @bsmith-n4 and original!
   #
@@ -1595,6 +1731,11 @@ contexts:
   ########################
   # ADMONITION BLOCK LABEL
   ########################
+  # Label of an admonition block.
+  # Examples:
+  #   NOTE: This is a admonition block.
+  #   WARNING:  Be aware of them!
+
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_admonition_label:
   #   comment: |
@@ -1610,6 +1751,19 @@ contexts:
   ###################
   # ULIST ITEM MARKER
   ###################
+  # Marker of an unordered (bullet) list item.
+  # Examples:
+  #   * level 1
+  #   ** level 2
+  #   *** level 3
+  #   **** level 4
+  #   ***** level 5
+  #   - level 1
+  #   -- level 2
+  #   --- level 3
+  #   ---- level 4
+  #   ----- level 5
+
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # ulist_item_marker:
   #   comment: |
@@ -1636,6 +1790,11 @@ contexts:
   ####################
   # COLIST ITEM MARKER
   ####################
+  # Marker of a callout list item.
+  # Examples:
+  #   <1> a callout
+  #   <42> another callout
+
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # colist_item_marker:
   #   comment: |
@@ -1656,6 +1815,22 @@ contexts:
   ##################
   # DLIST ITEM LABEL
   ##################
+  # Label of a definition (labeled) list item.
+  # Examples:
+  #   Label level 1:: lorem ipsum
+  #   Label level 2::: dolor sit amet
+  #   Label level 3:::: consectetur
+  #   Label level 1::
+  #     lorem ipsum
+  #   Another label :: lorem ipsum
+  #   Last::label:: dolor sit amet
+
+  # @NOTE (ORIGINAL):
+  #     This rule is not strictly correct, because Asciidoctor allows
+  #     double colon followed by a space inside a label, i.e. it matches the
+  #     *last* double colon, not the first. I don't know how to do that
+  #     *effectively.
+
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # dlist_item_label:
   #   comment: |
@@ -1687,6 +1862,13 @@ contexts:
   ###################
   # OLIST ITEM MARKER
   ###################
+  # Marker of an ordered (numbered) list item.
+  # Examples:
+  #   . level 1
+  #   .. level 2
+  #   ... level 3
+  #   .... level 4
+  #   ..... level 5
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # olist_item_marker:
