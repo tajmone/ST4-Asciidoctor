@@ -1,6 +1,6 @@
 %YAML 1.2
 ---
-# "Asciidoctor.sublime-syntax" v0.0.8 | 2019/09/22
+# "Asciidoctor.sublime-syntax" v0.0.9 | 2019/09/22
 # ==============================================================================
 #                        AsciiDoc Syntax for Asciidoctor
 # ==============================================================================
@@ -44,10 +44,11 @@ contexts:
   # - include: inline
   # - include: characters
 
-
-#-----------------------------------------------------------------------------#
-#                                 B L O C K S                                 #
-#-----------------------------------------------------------------------------#
+#*******************************************************************************
+#                                                                              *
+#                         B L O C K    E L E M E N T S                         *
+#                                                                              *
+#*******************************************************************************
 
   blocks:
     - include: block_literal
@@ -628,10 +629,25 @@ contexts:
   #     '6': {name: constant.character.xref.end.asciidoc}
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+#*******************************************************************************
+#                                                                              *
+#                        I N L I N E    E L E M E N T S                        *
+#                                                                              *
+#*******************************************************************************
 
-#-----------------------------------------------------------------------------#
-#                                I N L I N E S                                #
-#-----------------------------------------------------------------------------#
+  # inline:
+  #   - include: passthrough
+  #   - include: strong_double
+  #   - include: emphasis_double
+  #   - include: monospaced_double
+  #   - include: mark_double
+  #   - include: strong
+  #   - include: emphasis
+  #   - include: monospaced
+  #   - include: mark
+  #   - include: superscript
+  #   - include: subscript
+
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # inline:
@@ -648,9 +664,10 @@ contexts:
   #   - include: subscript
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-  ###############
-  # STRONG DOUBLE
-  ###############
+  ######################
+  # STRONG UNCONSTRAINED
+  ######################
+  # Was: "STRONG DOUBLE"
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # strong_double:
   #   comment: |
@@ -683,137 +700,11 @@ contexts:
   #   - include: characters
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-  #################
-  # EMPHASIS DOUBLE
-  #################
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # emphasis_double:
-  #   comment: |
-  #     Emphasized (italic) text (unconstrained variant).
-  #
-  #     Examples:
-  #       Lo__re__m __ipsum dolor__.
-  #       Lo[red]__re__m
-  #   name: markup.italic.double.asciidoc
-  #   contentName: meta.italicinner.double.asciidoc
-  #   begin: |-
-  #     (?x)
-  #     (\[[^\]]*?\])?  # might start with attribute list
-  #     (?<!\\)         # must not be preceded by escape
-  #     (__)
-  #   beginCaptures:
-  #     '1': {name: support.variable.attributelist.asciidoc}
-  #     '2': {name: punctuation.definition.italic.double.begin.asciidoc}
-  #   end: '__'
-  #   endCaptures:
-  #     '0': {name: punctuation.definition.italic.double.end.asciidoc}
-  #   - include: strong_double
-  #   - include: monospaced_double
-  #   - include: mark_double
-  #   - include: strong
-  #   - include: monospaced
-  #   - include: mark
-  #   - include: superscript
-  #   - include: subscript
-  #   - include: characters
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
+  #####################
+  # STRONG CONSTRAINED
+  #####################
+  # Was: "STRONG"
 
-  ###################
-  # MONOSPACED DOUBLE
-  ###################
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # monospaced_double:
-  #   comment: |
-  #     Monospaced text (unconstrained variant).
-  #
-  #     Examples:
-  #       Lo``re``m ``ipsum dolor``.
-  #       Lo[red]``re``m
-  #   name: string.other.literal.double.asciidoc
-  #   contentName: meta.literalinner.double.asciidoc
-  #   begin: |-
-  #     (?x)
-  #     (\[[^\]]*?\])?  # might start with attribute list
-  #     (?<!\\)         # must not be preceded by escape
-  #     (``)
-  #   beginCaptures:
-  #     '1': {name: support.variable.attributelist.asciidoc}
-  #     '2': {name: punctuation.definition.literal.double.begin.asciidoc}
-  #   end: '``'
-  #   endCaptures:
-  #     '0': {name: punctuation.definition.literal.double.end.asciidoc}
-  #   - include: strong_double
-  #   - include: emphasis_double
-  #   - include: mark_double
-  #   - include: strong
-  #   - include: emphasis
-  #   - include: mark
-  #   - include: superscript
-  #   - include: subscript
-  #   - include: characters
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-  #############
-  # MARK DOUBLE
-  #############
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # mark_double:
-  #   comment: |
-  #     Marked text (unconstrained variant).
-  #
-  #     Examples:
-  #       Lo##re##m ##ipsum dolor##.
-  #       Lo[red]##re##m
-  #   name: string.other.unquoted.double.asciidoc
-  #   contentName: string.unquoted.unquotedinner.double.asciidoc
-  #   begin: |-
-  #     (?x)
-  #     (\[[^\]]*?\])?  # might start with an attribute list (indeed, that is its purpose)
-  #     (?<!\\)         # must not be preceded by escape
-  #     (\#\#)
-  #   beginCaptures:
-  #     '1': {name: support.variable.attributelist.asciidoc}
-  #     '2': {name: punctuation.definition.string.unquoted.double.begin.asciidoc}
-  #   end: '\#\#'
-  #   endCaptures:
-  #     '0': {name: punctuation.definition.string.unquoted.double.end.asciidoc}
-  #   - include: strong_double
-  #   - include: emphasis_double
-  #   - include: monospaced_double
-  #   - include: strong
-  #   - include: emphasis
-  #   - include: monospaced
-  #   - include: superscript
-  #   - include: subscript
-  #   - include: characters
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-  #############
-  # PASSTHROUGH
-  #############
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # passthrough:
-  #   comment: |
-  #     Inline triple-plus and double dolar passthrough.
-  #
-  #     Examples:
-  #       Lo+++re++++m +++ipsum dolor+++.
-  #       Lo$$re$$m $$ipsum dolor$$.
-  #
-  #     Note: Must be dead first among the inlines, so as to take priority.
-  #   name: meta.passthru.inline.asciidoc
-  #   contentName: variable.parameter.passthruinner.asciidoc
-  #   begin: (\+\+\+|\$\$)
-  #   beginCaptures:
-  #     '1': {name: constant.character.passthru.begin.asciidoc}
-  #   end: '\1'
-  #   endCaptures:
-  #     '0': {name: constant.character.passthru.end.asciidoc}
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-  ########
-  # STRONG
-  ########
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # strong:
   #   comment: |
@@ -849,9 +740,48 @@ contexts:
   #   - include: characters
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-  ##########
-  # EMPHASIS
-  ##########
+
+  ########################
+  # EMPHASIS UNCONSTRAINED
+  ########################
+  # Was: "EMPHASIS DOUBLE"
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
+  # emphasis_double:
+  #   comment: |
+  #     Emphasized (italic) text (unconstrained variant).
+  #
+  #     Examples:
+  #       Lo__re__m __ipsum dolor__.
+  #       Lo[red]__re__m
+  #   name: markup.italic.double.asciidoc
+  #   contentName: meta.italicinner.double.asciidoc
+  #   begin: |-
+  #     (?x)
+  #     (\[[^\]]*?\])?  # might start with attribute list
+  #     (?<!\\)         # must not be preceded by escape
+  #     (__)
+  #   beginCaptures:
+  #     '1': {name: support.variable.attributelist.asciidoc}
+  #     '2': {name: punctuation.definition.italic.double.begin.asciidoc}
+  #   end: '__'
+  #   endCaptures:
+  #     '0': {name: punctuation.definition.italic.double.end.asciidoc}
+  #   - include: strong_double
+  #   - include: monospaced_double
+  #   - include: mark_double
+  #   - include: strong
+  #   - include: monospaced
+  #   - include: mark
+  #   - include: superscript
+  #   - include: subscript
+  #   - include: characters
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+  ######################
+  # EMPHASIS CONSTRAINED
+  ######################
+  # Was: "EMPHASIS"
+
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # emphasis:
   #   comment: |
@@ -887,9 +817,59 @@ contexts:
   #   - include: characters
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-  ############
-  # MONOSPACED
-  ############
+  ##########################
+  # MONOSPACED UNCONSTRAINED
+  ##########################
+  # Was: "MONOSPACED DOUBLE"
+  # Monospaced text (unconstrained variant).
+  #
+  # Examples:
+  #   Lo``re``m ``ipsum dolor``.
+  #   Lo[red]``re``m
+
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
+  # monospaced_double:
+  #   comment: |
+  #     Monospaced text (unconstrained variant).
+  #
+  #     Examples:
+  #       Lo``re``m ``ipsum dolor``.
+  #       Lo[red]``re``m
+  #   name: string.other.literal.double.asciidoc
+  #   contentName: meta.literalinner.double.asciidoc
+  #   begin: |-
+  #     (?x)
+  #     (\[[^\]]*?\])?  # might start with attribute list
+  #     (?<!\\)         # must not be preceded by escape
+  #     (``)
+  #   beginCaptures:
+  #     '1': {name: support.variable.attributelist.asciidoc}
+  #     '2': {name: punctuation.definition.literal.double.begin.asciidoc}
+  #   end: '``'
+  #   endCaptures:
+  #     '0': {name: punctuation.definition.literal.double.end.asciidoc}
+  #   - include: strong_double
+  #   - include: emphasis_double
+  #   - include: mark_double
+  #   - include: strong
+  #   - include: emphasis
+  #   - include: mark
+  #   - include: superscript
+  #   - include: subscript
+  #   - include: characters
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+  ########################
+  # MONOSPACED CONSTRAINED
+  ########################
+  # Was: "MONOSPACED"
+  # Monospaced text (constrained variant).
+  #
+  # Examples:
+  #   `Lorem ipsum` dolor
+  #   [red]`Lorem ipsum` dolor
+
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # monospaced:
   #   comment: |
@@ -925,9 +905,73 @@ contexts:
   #   - include: characters
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-  ######
-  # MARK
-  ######
+
+
+  #############
+  # PASSTHROUGH
+  #############
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
+  # passthrough:
+  #   comment: |
+  #     Inline triple-plus and double dolar passthrough.
+  #
+  #     Examples:
+  #       Lo+++re++++m +++ipsum dolor+++.
+  #       Lo$$re$$m $$ipsum dolor$$.
+  #
+  #     Note: Must be dead first among the inlines, so as to take priority.
+  #   name: meta.passthru.inline.asciidoc
+  #   contentName: variable.parameter.passthruinner.asciidoc
+  #   begin: (\+\+\+|\$\$)
+  #   beginCaptures:
+  #     '1': {name: constant.character.passthru.begin.asciidoc}
+  #   end: '\1'
+  #   endCaptures:
+  #     '0': {name: constant.character.passthru.end.asciidoc}
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+  ####################
+  # MARK UNCONSTRAINED
+  ####################
+  # Was: "MARK DOUBLE"
+
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
+  # mark_double:
+  #   comment: |
+  #     Marked text (unconstrained variant).
+  #
+  #     Examples:
+  #       Lo##re##m ##ipsum dolor##.
+  #       Lo[red]##re##m
+  #   name: string.other.unquoted.double.asciidoc
+  #   contentName: string.unquoted.unquotedinner.double.asciidoc
+  #   begin: |-
+  #     (?x)
+  #     (\[[^\]]*?\])?  # might start with an attribute list (indeed, that is its purpose)
+  #     (?<!\\)         # must not be preceded by escape
+  #     (\#\#)
+  #   beginCaptures:
+  #     '1': {name: support.variable.attributelist.asciidoc}
+  #     '2': {name: punctuation.definition.string.unquoted.double.begin.asciidoc}
+  #   end: '\#\#'
+  #   endCaptures:
+  #     '0': {name: punctuation.definition.string.unquoted.double.end.asciidoc}
+  #   - include: strong_double
+  #   - include: emphasis_double
+  #   - include: monospaced_double
+  #   - include: strong
+  #   - include: emphasis
+  #   - include: monospaced
+  #   - include: superscript
+  #   - include: subscript
+  #   - include: characters
+  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+  ##################
+  # MARK CONSTRAINED
+  ##################
+  # Was: "MARK"
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # mark:
   #   comment: |
@@ -1035,10 +1079,11 @@ contexts:
   #   - include: characters
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-
-#-----------------------------------------------------------------------------#
-#                                  L I N E S                                  #
-#-----------------------------------------------------------------------------#
+#*******************************************************************************
+#                                                                              *
+#                   S I N G L E - L I N E    E L E M E N T S                   *
+#                                                                              *
+#*******************************************************************************
 
   lines:
     - include: line_comment
@@ -1295,10 +1340,11 @@ contexts:
   #     '7': {name: punctuation.definition.sectiontemplate.end.asciidoc}
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-
-#-----------------------------------------------------------------------------#
-#                                  L I S T S                                  #
-#-----------------------------------------------------------------------------#
+#*******************************************************************************
+#                                                                              *
+#                                  L I S T S                                   *
+#                                                                              *
+#*******************************************************************************
 
   # lists:
   #   comment: >
@@ -1426,10 +1472,9 @@ contexts:
   #     '2': {name: constant.numeric.list.dot.asciidoc}
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-
-#-----------------------------------------------------------------------------#
-#                                 T I T L E S                                 #
-#-----------------------------------------------------------------------------#
+# ==============================================================================
+#                          S E C T I O N    T I T L E S
+# ==============================================================================
 
 # IMPORTANT: All Titles RegExs were tweaked by @bsmith-n4! Basically, every
 #            RegEx was tweaked to allow inline code inside the title:
