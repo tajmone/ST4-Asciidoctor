@@ -1,6 +1,6 @@
 %YAML 1.2
 ---
-# "Asciidoctor.sublime-syntax" v0.0.12 | 2019/09/22
+# "Asciidoctor.sublime-syntax" v0.0.13 | 2019/09/22
 # ==============================================================================
 #                        AsciiDoc Syntax for Asciidoctor
 # ==============================================================================
@@ -842,11 +842,13 @@ contexts:
       push: inside_monospaced_double
 
   inside_monospaced_double:
-      - meta_content_scope: meta.literalinner.double.asciidoc
-      - meta_scope: string.other.literal.double.asciidoc
-      - match: '``'
-        scope: punctuation.definition.literal.double.end.asciidoc
-        pop: true
+    - meta_content_scope: meta.literalinner.double.asciidoc
+    - meta_scope: string.other.literal.double.asciidoc
+    - include: error_on_empty_line
+    - include: line_comment
+    - match: '``'
+      scope: punctuation.definition.literal.double.end.asciidoc
+      pop: true
     # - include: strong_double
     # - include: emphasis_double
     # - include: mark_double
@@ -856,6 +858,15 @@ contexts:
     # - include: superscript
     # - include: subscript
     # - include: characters
+
+  # BAIL OUT ON EMPTY LINE!
+  error_on_empty_line:
+    # Quotes can span multiple lines as long as no empty line is placed
+    # between the opening and closing delimiter!
+    - match: ^\n$
+      scope: invalid.illegal.asciidoc
+      pop: true
+
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # monospaced_double:
@@ -925,6 +936,8 @@ contexts:
   inside_monospaced:
     - meta_content_scope: meta.literalinner.single.asciidoc
     - meta_scope: string.other.literal.single.asciidoc
+    - include: error_on_empty_line
+    - include: line_comment
     - match: |
         (?x)
         (?<=\S)(`)        # delimiter backtick that must be preceded by a nonspace character

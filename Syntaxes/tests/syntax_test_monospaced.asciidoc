@@ -1,8 +1,16 @@
 // SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
-= AsciiDoc Monospace Text Formatting
+= Monospace Text Formatting
 
 Manual reference:
-https://asciidoctor.org/docs/user-manual/#mono[§19.4. Monospace]
+https://asciidoctor.org/docs/user-manual/#mono[§19.4. Monospace^]
+
+Monospace is one of AsciiDoc text formatting elements, belonging to the
+https://asciidoctor.org/docs/user-manual/#formatting-marks[_quotes_ category^].
+
+== Constrained
+
+Manual reference:
+https://asciidoctor.org/docs/user-manual/#constrained-quotes[§9.1. Constrained quotes]
 
 Inline code: `Procedure("xyz")`.
 //           ^^^^^^^^^^^^^^^^^^           string.other.literal.single.asciidoc
@@ -10,10 +18,59 @@ Inline code: `Procedure("xyz")`.
 //           ^                  punctuation.definition.literal.single.begin.asciidoc
 //                            ^ punctuation.definition.literal.single.end.asciidoc
 
+
+=== Constrained Malformed
+
+These are incorrect uses of constrained monospace:
+
+Examples: `VERB`s and xxx`YYY`xxx.
+
+
+
+== Unconstrained
+
+Manual reference:
+https://asciidoctor.org/docs/user-manual/#unconstrained-quotes[§9.2. Unconstrained quotes]
+
+Example: ``VERB``s
+
+
+== Multi-line
+
+How shoule a monospaced text carried over multiple lines be handled?
+
+If no blank lines are found between the opening and closing delimiter it's fine:
+
+Example: `a very long monospace.
+Spanning multiple lines.`
+Normal text.
+
+Comment lines will be ingored in the final text and are fine:
+
+Example: `a very long monospace.
+// a comment
+//^^^^^^^^^^ comment.line.double-slash.asciidoc meta.line.comment.content.asciidoc
+Spanning multiple lines.` Normal text.
+// ^^^^^^^^^^^^^^^^^^^^^ string.other.literal.single.asciidoc
+//                       ^^^^^^^^^^^^^^ - string.other.literal.single.asciidoc
+
+But if a blank line is found then Asciidoctor will not render it as monospaced:
+
+Example: `a very long monospace spanning multiple lines.
+
+// <- invalid.illegal.asciidoc
+With blank lines inbetween.` Normal text.
+// ^^^^^^^^^^^^^^^^^^^^^^^^^ - string.other.literal.single.asciidoc
+
+Therfore the scope should either bail out or show an error of sorts.
+
+
 == Edge Cases
 
 See
 https://asciidoctor.org/docs/user-manual/#unconstrained-formatting-edge-cases[§9.4. Unconstrained formatting edge cases]
+
+=== Unconstrained Within Typographic Quotes
 
 A monospaced phrase inside typographic quotes: "```endpoints```"
 
@@ -31,7 +88,7 @@ Exampel: "```Procedure("xyz")```".
 //       ^^                       punctuation.definition.string.begin.asciidoc
 //                             ^^ punctuation.definition.string.end.asciidoc
 
-== False Positives
+== Typographic Quotes False Positives
 
 // =============================================================================
 //                           Test for False-Positives
@@ -51,7 +108,7 @@ Single backticks within typographic quotes are interpreted as literal characters
 E.g. "``endpoints``" and '``endpoints``'
 
 
-== Inside Monospaced Tests
+== Unconstrained Within Typographic Quotes
 
 Let's check that these are not misinterpreted inside monospaced:
 
