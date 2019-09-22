@@ -1,0 +1,117 @@
+// SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+= Bold Text Formatting
+
+Manual reference:
+https://asciidoctor.org/docs/user-manual/#bold-and-italic[§19.1. Bold and Italic]
+
+Bold is one of AsciiDoc text formatting elements, belonging to the
+https://asciidoctor.org/docs/user-manual/#formatting-marks[_quotes_ category].
+
+== Constrained
+
+Manual reference:
+https://asciidoctor.org/docs/user-manual/#constrained-quotes[§9.1. Constrained quotes]
+
+.Source
+[source,asciidoc]
+This *is bold*. This is not.
+
+.Result
+=======================================
+This *is bold*. This is not.
+//   ^^^^^^^^^  meta.boldinner.single.asciidoc
+//    ^^^^^^^   markup.bold.single.asciidoc
+//   ^          punctuation.definition.bold.single.begin.asciidoc
+//           ^  punctuation.definition.bold.single.end.asciidoc
+=======================================
+
+== Unconstrained
+
+Manual reference:
+https://asciidoctor.org/docs/user-manual/#unconstrained-quotes[§9.2. Unconstrained quotes]
+
+.Source
+[source,asciidoc]
+SublimeText is **super**fast.
+
+.Result
+=======================================
+SublimeText is **super**fast.
+//             ^^^^^^^^^   meta.boldinner.double.asciidoc
+//               ^^^^^     markup.bold.double.asciidoc
+//             ^^          punctuation.definition.bold.double.begin.asciidoc
+//                    ^^   punctuation.definition.bold.double.end.asciidoc
+//                      ^^^^^^^^^^  - markup.bold.double.asciidoc
+=======================================
+
+== Multi-line
+
+Bold text can span across multiple lines in the same paragraph, as long as no blank lines or block elements are encountered between the opening and closing bold delimiter:
+
+
+.Source
+=======================================
+.......................................
+Example: **a very long bold text.
+Spanning multiple lines.** Normal text.
+.......................................
+=======================================
+
+.Result
+=======================================
+Example: **a very long bold text.
+Spanning multiple lines.** Normal text.
+// <-^^^^^^^^^^^^^^^^^^^^^  meta.boldinner.double.asciidoc
+// <-^^^^^^^^^^^^^^^^^^^    markup.bold.double.asciidoc
+//                      ^^  punctuation.definition.bold.double.end.asciidoc
+//                        ^^^^^^^^^^^^^^  - meta.boldinner.double.asciidoc
+=======================================
+
+
+=== With Line Comments
+
+Single-line comments inside a bold text spanning across multiple lines will be ingored in the final text, and are OK to use:
+
+............................................................
+Example: __An italic text spanning multiple lines
+// a comment
+with a single line comment inbetween.__ Normal text.
+............................................................
+
+Example: __An italic text spanning multiple lines
+// a comment
+//^^^^^^^^^^ comment.line.double-slash.asciidoc   meta.line.comment.content.asciidoc
+with a single line comment inbetween.__ Normal text.
+// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.italicinner.double.asciidoc
+
+Block comments (like any other block elements) are not OK, and will break the quote.
+
+
+=== With Blank Line
+
+But if a blank line is encountered before the closing delimiter -- i.e. if the text spans across multiple paragraphs -- then Asciidoctor will not format the text as bold:
+
+
+.Source
+==============================================
+............................................................
+Example: **A very long bold text spanning multiple lines.
+
+With blank lines inbetween.**
+............................................................
+==============================================
+
+.Result
+==============================================
+Example: **A very long bold text spanning multiple lines.
+
+// <- invalid.illegal.asciidoc
+With blank lines inbetween.**
+// ^^^^^^^^^^^^^^^^^^^^^^^^  - meta.boldinner.double.asciidoc
+
+==============================================
+
+
+
+
+// EOF //
