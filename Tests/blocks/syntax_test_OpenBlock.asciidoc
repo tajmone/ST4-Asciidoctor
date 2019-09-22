@@ -1,0 +1,29 @@
+// SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+= Open Blocks
+
+Manual Reference:
+https://asciidoctor.org/docs/user-manual/#open-blocks[41. Open Blocks]
+
+.Source
+[source,asciidoc]
+--
+An open block can be an anonymous container,
+or it can masquerade as any other block.
+--
+
+.Result
+============================================
+--
+//<- meta.block.open.asciidoc   constant.delimiter.block.open.begin.asciidoc
+An open block can be an anonymous container,
+//<-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.block.open.asciidoc
+//<-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.block.open.content.asciidoc
+or it can masquerade as any other block.
+--
+//<- meta.block.open.asciidoc   constant.delimiter.block.open.end.asciidoc
+============================================
+
+Normal.
+// <-  - meta.block.open.asciidoc
+
+// EOF //
