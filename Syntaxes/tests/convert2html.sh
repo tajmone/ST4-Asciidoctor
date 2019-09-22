@@ -1,4 +1,4 @@
 #!/bin/bash
 for i in *.asciidoc ; do
-  asciidoctor $i
+  asciidoctor -a toc=left $i
 done
