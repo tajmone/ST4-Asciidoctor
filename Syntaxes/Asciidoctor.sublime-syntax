@@ -1,6 +1,6 @@
 %YAML 1.2
 ---
-# "Asciidoctor.sublime-syntax" v0.0.21 | 2019/09/22
+# "Asciidoctor.sublime-syntax" v0.0.22 | 2019/09/22
 # ==============================================================================
 #                        AsciiDoc Syntax for Asciidoctor
 # ==============================================================================
@@ -55,7 +55,7 @@ contexts:
     - include: block_comment
     # - include: custom_block                           # <- ADDED by @bsmith-n4
     - include: block_listing
-    # - include: block_source_fenced
+    - include: block_source_fenced
     # - include: block_sidebar
     # - include: block_pass
     # - include: block_quote
@@ -226,6 +226,28 @@ contexts:
   #   ```
 
   # TODO: Check if fence delimiter can be more than three backticks.
+  # TODO: Add lang name from match regex group.
+
+  block_source_fenced:
+    - match: ^(```)(\w+)?\s*$\n?
+      scope: constant.delimiter.listing.begin.asciidoc
+      push:
+        - meta_scope: meta.embedded.block.listing.asciidoc
+        - meta_content_scope: source.block.listing.content.asciidoc
+        # - match: ^\1\s*($|\n)
+        - match: '^\1\s*$\n?'
+          scope: constant.delimiter.listing.end.asciidoc
+          pop: true
+        # - include: inline_callout
+
+    # name: meta.embedded.block.listing.asciidoc
+    # contentName: source.block.listing.content.asciidoc
+    # begin: ^(```)(\w+)?\s*$\n?
+    # beginCaptures:
+    #   '0': {name: constant.delimiter.listing.begin.asciidoc}
+    # end: ^\1\s*$\n?
+    # endCaptures:
+    #   '0': {name: constant.delimiter.listing.end.asciidoc}
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_source_fenced:

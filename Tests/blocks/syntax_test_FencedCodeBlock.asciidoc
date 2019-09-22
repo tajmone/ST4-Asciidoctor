@@ -1,0 +1,33 @@
+// SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+= Fenced Code Blocks
+
+```
+// <- meta.embedded.block.listing.asciidoc
+// <- constant.delimiter.listing.begin.asciidoc
+require 'sinatra'
+// <-^^^^^^^^^^^^ meta.embedded.block.listing.asciidoc
+// <-^^^^^^^^^^^^ source.block.listing.content.asciidoc
+get '/hi' do
+  "Hello World!"
+end
+
+```
+// <- meta.embedded.block.listing.asciidoc
+// <- constant.delimiter.listing.end.asciidoc
+
+Normal text.
+// <- - meta.embedded.block.listing.asciidoc
+
+
+== EWmpty Block
+
+
+```
+```
+// <- meta.embedded.block.listing.asciidoc
+// <- constant.delimiter.listing.end.asciidoc
+
+
+Normal.
+
+// EOF //
