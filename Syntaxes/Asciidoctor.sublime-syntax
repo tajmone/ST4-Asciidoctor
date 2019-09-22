@@ -1,6 +1,6 @@
 %YAML 1.2
 ---
-# "Asciidoctor.sublime-syntax" v0.0.9 | 2019/09/22
+# "Asciidoctor.sublime-syntax" v0.0.10 | 2019/09/22
 # ==============================================================================
 #                        AsciiDoc Syntax for Asciidoctor
 # ==============================================================================
@@ -41,7 +41,7 @@ contexts:
   - include: blocks
   - include: section_titles
   - include: lines
-  # - include: inline
+  - include: inline
   # - include: characters
 
 #*******************************************************************************
@@ -635,15 +635,15 @@ contexts:
 #                                                                              *
 #*******************************************************************************
 
-  # inline:
+  inline:
   #   - include: passthrough
   #   - include: strong_double
   #   - include: emphasis_double
-  #   - include: monospaced_double
+    - include: monospaced_double
   #   - include: mark_double
   #   - include: strong
   #   - include: emphasis
-  #   - include: monospaced
+    - include: monospaced
   #   - include: mark
   #   - include: superscript
   #   - include: subscript
@@ -827,6 +827,31 @@ contexts:
   #   Lo``re``m ``ipsum dolor``.
   #   Lo[red]``re``m
 
+  monospaced_double:
+    - match: |
+        (?x)
+        (\[[^\]]*?\])?  # might start with attribute list
+        (?<!\\)         # must not be preceded by escape
+        (``)
+      captures:
+        1: support.variable.attributelist.asciidoc
+        2: punctuation.definition.literal.double.begin.asciidoc
+      push:
+        - meta_content_scope: meta.literalinner.double.asciidoc
+        - meta_scope: string.other.literal.double.asciidoc
+        - match: '``'
+          scope: punctuation.definition.literal.double.end.asciidoc
+          pop: true
+    # - include: strong_double
+    # - include: emphasis_double
+    # - include: mark_double
+    # - include: strong
+    # - include: emphasis
+    # - include: mark
+    # - include: superscript
+    # - include: subscript
+    # - include: characters
+
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # monospaced_double:
   #   comment: |
@@ -869,6 +894,35 @@ contexts:
   # Examples:
   #   `Lorem ipsum` dolor
   #   [red]`Lorem ipsum` dolor
+
+  monospaced:
+    - match: |
+        (?x)
+        (\[[^\]]*?\])?      # might start with attributes list
+        (?<=^|\W)(?<!\\|})  # must be preceded by nonword character, and not by escape or } (attribute)
+        (`)(?=\S)           # delimiter backtick that must be followed by a nonspace character
+      captures:
+        1: support.variable.attributelist.asciidoc
+        2: punctuation.definition.literal.single.begin.asciidoc
+      push:
+        - meta_content_scope: meta.literalinner.single.asciidoc
+        - meta_scope: string.other.literal.single.asciidoc
+        - match: |
+            (?x)
+            (?<=\S)(`)        # delimiter backtick that must be preceded by a nonspace character
+            (?!\w)            # ...and followed by a nonword character
+          scope: punctuation.definition.literal.single.end.asciidoc
+          pop: true
+  #   - include: strong_double
+  #   - include: emphasis_double
+  #   - include: mark_double
+  #   - include: strong
+  #   - include: emphasis
+  #   - include: mark
+  #   - include: superscript
+  #   - include: subscript
+  #   - include: characters
+
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # monospaced:
