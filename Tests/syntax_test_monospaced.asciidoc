@@ -13,8 +13,8 @@ Manual reference:
 https://asciidoctor.org/docs/user-manual/#constrained-quotes[§9.1. Constrained quotes]
 
 Inline code: `Procedure("xyz")`.
-//           ^^^^^^^^^^^^^^^^^^           string.other.literal.single.asciidoc
-//            ^^^^^^^^^^^^^^^^                    meta.literalinner.single.asciidoc
+//           ^^^^^^^^^^^^^^^^^^                   meta.literalinner.single.asciidoc
+//            ^^^^^^^^^^^^^^^^            string.other.literal.single.asciidoc
 //           ^                  punctuation.definition.literal.single.begin.asciidoc
 //                            ^ punctuation.definition.literal.single.end.asciidoc
 
@@ -109,7 +109,7 @@ A monospaced phrase inside typographic quotes: "```endpoints```"
 
 Unconstrained inline code within curly quotes:
 Exampel: "```Procedure("xyz")```".
-//         ^^^^^^^^^^^^^^^^^^^^   string.other.literal.double.asciidoc
+//         ^^^^^^^^^^^^^^^^^^^^   meta.literalinner.double.asciidoc
 //         ^^                     punctuation.definition.literal.double.begin.asciidoc
 //                           ^^   punctuation.definition.literal.double.end.asciidoc
 //       ^^                       punctuation.definition.string.begin.asciidoc

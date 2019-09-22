@@ -1,6 +1,6 @@
 %YAML 1.2
 ---
-# "Asciidoctor.sublime-syntax" v0.0.15 | 2019/09/22
+# "Asciidoctor.sublime-syntax" v0.0.16 | 2019/09/22
 # ==============================================================================
 #                        AsciiDoc Syntax for Asciidoctor
 # ==============================================================================
@@ -910,8 +910,8 @@ contexts:
       push: inside_monospaced_double
 
   inside_monospaced_double:
-    - meta_content_scope: meta.literalinner.double.asciidoc
-    - meta_scope: string.other.literal.double.asciidoc
+    - meta_content_scope: string.other.literal.double.asciidoc
+    - meta_scope: meta.literalinner.double.asciidoc
     - include: error_on_empty_line
     - include: line_comment
     - match: '``'
@@ -993,8 +993,8 @@ contexts:
       push: inside_monospaced
 
   inside_monospaced:
-    - meta_content_scope: meta.literalinner.single.asciidoc
-    - meta_scope: string.other.literal.single.asciidoc
+    - meta_content_scope: string.other.literal.single.asciidoc
+    - meta_scope: meta.literalinner.single.asciidoc
     - include: error_on_empty_line
     - include: line_comment
     - match: |
