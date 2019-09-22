@@ -1,6 +1,6 @@
 %YAML 1.2
 ---
-# "Asciidoctor.sublime-syntax" v0.0.13 | 2019/09/22
+# "Asciidoctor.sublime-syntax" v0.0.14 | 2019/09/22
 # ==============================================================================
 #                        AsciiDoc Syntax for Asciidoctor
 # ==============================================================================
@@ -859,15 +859,6 @@ contexts:
     # - include: subscript
     # - include: characters
 
-  # BAIL OUT ON EMPTY LINE!
-  error_on_empty_line:
-    # Quotes can span multiple lines as long as no empty line is placed
-    # between the opening and closing delimiter!
-    - match: ^\n$
-      scope: invalid.illegal.asciidoc
-      pop: true
-
-
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # monospaced_double:
   #   comment: |
@@ -1703,6 +1694,31 @@ contexts:
   #     '1': {name: punctuation.definition.heading.asciidoc}
   #     '2': {name: entity.name.section.asciidoc}
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+#*******************************************************************************
+#                                                                              *
+#                              R E U S A B L E S                               *
+#                                                                              *
+#*******************************************************************************
+# Resuable contexts...
+
+  #####################
+  # ERROR ON EMPTY LINE
+  #####################
+  # Some element (e.g. quotes) can span multiple lines as long as no empty line
+  # is placed between the opening and closing delimiter...
+  error_on_empty_line:
+    - match: ^\n$
+      scope: invalid.illegal.asciidoc
+      pop: true
+
+  ##############
+  # ANY COMMENTS     ( UNUSED! )
+  ##############
+  # Include any type of comments.
+  any_comments:
+    - include: line_comment
+    - include: block_comment
 
 #*******************************************************************************
 #                                                                              *
