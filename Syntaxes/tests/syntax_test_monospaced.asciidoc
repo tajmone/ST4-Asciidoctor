@@ -1,12 +1,8 @@
 // SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
-= AsciiDoc Preprocessor Directives
-// *****************************************************************************
-// *                                                                           *
-// *                          Verbatim & Code Tests                            *
-// *                                                                           *
-// *****************************************************************************
-// Code, code blocks? as strings?
+= AsciiDoc Monospace Text Formatting
 
+Manual reference:
+https://asciidoctor.org/docs/user-manual/#mono[§19.4. Monospace]
 
 Inline code: `Procedure("xyz")`.
 //           ^^^^^^^^^^^^^^^^^^           string.other.literal.single.asciidoc
@@ -14,16 +10,28 @@ Inline code: `Procedure("xyz")`.
 //           ^                  punctuation.definition.literal.single.begin.asciidoc
 //                            ^ punctuation.definition.literal.single.end.asciidoc
 
+== Edge Cases
+
+See
+https://asciidoctor.org/docs/user-manual/#unconstrained-formatting-edge-cases[§9.4. Unconstrained formatting edge cases]
+
+A monospaced phrase inside typographic quotes: "```endpoints```"
+
+
 // =============================================================================
 //                 Inline Monospaced Inside Typographic Quotes
 // =============================================================================
 // See: https://asciidoctor.org/docs/user-manual/#unconstrained-formatting-edge-cases
 
-// Unconstrained inline code within curly quotes "```Procedure("xyz")```".
-//                                               ^^^^^^^^^^^^^^^^^^
-//                                            ^^
-//                                                                  ^^
+Unconstrained inline code within curly quotes:
+Exampel: "```Procedure("xyz")```".
+//         ^^^^^^^^^^^^^^^^^^^^   string.other.literal.double.asciidoc
+//         ^^                     punctuation.definition.literal.double.begin.asciidoc
+//                           ^^   punctuation.definition.literal.double.end.asciidoc
+//       ^^                       punctuation.definition.string.begin.asciidoc
+//                             ^^ punctuation.definition.string.end.asciidoc
 
+== False Positives
 
 // =============================================================================
 //                           Test for False-Positives
@@ -31,9 +39,26 @@ Inline code: `Procedure("xyz")`.
 // Bacticks adjacent to single/double quote delimiters (straight) are for making
 // the quote curly, and should not be seen as monospaced/inline-code.
 
-These are just '`curly single quotes`', and "`curly double quotes`".
-//             ^^^^^^^^^^^^^^^^^^^^^^^
-//                                          ^^^^^^^^^^^^^^^^^^^^^^^
+Example: '`text`' and "`text`".
+//       ^^                    punctuation.definition.string
+//             ^^              punctuation.definition.string
+//                    ^^       punctuation.definition.string
+//                          ^^ punctuation.definition.string
+//
+
+Single backticks within typographic quotes are interpreted as literal characters.
+
+E.g. "``endpoints``" and '``endpoints``'
+
+
+== Inside Monospaced Tests
+
+Let's check that these are not misinterpreted inside monospaced:
+
+Hello world `#ZZZ` ssss.
+
+Hello world "```xxx `YYY` xx```" ssss.
+
 
 
 // EOF //
