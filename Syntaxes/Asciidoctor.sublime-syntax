@@ -1,6 +1,6 @@
 %YAML 1.2
 ---
-# "Asciidoctor.sublime-syntax" v0.0.16 | 2019/09/22
+# "Asciidoctor.sublime-syntax" v0.0.17 | 2019/09/22
 # ==============================================================================
 #                        AsciiDoc Syntax for Asciidoctor
 # ==============================================================================
@@ -637,11 +637,11 @@ contexts:
 
   inline:
   #   - include: passthrough
-  #   - include: strong_double
+    - include: strong_double
     - include: emphasis_double
     - include: monospaced_double
   #   - include: mark_double
-  #   - include: strong
+    - include: strong
     - include: emphasis
     - include: monospaced
   #   - include: mark
@@ -668,6 +668,37 @@ contexts:
   # STRONG UNCONSTRAINED
   ######################
   # Was: "STRONG DOUBLE"
+
+  strong_double:
+    - match: |
+        (?x)
+        (\[[^\]]*?\])?  # might start with an attribute list
+        (?<!\\)         # must not be preceded by escape
+        (\*\*)
+      captures:
+        1: support.variable.attributelist.asciidoc
+        2: punctuation.definition.bold.double.begin.asciidoc
+      push: inside_strong_double
+
+  inside_strong_double:
+    - meta_content_scope: markup.bold.double.asciidoc
+    - meta_scope: meta.boldinner.double.asciidoc
+    - include: error_on_empty_line
+    - include: line_comment
+    - match: \*\*
+      scope: punctuation.definition.bold.double.end.asciidoc
+      pop: true
+      #   - include: emphasis_double
+      #   - include: monospaced_double
+      #   - include: mark_double
+      #   - include: emphasis
+      #   - include: monospaced
+      #   - include: mark
+      #   - include: superscript
+      #   - include: subscript
+      #   - include: characters
+
+
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # strong_double:
   #   comment: |
@@ -704,6 +735,37 @@ contexts:
   # STRONG CONSTRAINED
   #####################
   # Was: "STRONG"
+  strong:
+    - match: |
+        (?x)
+        (\[[^\]]*?\])?      # might start with an attributes list
+        (?<=^|\W)(?<!\\|})  # must be preceded by nonword character, and not by escape or } (attribute)
+        (\*)(?=\S)          # delimiter star that must be followed by a nonspace character
+      captures:
+        1: support.variable.attributelist.asciidoc
+        2: punctuation.definition.bold.single.begin.asciidoc
+      push: inside_strong
+
+  inside_strong:
+    - meta_content_scope: markup.bold.single.asciidoc
+    - meta_scope: meta.boldinner.single.asciidoc
+    - include: error_on_empty_line
+    - include: line_comment
+    - match: |
+        (?x)
+        (?<=\S)(\*)       # delimiter star that must be preceded by a nonspace character
+        (?!\w)            # ...and followed by a nonword character
+      scope: punctuation.definition.bold.single.end.asciidoc
+      pop: true
+      #   - include: emphasis_double
+      #   - include: monospaced_double
+      #   - include: mark_double
+      #   - include: emphasis
+      #   - include: monospaced
+      #   - include: mark
+      #   - include: superscript
+      #   - include: subscript
+      #   - include: characters
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # strong:

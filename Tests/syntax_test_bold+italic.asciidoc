@@ -18,6 +18,12 @@ Example: I'm _in italic_. I'm not.
 //           ^             punctuation.definition.italic.single.begin.asciidoc
 //                     ^   punctuation.definition.italic.single.end.asciidoc
 
+Example: I'm *in bold*. I'm not.
+//           ^^^^^^^^^  meta.boldinner.single.asciidoc
+//            ^^^^^^^   markup.bold.single.asciidoc
+//           ^          punctuation.definition.bold.single.begin.asciidoc
+//                   ^  punctuation.definition.bold.single.end.asciidoc
+
 == Unconstrained
 
 Manual reference:
@@ -30,28 +36,107 @@ Example: __supper__motivated.
 //               ^^   punctuation.definition.italic.double.end.asciidoc
 //                 ^^^^^^^^^^  - markup.italic.double.asciidoc
 
+Example: **supper**motivated.
+//       ^^^^^^^^^^   meta.boldinner.double.asciidoc
+//         ^^^^^^     markup.bold.double.asciidoc
+//       ^^           punctuation.definition.bold.double.begin.asciidoc
+//               ^^   punctuation.definition.bold.double.end.asciidoc
+//                 ^^^^^^^^^^  - markup.bold.double.asciidoc
+
 == Multi-line
 
 Italic and bold text can span across multiple lines:
 
+=== Multi-line Italic
+
+.Source
+=======================================
+.......................................
 Example: __a very long italic text.
 Spanning multiple lines.__ Normal text.
+.......................................
+=======================================
+
+.Result
+=======================================
+Example: __a very long italic text.
+Spanning multiple lines.__ Normal text.
+// <-^^^^^^^^^^^^^^^^^^^^^  meta.italicinner.double.asciidoc
+// <-^^^^^^^^^^^^^^^^^^^    markup.italic.double.asciidoc
+//                      ^^  punctuation.definition.italic.double.end.asciidoc
+//                        ^^^^^^^^^^^^^^  - meta.italicinner.double.asciidoc
+=======================================
+
+
+=== Multi-line Bold
+
+.Source
+=======================================
+.......................................
+Example: **a very long bold text.
+Spanning multiple lines.** Normal text.
+.......................................
+=======================================
+
+.Result
+=======================================
+Example: **a very long bold text.
+Spanning multiple lines.** Normal text.
+// <-^^^^^^^^^^^^^^^^^^^^^  meta.boldinner.double.asciidoc
+// <-^^^^^^^^^^^^^^^^^^^    markup.bold.double.asciidoc
+//                      ^^  punctuation.definition.bold.double.end.asciidoc
+//                        ^^^^^^^^^^^^^^  - meta.boldinner.double.asciidoc
+=======================================
+
+
+=== Multi-line Italic Text w/ Blank Line
 
 But if a blank line is found then Asciidoctor will not render it as bold/italic:
 
+.Source
+==============================================
 ............................................................
 Example: __A very long italic text spanning multiple lines.
 
-With blank lines inbetween.__ Normal text.
+With blank lines inbetween.__
 ............................................................
+==============================================
 
+.Result
+==============================================
 Example: __A very long italic text spanning multiple lines.
 
 // <- invalid.illegal.asciidoc
 With blank lines inbetween.__
 // ^^^^^^^^^^^^^^^^^^^^^^^^  - meta.italicinner.double.asciidoc
 
+==============================================
+
+
 Therfore the scope should either bail out or show an error of sorts.
+
+
+=== Multi-line Bold Text w/ Blank Line
+
+.Source
+==============================================
+............................................................
+Example: **A very long bold text spanning multiple lines.
+
+With blank lines inbetween.**
+............................................................
+==============================================
+
+.Result
+==============================================
+Example: **A very long bold text spanning multiple lines.
+
+// <- invalid.illegal.asciidoc
+With blank lines inbetween.**
+// ^^^^^^^^^^^^^^^^^^^^^^^^  - meta.boldinner.double.asciidoc
+
+==============================================
+
 
 
 === With Single-Line Comments
