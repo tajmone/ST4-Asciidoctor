@@ -2,10 +2,10 @@
 = Monospace Text Formatting
 
 Manual reference:
-https://asciidoctor.org/docs/user-manual/#mono[§19.4. Monospace^]
+https://asciidoctor.org/docs/user-manual/#mono[§19.4. Monospace]
 
 Monospace is one of AsciiDoc text formatting elements, belonging to the
-https://asciidoctor.org/docs/user-manual/#formatting-marks[_quotes_ category^].
+https://asciidoctor.org/docs/user-manual/#formatting-marks[_quotes_ category].
 
 == Constrained
 
@@ -45,15 +45,6 @@ Example: `a very long monospace.
 Spanning multiple lines.`
 Normal text.
 
-Comment lines will be ingored in the final text and are fine:
-
-Example: `a very long monospace.
-// a comment
-//^^^^^^^^^^ comment.line.double-slash.asciidoc meta.line.comment.content.asciidoc
-Spanning multiple lines.` Normal text.
-// ^^^^^^^^^^^^^^^^^^^^^ string.other.literal.single.asciidoc
-//                       ^^^^^^^^^^^^^^ - string.other.literal.single.asciidoc
-
 But if a blank line is found then Asciidoctor will not render it as monospaced:
 
 Example: `a very long monospace spanning multiple lines.
@@ -63,6 +54,42 @@ With blank lines inbetween.` Normal text.
 // ^^^^^^^^^^^^^^^^^^^^^^^^^ - string.other.literal.single.asciidoc
 
 Therfore the scope should either bail out or show an error of sorts.
+
+=== With Single-Line Comments
+
+Single-line comments will be ingored in the final text and are fine:
+
+Example: `A monospace spanning multiple lines
+// a comment
+//^^^^^^^^^^ comment.line.double-slash.asciidoc meta.line.comment.content.asciidoc
+with a single line comment inbetween.` Normal text.
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ string.other.literal.single.asciidoc
+//                                    ^^^^^^^^^^^^^ - string.other.literal.single.asciidoc
+
+=== With Block Comments
+
+As for block comemnts, these break-up the monospace quote:
+
+Example: `A monospace spanning multiple lines
+////
+Block comments are not OK!
+// <-     string.other.literal.single.asciidoc
+// <-   - comment.block.asciidoc meta.block.comment.content.asciidoc
+////
+with a block comment inbetween.` Normal text.
+
+
+
+=== Misc Tests
+
+Any other block element seems to break the quote too:
+
+
+Example: `A monospace spanning multiple lines
+[NOTE]
+with a NOTE ADMON inbetween.` Normal text.
+
+
 
 
 == Edge Cases
