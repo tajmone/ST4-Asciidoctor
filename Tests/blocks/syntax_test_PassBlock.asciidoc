@@ -1,0 +1,37 @@
+// SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+= Pass Blocks
+
+Manual Reference:
+https://asciidoctor.org/docs/user-manual/#pass-blocks[§40.2. Passthrough Blocks]
+
+The passthrough block and pass block style exclude block content from all substitutions (unless specified otherwise).
+
+A passthrough block is delimited by four plus signs (`++++`).
+The pass style is implied.
+
+.Source
+[source,asciidoc]
+----------------------------------------------------------
+++++
+<video poster="images/movie-reel.png">
+  <source src="videos/writing-zen.webm" type="video/webm">
+</video>
+++++
+----------------------------------------------------------
+
+++++
+// <- meta.embedded.block.passthrough.asciidoc
+// <- constant.delimiter.block.passthrough.begin.asciidoc
+<video poster="images/movie-reel.png">
+// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.block.passthrough.asciidoc
+// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.xml.block.passthrough.content.asciidoc
+  <source src="videos/writing-zen.webm" type="video/webm">
+</video>
+++++
+// <- meta.embedded.block.passthrough.asciidoc
+// <- constant.delimiter.block.passthrough.end.asciidoc
+
+
+Normal.
+
+// EOF //
