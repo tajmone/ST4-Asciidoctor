@@ -1,0 +1,21 @@
+// SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+= Quote Blocks
+
+Manual Reference:
+https://asciidoctor.org/docs/user-manual/#quote[35.1. Quote]
+
+[quote, Monty Python and the Holy Grail]
+____
+// <- meta.block.quote.content.asciidoc
+// <- constant.delimiter.block.quote.begin.asciidoc
+Lorem ipsum.
+// <-^^^^^^^  meta.block.quote.content.asciidoc
+// ^^^^^^^^^  markup.quote.block.asciidoc
+____
+// <- meta.block.quote.content.asciidoc
+// <- constant.delimiter.block.quote.end.asciidoc
+
+Normal.
+// <-  - meta.block.quote.content.asciidoc
+
+// EOF //
