@@ -1,5 +1,6 @@
 // SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
 = AsciiDoc Headings
+:doctype: book
 // *****************************************************************************
 // *                                                                           *
 // *                         AsciiDoc Headings Tests                           *
