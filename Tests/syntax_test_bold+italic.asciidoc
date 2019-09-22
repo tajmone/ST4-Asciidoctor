@@ -1,0 +1,73 @@
+// SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+= Bold and Italic Text Formatting
+
+Manual reference:
+https://asciidoctor.org/docs/user-manual/#bold-and-italic[§19.1. Bold and Italic]
+
+Bold and Italic are part of AsciiDoc text formatting elements, belonging to the
+https://asciidoctor.org/docs/user-manual/#formatting-marks[_quotes_ category].
+
+== Constrained
+
+Manual reference:
+https://asciidoctor.org/docs/user-manual/#constrained-quotes[§9.1. Constrained quotes]
+
+Example: I'm _in italic_. I'm not.
+//           ^^^^^^^^^^^   meta.italicinner.single.asciidoc
+//            ^^^^^^^^^    markup.italic.single.asciidoc
+//           ^             punctuation.definition.italic.single.begin.asciidoc
+//                     ^   punctuation.definition.italic.single.end.asciidoc
+
+== Unconstrained
+
+Manual reference:
+https://asciidoctor.org/docs/user-manual/#unconstrained-quotes[§9.2. Unconstrained quotes]
+
+Example: __supper__motivated.
+//       ^^^^^^^^^^   meta.italicinner.double.asciidoc
+//         ^^^^^^     markup.italic.double.asciidoc
+//       ^^           punctuation.definition.italic.double.begin.asciidoc
+//               ^^   punctuation.definition.italic.double.end.asciidoc
+//                 ^^^^^^^^^^  - markup.italic.double.asciidoc
+
+== Multi-line
+
+Italic and bold text can span across multiple lines:
+
+Example: __a very long italic text.
+Spanning multiple lines.__ Normal text.
+
+But if a blank line is found then Asciidoctor will not render it as bold/italic:
+
+............................................................
+Example: __A very long italic text spanning multiple lines.
+
+With blank lines inbetween.__ Normal text.
+............................................................
+
+Example: __A very long italic text spanning multiple lines.
+
+// <- invalid.illegal.asciidoc
+With blank lines inbetween.__
+// ^^^^^^^^^^^^^^^^^^^^^^^^  - meta.italicinner.double.asciidoc
+
+Therfore the scope should either bail out or show an error of sorts.
+
+
+=== With Single-Line Comments
+
+Single-line comments will be ingored in the final text and are fine:
+
+............................................................
+Example: __An italic text spanning multiple lines
+// a comment
+with a single line comment inbetween.__ Normal text.
+............................................................
+
+Example: __An italic text spanning multiple lines
+// a comment
+//^^^^^^^^^^ comment.line.double-slash.asciidoc   meta.line.comment.content.asciidoc
+with a single line comment inbetween.__ Normal text.
+// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.italicinner.double.asciidoc
+
+// EOF //

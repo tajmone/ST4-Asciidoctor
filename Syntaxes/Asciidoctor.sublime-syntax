@@ -1,6 +1,6 @@
 %YAML 1.2
 ---
-# "Asciidoctor.sublime-syntax" v0.0.14 | 2019/09/22
+# "Asciidoctor.sublime-syntax" v0.0.15 | 2019/09/22
 # ==============================================================================
 #                        AsciiDoc Syntax for Asciidoctor
 # ==============================================================================
@@ -638,11 +638,11 @@ contexts:
   inline:
   #   - include: passthrough
   #   - include: strong_double
-  #   - include: emphasis_double
+    - include: emphasis_double
     - include: monospaced_double
   #   - include: mark_double
   #   - include: strong
-  #   - include: emphasis
+    - include: emphasis
     - include: monospaced
   #   - include: mark
   #   - include: superscript
@@ -745,6 +745,37 @@ contexts:
   # EMPHASIS UNCONSTRAINED
   ########################
   # Was: "EMPHASIS DOUBLE"
+
+  emphasis_double:
+    - match: |
+        (?x)
+        (\[[^\]]*?\])?  # might start with attribute list
+        (?<!\\)         # must not be preceded by escape
+        (__)
+      captures:
+        1: support.variable.attributelist.asciidoc
+        2: punctuation.definition.italic.double.begin.asciidoc
+      push: inside_emphasis_double
+
+  inside_emphasis_double:
+    - meta_content_scope: markup.italic.double.asciidoc
+    - meta_scope: meta.italicinner.double.asciidoc
+    - include: error_on_empty_line
+    - include: line_comment
+    - match: '__'
+      scope: punctuation.definition.italic.double.end.asciidoc
+      pop: true
+    #   - include: strong_double
+    #   - include: monospaced_double
+    #   - include: mark_double
+    #   - include: strong
+    #   - include: monospaced
+    #   - include: mark
+    #   - include: superscript
+    #   - include: subscript
+    #   - include: characters
+
+
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # emphasis_double:
   #   comment: |
@@ -781,6 +812,43 @@ contexts:
   # EMPHASIS CONSTRAINED
   ######################
   # Was: "EMPHASIS"
+  # Emphasized (italic) text (constrained variant).
+  #
+  # Examples:
+  #   _Lorem ipsum_ dolor
+  #   [red]_Lorem ipsum_ dolor
+
+  emphasis:
+    - match: |
+        (?x)
+        (\[[^\]]*?\])?      # might be preceded by an attributes list
+        (?<=^|\W)(?<!\\|})  # must be preceded by nonword character, and not by escape or } (attribute)
+        (_)(?=\S)           # delimiter underscore that must be followed by a nonspace character
+      captures:
+        1: support.variable.attributelist.asciidoc
+        2: punctuation.definition.italic.single.begin.asciidoc
+      push: inside_emphasis
+
+  inside_emphasis:
+    - meta_content_scope: markup.italic.single.asciidoc
+    - meta_scope: meta.italicinner.single.asciidoc
+    - include: error_on_empty_line
+    - include: line_comment
+    - match: |
+        (?x)
+        (?<=\S)(_)        # delimiter underscore that must be preceded by a nonspace character
+        (?!\w)            # ...and followed by a nonword character
+      scope: punctuation.definition.italic.single.end.asciidoc
+      pop: true
+    # - include: strong_double
+    # - include: monospaced_double
+    # - include: mark_double
+    # - include: strong
+    # - include: monospaced
+    # - include: mark
+    # - include: superscript
+    # - include: subscript
+    # - include: characters
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # emphasis:
