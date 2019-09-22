@@ -1,6 +1,6 @@
 %YAML 1.2
 ---
-# "Asciidoctor.sublime-syntax" v0.0.19 | 2019/09/22
+# "Asciidoctor.sublime-syntax" v0.0.20 | 2019/09/22
 # ==============================================================================
 #                        AsciiDoc Syntax for Asciidoctor
 # ==============================================================================
@@ -77,13 +77,12 @@ contexts:
     - match: ^(/{4,})\s*$\n?
       scope: punctuation.definition.comment.begin.asciidoc
       push:
-        - meta_scope: comment.block.asciidoc
+        - meta_scope: meta.block.comment.content.asciidoc
+        - meta_content_scope: comment.block.asciidoc
         - match: ^\1\s*$\n?
           scope: punctuation.definition.comment.end.asciidoc
           pop: true
-        - match: (^.*)$\n?
-          scope: meta.block.comment.content.asciidoc
-    # - include: macro
+        # - include: macro
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_comment:
@@ -189,11 +188,7 @@ contexts:
         - match: ^\1\s*$\n?
           scope: constant.delimiter.listing.end.asciidoc
           pop: true
-        # - match: (^.*)$\n?
-        #   scope: meta.block.comment.content.asciidoc
   #   - include: inline_callout
-
-
 
   # IMPORTANT: This element was REMANED by @bsmith-n4! In the original:
   #
@@ -201,7 +196,6 @@ contexts:
   #   end: ^\1\s*$\n?
   #   endCaptures:
   #     '0': {name: constant.delimiter.listing.end.asciidoc}
-
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_listing:
@@ -230,6 +224,8 @@ contexts:
   #   ```rb
   #   puts 'Hello world!'
   #   ```
+
+  # TODO: Check if fence delimiter can be more than three backticks.
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_source_fenced:
