@@ -1,6 +1,6 @@
 %YAML 1.2
 ---
-# "Asciidoctor.sublime-syntax" v0.0.27 | 2019/09/23
+# "Asciidoctor.sublime-syntax" v0.0.28 | 2019/09/23
 # ==============================================================================
 #                        AsciiDoc Syntax for Asciidoctor
 # ==============================================================================
@@ -883,6 +883,10 @@ contexts:
     - meta_scope: meta.boldinner.double.asciidoc
     - include: error_on_empty_line
     - include: line_comment
+    - include: emphasis_double
+    - include: emphasis
+    - include: monospaced_double
+    - include: monospaced
     - match: \*\*
       scope: punctuation.definition.bold.double.end.asciidoc
       pop: true
@@ -953,6 +957,10 @@ contexts:
     - meta_scope: meta.boldinner.single.asciidoc
     - include: error_on_empty_line
     - include: line_comment
+    - include: emphasis_double
+    - include: emphasis
+    - include: monospaced_double
+    - include: monospaced
     - match: |
         (?x)
         (?<=\S)(\*)       # delimiter star that must be preceded by a nonspace character
@@ -1030,6 +1038,10 @@ contexts:
     - meta_scope: meta.italicinner.double.asciidoc
     - include: error_on_empty_line
     - include: line_comment
+    - include: strong_double
+    - include: strong
+    - include: monospaced_double
+    - include: monospaced
     - match: '__'
       scope: punctuation.definition.italic.double.end.asciidoc
       pop: true
@@ -1102,6 +1114,10 @@ contexts:
     - meta_scope: meta.italicinner.single.asciidoc
     - include: error_on_empty_line
     - include: line_comment
+    - include: strong_double
+    - include: strong
+    - include: monospaced_double
+    - include: monospaced
     - match: |
         (?x)
         (?<=\S)(_)        # delimiter underscore that must be preceded by a nonspace character
