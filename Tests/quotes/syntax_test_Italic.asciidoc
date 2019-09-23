@@ -53,20 +53,20 @@ Italic text can span across multiple lines in the same paragraph, as long as no 
 
 .Source
 [source,asciidoc]
-.......................................
-__A very long italic text.
-Spanning multiple lines.__ Normal text.
-.......................................
+......................................
+_A very long italic text.
+Spanning multiple lines._ Normal text.
+......................................
 
 .Result
-=======================================
-__A very long italic text.
-Spanning multiple lines.__ Normal text.
-// <-^^^^^^^^^^^^^^^^^^^^^  meta.italicinner.double.asciidoc
-// <-^^^^^^^^^^^^^^^^^^^    markup.italic.double.asciidoc
-//                      ^^  punctuation.definition.italic.double.end.asciidoc
-//                        ^^^^^^^^^^^^^^  - meta.italicinner.double.asciidoc
-=======================================
+======================================
+_A very long italic text.
+Spanning multiple lines._ Normal text.
+// <-^^^^^^^^^^^^^^^^^^^^  meta.italicinner.single.asciidoc
+// <-^^^^^^^^^^^^^^^^^^^   markup.italic.single.asciidoc
+//                      ^  punctuation.definition.italic.single.end.asciidoc
+//                       ^^^^^^^^^^^^^^  - meta.italicinner.single.asciidoc
+======================================
 
 
 === With Line Comments
@@ -75,20 +75,21 @@ Single-line comments inside an italic text spanning across multiple lines will b
 
 .Source
 [source,asciidoc]
-....................................................
-__An italic text spanning multiple lines
+...................................................
+_An italic text spanning multiple lines
 // a comment
-with a single line comment inbetween.__ Normal text.
-....................................................
+with a single line comment inbetween._ Normal text.
+...................................................
 
 .Result
-====================================================
-__An italic text spanning multiple lines
+===================================================
+_An italic text spanning multiple lines
 // a comment
-//^^^^^^^^^^ comment.line.double-slash.asciidoc   meta.line.comment.content.asciidoc
-with a single line comment inbetween.__ Normal text.
-// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.italicinner.double.asciidoc
-====================================================
+//^^^^^^^^^^ comment.line.double-slash   meta.line.comment.content
+//^^^^^^^^^^ meta.italicinner
+with a single line comment inbetween._ Normal text.
+// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.italicinner.single.asciidoc
+===================================================
 
 Block comments (like any other block elements) are not OK, and will break the quote.
 
@@ -99,21 +100,22 @@ But if a blank line is encountered before the closing delimiter -- i.e. if the t
 
 .Source
 [source,asciidoc]
-..................................................
-__A very long italic text spanning multiple lines.
+.................................................
+_A very long italic text spanning multiple lines.
 
-With blank lines inbetween.__
-..................................................
+With blank lines inbetween._
+.................................................
 
 .Result
-==================================================
-__A very long italic text spanning multiple lines.
+=================================================
+_A very long italic text spanning multiple lines.
+// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.italicinner.single.asciidoc
 
 // <- invalid.illegal.asciidoc
-With blank lines inbetween.__
-// ^^^^^^^^^^^^^^^^^^^^^^^^  - meta.italicinner.double.asciidoc
+With blank lines inbetween._
+// ^^^^^^^^^^^^^^^^^^^^^^^^^   - meta.italicinner.single.asciidoc
 
-==================================================
+=================================================
 
 The AsciiDoc syntax will handle such cases by interrupting italic-parsing when encountering a blank line, and scoping the first blank line as `invalid` -- to draw the user's attention to the problem.
 
@@ -143,15 +145,15 @@ Testing _italics with *bold* and `monospaced` inside_ it.
 
 .Source
 [source,asciidoc]
-__italics with**bold** and``monospaced`` inside.__
+__italics with**bold** and``monospaced`` inside__it.
 
 .Result
 ===================================================
-__italics with**bold** and``monospaced`` inside.__
-// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.italicinner.double.asciidoc
-//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   markup.italic.double.asciidoc
-//            ^^^^^^^^                             meta.boldinner.double.asciidoc
-//                        ^^^^^^^^^^^^^^           meta.literalinner.double.asciidoc
+__italics with**bold** and``monospaced`` inside__it.
+// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.italicinner.double.asciidoc
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   markup.italic.double.asciidoc
+//            ^^^^^^^^                            meta.boldinner.double.asciidoc
+//                        ^^^^^^^^^^^^^^          meta.literalinner.double.asciidoc
 ===================================================
 
 // EOF //

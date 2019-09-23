@@ -7,6 +7,7 @@ https://asciidoctor.org/docs/user-manual/#bold-and-italic[§19.1. Bold and Itali
 Bold is one of AsciiDoc text formatting elements, belonging to the
 https://asciidoctor.org/docs/user-manual/#formatting-marks[_quotes_ category].
 
+
 == Constrained
 
 Manual reference:
@@ -24,6 +25,7 @@ This *is bold*. This is not.
 //   ^          punctuation.definition.bold.single.begin.asciidoc
 //           ^  punctuation.definition.bold.single.end.asciidoc
 ============================
+
 
 == Unconstrained
 
@@ -49,23 +51,22 @@ SublimeText is **super**fast.
 
 Bold text can span across multiple lines in the same paragraph, as long as no blank lines or block elements are encountered between the opening and closing bold delimiter:
 
-
 .Source
 [source,asciidoc]
-.......................................
-**A very long bold text.
-Spanning multiple lines.** Normal text.
-.......................................
+......................................
+*A very long bold text.
+Spanning multiple lines.* Normal text.
+......................................
 
 .Result
-=======================================
-**A very long bold text.
-Spanning multiple lines.** Normal text.
-// <-^^^^^^^^^^^^^^^^^^^^^  meta.boldinner.double.asciidoc
-// <-^^^^^^^^^^^^^^^^^^^    markup.bold.double.asciidoc
-//                      ^^  punctuation.definition.bold.double.end.asciidoc
-//                        ^^^^^^^^^^^^^^  - meta.boldinner.double.asciidoc
-=======================================
+======================================
+*A very long bold text.
+Spanning multiple lines.* Normal text.
+// <-^^^^^^^^^^^^^^^^^^^^  meta.boldinner.single.asciidoc
+// <-^^^^^^^^^^^^^^^^^^    markup.bold.single.asciidoc
+//                      ^  punctuation.definition.bold.single.end.asciidoc
+//                       ^^^^^^^^^^^^^^  - meta.boldinner.single.asciidoc
+======================================
 
 
 === With Line Comments
@@ -74,20 +75,21 @@ Single-line comments inside a bold text spanning across multiple lines will be i
 
 .Source
 [source,asciidoc]
-....................................................
-__A bold text spanning multiple lines
+...................................................
+*A bold text spanning multiple lines
 // a comment
-with a single line comment inbetween.__ Normal text.
-....................................................
+with a single line comment inbetween.* Normal text.
+...................................................
 
 .Result
-====================================================
-__A bold text spanning multiple lines
+===================================================
+*A bold text spanning multiple lines
 // a comment
-//^^^^^^^^^^ comment.line.double-slash.asciidoc   meta.line.comment.content.asciidoc
-with a single line comment inbetween.__ Normal text.
-// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.italicinner.double.asciidoc
-====================================================
+//^^^^^^^^^^ comment.line.double-slash   meta.line.comment.content
+//^^^^^^^^^^ meta.boldinner
+with a single line comment inbetween.* Normal text.
+// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.boldinner.single.asciidoc
+===================================================
 
 Block comments (like any other block elements) are not OK, and will break the quote.
 
@@ -98,21 +100,22 @@ But if a blank line is encountered before the closing delimiter -- i.e. if the t
 
 .Source
 [source,asciidoc]
-................................................
-**A very long bold text spanning multiple lines.
+...............................................
+*A very long bold text spanning multiple lines.
 
-With blank lines inbetween.**
-................................................
+With blank lines inbetween.*
+...............................................
 
 .Result
-================================================
-**A very long bold text spanning multiple lines.
+===============================================
+*A very long bold text spanning multiple lines.
+// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.boldinner.single.asciidoc
 
 // <- invalid.illegal.asciidoc
-With blank lines inbetween.**
-// ^^^^^^^^^^^^^^^^^^^^^^^^  - meta.boldinner.double.asciidoc
+With blank lines inbetween.*
+// ^^^^^^^^^^^^^^^^^^^^^^^^^  - meta.boldinner.single.asciidoc
 
-================================================
+===============================================
 
 The AsciiDoc syntax will handle such cases by interrupting bold-parsing when encountering a blank line, and scoping the first blank line as `invalid` -- to draw the user's attention to the problem.
 
@@ -126,15 +129,15 @@ Bold quotes allow nesting a variety of inline elements.
 
 .Source
 [source,asciidoc]
-Testing *bold with _italics_ and `monospaced` inside* it.
+Testing *bold with _italics_ and `monospaced` inside it.*
 
 .Result
 =========================================================
-Testing *bold with _italics_ and `monospaced` inside* it.
-//      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.boldinner.single.asciidoc
-//       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  markup.bold.single.asciidoc
-//                 ^^^^^^^^^                          meta.italicinner.single.asciidoc
-//                               ^^^^^^^^^^^^         meta.literalinner.single.asciidoc
+Testing *bold with _italics_ and `monospaced` inside it.*
+//      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.boldinner.single.asciidoc
+//       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  markup.bold.single.asciidoc
+//                 ^^^^^^^^^                              meta.italicinner.single.asciidoc
+//                               ^^^^^^^^^^^^             meta.literalinner.single.asciidoc
 =========================================================
 
 
@@ -142,15 +145,15 @@ Testing *bold with _italics_ and `monospaced` inside* it.
 
 .Source
 [source,asciidoc]
-**bold with__italics__ and``monospaced`` inside.**
+**bold with__italics__ and``monospaced`` inside**it.
 
 .Result
 ===================================================
-**bold with__italics__ and``monospaced`` inside.**
-// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.boldinner.double.asciidoc
-//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   markup.bold.double.asciidoc
-//         ^^^^^^^^^^^                             meta.italicinner.double.asciidoc
-//                        ^^^^^^^^^^^^^^           meta.literalinner.double.asciidoc
+**bold with__italics__ and``monospaced`` inside**it.
+// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.boldinner.double.asciidoc
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   markup.bold.double.asciidoc
+//         ^^^^^^^^^^^                            meta.italicinner.double.asciidoc
+//                        ^^^^^^^^^^^^^^          meta.literalinner.double.asciidoc
 ===================================================
 
 // EOF //
