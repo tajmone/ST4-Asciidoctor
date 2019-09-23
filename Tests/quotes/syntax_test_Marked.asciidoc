@@ -1,0 +1,40 @@
+// SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+= Custom Styling With Attributes
+
+Manual reference:
+https://asciidoctor.org/docs/user-manual/#custom-styling-with-attributes[19.5. Custom Styling With Attributes]
+
+
+=== Mark/Highlight
+
+.Source
+[source,asciidoc]
+Werewolves are #allergic to cinnamon#.
+This is ##highlighted##text.
+
+.Result
+===============================================
+Werewolves are #allergic to cinnamon#.
+This is ##highlighted##text.
+//      ^^^^^^^^^^^^^^^ string.other.unquoted.double.asciidoc
+//        ^^^^^^^^^^^   string.unquoted.unquotedinner.double.asciidoc
+===============================================
+
+.Source
+.................................................
+Do werewolves believe in [small]#small print#?
+
+[big]##O##nce upon an infinite loop.
+.................................................
+
+.Result
+===============================================
+Do werewolves believe in [small]#small print#?
+
+[big]##O##nce upon an infinite loop.
+//   ^^^^^ string.other.unquoted.double.asciidoc
+//     ^   string.unquoted.unquotedinner.double.asciidoc
+
+===============================================
+
+// EOF //

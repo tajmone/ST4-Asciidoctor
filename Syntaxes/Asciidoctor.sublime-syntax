@@ -1,6 +1,6 @@
 %YAML 1.2
 ---
-# "Asciidoctor.sublime-syntax" v0.0.28 | 2019/09/23
+# "Asciidoctor.sublime-syntax" v0.0.29 | 2019/09/23
 # ==============================================================================
 #                        AsciiDoc Syntax for Asciidoctor
 # ==============================================================================
@@ -834,11 +834,11 @@ contexts:
     - include: strong_double
     - include: emphasis_double
     - include: monospaced_double
-  #   - include: mark_double
+    - include: mark_double
     - include: strong
     - include: emphasis
     - include: monospaced
-  #   - include: mark
+    # - include: mark  # problematic!
   #   - include: superscript
   #   - include: subscript
 
@@ -1373,6 +1373,45 @@ contexts:
   #   Lo##re##m ##ipsum dolor##.
   #   Lo[red]##re##m
 
+  mark_double:
+    - match: |
+        (?x)
+        (\[[^\]]*?\])?  # might start with an attribute list (indeed, that is its purpose)
+        (?<!\\)         # must not be preceded by escape
+        (\#\#)
+      captures:
+        1: support.variable.attributelist.asciidoc
+        2: punctuation.definition.string.unquoted.double.begin.asciidoc
+      push:
+        - meta_scope: string.other.unquoted.double.asciidoc
+        - meta_content_scope: string.unquoted.unquotedinner.double.asciidoc
+        - match: \#\#
+          scope: punctuation.definition.string.unquoted.double.end.asciidoc
+          pop: true
+        #   - include: strong_double
+        #   - include: emphasis_double
+        #   - include: monospaced_double
+        #   - include: strong
+        #   - include: emphasis
+        #   - include: monospaced
+        #   - include: superscript
+        #   - include: subscript
+        #   - include: characters
+
+    # name: string.other.unquoted.double.asciidoc
+    # contentName: string.unquoted.unquotedinner.double.asciidoc
+    # begin: |-
+    #   (?x)
+    #   (\[[^\]]*?\])?  # might start with an attribute list (indeed, that is its purpose)
+    #   (?<!\\)         # must not be preceded by escape
+    #   (\#\#)
+    # beginCaptures:
+    #   '1': {name: support.variable.attributelist.asciidoc}
+    #   '2': {name: punctuation.definition.string.unquoted.double.begin.asciidoc}
+    # end: '\#\#'
+    # endCaptures:
+    #   '0': {name: punctuation.definition.string.unquoted.double.end.asciidoc}
+
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # mark_double:
   #   comment: |
@@ -1413,6 +1452,36 @@ contexts:
   # Examples:
   #   #Lorem ipsum# dolor
   #   [red]#Lorem ipsum# dolor
+
+  # @PROBLEM: Braks everything! seems like optional "start with attribute"
+  #           causes anything to matche anything else!
+#  mark:
+#    - match: |
+#        (?x)
+#        (\[[^\]]*?\])?      # might start with attribute list (darned well better or why are we here)
+#        (?<=^|\W)(?<!\\|})  # must be preceded by nonword character, and not by escape or } (attribute)
+#        (\#)(?=\S)          # delimiter hash that must be followed by a nonspace character
+#      captures:
+#        1: support.variable.attributelist.asciidoc
+#        2: punctuation.definition.string.unquoted.single.begin.asciidoc
+#      push:
+#        - meta_scope: string.other.unquoted.single.asciidoc
+#        - meta_content_scope: string.unquoted.unquotedinner.single.asciidoc
+#        - match: |
+#            (?x)
+#            (?<=\S)(\#)       # delimiter hash that must be preceded by a nonspace character
+#            (?!\w)            # ...and followed by a nonword character
+#          scope: punctuation.definition.string.unquoted.single.end.asciidoc
+#          pop: true
+#        # - include: strong_double
+#        # - include: emphasis_double
+#        # - include: monospaced_double
+#        # - include: strong
+#        # - include: emphasis
+#        # - include: monospaced
+#        # - include: superscript
+#        # - include: subscript
+#        # - include: characters
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # mark:
