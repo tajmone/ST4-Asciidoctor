@@ -51,6 +51,7 @@ Bold text can span across multiple lines in the same paragraph, as long as no bl
 
 
 .Source
+[source,asciidoc]
 .......................................
 **A very long bold text.
 Spanning multiple lines.** Normal text.
@@ -72,6 +73,7 @@ Spanning multiple lines.** Normal text.
 Single-line comments inside a bold text spanning across multiple lines will be ingored in the final text, and are OK to use:
 
 .Source
+[source,asciidoc]
 ....................................................
 __A bold text spanning multiple lines
 // a comment
@@ -95,6 +97,7 @@ Block comments (like any other block elements) are not OK, and will break the qu
 But if a blank line is encountered before the closing delimiter -- i.e. if the text spans across multiple paragraphs -- then Asciidoctor will not format the text as bold:
 
 .Source
+[source,asciidoc]
 ................................................
 **A very long bold text spanning multiple lines.
 
@@ -112,5 +115,42 @@ With blank lines inbetween.**
 ================================================
 
 The AsciiDoc syntax will handle such cases by interrupting bold-parsing when encountering a blank line, and scoping the first blank line as `invalid` -- to draw the user's attention to the problem.
+
+
+== Nested Elements
+
+Bold quotes allow nesting a variety of inline elements.
+
+
+=== Text Formatting Constrained
+
+.Source
+[source,asciidoc]
+Testing *bold with _italics_ and `monospaced` inside* it.
+
+.Result
+=========================================================
+Testing *bold with _italics_ and `monospaced` inside* it.
+//      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.boldinner.single.asciidoc
+//       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  markup.bold.single.asciidoc
+//                 ^^^^^^^^^                          meta.italicinner.single.asciidoc
+//                               ^^^^^^^^^^^^         meta.literalinner.single.asciidoc
+=========================================================
+
+
+=== Text Formatting Unconstrained
+
+.Source
+[source,asciidoc]
+**bold with__italics__ and``monospaced`` inside.**
+
+.Result
+===================================================
+**bold with__italics__ and``monospaced`` inside.**
+// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.boldinner.double.asciidoc
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   markup.bold.double.asciidoc
+//         ^^^^^^^^^^^                             meta.italicinner.double.asciidoc
+//                        ^^^^^^^^^^^^^^           meta.literalinner.double.asciidoc
+===================================================
 
 // EOF //
