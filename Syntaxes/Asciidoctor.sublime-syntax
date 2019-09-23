@@ -1,6 +1,6 @@
 %YAML 1.2
 ---
-# "Asciidoctor.sublime-syntax" v0.0.26 | 2019/09/22
+# "Asciidoctor.sublime-syntax" v0.0.27 | 2019/09/23
 # ==============================================================================
 #                        AsciiDoc Syntax for Asciidoctor
 # ==============================================================================
@@ -281,12 +281,13 @@ contexts:
     - match: ^(\.{4,})\s*$\n?
       scope: constant.delimiter.block.literal.begin.asciidoc
       push:
-        - meta_scope: string.literal.block.delimited.asciidoc
+        - meta_scope: meta.block.literal.content.asciidoc
+        - meta_content_scope: string.literal.block.delimited.asciidoc
         - match: ^\1\s*$\n?
           scope: constant.delimiter.block.literal.end.asciidoc
           pop: true
-        - match: ^.*$\n?
-          scope: meta.block.literal.content.asciidoc
+        # - match: ^.*$\n?
+        #   scope: meta.block.literal.content.asciidoc
         # - include: inline_callout
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_literal:
