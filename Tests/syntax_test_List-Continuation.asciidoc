@@ -1,0 +1,25 @@
+// SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+= List continuation
+
+Manual reference:
+https://asciidoctor.org/docs/user-manual/#list-continuation[§20.2.1. List continuation]
+
+.Source
+[source,asciidoc]
+......................................
+* First list element paragraph.
++
+Second element paragraph (no bullet).
+......................................
+
+
+.Result
+======================================
+* First list element paragraph.
++
+//<- constant.listcontinuation
+Second element paragraph (no bullet).
+======================================
+
+
+// EOF //

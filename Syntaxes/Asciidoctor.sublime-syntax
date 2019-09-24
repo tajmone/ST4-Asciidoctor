@@ -1,6 +1,6 @@
 %YAML 1.2
 ---
-# "Asciidoctor.sublime-syntax" v0.0.36 | 2019/09/24
+# "Asciidoctor.sublime-syntax" v0.0.37 | 2019/09/24
 # ==============================================================================
 #                        AsciiDoc Syntax for Asciidoctor
 # ==============================================================================
@@ -1674,10 +1674,10 @@ contexts:
 
   lines:
     - include: line_comment
-  #   - include: list_continuation
+    - include: list_continuation
     - include: inline_break
     - include: block_page_break
-  #   - include: block_thematic_break
+    - include: block_thematic_break
     - include: block_title
     - include: block_id
   #   - include: block_req                              # <- ADDED by @bsmith-n4
@@ -1925,6 +1925,18 @@ contexts:
   ###################
   # LIST CONTINUATION
   ###################
+  # See: §20.2.1. List continuation
+  # https://asciidoctor.org/docs/user-manual/#list-continuation
+
+  # Examples:
+  #  * First list element paragraph.
+  #  +
+  #  Second element paragraph (no bullet).
+
+  list_continuation:
+    - match: ^\+\s*$\n?
+      scope: constant.listcontinuation.asciidoc
+
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # list_continuation:
   #   name: constant.listcontinuation.asciidoc
@@ -1964,6 +1976,11 @@ contexts:
   #   '''
   #   ''''''
 
+  block_thematic_break:
+    - match: ^'{3,}$\n?
+      scope: meta.separator.ruler.asciidoc
+
+
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_thematic_break:
   #   comment: |
@@ -1980,6 +1997,8 @@ contexts:
   # SECTION TEMPLATE
   ##################
   # Fixed list of known template names
+  # See: §16.9. Section Styles
+  # https://asciidoctor.org/docs/user-manual/#section-styles
 
   # IMPORTANT: This element differs in @bsmith-n4 and original!
   #
