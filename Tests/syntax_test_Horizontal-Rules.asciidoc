@@ -1,0 +1,21 @@
+// SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+= Horizontal Rules
+
+Manual reference:
+https://asciidoctor.org/docs/user-manual/#horizontal-rules[§24. Horizontal Rules]
+
+.Example 1
+[source,asciidoc]
+'''
+
+'''
+//<- meta.separator.ruler.asciidoc
+
+.Example 2
+[source,asciidoc]
+'''''''''''''
+
+'''''''''''''
+//<-^^^^^^^^^ meta.separator.ruler.asciidoc
+
+// EOF //
