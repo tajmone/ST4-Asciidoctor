@@ -1,0 +1,53 @@
+// SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+= Attribute Entries
+
+Manual reference:
+https://asciidoctor.org/docs/user-manual/#using-attributes-set-assign-and-reference[§10.3. Using Attributes: Set, Assign, and Reference]
+
+.Examples
+[source,asciidoc]
+......................................
+:sectnums:
+:!linkattrs:
+:experimental!:
+:toclevels: 5
+:toc: left
+......................................
+
+
+:sectnums:
+//<-^^^^^^   meta.attributeentry
+//^^^^^^^    support.variable.attribute
+//<-         punctuation.definition.attributeentry.attrname.begin
+//       ^   punctuation.definition.attributeentry.attrname.end
+//<-     ^  -support.variable.attribute
+
+:toc: left
+//<-^^^^^^   meta.attributeentry
+//    ^^^^   meta.attributeentry.value
+//<-^^      -meta.attributeentry.value
+
+:experimental!:
+//<-^^^^^^^^^^    meta.attributeentry
+//^^^^^^^^^^^     support.variable.attribute
+//<-              punctuation.definition.attributeentry.attrname.begin
+//            ^   punctuation.definition.attributeentry.attrname.end
+//<-          ^  -support.variable.attribute
+//           ^    punctuation.definition.attributeentry.unset
+
+WARNING: Ignore the garbage below (required to test some elements in the source file)...
+
+:!linkattrs:
+//<-^^^^^^^^   meta.attributeentry
+//^^^^^^^^^    support.variable.attribute
+//<-           punctuation.definition.attributeentry.attrname.begin
+//         ^   punctuation.definition.attributeentry.attrname.end
+//<-       ^  -support.variable.attribute
+ //<-          punctuation.definition.attributeentry.unset
+
+
+
+
+
+
+// EOF //
