@@ -1,6 +1,6 @@
 %YAML 1.2
 ---
-# "Asciidoctor.sublime-syntax" v0.0.31 | 2019/09/24
+# "Asciidoctor.sublime-syntax" v0.0.32 | 2019/09/24
 # ==============================================================================
 #                        AsciiDoc Syntax for Asciidoctor
 # ==============================================================================
@@ -830,7 +830,7 @@ contexts:
 #*******************************************************************************
 
   inline:
-  #   - include: passthrough
+    - include: passthrough
     - include: strong_double
     - include: emphasis_double
     - include: monospaced_double
@@ -1342,6 +1342,18 @@ contexts:
   # Examples:
   #   Lo+++re++++m +++ipsum dolor+++.
   #   Lo$$re$$m $$ipsum dolor$$.
+
+  # @NOTE ORIGINAL: Must be dead-first among the inlines, so as to take priority.
+
+  passthrough:
+    - match: (\+\+\+|\$\$)
+      scope: constant.character.passthru.begin.asciidoc
+      push:
+        - meta_scope: meta.passthru.inline.asciidoc
+        - meta_content_scope: variable.parameter.passthruinner.asciidoc
+        - match: \1
+          scope: constant.character.passthru.end.asciidoc
+          pop: true
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # passthrough:

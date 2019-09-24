@@ -1,0 +1,81 @@
+// SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+= Passthrough
+
+Manual reference:
+https://asciidoctor.org/docs/user-manual/#pass-macros[§40.1. Passthrough Macros]
+
+[horizontal]
+single and double plus ::
+A special syntax for preventing text from being formatted.
+Only escapes special characters for compliance with the output format and doesn't support explicit substitutions.
+
+triple plus ::
+A special syntax for designating passthrough content.
+Does not apply any substitutions (equivalent to the inline pass macro) and doesn't support explicit substitutions.
+
+double dollar (deprecated) ::
+A deprecated special syntax for designating passthrough content.
+Like the triple plus, does not apply any substitutions and doesn't support explicit substitutions.
+
+
+== Literal Monospace
+
+Manual reference:
+https://asciidoctor.org/docs/user-manual/#literal-monospace[§19.4.1. Literal Monospace]
+
+WARNING: The following example is not being tested!
+(`+` and `++` elements currently not implemented)
+
+.Source
+[source,asciidoc]
+Value of `+{doctitle}+` is `{doctitle}`.
+
+.Result
+========================================
+Value of `+{doctitle}+` is `{doctitle}`.
+========================================
+
+
+== Triple Plus Passthrough
+
+Manual reference:
+https://asciidoctor.org/docs/user-manual/#triple-plus-passthrough[§40.1.2. Triple plus passthrough]
+
+With triple plus no substitutions occur whatsoever, not even special chars escapes.
+
+.Source
+[source,asciidoc]
+E.g. +++Is *bold*? \* {doctitle}+++
+
+.Result
+===================================
+E.g. +++Is *bold*? \* {doctitle}+++
+//   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  meta.passthru.inline.asciidoc
+//      ^^^^^^^^^^^^^^^^^^^^^^^^     variable.parameter.passthruinner.asciidoc
+//   ^^^                             constant.character.passthru.begin.asciidoc
+//   ^^^                            -variable.parameter.passthruinner.asciidoc
+//                              ^^^  constant.character.passthru.end.asciidoc
+//                              ^^^ -variable.parameter.passthruinner.asciidoc
+===================================
+
+
+== Double Dollar Passthrough
+
+WARNING: The `$$` syntax is deprecated in Asciidoctor.
+
+.Source
+[source,asciidoc]
+E.g. $$Is *bold*? \* {doctitle}$$
+
+.Result
+=================================
+E.g. $$Is *bold*? \* {doctitle}$$
+//   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^  meta.passthru.inline.asciidoc
+//     ^^^^^^^^^^^^^^^^^^^^^^^^    variable.parameter.passthruinner.asciidoc
+//   ^^                            constant.character.passthru.begin.asciidoc
+//   ^^                           -variable.parameter.passthruinner.asciidoc
+//                             ^^  constant.character.passthru.end.asciidoc
+//                             ^^ -variable.parameter.passthruinner.asciidoc
+=================================
+
+// EOF //
