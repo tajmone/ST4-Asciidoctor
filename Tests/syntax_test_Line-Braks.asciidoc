@@ -1,0 +1,22 @@
+// SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+= Line Breaks
+
+Manual reference:
+https://asciidoctor.org/docs/user-manual/#line-breaks[§18.2. Line Breaks]
+
+.Source
+[source,asciidoc]
+......................................
+Rubies are red, +
+Topazes are blue.
+......................................
+
+.Result
+======================================
+Rubies are red, +
+//              ^ constant.linebreak
+Topazes are blue.
+======================================
+
+
+// EOF //

@@ -1,6 +1,6 @@
 %YAML 1.2
 ---
-# "Asciidoctor.sublime-syntax" v0.0.34 | 2019/09/24
+# "Asciidoctor.sublime-syntax" v0.0.35 | 2019/09/24
 # ==============================================================================
 #                        AsciiDoc Syntax for Asciidoctor
 # ==============================================================================
@@ -1675,7 +1675,7 @@ contexts:
   lines:
     - include: line_comment
   #   - include: list_continuation
-  #   - include: inline_break
+    - include: inline_break
   #   - include: block_page_break
   #   - include: block_thematic_break
     - include: block_title
@@ -1904,6 +1904,11 @@ contexts:
   # Examples:
   #   Rubies are red, +
   #   Topazes are blue.
+
+  inline_break:
+    - match: (?<=\s)\+$\n?
+      scope: constant.linebreak.asciidoc
+
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # inline_break:
