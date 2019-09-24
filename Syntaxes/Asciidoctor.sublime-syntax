@@ -1,6 +1,6 @@
 %YAML 1.2
 ---
-# "Asciidoctor.sublime-syntax" v0.0.33 | 2019/09/24
+# "Asciidoctor.sublime-syntax" v0.0.34 | 2019/09/24
 # ==============================================================================
 #                        AsciiDoc Syntax for Asciidoctor
 # ==============================================================================
@@ -1679,7 +1679,7 @@ contexts:
   #   - include: block_page_break
   #   - include: block_thematic_break
   #   - include: block_title
-  #   - include: block_id
+    - include: block_id
   #   - include: block_req                              # <- ADDED by @bsmith-n4
   #   - include: section_template
   #   - include: attribute_list_line
@@ -1833,10 +1833,18 @@ contexts:
   ##########
   # BLOCK ID
   ##########
-  #A block id (i.e. anchor).
-  #Examples:
-  #  [[myid]]
-  #  Lorem ipsum dolor.
+  # A block id (i.e. anchor).
+  # Examples:
+  #   [[myid]]
+  #   Lorem ipsum dolor.
+
+  block_id:
+    - match: ^(\[\[)([^\[].*)(\]\])\s*$\n?
+      captures:
+        0: meta.tag.blockid.asciidoc
+        1: punctuation.definition.blockid.begin.asciidoc
+        2: markup.underline.blockid.id.asciidoc
+        3: punctuation.definition.blockid.end.asciidoc
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_id:

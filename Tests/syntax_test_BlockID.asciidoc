@@ -1,0 +1,26 @@
+// SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+= Block ID
+
+Manual reference:
+https://asciidoctor.org/docs/user-manual/#anchordef[27.2. Defining an Anchor]
+
+.Source
+[source,asciidoc]
+......................................
+[[my_id]]
+A paragraph with a custom ID anchor.
+......................................
+
+.Result
+======================================
+[[my_id]]
+//<-^^^^^ meta.tag.blockid
+//^^^^^   markup.underline.blockid.id
+//<-      punctuation.definition.blockid.begin
+//     ^^ punctuation.definition.blockid.end
+
+A paragraph with a custom ID anchor.
+======================================
+
+
+// EOF //
