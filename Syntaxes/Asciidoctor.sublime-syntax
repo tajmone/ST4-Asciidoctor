@@ -1,6 +1,6 @@
 %YAML 1.2
 ---
-# "Asciidoctor.sublime-syntax" v0.0.30 | 2019/09/24
+# "Asciidoctor.sublime-syntax" v0.0.31 | 2019/09/24
 # ==============================================================================
 #                        AsciiDoc Syntax for Asciidoctor
 # ==============================================================================
@@ -840,7 +840,7 @@ contexts:
     - include: monospaced
     # - include: mark  # problematic!
     - include: superscript
-  #   - include: subscript
+    - include: subscript
 
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -1525,6 +1525,33 @@ contexts:
   # Examples:
   #   E=mc^2^
   #   E=mc[red]^2^
+
+  subscript:
+    - match: |
+        (?x)
+        (\[[^\]]*?\])?  # might start with attribute list
+        (?<!\\)         # must not be preceded by escape
+        (~)
+      captures:
+        1: support.variable.attributelist.asciidoc
+        2: punctuation.definition.string.subscript.begin.asciidoc
+      push:
+        - meta_scope: meta.subscriptinner.asciidoc
+        - meta_content_scope: string.other.subscript.asciidoc
+        - match: \~
+          scope: punctuation.definition.string.subscript.end.asciidoc
+          pop: true
+      #   - include: strong_double
+      #   - include: emphasis_double
+      #   - include: monospaced_double
+      #   - include: mark_double
+      #   - include: strong
+      #   - include: emphasis
+      #   - include: monospaced
+      #   - include: mark
+      #   - include: superscript
+      #   - include: characters
+
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # subscript:

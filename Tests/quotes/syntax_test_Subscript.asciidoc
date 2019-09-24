@@ -1,0 +1,21 @@
+// SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+= Subscript
+
+Manual reference:
+https://asciidoctor.org/docs/user-manual/#subscript-and-superscript[§19.3. Subscript and Superscript]
+
+.Source
+[source,asciidoc]
+Water is H~2~O in chemistry.
+
+.Result
+============================
+Water is H~2~O in chemistry.
+//        ^^^  meta.subscriptinner.asciidoc
+//         ^   string.other.subscript.asciidoc
+//        ^    punctuation.definition.string.subscript.begin.asciidoc
+//          ^  punctuation.definition.string.subscript.end.asciidoc
+============================
+
+
+// EOF //
