@@ -1,6 +1,6 @@
 %YAML 1.2
 ---
-# "Asciidoctor.sublime-syntax" v0.0.32 | 2019/09/24
+# "Asciidoctor.sublime-syntax" v0.0.33 | 2019/09/24
 # ==============================================================================
 #                        AsciiDoc Syntax for Asciidoctor
 # ==============================================================================
@@ -1683,7 +1683,7 @@ contexts:
   #   - include: block_req                              # <- ADDED by @bsmith-n4
   #   - include: section_template
   #   - include: attribute_list_line
-  #   - include: attribute_entry
+    - include: attribute_entry
 
   ######################
   # SINGLE-LINE COMMENTS
@@ -1720,6 +1720,28 @@ contexts:
   #   :my-attribute: value
   #   :sectnums!:
   #   :!sectnums:
+
+  attribute_entry:
+    - match: |
+        (?x)
+        ^(:)                          # 1: opening delimiter
+        (!)?                          # 2: bang symbol (unset attribute)
+        ([A-Za-z0-9_][A-Za-z0-9_-]*)  # 3: attribute name
+        (!)?                          # 4: bang symbol (unset attribute)
+        (:)                           # 5: closing delimiter
+        (?:\s+|(?=$))                 # ? consume WS?
+      captures:
+        1: punctuation.definition.attributeentry.attrname.begin.asciidoc
+        2: punctuation.definition.attributeentry.unset.asciidoc
+        3: support.variable.attribute.asciidoc
+        4: punctuation.definition.attributeentry.unset.asciidoc
+        5: punctuation.definition.attributeentry.attrname.end.asciidoc
+      push:
+        - meta_scope: meta.attributeentry.asciidoc
+        - meta_content_scope: meta.attributeentry.value.asciidoc
+        - match: $\n?
+          pop: true
+        #   - include: characters
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # attribute_entry:
