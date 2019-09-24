@@ -1678,7 +1678,7 @@ contexts:
   #   - include: inline_break
   #   - include: block_page_break
   #   - include: block_thematic_break
-  #   - include: block_title
+    - include: block_title
     - include: block_id
   #   - include: block_req                              # <- ADDED by @bsmith-n4
   #   - include: section_template
@@ -1802,6 +1802,13 @@ contexts:
   #   Lorem ipsum dolor.
 
   # IMPORTANT: This element differs in @bsmith-n4 and original!
+  #            @bsmith-n4 doesn't scope the dot.
+
+  block_title:
+    - match: ^(\.)(\w.*)$\n?
+      captures:
+        1: punctuation.definition.blockheading.asciidoc
+        2: markup.heading.block.asciidoc
 
   # >>>>>>>> bsmith-n4 >>>>>>>>
   # block_title:
