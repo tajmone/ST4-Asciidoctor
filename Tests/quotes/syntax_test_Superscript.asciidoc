@@ -1,0 +1,21 @@
+// SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+= Superscript
+
+Manual reference:
+https://asciidoctor.org/docs/user-manual/#subscript-and-superscript[§19.3. Subscript and Superscript]
+
+.Source
+[source,asciidoc]
+E=mc^2^, said Einstein.
+
+.Result
+============================
+E=mc^2^, said Einstein.
+//  ^^^  meta.superscriptinner.asciidoc
+//   ^   string.other.superscript.asciidoc
+//  ^    punctuation.definition.string.superscript.begin.asciidoc
+//    ^  punctuation.definition.string.superscript.end.asciidoc
+============================
+
+
+// EOF //

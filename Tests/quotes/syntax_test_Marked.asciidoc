@@ -5,7 +5,7 @@ Manual reference:
 https://asciidoctor.org/docs/user-manual/#custom-styling-with-attributes[19.5. Custom Styling With Attributes]
 
 
-=== Mark/Highlight
+== Mark/Highlight
 
 .Source
 [source,asciidoc]
