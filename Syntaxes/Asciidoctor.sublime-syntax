@@ -1,6 +1,6 @@
 %YAML 1.2
 ---
-# "Asciidoctor.sublime-syntax" v0.0.35 | 2019/09/24
+# "Asciidoctor.sublime-syntax" v0.0.36 | 2019/09/24
 # ==============================================================================
 #                        AsciiDoc Syntax for Asciidoctor
 # ==============================================================================
@@ -1676,7 +1676,7 @@ contexts:
     - include: line_comment
   #   - include: list_continuation
     - include: inline_break
-  #   - include: block_page_break
+    - include: block_page_break
   #   - include: block_thematic_break
     - include: block_title
     - include: block_id
@@ -1938,6 +1938,11 @@ contexts:
   # Examples:
   #   <<<
   #   <<<<<
+
+  block_page_break:
+    - match: ^<{3,}$\n?
+      scope: meta.separator.pagebreak.asciidoc
+
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_page_break:

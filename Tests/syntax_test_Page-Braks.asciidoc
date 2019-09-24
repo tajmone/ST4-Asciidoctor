@@ -1,0 +1,21 @@
+// SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+= Page Breaks
+
+Manual reference:
+https://asciidoctor.org/docs/user-manual/#page-break[§25. Page Break]
+
+.Example 1
+[source,asciidoc]
+<<<
+
+<<<
+//<- meta.separator.pagebreak.asciidoc
+
+.Example 2
+[source,asciidoc]
+<<<<<<<<<<<<<
+
+<<<<<<<<<<<<<
+//<-^^^^^^^^^ meta.separator.pagebreak.asciidoc
+
+// EOF //
