@@ -11,6 +11,8 @@ An open block can be an anonymous container,
 or it can masquerade as any other block.
 --
 
+// <- - meta.block.open
+
 .Result
 ============================================
 --
@@ -24,6 +26,6 @@ or it can masquerade as any other block.
 ============================================
 
 Normal.
-// <-  - meta.block.open.asciidoc
+// <-  - meta.block.open
 
 // EOF //
