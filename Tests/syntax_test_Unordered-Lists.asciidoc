@@ -1,0 +1,58 @@
+// SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+= Unordered List
+
+Manual reference:
+https://asciidoctor.org/docs/user-manual/#unordered-lists[§20. Unordered Lists]
+
+.Source
+[source,asciidoc]
+......................................
+- Level 1 (hyphen marker)
+* Level 1
+** Level 2
+*** Level 3
+**** Level 4
+***** Level 5
+......................................
+
+
+.Result
+======================================
+- Level 1 (hyphen marker)
+* Level 1
+//<-      punctuation.definition.list_item
+//^      -punctuation.definition.list_item
+** Level 2
+*** Level 3
+**** Level 4
+***** Level 5
+//<-^     punctuation.definition.list_item
+//   ^   -punctuation.definition.list_item
+======================================
+
+
+
+=== Loose Tests
+
+  - Level 1 (hyphen marker)
+//^        punctuation.definition.list_item
+// ^      -punctuation.definition.list_item
+//<-      -punctuation.definition.list_item
+  * Level 1
+//^        punctuation.definition.list_item
+// ^      -punctuation.definition.list_item
+//<-      -punctuation.definition.list_item
+  ** Level 2
+//^^       punctuation.definition.list_item
+//  ^     -punctuation.definition.list_item
+  *** Level 3
+//^^^      punctuation.definition.list_item
+//   ^    -punctuation.definition.list_item
+  **** Level 4
+//^^^^     punctuation.definition.list_item
+//    ^   -punctuation.definition.list_item
+  ***** Level 5
+//^^^^^    punctuation.definition.list_item
+//     ^  -punctuation.definition.list_item
+
+// EOF //

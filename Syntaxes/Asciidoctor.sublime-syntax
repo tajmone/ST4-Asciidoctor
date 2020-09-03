@@ -1,6 +1,6 @@
 %YAML 1.2
 ---
-# "Asciidoctor.sublime-syntax" v0.0.37 | 2019/09/24
+# "Asciidoctor.sublime-syntax" v0.0.38 | 2020/09/03
 # ==============================================================================
 #                        AsciiDoc Syntax for Asciidoctor
 # ==============================================================================
@@ -37,7 +37,7 @@ scope: text.asciidoc
 
 contexts:
   main:
-  # - include: lists
+  - include: lists
   - include: blocks
   - include: section_titles
   - include: lines
@@ -140,8 +140,8 @@ contexts:
         - match: ^\1\s*$\n?
           scope: constant.delimiter.example.end.asciidoc
           pop: true
-          # - include: lists
-          # - include: block_listing
+        - include: lists
+        # - include: block_listing
         - include: blocks
         - include: lines
         - include: inline
@@ -325,7 +325,7 @@ contexts:
           scope: constant.delimiter.block.open.end.asciidoc
           pop: true
         # @NOTE ORIGIN: Might need to check on these includes:
-        # - include: lists
+        - include: lists
         - include: block_comment
         # - include: block_listing
         - include: block_pass
@@ -470,7 +470,7 @@ contexts:
         - match: ^\1\s*$\n?
           scope: constant.delimiter.block.sidebar.end.asciidoc
           pop: true
-        # - include: lists
+        - include: lists
         - include: block_comment
         - include: block_listing
         - include: lines
@@ -2035,6 +2035,8 @@ contexts:
 #                                                                              *
 #*******************************************************************************
 
+  lists:
+    - include: ulist_item_marker
   # lists:
   #   comment: >
   #     My strategy for lists (and similar) is not to try to treat entire
@@ -2070,16 +2072,24 @@ contexts:
   ###################
   # Marker of an unordered (bullet) list item.
   # Examples:
+  #   - level 1
   #   * level 1
   #   ** level 2
   #   *** level 3
   #   **** level 4
   #   ***** level 5
-  #   - level 1
-  #   -- level 2
-  #   --- level 3
-  #   ---- level 4
-  #   ----- level 5
+
+  ulist_item_marker:
+    - match: ^\s*(\-|\*{1,5})\s+(?=\S)
+      captures:
+        1: punctuation.definition.list_item.asciidoc
+
+# Markdwon scopes:
+#    text.html.markdown.gfm
+#    markup.list.unnumbered.markdown
+#    punctuation.definition.list_item.markdown
+
+      # scope: markup.list.bulleted.asciidoc
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # ulist_item_marker:
