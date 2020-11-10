@@ -1,6 +1,6 @@
 %YAML 1.2
 ---
-# "Asciidoctor.sublime-syntax" v0.0.38 | 2020/09/03
+# "Asciidoctor.sublime-syntax" v0.0.39 | 2020/11/10
 # ==============================================================================
 #                        AsciiDoc Syntax for Asciidoctor
 # ==============================================================================
@@ -838,8 +838,8 @@ contexts:
     - include: strong
     - include: emphasis
     - include: monospaced
-    # - include: mark  # problematic!
-    - include: superscript
+    # - include: mark           # problematic!
+    # - include: superscript    # problematic!
     - include: subscript
 
 
