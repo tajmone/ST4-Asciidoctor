@@ -1,0 +1,7 @@
+# Asciidoctor/Syntaxes/.gitignore
+
+# Exclude local backup files:
+___*.*
+
+# Exclude custom scripts:
+*.bat
