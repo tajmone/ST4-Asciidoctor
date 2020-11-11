@@ -39,7 +39,7 @@ def plugin_loaded():
     global builtin_attrs
     settings = sublime.load_settings(SETTINGS_NAME)
     builtin_attrs = [(item, 'built-in')
-                     for item in sorted(settings.get('built_in_attributes'))]
+                    for item in sorted(settings.get('built_in_attributes'))]
 
 
 class AsciidocAttributeCompletions(EventListener):
@@ -90,7 +90,7 @@ class AsciidocCrossReferenceCompletions(EventListener):
         titles = zip(find_by_scope(view, SEC_TITLE_SCOPE), repeat('title'))
 
         return sorted(filter_completions(prefix, anchors, titles),
-                      key=lambda t: t[0].lower())
+                        key=lambda t: t[0].lower())
 
     def should_trigger(self, view, point):
         """ Return True if completions should be triggered at the given point. """

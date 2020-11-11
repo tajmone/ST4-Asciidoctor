@@ -10,5 +10,5 @@ script/bootstrap.sh
 
 echo "==> Generating Keymaps..."
 for pyfile in Keymaps/*.py; do
-    exec "$pyfile" > "${pyfile%.py}"
+	exec "$pyfile" > "${pyfile%.py}"
 done

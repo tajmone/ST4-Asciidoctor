@@ -1,15 +1,33 @@
-*.* text
+################################################
+#  AsciiDoc Package for SublimeText 3:         #
+#  https://github.com/tajmone/ST3-Asciidoctor  #
+################################################
+* text=auto
 
-*.gitattributes   text
-*.sublime-syntax  text
-*.YAML-tmLanguage text
-*.tmLanguage      text
+*.sublime-*   text
 
+## Repository Configuration
+###########################
+.editorconfig    text eol=lf
+.gitlab-ci.yml   text eol=lf
+.travis.yml      text eol=lf
+.gitattributes   text eol=lf
+.gitconfig       text eol=lf
+.gitignore       text eol=lf
+.gitmodules      text eol=lf
 
-# Settings for github/linguist
-*.sublime-keymap linguist-language=JSON
-*.sublime-macro linguist-language=JSON
-*.sublime-menu linguist-language=JSON
-*.sublime-settings linguist-language=JSON
-*.YAML-tmLanguage linguist-language=YAML
-*.tmLanguage linguist-vendored=true
+## Documentation Files
+######################
+*.adoc       text
+*.asciidoc   text
+*.markdown   text
+*.md         text
+*.txt        text
+LICENSE      text
+
+## Scripts
+##########
+*.sh   text eol=lf
+*.py   text
+
+# EOF #

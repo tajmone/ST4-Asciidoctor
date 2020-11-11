@@ -1,20 +1,78 @@
-# http://editorconfig.org
+################################################
+#  AsciiDoc Package for SublimeText 3:         #
+#  https://github.com/tajmone/ST3-Asciidoctor  #
+################################################
+
 root = true
 
-[*]
+## Configurations
+#################
+[.{git*,editorconfig,*.yml}]
 charset = utf-8
-end_of_line = unset
+end_of_line = lf
+indent_size = unset
+indent_style = space
 insert_final_newline = true
 trim_trailing_whitespace = true
-indent_style = space
+
+## Sublime Text
+###############
+[*.{sublime-*,tmPreferences}]
+charset = utf-8
+end_of_line = unset
 indent_size = 2
+indent_style = space
+insert_final_newline = true
+trim_trailing_whitespace = true
 
-[script/*]
-indent_size = 4
+## Shell Scripts
+################
+[*.sh]
+charset = utf-8
+end_of_line = lf
+indent_size = unset
+indent_style = tab
+insert_final_newline = true
+trim_trailing_whitespace = true
 
-[*.py]
-indent_size = 4
-
+## Markdown GFM
+###############
 [*.md]
+charset = utf-8
+end_of_line = unset
+indent_size = unset
+indent_style = space
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+## AsciiDoc
+###########
+[*.{ad,adoc,asciidoc}]
+charset = utf-8
+end_of_line = unset
+indent_size = unset
+indent_style = space
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+## Python
+#########
+[*.py]
+charset = utf-8
+end_of_line = unset
 indent_size = 4
-trim_trailing_whitespace = false
+indent_style = space
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+## Miscellanea
+##############
+[*.{cfg,json}]
+charset = utf-8
+end_of_line = unset
+indent_size = 2
+indent_style = space
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# EOF #
