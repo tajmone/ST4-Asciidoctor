@@ -1,5 +1,5 @@
 language: python
 sudo: false
 python: 3.3
-install: script/bootstrap
-script: script/test
+install: script/bootstrap.sh
+script: script/test.sh

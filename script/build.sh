@@ -6,12 +6,7 @@ set -e
 # Go to the project's root directory.
 cd "$(dirname "$0")/.."
 
-script/bootstrap
-
-echo "==> Converting YAML-tmLanguage files to tmLanguage..."
-for yamlfile in Syntaxes/*.YAML-tmLanguage; do
-    script/yaml-to-plist "$yamlfile" "${yamlfile/%YAML-tmLanguage/tmLanguage}"
-done
+script/bootstrap.sh
 
 echo "==> Generating Keymaps..."
 for pyfile in Keymaps/*.py; do
