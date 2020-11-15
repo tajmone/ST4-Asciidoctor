@@ -4,7 +4,8 @@
 Manual reference:
 https://asciidoctor.org/docs/user-manual/#list-continuation[§20.2.1. List continuation]
 
-.Source
+[.big.red]*Source*
+
 [source,asciidoc]
 ......................................
 * First list element paragraph.
@@ -13,7 +14,8 @@ Second element paragraph (no bullet).
 ......................................
 
 
-.Result
+[.big.red]*Result*
+
 ======================================
 * First list element paragraph.
 +

@@ -4,18 +4,31 @@
 Manual Reference:
 https://asciidoctor.org/docs/user-manual/#quote[35.1. Quote]
 
+[.big.red]*Source*
+
+[source,asciidoc]
+......................................
 [quote, Monty Python and the Holy Grail]
 ____
-// <- meta.block.quote.content.asciidoc
-// <- constant.delimiter.block.quote.begin.asciidoc
 Lorem ipsum.
-// <-^^^^^^^  meta.block.quote.content.asciidoc
-// ^^^^^^^^^  markup.quote.block.asciidoc
 ____
-// <- meta.block.quote.content.asciidoc
-// <- constant.delimiter.block.quote.end.asciidoc
+......................................
 
-Normal.
-// <-  - meta.block.quote.content.asciidoc
+
+[.big.red]*Result*
+
+[quote, Monty Python and the Holy Grail]
+____
+// <- meta.block.quote.content
+// <- constant.delimiter.block.quote.begin
+Lorem ipsum.
+// <-^^^^^^^  meta.block.quote.content
+// ^^^^^^^^^  markup.quote.block
+____
+// <- meta.block.quote.content
+// <- constant.delimiter.block.quote.end
+
+Back to normal text.
+// <-  - meta.block.quote.content
 
 // EOF //

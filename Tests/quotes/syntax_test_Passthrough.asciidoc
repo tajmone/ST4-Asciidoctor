@@ -4,7 +4,6 @@
 Manual reference:
 https://asciidoctor.org/docs/user-manual/#pass-macros[§40.1. Passthrough Macros]
 
-[horizontal]
 single and double plus ::
 A special syntax for preventing text from being formatted.
 Only escapes special characters for compliance with the output format and doesn't support explicit substitutions.
@@ -26,11 +25,13 @@ https://asciidoctor.org/docs/user-manual/#literal-monospace[§19.4.1. Literal Mo
 WARNING: The following example is not being tested!
 (`+` and `++` elements currently not implemented)
 
-.Source
+[.big.red]*Source*
+
 [source,asciidoc]
 Value of `+{doctitle}+` is `{doctitle}`.
 
-.Result
+[.big.red]*Result*
+
 ========================================
 Value of `+{doctitle}+` is `{doctitle}`.
 ========================================
@@ -43,39 +44,43 @@ https://asciidoctor.org/docs/user-manual/#triple-plus-passthrough[§40.1.2. Trip
 
 With triple plus no substitutions occur whatsoever, not even special chars escapes.
 
-.Source
+[.big.red]*Source*
+
 [source,asciidoc]
 E.g. +++Is *bold*? \* {doctitle}+++
 
-.Result
+[.big.red]*Result*
+
 ===================================
 E.g. +++Is *bold*? \* {doctitle}+++
-//   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  meta.passthru.inline.asciidoc
-//      ^^^^^^^^^^^^^^^^^^^^^^^^     variable.parameter.passthruinner.asciidoc
-//   ^^^                             constant.character.passthru.begin.asciidoc
-//   ^^^                            -variable.parameter.passthruinner.asciidoc
-//                              ^^^  constant.character.passthru.end.asciidoc
-//                              ^^^ -variable.parameter.passthruinner.asciidoc
+//   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  meta.passthru.inline
+//      ^^^^^^^^^^^^^^^^^^^^^^^^     variable.parameter.passthruinner
+//   ^^^                             constant.character.passthru.begin
+//   ^^^                            -variable.parameter.passthruinner
+//                              ^^^  constant.character.passthru.end
+//                              ^^^ -variable.parameter.passthruinner
 ===================================
 
 
 == Double Dollar Passthrough
 
-WARNING: The `$$` syntax is deprecated in Asciidoctor.
+NOTE: The `$$` syntax is deprecated in Asciidoctor.
 
-.Source
+[.big.red]*Source*
+
 [source,asciidoc]
 E.g. $$Is *bold*? \* {doctitle}$$
 
-.Result
+[.big.red]*Result*
+
 =================================
 E.g. $$Is *bold*? \* {doctitle}$$
-//   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^  meta.passthru.inline.asciidoc
-//     ^^^^^^^^^^^^^^^^^^^^^^^^    variable.parameter.passthruinner.asciidoc
-//   ^^                            constant.character.passthru.begin.asciidoc
-//   ^^                           -variable.parameter.passthruinner.asciidoc
-//                             ^^  constant.character.passthru.end.asciidoc
-//                             ^^ -variable.parameter.passthruinner.asciidoc
+//   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^  meta.passthru.inline
+//     ^^^^^^^^^^^^^^^^^^^^^^^^    variable.parameter.passthruinner
+//   ^^                            constant.character.passthru.begin
+//   ^^                           -variable.parameter.passthruinner
+//                             ^^  constant.character.passthru.end
+//                             ^^ -variable.parameter.passthruinner
 =================================
 
 // EOF //

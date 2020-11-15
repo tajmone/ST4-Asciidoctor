@@ -13,16 +13,16 @@ Manual reference:
 https://asciidoctor.org/docs/user-manual/#constrained-quotes[§9.1. Constrained quotes]
 
 Example: I'm _in italic_. I'm not.
-//           ^^^^^^^^^^^   meta.italicinner.single.asciidoc
-//            ^^^^^^^^^    markup.italic.single.asciidoc
-//           ^             punctuation.definition.italic.single.begin.asciidoc
-//                     ^   punctuation.definition.italic.single.end.asciidoc
+//           ^^^^^^^^^^^   meta.italicinner.single
+//            ^^^^^^^^^    markup.italic.single
+//           ^             punctuation.definition.italic.single.begin
+//                     ^   punctuation.definition.italic.single.end
 
 Example: I'm *in bold*. I'm not.
-//           ^^^^^^^^^  meta.boldinner.single.asciidoc
-//            ^^^^^^^   markup.bold.single.asciidoc
-//           ^          punctuation.definition.bold.single.begin.asciidoc
-//                   ^  punctuation.definition.bold.single.end.asciidoc
+//           ^^^^^^^^^  meta.boldinner.single
+//            ^^^^^^^   markup.bold.single
+//           ^          punctuation.definition.bold.single.begin
+//                   ^  punctuation.definition.bold.single.end
 
 == Unconstrained
 
@@ -30,18 +30,18 @@ Manual reference:
 https://asciidoctor.org/docs/user-manual/#unconstrained-quotes[§9.2. Unconstrained quotes]
 
 Example: __supper__motivated.
-//       ^^^^^^^^^^   meta.italicinner.double.asciidoc
-//         ^^^^^^     markup.italic.double.asciidoc
-//       ^^           punctuation.definition.italic.double.begin.asciidoc
-//               ^^   punctuation.definition.italic.double.end.asciidoc
-//                 ^^^^^^^^^^  - markup.italic.double.asciidoc
+//       ^^^^^^^^^^   meta.italicinner.double
+//         ^^^^^^     markup.italic.double
+//       ^^           punctuation.definition.italic.double.begin
+//               ^^   punctuation.definition.italic.double.end
+//                 ^^^^^^^^^^  - markup.italic.double
 
 Example: **supper**motivated.
-//       ^^^^^^^^^^   meta.boldinner.double.asciidoc
-//         ^^^^^^     markup.bold.double.asciidoc
-//       ^^           punctuation.definition.bold.double.begin.asciidoc
-//               ^^   punctuation.definition.bold.double.end.asciidoc
-//                 ^^^^^^^^^^  - markup.bold.double.asciidoc
+//       ^^^^^^^^^^   meta.boldinner.double
+//         ^^^^^^     markup.bold.double
+//       ^^           punctuation.definition.bold.double.begin
+//               ^^   punctuation.definition.bold.double.end
+//                 ^^^^^^^^^^  - markup.bold.double
 
 == Multi-line
 
@@ -49,43 +49,43 @@ Italic and bold text can span across multiple lines:
 
 === Multi-line Italic
 
-.Source
-=======================================
-.......................................
-Example: __a very long italic text.
-Spanning multiple lines.__ Normal text.
-.......................................
-=======================================
+[.big.red]*Source*
 
-.Result
+.......................................
+Example: __a very long italic text.
+Spanning multiple lines.__ Normal text.
+.......................................
+
+[.big.red]*Result*
+
 =======================================
 Example: __a very long italic text.
 Spanning multiple lines.__ Normal text.
-// <-^^^^^^^^^^^^^^^^^^^^^  meta.italicinner.double.asciidoc
-// <-^^^^^^^^^^^^^^^^^^^    markup.italic.double.asciidoc
-//                      ^^  punctuation.definition.italic.double.end.asciidoc
-//                        ^^^^^^^^^^^^^^  - meta.italicinner.double.asciidoc
+// <-^^^^^^^^^^^^^^^^^^^^^  meta.italicinner.double
+// <-^^^^^^^^^^^^^^^^^^^    markup.italic.double
+//                      ^^  punctuation.definition.italic.double.end
+//                        ^^^^^^^^^^^^^^  - meta.italicinner.double
 =======================================
 
 
 === Multi-line Bold
 
-.Source
-=======================================
-.......................................
-Example: **a very long bold text.
-Spanning multiple lines.** Normal text.
-.......................................
-=======================================
+[.big.red]*Source*
 
-.Result
+.......................................
+Example: **a very long bold text.
+Spanning multiple lines.** Normal text.
+.......................................
+
+[.big.red]*Result*
+
 =======================================
 Example: **a very long bold text.
 Spanning multiple lines.** Normal text.
-// <-^^^^^^^^^^^^^^^^^^^^^  meta.boldinner.double.asciidoc
-// <-^^^^^^^^^^^^^^^^^^^    markup.bold.double.asciidoc
-//                      ^^  punctuation.definition.bold.double.end.asciidoc
-//                        ^^^^^^^^^^^^^^  - meta.boldinner.double.asciidoc
+// <-^^^^^^^^^^^^^^^^^^^^^  meta.boldinner.double
+// <-^^^^^^^^^^^^^^^^^^^    markup.bold.double
+//                      ^^  punctuation.definition.bold.double.end
+//                        ^^^^^^^^^^^^^^  - meta.boldinner.double
 =======================================
 
 
@@ -93,22 +93,22 @@ Spanning multiple lines.** Normal text.
 
 But if a blank line is found then Asciidoctor will not render it as bold/italic:
 
-.Source
-==============================================
+[.big.red]*Source*
+
 ............................................................
 Example: __A very long italic text spanning multiple lines.
 
 With blank lines inbetween.__
 ............................................................
-==============================================
 
-.Result
+[.big.red]*Result*
+
 ==============================================
 Example: __A very long italic text spanning multiple lines.
 
-// <- invalid.illegal.asciidoc
+// <- invalid.illegal
 With blank lines inbetween.__
-// ^^^^^^^^^^^^^^^^^^^^^^^^  - meta.italicinner.double.asciidoc
+// ^^^^^^^^^^^^^^^^^^^^^^^^  - meta.italicinner.double
 
 ==============================================
 
@@ -118,22 +118,22 @@ Therfore the scope should either bail out or show an error of sorts.
 
 === Multi-line Bold Text w/ Blank Line
 
-.Source
-==============================================
+[.big.red]*Source*
+
 ............................................................
 Example: **A very long bold text spanning multiple lines.
 
 With blank lines inbetween.**
 ............................................................
-==============================================
 
-.Result
+[.big.red]*Result*
+
 ==============================================
 Example: **A very long bold text spanning multiple lines.
 
-// <- invalid.illegal.asciidoc
+// <- invalid.illegal
 With blank lines inbetween.**
-// ^^^^^^^^^^^^^^^^^^^^^^^^  - meta.boldinner.double.asciidoc
+// ^^^^^^^^^^^^^^^^^^^^^^^^  - meta.boldinner.double
 
 ==============================================
 
@@ -143,16 +143,25 @@ With blank lines inbetween.**
 
 Single-line comments will be ingored in the final text and are fine:
 
+[.big.red]*Source*
+
+[source,asciidoc]
 ............................................................
 Example: __An italic text spanning multiple lines
 // a comment
 with a single line comment inbetween.__ Normal text.
 ............................................................
 
+
+[.big.red]*Result*
+
+======================================
 Example: __An italic text spanning multiple lines
 // a comment
-//^^^^^^^^^^ comment.line.double-slash.asciidoc   meta.line.comment.content.asciidoc
+//^^^^^^^^^^ comment.line.double-slash   meta.line.comment.content
 with a single line comment inbetween.__ Normal text.
-// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.italicinner.double.asciidoc
+// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.italicinner.double
+======================================
+
 
 // EOF //

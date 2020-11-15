@@ -9,13 +9,13 @@ https://asciidoctor.org/docs/user-manual/#horizontal-rules[§24. Horizontal Rule
 '''
 
 '''
-//<- meta.separator.ruler.asciidoc
+//<- meta.separator.ruler
 
 .Example 2
 [source,asciidoc]
 '''''''''''''
 
 '''''''''''''
-//<-^^^^^^^^^ meta.separator.ruler.asciidoc
+//<-^^^^^^^^^ meta.separator.ruler
 
 // EOF //

@@ -6,12 +6,25 @@
 // *                                                                           *
 // *****************************************************************************
 
+[.big.red]*Source*
+
+[source,asciidoc]
+......................................
 ==================================
-// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.block.example.content.asciidoc
-// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ constant.delimiter.example.begin.asciidoc
 Just an Example
-// <-^^^^^^^^^^  meta.block.example.content.asciidoc
-// <-^^^^^^^^^^  string.unquoted.block.example.asciidoc
 ==================================
+......................................
+
+
+[.big.red]*Result*
+
+==================================
+// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.block.example.content
+// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ constant.delimiter.example.begin
+Just an Example
+// <-^^^^^^^^^^  meta.block.example.content
+// <-^^^^^^^^^^  string.unquoted.block.example
+==================================
+// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ constant.delimiter.example.end
 
 // EOF //

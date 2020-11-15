@@ -4,14 +4,16 @@
 Manual reference:
 https://asciidoctor.org/docs/user-manual/#line-breaks[§18.2. Line Breaks]
 
-.Source
+[.big.red]*Source*
+
 [source,asciidoc]
 ......................................
 Rubies are red, +
 Topazes are blue.
 ......................................
 
-.Result
+[.big.red]*Result*
+
 ======================================
 Rubies are red, +
 //              ^ constant.linebreak

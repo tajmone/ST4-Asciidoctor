@@ -2,32 +2,32 @@
 = Fenced Code Blocks
 
 ```
-// <- meta.embedded.block.listing.asciidoc
-// <- constant.delimiter.listing.begin.asciidoc
+// <- meta.embedded.block.listing
+// <- constant.delimiter.listing.begin
 require 'sinatra'
-// <-^^^^^^^^^^^^ meta.embedded.block.listing.asciidoc
-// <-^^^^^^^^^^^^ source.block.listing.content.asciidoc
+// <-^^^^^^^^^^^^ meta.embedded.block.listing
+// <-^^^^^^^^^^^^ source.block.listing.content
 get '/hi' do
   "Hello World!"
 end
 
 ```
-// <- meta.embedded.block.listing.asciidoc
-// <- constant.delimiter.listing.end.asciidoc
+// <- meta.embedded.block.listing
+// <- constant.delimiter.listing.end
 
 Normal text.
-// <- - meta.embedded.block.listing.asciidoc
+// <- - meta.embedded.block.listing
 
 
-== EWmpty Block
+== Empty Block
 
 
 ```
 ```
-// <- meta.embedded.block.listing.asciidoc
-// <- constant.delimiter.listing.end.asciidoc
+// <- meta.embedded.block.listing
+// <- constant.delimiter.listing.end
 
-
-Normal.
+Normal text.
+// <- - meta.embedded.block.listing
 
 // EOF //

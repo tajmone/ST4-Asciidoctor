@@ -2,17 +2,19 @@
 = Block ID
 
 Manual reference:
-https://asciidoctor.org/docs/user-manual/#anchordef[27.2. Defining an Anchor]
+https://asciidoctor.org/docs/user-manual/#anchordef[§27.2. Defining an Anchor]
 
-.Source
+[.big.red]*Source*
+
 [source,asciidoc]
 ......................................
 [[my_id]]
 A paragraph with a custom ID anchor.
 ......................................
 
-.Result
-======================================
+
+[.big.red]*Result*
+
 [[my_id]]
 //<-^^^^^ meta.tag.blockid
 //^^^^^   markup.underline.blockid.id
@@ -20,7 +22,6 @@ A paragraph with a custom ID anchor.
 //     ^^ punctuation.definition.blockid.end
 
 A paragraph with a custom ID anchor.
-======================================
 
 
 // EOF //

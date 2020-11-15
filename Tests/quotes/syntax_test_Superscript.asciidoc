@@ -4,17 +4,19 @@
 Manual reference:
 https://asciidoctor.org/docs/user-manual/#subscript-and-superscript[§19.3. Subscript and Superscript]
 
-.Source
+[.big.red]*Source*
+
 [source,asciidoc]
 E=mc^2^, said Einstein.
 
-.Result
+[.big.red]*Result*
+
 ============================
 E=mc^2^, said Einstein.
-//? ^^^  meta.superscriptinner.asciidoc
-//?  ^   string.other.superscript.asciidoc
-//? ^    punctuation.definition.string.superscript.begin.asciidoc
-//?   ^  punctuation.definition.string.superscript.end.asciidoc
+//? ^^^  meta.superscriptinner
+//?  ^   string.other.superscript
+//? ^    punctuation.definition.string.superscript.begin
+//?   ^  punctuation.definition.string.superscript.end
 ============================
 
 
@@ -28,7 +30,8 @@ We need to check that carets `^` occuring in other legitimate contexts are not b
 The `^` is also used in links to indicate `targe_blank`.
 We need to ensure that it won't be parsed as a _superscipt_ delimiter.
 
-.Source
+[.big.red]*Source*
+
 [source,asciidoc]
 * link:https://github.com/tajmone/ST3-Asciidoctor[ST3 Asciidoctor^]
 * link:https://github.com/tajmone/ST3-Asciidoctor[^]
@@ -36,7 +39,8 @@ We need to ensure that it won't be parsed as a _superscipt_ delimiter.
 * https://github.com/tajmone/ST3-Asciidoctor[^]
 
 
-.Result
+[.big.red]*Result*
+
 ============================
 * link:https://github.com/tajmone/ST3-Asciidoctor[ST3 Asciidoctor^]
 //?                                                              ^ - punctuation.definition.string.superscript
@@ -54,7 +58,8 @@ We need to ensure that it won't be parsed as a _superscipt_ delimiter.
 
 Table might contain carets for central alignments of columns (`^`) and vertical alignment of cells (`.^`).
 
-.Source
+[.big.red]*Source*
+
 [source,asciidoc]
 -----------------
 [cols="3*^"]
@@ -64,7 +69,8 @@ Table might contain carets for central alignments of columns (`^`) and vertical 
 |==========================
 -----------------
 
-.Result
+[.big.red]*Result*
+
 [cols="3*^"]
 //?      ^ - punctuation.definition.string.superscript
 |==========================

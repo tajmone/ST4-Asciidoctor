@@ -4,30 +4,32 @@
 Manual Reference:
 https://asciidoctor.org/docs/user-manual/#sidebar[33. Sidebar]
 
-.Source
+[.big.red]*Source*
+
 [source,asciidoc]
+----------------------
 ****
 AsciiDoc was first released in Nov 2002 by Stuart Rackham.
 It was designed from the start to be a shorthand syntax
 for producing professional documents like DocBook and LaTeX.
 ****
+----------------------
 
-.Result
-============================================
+[.big.red]*Result*
+
 ****
-//<- meta.block.sidebar.content.asciidoc
-//<- constant.delimiter.block.sidebar.begin.asciidoc
+//<- meta.block.sidebar.content
+//<- constant.delimiter.block.sidebar.begin
 AsciiDoc was first released in Nov 2002 by Stuart Rackham.
-//<- string.quoted.block.sidebar.asciidoc
-//<- meta.block.sidebar.content.asciidoc
+//<- string.quoted.block.sidebar
+//<- meta.block.sidebar.content
 It was designed from the start to be a shorthand syntax
 for producing professional documents like DocBook and LaTeX.
 ****
-//<- meta.block.sidebar.content.asciidoc
-//<- constant.delimiter.block.sidebar.end.asciidoc
-============================================
+//<- meta.block.sidebar.content
+//<- constant.delimiter.block.sidebar.end
 
-Normal.
-// <-  - meta.block.open.asciidoc
+Back to normal text.
+// <-  - meta.block.open
 
 // EOF //

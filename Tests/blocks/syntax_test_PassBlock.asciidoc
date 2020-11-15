@@ -9,29 +9,33 @@ The passthrough block and pass block style exclude block content from all substi
 A passthrough block is delimited by four plus signs (`++++`).
 The pass style is implied.
 
-.Source
+[.big.red]*Source*
+
 [source,asciidoc]
 ----------------------------------------------------------
 ++++
-<video poster="images/movie-reel.png">
-  <source src="videos/writing-zen.webm" type="video/webm">
-</video>
+<p style="text-color: #f00">Some verbatim HTML.</p>
 ++++
 ----------------------------------------------------------
 
+
+(there's no visible result for the above passthrough block.)
+
 ++++
-// <- meta.embedded.block.passthrough.asciidoc
-// <- constant.delimiter.block.passthrough.begin.asciidoc
+// <- meta.embedded.block.passthrough
+// <- constant.delimiter.block.passthrough.begin
 <video poster="images/movie-reel.png">
-// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.block.passthrough.asciidoc
-// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.xml.block.passthrough.content.asciidoc
+// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.block.passthrough
+// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.xml.block.passthrough.content
   <source src="videos/writing-zen.webm" type="video/webm">
 </video>
 ++++
-// <- meta.embedded.block.passthrough.asciidoc
-// <- constant.delimiter.block.passthrough.end.asciidoc
+// <- meta.embedded.block.passthrough
+// <- constant.delimiter.block.passthrough.end
+Back to normal text.
+// <- - meta.embedded.block.passthrough
 
-
-Normal.
+NOTE: The test comments after the opening delimiter leak through into the final document.
+It's a passthrough block, after all!
 
 // EOF //

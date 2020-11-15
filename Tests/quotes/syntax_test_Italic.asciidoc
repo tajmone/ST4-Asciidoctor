@@ -12,17 +12,19 @@ https://asciidoctor.org/docs/user-manual/#formatting-marks[_quotes_ category].
 Manual reference:
 https://asciidoctor.org/docs/user-manual/#constrained-quotes[§9.1. Constrained quotes]
 
-.Source
+[.big.red]*Source*
+
 [source,asciidoc]
 This _is italic_. This is not.
 
-.Result
+[.big.red]*Result*
+
 ==============================
 This _is italic_. This is not.
-//   ^^^^^^^^^^^   meta.italicinner.single.asciidoc
-//    ^^^^^^^^^    markup.italic.single.asciidoc
-//   ^             punctuation.definition.italic.single.begin.asciidoc
-//             ^   punctuation.definition.italic.single.end.asciidoc
+//   ^^^^^^^^^^^   meta.italicinner.single
+//    ^^^^^^^^^    markup.italic.single
+//   ^             punctuation.definition.italic.single.begin
+//             ^   punctuation.definition.italic.single.end
 ==============================
 
 
@@ -31,18 +33,20 @@ This _is italic_. This is not.
 Manual reference:
 https://asciidoctor.org/docs/user-manual/#unconstrained-quotes[§9.2. Unconstrained quotes]
 
-.Source
+[.big.red]*Source*
+
 [source,asciidoc]
 SublimeText is __super__fast.
 
-.Result
+[.big.red]*Result*
+
 =============================
 SublimeText is __super__fast.
-//             ^^^^^^^^^   meta.italicinner.double.asciidoc
-//               ^^^^^     markup.italic.double.asciidoc
-//             ^^          punctuation.definition.italic.double.begin.asciidoc
-//                    ^^   punctuation.definition.italic.double.end.asciidoc
-//                      ^^^^^ - markup.italic.double.asciidoc
+//             ^^^^^^^^^   meta.italicinner.double
+//               ^^^^^     markup.italic.double
+//             ^^          punctuation.definition.italic.double.begin
+//                    ^^   punctuation.definition.italic.double.end
+//                      ^^^^^ - markup.italic.double
 =============================
 
 
@@ -51,21 +55,23 @@ SublimeText is __super__fast.
 Italic text can span across multiple lines in the same paragraph, as long as no blank lines or block elements are encountered between the opening and closing italic delimiter:
 
 
-.Source
+[.big.red]*Source*
+
 [source,asciidoc]
 ......................................
 _A very long italic text.
 Spanning multiple lines._ Normal text.
 ......................................
 
-.Result
+[.big.red]*Result*
+
 ======================================
 _A very long italic text.
 Spanning multiple lines._ Normal text.
-// <-^^^^^^^^^^^^^^^^^^^^  meta.italicinner.single.asciidoc
-// <-^^^^^^^^^^^^^^^^^^^   markup.italic.single.asciidoc
-//                      ^  punctuation.definition.italic.single.end.asciidoc
-//                       ^^^^^^^^^^^^^^  - meta.italicinner.single.asciidoc
+// <-^^^^^^^^^^^^^^^^^^^^  meta.italicinner.single
+// <-^^^^^^^^^^^^^^^^^^^   markup.italic.single
+//                      ^  punctuation.definition.italic.single.end
+//                       ^^^^^^^^^^^^^^  - meta.italicinner.single
 ======================================
 
 
@@ -73,7 +79,8 @@ Spanning multiple lines._ Normal text.
 
 Single-line comments inside an italic text spanning across multiple lines will be ingored in the final text, and are OK to use:
 
-.Source
+[.big.red]*Source*
+
 [source,asciidoc]
 ...................................................
 _An italic text spanning multiple lines
@@ -81,14 +88,15 @@ _An italic text spanning multiple lines
 with a single line comment inbetween._ Normal text.
 ...................................................
 
-.Result
+[.big.red]*Result*
+
 ===================================================
 _An italic text spanning multiple lines
 // a comment
 //^^^^^^^^^^ comment.line.double-slash   meta.line.comment.content
 //^^^^^^^^^^ meta.italicinner
 with a single line comment inbetween._ Normal text.
-// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.italicinner.single.asciidoc
+// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.italicinner.single
 ===================================================
 
 Block comments (like any other block elements) are not OK, and will break the quote.
@@ -98,7 +106,8 @@ Block comments (like any other block elements) are not OK, and will break the qu
 
 But if a blank line is encountered before the closing delimiter -- i.e. if the text spans across multiple paragraphs -- then Asciidoctor will not format the text as italic:
 
-.Source
+[.big.red]*Source*
+
 [source,asciidoc]
 .................................................
 _A very long italic text spanning multiple lines.
@@ -106,14 +115,15 @@ _A very long italic text spanning multiple lines.
 With blank lines inbetween._
 .................................................
 
-.Result
+[.big.red]*Result*
+
 =================================================
 _A very long italic text spanning multiple lines.
-// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.italicinner.single.asciidoc
+// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.italicinner.single
 
-// <- invalid.illegal.asciidoc
+// <- invalid.illegal
 With blank lines inbetween._
-// ^^^^^^^^^^^^^^^^^^^^^^^^^   - meta.italicinner.single.asciidoc
+// ^^^^^^^^^^^^^^^^^^^^^^^^^   - meta.italicinner.single
 
 =================================================
 
@@ -127,33 +137,37 @@ Italic quotes allow nesting a variety of inline elements.
 
 === Text Formatting Constrained
 
-.Source
+[.big.red]*Source*
+
 [source,asciidoc]
 Testing _italics with *bold* and `monospaced` inside_ it.
 
-.Result
+[.big.red]*Result*
+
 =========================================================
 Testing _italics with *bold* and `monospaced` inside_ it.
-//      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.italicinner.single.asciidoc
-//       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  markup.italic.single.asciidoc
-//                    ^^^^^^                          meta.boldinner.single.asciidoc
-//                               ^^^^^^^^^^^^         meta.literalinner.single.asciidoc
+//      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.italicinner.single
+//       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  markup.italic.single
+//                    ^^^^^^                          meta.boldinner.single
+//                               ^^^^^^^^^^^^         meta.literalinner.single
 =========================================================
 
 
 === Text Formatting Unconstrained
 
-.Source
+[.big.red]*Source*
+
 [source,asciidoc]
 __italics with**bold** and``monospaced`` inside__it.
 
-.Result
+[.big.red]*Result*
+
 ===================================================
 __italics with**bold** and``monospaced`` inside__it.
-// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.italicinner.double.asciidoc
-//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   markup.italic.double.asciidoc
-//            ^^^^^^^^                            meta.boldinner.double.asciidoc
-//                        ^^^^^^^^^^^^^^          meta.literalinner.double.asciidoc
+// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.italicinner.double
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   markup.italic.double
+//            ^^^^^^^^                            meta.boldinner.double
+//                        ^^^^^^^^^^^^^^          meta.literalinner.double
 ===================================================
 
 // EOF //

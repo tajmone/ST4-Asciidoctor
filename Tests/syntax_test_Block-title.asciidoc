@@ -1,24 +1,25 @@
 // SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
-= Block ID
+= Block Titles
 
 Manual reference:
 https://asciidoctor.org/docs/user-manual/#title[§17.1. Title]
 
-.Source
+[.big.red]*Source*
+
 [source,asciidoc]
 ......................................
 .Custom Title
 A paragraph with a custom title.
 ......................................
 
-.Result
-======================================
+
+[.big.red]*Result*
+
 .Custom Title
 //^^^^^^^^^^^  markup.heading.block
 //<-           punctuation.definition.blockheading
 //<-          -markup.heading.block
 A paragraph with a custom title.
-======================================
 
 
 // EOF //

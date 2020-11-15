@@ -7,33 +7,37 @@ https://asciidoctor.org/docs/user-manual/#custom-styling-with-attributes[19.5. C
 
 == Mark/Highlight
 
-.Source
+[.big.red]*Source*
+
 [source,asciidoc]
 Werewolves are #allergic to cinnamon#.
 This is ##highlighted##text.
 
-.Result
+[.big.red]*Result*
+
 ===============================================
 Werewolves are #allergic to cinnamon#.
 This is ##highlighted##text.
-//      ^^^^^^^^^^^^^^^ string.other.unquoted.double.asciidoc
-//        ^^^^^^^^^^^   string.unquoted.unquotedinner.double.asciidoc
+//      ^^^^^^^^^^^^^^^ string.other.unquoted.double
+//        ^^^^^^^^^^^   string.unquoted.unquotedinner.double
 ===============================================
 
-.Source
+[.big.red]*Source*
+
 .................................................
 Do werewolves believe in [small]#small print#?
 
 [big]##O##nce upon an infinite loop.
 .................................................
 
-.Result
+[.big.red]*Result*
+
 ===============================================
 Do werewolves believe in [small]#small print#?
 
 [big]##O##nce upon an infinite loop.
-//   ^^^^^ string.other.unquoted.double.asciidoc
-//     ^   string.unquoted.unquotedinner.double.asciidoc
+//   ^^^^^ string.other.unquoted.double
+//     ^   string.unquoted.unquotedinner.double
 
 ===============================================
 

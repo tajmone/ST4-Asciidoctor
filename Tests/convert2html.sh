@@ -6,7 +6,10 @@ find . -name "*.html" -type f -delete
 # Convert all from scratch...
 for i in *.asciidoc **/*.asciidoc ; do
 	asciidoctor \
+		--safe-mode unsafe \
+		-a experimental \
 		-a toc=left \
+		-a sectanchors \
 		-a reproducible \
 		-a icons=font \
 		-a caption= \

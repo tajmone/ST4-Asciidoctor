@@ -1,0 +1,43 @@
+// SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+= AsciiDoc Comments
+// *****************************************************************************
+// *                                                                           *
+// *                              Comments Tests                               *
+// *                                                                           *
+// *****************************************************************************
+
+//
+// <- text
+// <- comment.line.double-slash
+// <- punctuation.definition.comment.line
+
+
+// Single Line Comment
+// ^^^^^^^^^^^^^^^^^^^ text
+// ^^^^^^^^^^^^^^^^^^^ comment.line.double-slash
+// ^^^^^^^^^^^^^^^^^^^ meta.line.comment.content
+
+Normal text.
+// <-^^^^^^^ text  - comment
+
+
+////
+//<^ meta.block.comment.content   punctuation.definition.comment.begin
+Block Comment
+// ^^^^^^^^^^ comment.block
+// ^^^^^^^^^^ meta.block.comment.content
+////
+//<^  punctuation.definition.comment.end
+
+///////
+//<^^^^ meta.block.comment.content   punctuation.definition.comment.begin
+Block Comment
+// ^^^^^^^^^^ comment.block
+// ^^^^^^^^^^ meta.block.comment.content
+///////
+//<^^^^  punctuation.definition.comment.end
+
+Back to normal text.
+// <-^^^^^^^^^^^^^^^ - comment
+
+// EOF //
