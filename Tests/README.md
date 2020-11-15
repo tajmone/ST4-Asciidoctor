@@ -44,10 +44,10 @@ On the other hand, this approach simplifies understanding how the test suite wor
 
 Besides, AsciiDoc being a rather complex syntax, the need for well-documented tests is a felt need, because there are many edge cases to keep in mind during the tests, and because any changes to the syntax definition could easily introduce unexpected breaking behaviors.
 
-Some test files have the `*.adoc` extension because they are malformed AsciiDoc documents.
-The reason for this is usually because of the need to use an alternative comment delimiter in the first line, in order to allow correct testing of some edge-cases contexts, which makes the document unconvertable due interference with its header.
+If a test file has the `*.adoc` extension it's means that it's a malformed AsciiDoc document.
+This usually happens because of the need to use an alternative comment delimiter in the first line, in order to allow correct testing of some rare edge-cases contexts, which can makes the document unconvertable due interference with its header.
 
-These documents won't be converted to HTML, but you can still read them in ST3, for they are only partially malformed, and can still be used for manual inspection.
+These `*.adoc` files won't be converted to HTML, but you can still read them in ST3, for they are only partially malformed, and can still be used for manual inspection.
 
 # Running the Tests
 

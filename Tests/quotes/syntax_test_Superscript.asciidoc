@@ -1,4 +1,4 @@
-// SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+//? SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
 = Superscript
 
 Manual reference:
@@ -11,10 +11,10 @@ E=mc^2^, said Einstein.
 .Result
 ============================
 E=mc^2^, said Einstein.
-//  ^^^  meta.superscriptinner.asciidoc
-//   ^   string.other.superscript.asciidoc
-//  ^    punctuation.definition.string.superscript.begin.asciidoc
-//    ^  punctuation.definition.string.superscript.end.asciidoc
+//? ^^^  meta.superscriptinner.asciidoc
+//?  ^   string.other.superscript.asciidoc
+//? ^    punctuation.definition.string.superscript.begin.asciidoc
+//?   ^  punctuation.definition.string.superscript.end.asciidoc
 ============================
 
 
@@ -22,7 +22,33 @@ E=mc^2^, said Einstein.
 
 We need to check that carets `^` occuring in other legitimate contexts are not being parsed as _superscipt_ delimiters.
 
-Se also the link:syntax_test_Superscript-false-positives.adoc file, which is a malformed AsciiDoc document (out of necessity) containing further false positive tests on links macros.
+
+=== Links
+
+The `^` is also used in links to indicate `targe_blank`.
+We need to ensure that it won't be parsed as a _superscipt_ delimiter.
+
+.Source
+[source,asciidoc]
+* link:https://github.com/tajmone/ST3-Asciidoctor[ST3 Asciidoctor^]
+* link:https://github.com/tajmone/ST3-Asciidoctor[^]
+* https://github.com/tajmone/ST3-Asciidoctor[ST3 Asciidoctor^]
+* https://github.com/tajmone/ST3-Asciidoctor[^]
+
+
+.Result
+============================
+* link:https://github.com/tajmone/ST3-Asciidoctor[ST3 Asciidoctor^]
+//?                                                              ^ - punctuation.definition.string.superscript
+* link:https://github.com/tajmone/ST3-Asciidoctor[^]
+//?                                               ^ - punctuation.definition.string.superscript
+* https://github.com/tajmone/ST3-Asciidoctor[ST3 Asciidoctor^]
+//?                                                         ^ - punctuation.definition.string.superscript
+* https://github.com/tajmone/ST3-Asciidoctor[^]
+//?                                          ^ - punctuation.definition.string.superscript
+============================
+
+
 
 === Tables
 
@@ -40,11 +66,11 @@ Table might contain carets for central alignments of columns (`^`) and vertical 
 
 .Result
 [cols="3*^"]
-//       ^ - punctuation.definition.string.superscript
+//?      ^ - punctuation.definition.string.superscript
 |==========================
 | A1 | B1 | C1
 | A2 | B2 | C2
 |==========================
 
 
-// EOF //
+//? EOF //
