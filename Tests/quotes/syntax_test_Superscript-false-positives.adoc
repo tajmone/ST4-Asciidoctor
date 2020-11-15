@@ -1,0 +1,17 @@
+?? SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+
+
+This test file is a malformed AsciiDoc document because for these tests we had
+to change the comment delimiter from `//` to `??` in order to prevent ST3 from
+mistaking the `//` in the links as comment delimiters which would cause the
+blank target caret to be interpreted as scope test marker!!
+
+
+* link:https://github.com/tajmone/ST3-Asciidoctor[ST3 Asciidoctor^]
+// ??                                                            ^ - punctuation.definition.string.superscript
+* link:https://github.com/tajmone/ST3-Asciidoctor[^]
+// ??                                             ^ - punctuation.definition.string.superscript
+* https://github.com/tajmone/ST3-Asciidoctor[ST3 Asciidoctor^]
+// ??                                                       ^ - punctuation.definition.string.superscript
+* https://github.com/tajmone/ST3-Asciidoctor[^]
+// ??                                        ^ - punctuation.definition.string.superscript

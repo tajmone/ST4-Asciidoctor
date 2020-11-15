@@ -1,0 +1,50 @@
+// SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+= Superscript
+
+Manual reference:
+https://asciidoctor.org/docs/user-manual/#subscript-and-superscript[§19.3. Subscript and Superscript]
+
+.Source
+[source,asciidoc]
+E=mc^2^, said Einstein.
+
+.Result
+============================
+E=mc^2^, said Einstein.
+//  ^^^  meta.superscriptinner.asciidoc
+//   ^   string.other.superscript.asciidoc
+//  ^    punctuation.definition.string.superscript.begin.asciidoc
+//    ^  punctuation.definition.string.superscript.end.asciidoc
+============================
+
+
+== False Positives
+
+We need to check that carets `^` occuring in other legitimate contexts are not being parsed as _superscipt_ delimiters.
+
+Se also the link:syntax_test_Superscript-false-positives.adoc file, which is a malformed AsciiDoc document (out of necessity) containing further false positive tests on links macros.
+
+=== Tables
+
+Table might contain carets for central alignments of columns (`^`) and vertical alignment of cells (`.^`).
+
+.Source
+[source,asciidoc]
+-----------------
+[cols="3*^"]
+|==========================
+| A1 | B1 | C1
+| A2 | B2 | C2
+|==========================
+-----------------
+
+.Result
+[cols="3*^"]
+//       ^ - punctuation.definition.string.superscript
+|==========================
+| A1 | B1 | C1
+| A2 | B2 | C2
+|==========================
+
+
+// EOF //

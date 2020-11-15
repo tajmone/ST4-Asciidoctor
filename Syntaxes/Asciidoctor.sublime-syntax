@@ -1,6 +1,6 @@
 %YAML 1.2
 ---
-# "Asciidoctor.sublime-syntax" v0.0.39 | 2020/11/10
+# "Asciidoctor.sublime-syntax" v0.0.30 | 2020/11/15
 # ==============================================================================
 #                        AsciiDoc Syntax for Asciidoctor
 # ==============================================================================
@@ -42,7 +42,24 @@ contexts:
   - include: section_titles
   - include: lines
   - include: inline
-  # - include: characters
+  - include: characters
+
+#*******************************************************************************
+#                                                                              *
+#                        D U M M Y   C O N S U M E R S                         *
+#                                                                              *
+#*******************************************************************************
+
+# Some definitions whose goal is just capturing some elements to prevent false
+# positives that break the document. Some of this will later on be replaces with
+# proper capturing elemeents, but for now they are needed to keep the syntax
+# from falling apart...
+
+  # We need this to consume table option like `[cols="3*^"]`, otherwise the `^`
+  # for columns/cells alignments gets parsed as a Superscript opening delimiter,
+  # thus breaking up the whole document...
+  dummy_table_opts:
+    - match: ^\[cols=".*?\]$
 
 #*******************************************************************************
 #                                                                              *
@@ -145,7 +162,7 @@ contexts:
         - include: blocks
         - include: lines
         - include: inline
-          # - include: characters
+        - include: characters
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # block_example:
@@ -331,7 +348,7 @@ contexts:
         - include: block_pass
         - include: lines
         - include: inline
-        # - include: characters
+        - include: characters
 
   # IMPORTANT: This element was REMANED by @bsmith-n4! In the original:
   #
@@ -419,7 +436,7 @@ contexts:
           pop: true
         - include: lines
         - include: inline
-        # - include: characters
+        - include: characters
 
     # name: markup.quote.block.asciidoc
     # contentName: meta.block.quote.content.asciidoc
@@ -475,7 +492,7 @@ contexts:
         - include: block_listing
         - include: lines
         - include: inline
-        # - include: characters
+        - include: characters
 
     # name: string.quoted.block.sidebar.asciidoc
     # contentName: meta.block.sidebar.content.asciidoc
@@ -552,14 +569,14 @@ contexts:
 #                             C H A R A C T E R S                             #
 #-----------------------------------------------------------------------------#
 
-  # characters:
+  characters:
   #   - include: attribute_reference
   #   - include: entity_number
   #   - include: entity_name
   #   - include: escape
   #   - include: replacement
   #   - include: macro_pass
-  #   - include: macro
+    - include: macro
   #   - include: xref
   #   - include: biblio_anchor
   #   - include: indexterm_triple
@@ -692,6 +709,34 @@ contexts:
 
   # @NOTE (ORIGINAL): There are other macro notations, but I match only those
   #                   that end in square brackets.
+
+  # @NOTE: We should really have a separate definition for links, which allows
+  #        attributes and provides link-specific semantics for `title=""` and
+  #        the `^` for `target_blank`, etc.
+
+  macro:
+    - include: dummy_table_opts # e.g. [cols="3*^"]
+    - match: |
+        (?x)
+        (?:
+          ((?:https?|mailto|ftp|file)  # specify separately so we can mark them as links that TextMate opens
+          ?:{1}  # inline only
+          \S*)   # (others such as image are partial URLs and/or TextMate cannot handle them)
+        |
+          (([a-zA-Z0-9][a-zA-Z0-9_]*)
+          (:{1,2})
+          (\S*))
+        )
+        (?:(\[)([^\]]*)(\]))
+      captures:
+        1: markup.underline.link.macro.asciidoc
+        3: keyword.control.name.macro.asciidoc
+        4: constant.character.separator.macro.asciidoc
+        5: markup.underline.target.macro.asciidoc
+        6: constant.character.attributes.macro.begin.asciidoc
+        7: variable.parameter.attributes.macro.asciidoc
+        8: constant.character.attributes.macro.end.asciidoc
+
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   # macro:
@@ -839,7 +884,7 @@ contexts:
     - include: emphasis
     - include: monospaced
     # - include: mark           # problematic!
-    # - include: superscript    # problematic!
+    - include: superscript    # problematic!
     - include: subscript
 
 

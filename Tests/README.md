@@ -34,7 +34,7 @@ Test files are grouped in subfolders according to category; tests which don't be
 
 # Introduction
 
-Every test file is also a valid AsciiDoc source file, which can be converted via the [`convert2html.sh`][conv.sh] script with the following purposes:
+Every `*.ascidoc` test file is also a valid AsciiDoc source file, which can be converted via the [`convert2html.sh`][conv.sh] script with the following purposes:
 
 1. Verify with Asciidoctor that the test file is a valid AsciiDoc source, and capture any formatting errors and edge cases (i.e. formatting not working as expected).
 2. Simplify tracking the syntax tests by reading them as documents that explain the nature of the tests, providing examples and and references links.
@@ -44,6 +44,10 @@ On the other hand, this approach simplifies understanding how the test suite wor
 
 Besides, AsciiDoc being a rather complex syntax, the need for well-documented tests is a felt need, because there are many edge cases to keep in mind during the tests, and because any changes to the syntax definition could easily introduce unexpected breaking behaviors.
 
+Some test files have the `*.adoc` extension because they are malformed AsciiDoc documents.
+The reason for this is usually because of the need to use an alternative comment delimiter in the first line, in order to allow correct testing of some edge-cases contexts, which makes the document unconvertable due interference with its header.
+
+These documents won't be converted to HTML, but you can still read them in ST3, for they are only partially malformed, and can still be used for manual inspection.
 
 # Running the Tests
 
