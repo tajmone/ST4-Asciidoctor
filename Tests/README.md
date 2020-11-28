@@ -14,6 +14,7 @@ This directory contains the test suite for the AsciiDoc ST3 syntax.
 - [Running the Tests](#running-the-tests)
 - [Adding Test Files](#adding-test-files)
 - [Disabled Tests](#disabled-tests)
+- [Non-Tests Documents](#non-tests-documents)
 
 <!-- /MarkdownTOC -->
 
@@ -23,8 +24,9 @@ This directory contains the test suite for the AsciiDoc ST3 syntax.
 
 - [`/blocks/`][blocks/] — block elements.
 - [`/quotes/`][quotes/] — inline quote markup elements.
-- `./syntax_test_*.ascidoc` — tests for markup elements without a category.
-- `_syntax_test_*.ascidoc` — disabled test files that fail the test.
+- `syntax_test_*.asciidoc` — tests for markup elements without a category.
+- `_syntax_test_*.asciidoc` — disabled test files that fail the test.
+- `*.asciidoc` — misc. non-test documents.
 - [`convert2html.sh/`][conv.sh] — convert test files to HTML.
 
 Test files are grouped in subfolders according to category; tests which don't belong to any specific category are kept in the the root directory.
@@ -34,7 +36,7 @@ Test files are grouped in subfolders according to category; tests which don't be
 
 # Introduction
 
-Every `*.ascidoc` test file is also a valid AsciiDoc source file, which can be converted via the [`convert2html.sh`][conv.sh] script with the following purposes:
+Every `*.asciidoc` test file is also a valid AsciiDoc source file, which can be converted via the [`convert2html.sh`][conv.sh] script with the following purposes:
 
 1. Verify with Asciidoctor that the test file is a valid AsciiDoc source, and capture any formatting errors and edge cases (i.e. formatting not working as expected).
 2. Simplify tracking the syntax tests by reading them as documents that explain the nature of the tests, providing examples and and references links.
@@ -48,6 +50,7 @@ If a test file has the `*.adoc` extension it's means that it's a malformed Ascii
 This usually happens because of the need to use an alternative comment delimiter in the first line, in order to allow correct testing of some rare edge-cases contexts, which can makes the document unconvertable due interference with its header.
 
 These `*.adoc` files won't be converted to HTML, but you can still read them in ST3, for they are only partially malformed, and can still be used for manual inspection.
+
 
 # Running the Tests
 
@@ -68,15 +71,16 @@ For more info on how syntax testing works, see:
 
 # Adding Test Files
 
-Every test file must be named according to the `syntax_test_<markup element>.ascidoc` convention, and the very first line must contain the following comment:
+Every test file must be named according to the `syntax_test_<markup element>.asciidoc` convention, and the very first line must contain the following comment:
 
 ```asciidoc
 // SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
 ```
 
+
 # Disabled Tests
 
-All tests must pass without any error in the package published on `master` branch; therefore, any failing test file must be renamed by prefixing an underscore (`_syntax_test_*.ascidoc`), thus excluding it from ST3 tests.
+All tests must pass without any error in the package published on `master` branch; therefore, any failing test file must be renamed by prefixing an underscore (`_syntax_test_*.asciidoc`), thus excluding it from ST3 tests.
 
 There can be various reasons why a test file is disabled:
 
@@ -85,6 +89,10 @@ There can be various reasons why a test file is disabled:
 
 Whatever the reason, we keep them in the repository so that they can be quickly re-enabled by removing the leading `_` from their name, and resume working on the markup elements they target.
 
+
+# Non-Tests Documents
+
+This directory also contains some `*.asciidoc` files which are not part of the test suite; they are plain AsciiDoc files annotating pending tasks and problems, and for visually inspecting how syntax elements are rendered in various context — i.e. just reference material not being tested for.
 
 <!-----------------------------------------------------------------------------
                                REFERENCE LINKS

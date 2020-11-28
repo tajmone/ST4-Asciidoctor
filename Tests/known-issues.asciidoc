@@ -1,0 +1,48 @@
+= Known Issues
+Tristano Ajmone <tajmone@gmail.com>
+:revdate: 2020-10-04
+:lang: en
+// TOC Settings:
+:toclevels: 5
+:toc: left
+// Sections Numbering:
+:sectnums!:
+// Cross References:
+:idprefix:
+:xrefstyle: full
+// Misc Settings:
+:experimental: true
+:icons: font
+:linkattrs: true
+:reproducible: true
+:sectanchors:
+
+// *****************************************************************************
+// *                            Document Preamble                              *
+// *****************************************************************************
+
+This document contains some annotated examples of problematic syntax elements which need to be fixed, and for which there aren't any proper Sublime Text syntax tests yet.
+
+
+== Tables
+
+There are still some problems with tables, especially with cell delimiters with _cell specifiers_ containing special characters (e.g. ``.*+^``), because some of them are being parsed as quote markup -- and chances are that even those which aren't problematic now will become a problem later on, when we enable all supported elements inside tables; so we need to keep an eye on these advanced cell delimiters.
+
+We need to capture tables -- from their opening `|===` delimiter to the closing delimiter -- so that we can properly match cell delimiters with special characters, thus preventing the syntax from breaking up.
+(See https://github.com/tajmone/ST3-Asciidoctor/issues/5[Issue #5^])
+
+[cols="<m,2*<d"]
+|===============================================================================
+3+^| header spanning three cells
+
+3*| repeating cell
+
+.^| v-align center
+>| h-align right
+a| ADoc cell +
+ADoc cell +
+ADoc cell +
+ADoc cell
+|===============================================================================
+
+// EOF //
