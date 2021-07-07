@@ -135,7 +135,7 @@ You should therefore install it manually, via Git:
     * Windows: `%APPDATA%\Sublime Text 3\Packages\`
 2. From that directory, invoke Git to clone this repository into the `Asciidoctor` subdirectory:
 
-        git clone https://github.com/tajmone/ST3-Asciidoctor.git Asciidoctor
+        git clone https://github.com/aireilly/ST3-Asciidoctor.git Asciidoctor
 
 3. Restart SublimeText.
 
