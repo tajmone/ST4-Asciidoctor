@@ -886,6 +886,7 @@ contexts:
     # - include: mark           # problematic!
     - include: superscript    # problematic!
     - include: subscript
+    - include: attribute_list
 
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -902,6 +903,23 @@ contexts:
   #   - include: superscript
   #   - include: subscript
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+  ######################
+  # ATTRIBUTE LIST
+  ######################
+  # Emphasized (italic) text (constrained variant).
+  #
+  # Examples:
+  #   [Lorem ipsum] dolor
+  #   [red] Lorem ipsum dolor
+
+  attribute_list:
+    - match: |
+        (?x)
+        (\[[^\]]*?\])?      # might be preceded by an attributes list
+        (?<=^|\W)(?<!\\|})  # must be preceded by nonword character, and not by escape or } (attribute)
+      captures:
+        1: support.variable.attributelist.asciidoc
 
   ######################
   # STRONG UNCONSTRAINED
