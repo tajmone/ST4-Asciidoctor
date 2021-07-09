@@ -570,13 +570,13 @@ contexts:
 #-----------------------------------------------------------------------------#
 
   characters:
-  #   - include: attribute_reference
+    - include: attribute_reference
+    - include: macro
   #   - include: entity_number
   #   - include: entity_name
   #   - include: escape
   #   - include: replacement
   #   - include: macro_pass
-    - include: macro
   #   - include: xref
   #   - include: biblio_anchor
   #   - include: indexterm_triple
@@ -588,18 +588,12 @@ contexts:
   # Examples:
   #   {my-attribute}
 
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # attribute_reference:
-  #   comment: |
-  #     Examples:
-  #       {my-attribute}
-  #   name: variable.other
-  #   match: ({)([A-Za-z0-9_][A-Za-z0-9_-]*)(})
-  #   captures:
-  #     '1': {name: constant.character.attributes.reference.begin.asciidoc}
-  #     '2': {name: support.variable.attribute.asciidoc}
-  #     '3': {name: constant.character.attributes.reference.end.asciidoc}
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
+  attribute_reference:
+    - match: ({)([A-Za-z0-9_][A-Za-z0-9_-]*)(})
+      captures:
+       1: constant.character.attributes.reference.begin.asciidoc
+       2: support.variable.attribute.asciidoc
+       3: constant.character.attributes.reference.end.asciidoc
 
   ################
   # BIBLIO ANCHORS
@@ -2100,6 +2094,8 @@ contexts:
 
   lists:
     - include: ulist_item_marker
+    - include: colist_item_marker
+    - include: dlist_item_label
   # lists:
   #   comment: >
   #     My strategy for lists (and similar) is not to try to treat entire
@@ -2107,8 +2103,7 @@ contexts:
   #   - include: block_admonition_label
   #   - include: ulist_item_marker
   #   - include: olist_item_marker
-  #   - include: dlist_item_label
-  #   - include: colist_item_marker
+  #   
 
   ########################
   # ADMONITION BLOCK LABEL
@@ -2185,21 +2180,13 @@ contexts:
   #   <1> a callout
   #   <42> another callout
 
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # colist_item_marker:
-  #   comment: |
-  #     Marker of a callout list item.
-  #
-  #     Examples:
-  #       <1> a callout
-  #       <42> another callout
-  #   name: markup.list.numbered.callout.asciidoc
-  #   match: ^(\s*((<)\d+?(>)))\s+(?=\S)
-  #   captures:
-  #     '1': {name: string.unquoted.list.callout.asciidoc}
-  #     '2': {name: constant.numeric.callout.asciidoc}
-  #     '3': {name: punctuation.definition.calloutlistnumber.begin.asciidoc}
-  #     '4': {name: punctuation.definition.calloutlistnumber.end.asciidoc}
+  colist_item_marker:
+    - match: ^(\s*((<)\d+?(>)))\s+(?=\S)
+      captures:
+        1: string.unquoted.list.callout.asciidoc
+        2: constant.numeric.callout.asciidoc
+        3: punctuation.definition.calloutlistnumber.begin.asciidoc
+        4: punctuation.definition.calloutlistnumber.end.asciidoc
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
   ##################
@@ -2220,34 +2207,11 @@ contexts:
   #     double colon followed by a space inside a label, i.e. it matches the
   #     *last* double colon, not the first. I don't know how to do that
   #     *effectively.
-
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # dlist_item_label:
-  #   comment: |
-  #     Label of a definition (labeled) list item.
-  #
-  #     Examples:
-  #       Label level 1:: lorem ipsum
-  #       Label level 2::: dolor sit amet
-  #       Label level 3:::: consectetur
-  #       Label level 1::
-  #         lorem ipsum
-  #       Another label :: lorem ipsum
-  #       Last::label:: dolor sit amet
-  #
-  #     Note: This rule is not strictly correct, because Asciidoctor allows
-  #     double colon followed by a space inside a label, i.e. it matches the
-  #     *last* double colon, not the first. I don't know how to do that
-  #     *effectively.
-  #   name: markup.list.labeled.asciidoc
-  #   contentName: meta.list.label.asciidoc
-  #   begin: ^\s*(?=.*:{2,4}(?:\s|$))
-  #   end: (:{2,4})(?:\s|$\n?)
-  #   endCaptures:
-  #     '1': {name: constant.labeledlist.separator.asciidoc}
-  #   - include: inline
-  #   - include: characters
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
+  #AR: why isn't this working?
+  dlist_item_label:
+    - match: (.*)(:{2,4})(?:\s|$\n?)
+      captures:
+        1: constant.labeledlist.separator.asciidoc
 
   ###################
   # OLIST ITEM MARKER
