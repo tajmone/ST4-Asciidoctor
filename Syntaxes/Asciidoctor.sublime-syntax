@@ -1462,19 +1462,16 @@ contexts:
 #                                  L I S T S                                   *
 #                                                                              *
 #*******************************************************************************
+# NOTE: For lists (and similar), we don't to try to match on the entire
+#       paragraph, just the opening syntax.
 
   lists:
     - include: ulist_item_marker
+    - include: olist_item_marker
     - include: colist_item_marker
     - include: dlist_item_label
-  # lists:
-  #   comment: >
-  #     My strategy for lists (and similar) is not to try to treat entire
-  #     paragraphs as lists, but only call out the opening.
-  #   - include: block_admonition_label
-  #   - include: ulist_item_marker
-  #   - include: olist_item_marker
-  #   
+	- include: block_admonition_label
+  
 
   ########################
   # ADMONITION BLOCK LABEL
@@ -1484,17 +1481,10 @@ contexts:
   #   NOTE: This is a admonition block.
   #   WARNING:  Be aware of them!
 
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # block_admonition_label:
-  #   comment: |
-  #     Label of an admonition block.
-  #
-  #     Examples:
-  #       NOTE: This is a admonition block.
-  #       WARNING:  Be aware of them!
-  #   name: support.constant.admonitionword.asciidoc
-  #   match: ^(NOTE|TIP|IMPORTANT|WARNING|CAUTION):(?=\s+)
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
+  block_admonition_label:
+    - match: ^(NOTE|TIP|IMPORTANT|WARNING|CAUTION):(?=\s+)
+      scope: support.constant.admonitionword.asciidoc
+
 
   ###################
   # ULIST ITEM MARKER
@@ -1511,7 +1501,7 @@ contexts:
   ulist_item_marker:
     - match: ^\s*(\-|\*{1,5})\s+(?=\S)
       captures:
-        1: punctuation.definition.list_item.asciidoc
+        1: punctuation.definition.list.bullet.asciidoc
 
 # Markdwon scopes:
 #    text.html.markdown.gfm
@@ -1555,11 +1545,11 @@ contexts:
   #     double colon followed by a space inside a label, i.e. it matches the
   #     *last* double colon, not the first. I don't know how to do that
   #     *effectively.
-  #AR: why isn't this working?
   dlist_item_label:
     - match: (.*)(:{2,4})(?:\s|$\n?)
       captures:
-        1: constant.labeledlist.separator.asciidoc
+        1: string.unquoted.list.labeled.asciidoc   # TODO or should this be entity.name.list.labeled.asciidoc
+        2: constant.labeledlist.separator.asciidoc # TODO or should this be constant.separator.labeledlist.asciidoc
 
   ###################
   # OLIST ITEM MARKER
@@ -1572,25 +1562,11 @@ contexts:
   #   .... level 4
   #   ..... level 5
 
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # olist_item_marker:
-  #   comment: |
-  #     Marker of an ordered (numbered) list item.
-  #
-  #     Examples:
-  #       . level 1
-  #       .. level 2
-  #       ... level 3
-  #       .... level 4
-  #       ..... level 5
-  #
-  #     Note: The space distinguishes it from a block title.
-  #   name: markup.list.numbered.dotted.asciidoc
-  #   match: ^(\s*(\.{1,5}))\s+(?=\S)
-  #   captures:
-  #     '1': {name: string.unquoted.list.dotted.asciidoc}
-  #     '2': {name: constant.numeric.list.dot.asciidoc}
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
+  olist_item_marker:
+    - match: ^\s*(\.{1,5})\s+(?=\S)
+      captures:
+        1: punctuation.definition.list.numbered.asciidoc
+
 
 # ==============================================================================
 #                          S E C T I O N    T I T L E S
