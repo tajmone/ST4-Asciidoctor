@@ -2,13 +2,13 @@
 ---
 # "Asciidoctor.sublime-syntax" v0.0.30 | 2020/11/15
 # ==============================================================================
-#                        AsciiDoc Syntax for Asciidoctor
+#                        AsciiDoc Syntax for AsciiDoctor
 # ==============================================================================
-# Syntax definition for Asciidoctor:
+# Syntax definition for AsciiDoctor:
 # -- https://asciidoctor.org/
 # ------------------------------------------------------------------------------
 # NOTE: This syntax was taken from @bsmith-n4, who slightly improved the
-# original syntax by Asciidoctor. I've annotated all changes by @bsmith-n4 in
+# original syntax by AsciiDoctor. I've annotated all changes by @bsmith-n4 in
 # the source, and included the original, in order to allow comparison.
 #
 # @bsmith-n4 changes include:
@@ -19,13 +19,13 @@
 #
 #
 # Ultimately, I'll try to keep the scope names of the original syntax from the
-# Asciidoctor repo, but also keep the improvements by @bsmith-n4, except his own
+# AsciiDoctor repo, but also keep the improvements by @bsmith-n4, except his own
 # custom elements.
 # ------------------------------------------------------------------------------
 # Copyright (c) Tristano Ajmone, 2019. MIT License.
 # ------------------------------------------------------------------------------
 
-name:    AsciiDoc (Asciidoctor)
+name:    AsciiDoc (AsciiDoctor)
 comment: AsciiDoc Syntax
 file_extensions:
   - ad
@@ -52,7 +52,7 @@ contexts:
 
 # Some definitions whose goal is just capturing some elements to prevent false
 # positives that break the document. Some of this will later on be replaces with
-# proper capturing elemeents, but for now they are needed to keep the syntax
+# proper capturing elements, but for now they are needed to keep the syntax
 # from falling apart...
 
   # We need this to consume table option like `[cols="3*^"]`, otherwise the `^`
@@ -193,8 +193,9 @@ contexts:
   # LISTING BLOCKS
   ################
   # Examples:
+  #   [source,python]
   #   ----
-  #   Lorem ipsum.
+  #   print "Lorem ipsum."
   #   ----
 
   block_listing:
@@ -208,7 +209,7 @@ contexts:
           pop: true
   #   - include: inline_callout
 
-  # IMPORTANT: This element was REMANED by @bsmith-n4! In the original:
+  # IMPORTANT: This element was RENAMED by @bsmith-n4! In the original:
   #
   #     '0': {name: constant.delimiter.listing.begin.asciidoc}
   #   end: ^\1\s*$\n?
@@ -290,7 +291,7 @@ contexts:
   ################
   # LITERAL BLOCKS
   ################
-  # Examples:
+  # Examples: (must be four or more dots, since three dots is an ellipses)
   #   ....
   #   Lorem ipsum.
   #   ....
@@ -994,10 +995,10 @@ contexts:
   # STRONG CONSTRAINED
   #####################
   # Was: "STRONG"
-  # Strong (bold) text (unconstrained variant).
+  # Strong (bold) text (constrained variant).
   # Examples:
-  #   Lo**re**m **ipsum dolor**.
-  #   Lo[red]**re**m
+  #   *Lorem ipsum* dolor
+  #   [red]*Lorem ipsum* dolor
   strong:
     - match: |
         (?x)
@@ -1395,7 +1396,7 @@ contexts:
   #############
   # PASSTHROUGH
   #############
-  # Inline triple-plus and double dolar passthrough.
+  # Inline triple-plus and double dollar passthrough.
   # Examples:
   #   Lo+++re++++m +++ipsum dolor+++.
   #   Lo$$re$$m $$ipsum dolor$$.
@@ -1522,8 +1523,8 @@ contexts:
   #   #Lorem ipsum# dolor
   #   [red]#Lorem ipsum# dolor
 
-  # @PROBLEM: Braks everything! seems like optional "start with attribute"
-  #           causes anything to matche anything else!
+  # @PROBLEM: Breaks everything! seems like optional "start with attribute"
+  #           causes anything to match anything else!
 #  mark:
 #    - match: |
 #        (?x)
@@ -1592,8 +1593,8 @@ contexts:
   ###########
   # Subscript text.
   # Examples:
-  #   E=mc^2^
-  #   E=mc[red]^2^
+  #   H~2~O
+  #   H[red]~2~O
 
   subscript:
     - match: |
@@ -1660,8 +1661,8 @@ contexts:
   #############
   # Superscript text.
   # Examples:
-  #   H~2~O
-  #   H[red]~2~O
+  #   E=mc^2^
+  #   E=mc[red]^2^
 
   superscript:
     - match: |
@@ -1852,7 +1853,7 @@ contexts:
   #############
   # BLOCK TITLE
   #############
-  # Title of a block. Exludes custom block titles for better
+  # Title of a block. Excludes custom block titles for better
   # scoping / preventing overlap.
   # Examples:
   #   .My title
@@ -1880,7 +1881,7 @@ contexts:
   #   match: ^(\.)\w.*$\n?
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-  # >>>>>>> Asciidoctor >>>>>>>
+  # >>>>>>> AsciiDoctor >>>>>>>
   # block_title:
   #   comment: |
   #     Title of a block.
@@ -2203,7 +2204,7 @@ contexts:
   #   Last::label:: dolor sit amet
 
   # @NOTE (ORIGINAL):
-  #     This rule is not strictly correct, because Asciidoctor allows
+  #     This rule is not strictly correct, because AsciiDoctor allows
   #     double colon followed by a space inside a label, i.e. it matches the
   #     *last* double colon, not the first. I don't know how to do that
   #     *effectively.
@@ -2396,7 +2397,7 @@ contexts:
 #                              R E U S A B L E S                               *
 #                                                                              *
 #*******************************************************************************
-# Resuable contexts...
+# Reusable contexts...
 
   #####################
   # ERROR ON EMPTY LINE
