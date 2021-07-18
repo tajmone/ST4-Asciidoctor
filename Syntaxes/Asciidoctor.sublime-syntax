@@ -141,7 +141,7 @@ contexts:
           pop: true
         - include: lists
         # - include: block_listing
-        - include: blocks
+        - include: blocks   # FIXME Is this supposed to be here? It's not in the original, and it looks like a circular reference.
         - include: lines
         - include: inline
         - include: characters
@@ -1031,12 +1031,12 @@ contexts:
 
   passthrough:
     - match: (\+\+\+|\$\$)
-      scope: constant.character.passthru.begin.asciidoc
+      scope: constant.character.passthrough.begin.asciidoc
       push:
-        - meta_scope: meta.passthru.inline.asciidoc
-        - meta_content_scope: variable.parameter.passthruinner.asciidoc
+        - meta_scope: meta.passthrough.inline.asciidoc
+        - meta_content_scope: variable.parameter.passthroughinner.asciidoc
         - match: \1
-          scope: constant.character.passthru.end.asciidoc
+          scope: constant.character.passthrough.end.asciidoc
           pop: true
 
 
@@ -1610,6 +1610,9 @@ contexts:
 #       == Level 1 Section
 #
 #       === Level 2 Section
+#
+# FIXME Do "markup.heading.level.1.asciidoc" etc. really need "level"? I think "markup.heading.1.asciidoc" should suffice, plus it's what I've seen color schemes expect. -- polyglot-jones
+# FIXME How about changing "markup.heading.level.0.asciidoc" "markup.title.asciidoc"? -- polyglot-jones
 
   section_titles:
     - include: title_level_5
