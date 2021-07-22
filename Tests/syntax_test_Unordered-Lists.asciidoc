@@ -32,7 +32,7 @@ https://asciidoctor.org/docs/user-manual/#unordered-lists[§20. Unordered Lists]
 
 
 
-=== Loose Tests
+== Loose Tests
 
   - Level 1 (hyphen marker)
 //^        punctuation.definition.list_item
