@@ -79,6 +79,10 @@ For the above reasons, it's possible that during the Alpha stage various syntax 
 
 ## Keymaps
 
+* Ctrl-B surrounds the selected text with asterisks (for bold/strong). Hit it once for constrained. Hit it again for unconstrained. Note: If no text is selected, then Ctrl-B will invoke the build system.
+* Ctrl-I surrounds the selected text with underscores (for italics/emphasis). Hit it once for constrained. Hit it again for unconstrained.
+* Ctrl-" surrounds the selected text (or just the cursor) with typographical double quotes. 
+* Ctrl-' surrounds the selected text (or just the cursor) with typographical single quotes. 
 * Asterisks (strong), underscores (emphasis), backticks (monospaced), English quotation marks, and Czech quotation marks are autopaired and will wrap selected text.
     - If you start an empty pair and hit backspace, both elements are deleted.
     - If you start an empty asterisks pair and hit <kbd>Space</kbd> or <kbd>Tab</kbd>, the right element is deleted (because you probably wanted to start a list, not a strong text).
@@ -104,12 +108,35 @@ For the above reasons, it's possible that during the Alpha stage various syntax 
 | Keyboard Shortcut  | `kbd` <kbd>Tab</kbd>                      |
 | Listing Block      | `--` <kbd>Tab</kbd>                       |
 | Passthrough Block  |                                           |
-| Quote Block        | `__` <kbd>Tab</kbd>                       |
+| Quote Block        | `__` <kbd>Tab</kbd> or `""` <kbd>Tab</kbd> |
 | Section Title 1–5  | `h1` <kbd>Tab</kbd> … `h5` <kbd>Tab</kbd> |
 | Sidebar block      |                                           |
 | Table              | `= `<kbd>Tab</kbd>                        |
+| Anchored Subsection| `[[` <kbd>Tab</kbd>                       |
+| Anchor Reference   | `<<` <kbd>Tab</kbd>                       |
 
 
+### Keyboard Shortcut and Button 
+
+In-line macros that render keycaps and button presses, respectively.
+
+### Anchored Subsection and Anchor Reference 
+
+These snippets ensure that your anchor names properly conform (lower-case, no spaces).
+
+Type this: `[[` <kbd>Tab</kbd> Navigable Text
+
+And you get this:
+```
+    [[navigable-text]]
+    === Navigable Text
+```
+Type this: `<<` <kbd>Tab</kbd> Navigable Text
+
+And you get this:
+```
+    <<navigable-text,Navigable Text>>
+```
 
 ## Others
 

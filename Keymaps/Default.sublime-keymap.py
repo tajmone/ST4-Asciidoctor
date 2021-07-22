@@ -183,10 +183,25 @@ Keymap(
         .also('preceding_text').regex_match('^\\s*(?:[*.-]+|<\\d+>)\\s+$')
         .also('following_text').regex_match('^\\s*$'),
 
+    bind('ctrl+b')
+        .to('insert_snippet', contents='*${0:$SELECTION}*')
+        .when('selection_empty').false(),
+
+    bind('ctrl+i')
+        .to('insert_snippet', contents='_${0:$SELECTION}_')
+        .when('selection_empty').false(),
+
+    bind("ctrl+shift+'")
+        .to('insert_snippet', contents="\"`${0:$SELECTION}`\""),
+
+    bind("ctrl+'")
+        .to('insert_snippet', contents="'`${0:$SELECTION}`'"),
+        
     common_context=[
         context('selector').equal('text.asciidoc'),
         context('selector').not_equal('markup.raw')
     ],
     default_match_all=True
+
 
 ).dump()  # nopep8

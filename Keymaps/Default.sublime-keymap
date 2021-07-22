@@ -1840,5 +1840,109 @@
         "match_all": true
       }
     ]
+  },
+  {
+    "keys": [
+      "ctrl+b"
+    ],
+    "command": "insert_snippet",
+    "args": {
+      "contents": "*${0:$SELECTION}*"
+    },
+    "context": [
+      {
+        "key": "selection_empty",
+        "operator": "equal",
+        "operand": false,
+        "match_all": true
+      },
+      {
+        "key": "selector",
+        "operator": "equal",
+        "operand": "text.asciidoc",
+        "match_all": true
+      },
+      {
+        "key": "selector",
+        "operator": "not_equal",
+        "operand": "markup.raw",
+        "match_all": true
+      }
+    ]
+  },
+  {
+    "keys": [
+      "ctrl+i"
+    ],
+    "command": "insert_snippet",
+    "args": {
+      "contents": "_${0:$SELECTION}_"
+    },
+    "context": [
+      {
+        "key": "selection_empty",
+        "operator": "equal",
+        "operand": false,
+        "match_all": true
+      },
+      {
+        "key": "selector",
+        "operator": "equal",
+        "operand": "text.asciidoc",
+        "match_all": true
+      },
+      {
+        "key": "selector",
+        "operator": "not_equal",
+        "operand": "markup.raw",
+        "match_all": true
+      }
+    ]
+  },
+  {
+    "keys": [
+      "ctrl+shift+'"
+    ],
+    "command": "insert_snippet",
+    "args": {
+      "contents": "\"`${0:$SELECTION}`\""
+    },
+    "context": [
+      {
+        "key": "selector",
+        "operator": "equal",
+        "operand": "text.asciidoc",
+        "match_all": true
+      },
+      {
+        "key": "selector",
+        "operator": "not_equal",
+        "operand": "markup.raw",
+        "match_all": true
+      }
+    ]
+  },
+  {
+    "keys": [
+      "ctrl+'"
+    ],
+    "command": "insert_snippet",
+    "args": {
+      "contents": "'`${0:$SELECTION}`'"
+    },
+    "context": [
+      {
+        "key": "selector",
+        "operator": "equal",
+        "operand": "text.asciidoc",
+        "match_all": true
+      },
+      {
+        "key": "selector",
+        "operator": "not_equal",
+        "operand": "markup.raw",
+        "match_all": true
+      }
+    ]
   }
 ]
