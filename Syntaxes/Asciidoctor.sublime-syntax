@@ -7,20 +7,6 @@
 # Syntax definition for Asciidoctor:
 # -- https://asciidoctor.org/
 # ------------------------------------------------------------------------------
-# NOTE: This syntax was taken from @bsmith-n4, who slightly improved the
-# original syntax by Asciidoctor. I've annotated all changes by @bsmith-n4 in
-# the source, and included the original, in order to allow comparison.
-#
-# @bsmith-n4 changes include:
-#  -- scope renaming
-#  -- RegEx tweaks
-#  -- new elements
-#  -- element tweaks
-#
-#
-# Ultimately, I'll try to keep the scope names of the original syntax from the
-# Asciidoctor repo, but also keep the improvements by @bsmith-n4, except his own
-# custom elements.
 # ------------------------------------------------------------------------------
 # Copyright (c) Tristano Ajmone, 2019. MIT License.
 # ------------------------------------------------------------------------------
@@ -51,7 +37,7 @@ contexts:
 #*******************************************************************************
 
 # Some definitions whose goal is just capturing some elements to prevent false
-# positives that break the document. Some of this will later on be replaces with
+# positives that break the document. Some of this will later on be replaced with
 # proper capturing elemeents, but for now they are needed to keep the syntax
 # from falling apart...
 
@@ -70,7 +56,6 @@ contexts:
   blocks:
     - include: block_literal
     - include: block_comment
-    # - include: custom_block                           # <- ADDED by @bsmith-n4
     - include: block_listing
     - include: block_source_fenced
     - include: block_sidebar
@@ -101,44 +86,7 @@ contexts:
           pop: true
         # - include: macro
 
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # block_comment:
-  #   comment: |
-  #     Examples:
-  #       ////
-  #       A multi-line comment.
-  #       Notice it's a delimited block.
-  #       ////
-  #   name: comment.block.asciidoc
-  #   contentName: meta.block.comment.content.asciidoc
-  #   begin: ^(/{4,})\s*$\n?
-  #   beginCaptures:
-  #     '0': {name: punctuation.definition.comment.begin.asciidoc}
-  #   end: ^\1\s*$\n?
-  #   endCaptures:
-  #     '0': {name: punctuation.definition.comment.end.asciidoc}
-  #   - include: macro
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-  ###############
-  # CUSTOM BLOCKS
-  ###############
-
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # custom_block:                                       # <- ADDED by @bsmith-n4
-  #   name: markup.underline.block.id.def.asciidoc
-  #   match: |
-  #     (?x)^
-  #     (\[)
-  #     (sect\d|def|math|TODO|quote|example|source,?(\w+))
-  #     (\s*\])
-  #     \s*$\n?
-  #   captures:
-  #     '1': {name: markup.underline.block.asciidoc}
-  #     '2': {name: markup.underline.block.asciidoc}
-  #     '3': {name: variable.parameter.sourcelang.asciidoc}
-  #     '4': {name: markup.underline.block.asciidoc}
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
   #################
   # EXAMPLE BLOCKS
@@ -164,31 +112,6 @@ contexts:
         - include: inline
         - include: characters
 
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # block_example:
-  #   comment: |
-  #     Examples:
-  #       ====
-  #       Lorem ipsum.
-  #       ====
-  #
-  #     Note: Might need to add more includes, but these are the ones that arise in
-  #     practice for me.
-  #   name: string.unquoted.block.example.asciidoc
-  #   contentName: meta.block.example.content.asciidoc
-  #   begin: ^(={4,})\s*$\n?
-  #   beginCaptures:
-  #     '0': {name: constant.delimiter.example.begin.asciidoc}
-  #   end: ^\1\s*$\n?
-  #   endCaptures:
-  #     '0': {name: constant.delimiter.example.end.asciidoc}
-  #   - include: lists
-  #   - include: block_listing
-  #   - include: lines
-  #   - include: inline
-  #   - include: characters
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
-
   ################
   # LISTING BLOCKS
   ################
@@ -208,30 +131,7 @@ contexts:
           pop: true
   #   - include: inline_callout
 
-  # IMPORTANT: This element was REMANED by @bsmith-n4! In the original:
-  #
-  #     '0': {name: constant.delimiter.listing.begin.asciidoc}
-  #   end: ^\1\s*$\n?
-  #   endCaptures:
-  #     '0': {name: constant.delimiter.listing.end.asciidoc}
 
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # block_listing:
-  #   comment: |
-  #     Examples:
-  #       ----
-  #       Lorem ipsum.
-  #       ----
-  #   name: meta.embedded.block.listing.asciidoc
-  #   contentName: source.block.listing.content.asciidoc
-  #   begin: ^(\-{4,})\s*$\n?
-  #   beginCaptures:
-  #     '0': {name: markup.underline.listing.begin.asciidoc}  # <- RENAMED by @bsmith-n4
-  #   end: ^\1\s*$\n?
-  #   endCaptures:
-  #     '0': {name: markup.underline.listing.end.asciidoc}    # <- RENAMED by @bsmith-n4
-  #   - include: inline_callout
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
   ######################
   # FENCED SOURCE BLOCKS
@@ -258,34 +158,6 @@ contexts:
           pop: true
         # - include: inline_callout
 
-    # name: meta.embedded.block.listing.asciidoc
-    # contentName: source.block.listing.content.asciidoc
-    # begin: ^(```)(\w+)?\s*$\n?
-    # beginCaptures:
-    #   '0': {name: constant.delimiter.listing.begin.asciidoc}
-    # end: ^\1\s*$\n?
-    # endCaptures:
-    #   '0': {name: constant.delimiter.listing.end.asciidoc}
-
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # block_source_fenced:
-  #   comment: |
-  #     Fenced code block (ala Markdown)
-  #
-  #     Examples:
-  #       ```rb
-  #       puts 'Hello world!'
-  #       ```
-  #   name: meta.embedded.block.listing.asciidoc
-  #   contentName: source.block.listing.content.asciidoc
-  #   begin: ^(```)(\w+)?\s*$\n?
-  #   beginCaptures:
-  #     '0': {name: constant.delimiter.listing.begin.asciidoc}
-  #   end: ^\1\s*$\n?
-  #   endCaptures:
-  #     '0': {name: constant.delimiter.listing.end.asciidoc}
-  #   - include: inline_callout
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
   ################
   # LITERAL BLOCKS
@@ -306,24 +178,7 @@ contexts:
         # - match: ^.*$\n?
         #   scope: meta.block.literal.content.asciidoc
         # - include: inline_callout
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # block_literal:
-  #   comment: |
-  #     Examples:
-  #       ....
-  #       Lorem ipsum.
-  #       ....
-  #   name: string.literal.block.delimited.asciidoc
-  #   contentName: meta.block.literal.content.asciidoc
-  #   begin: ^(\.{4,})\s*$\n?
-  #   beginCaptures:
-  #     '0': {name: constant.delimiter.block.literal.begin.asciidoc}
-  #   end: ^\1\s*$\n?
-  #   endCaptures:
-  #     '0': {name: constant.delimiter.block.literal.end.asciidoc}
-  #   - include: inline_callout
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
-
+  
   #############
   # OPEN BLOCKS
   #############
@@ -350,38 +205,8 @@ contexts:
         - include: inline
         - include: characters
 
-  # IMPORTANT: This element was REMANED by @bsmith-n4! In the original:
-  #
-  #    '0': {name: constant.delimiter.block.open.begin.asciidoc}
-  #  end: ^\-\-\s*$\n?
-  #  endCaptures:
-  #    '0': {name: constant.delimiter.block.open.end.asciidoc}
-
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # block_open:
-  #   comment: |
-  #     Examples:
-  #       --
-  #       Lorem ipsum
-  #       --
-  #     Note: Might need to check on these includes.
-  #   name: meta.block.open.asciidoc
-  #   contentName: meta.block.open.content.asciidoc
-  #   begin: ^\-\-\s*$\n?
-  #   beginCaptures:
-  #     '0': {name: markup.underline.block.open.begin.asciidoc}  # <- RENAMED by @bsmith-n4
-  #   end: ^\-\-\s*$\n?
-  #   endCaptures:
-  #     '0': {name: markup.underline.block.open.begin.asciidoc}  # <- RENAMED by @bsmith-n4
-  #   - include: lists
-  #   - include: block_comment
-  #   - include: block_listing
-  #   - include: block_pass
-  #   - include: lines
-  #   - include: inline
-  #   - include: characters
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
-
+  
+  
   #############
   # PASS BLOCKS
   #############
@@ -397,26 +222,7 @@ contexts:
           pop: true
       # - include: text.xml
 
-  # IMPORTANT: This element was REMANED by @bsmith-n4! In the original:
-  #
-  #   '0': {name: constant.delimiter.block.passthrough.begin.asciidoc}
-  # end: ^\1\s*$\n?
-  # endCaptures:
-  #   '0': {name: constant.delimiter.block.passthrough.end.asciidoc}
-
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # block_pass:
-  #   name: meta.embedded.block.passthrough.asciidoc
-  #   contentName: text.xml.block.passthrough.content.asciidoc
-  #   begin: ^(\+{4,})\s*$\n?
-  #   beginCaptures:
-  #     '0': {name: markup.underline.block.passthrough.begin.asciidoc}  # <- RENAMED by @bsmith-n4
-  #   end: ^\1\s*$\n?
-  #   endCaptures:
-  #     '0': {name: markup.underline.block.passthrough.end.asciidoc}    # <- RENAMED by @bsmith-n4
-  #   - include: text.xml
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
-
+  
   ##############
   # QUOTE BLOCKS
   ##############
@@ -438,37 +244,7 @@ contexts:
         - include: inline
         - include: characters
 
-    # name: markup.quote.block.asciidoc
-    # contentName: meta.block.quote.content.asciidoc
-    # begin: ^(_{4,})\s*$\n?
-    # beginCaptures:
-    #   '0': {name: constant.delimiter.block.quote.begin.asciidoc}
-    # end: ^\1\s*$\n?
-    # endCaptures:
-    #   '0': {name: constant.delimiter.block.quote.end.asciidoc}
 
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # block_quote:
-  #   comment: >
-  #     Examples:
-  #       ____
-  #       Lorem ipsum
-  #       ____
-  #
-  #     Note: Might need to add more includes, but these are the ones that arise
-  #     for me in practice.
-  #   name: markup.quote.block.asciidoc
-  #   contentName: meta.block.quote.content.asciidoc
-  #   begin: ^(_{4,})\s*$\n?
-  #   beginCaptures:
-  #     '0': {name: constant.delimiter.block.quote.begin.asciidoc}
-  #   end: ^\1\s*$\n?
-  #   endCaptures:
-  #     '0': {name: constant.delimiter.block.quote.end.asciidoc}
-  #   - include: lines
-  #   - include: inline
-  #   - include: characters
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
   #################
   # SIDEBAR BLOCKS
@@ -494,40 +270,6 @@ contexts:
         - include: inline
         - include: characters
 
-    # name: string.quoted.block.sidebar.asciidoc
-    # contentName: meta.block.sidebar.content.asciidoc
-    # begin: ^(\*{4,})\s*$\n?
-    # beginCaptures:
-    #   '0': {name: constant.delimiter.block.sidebar.begin.asciidoc}
-    # end: ^\1\s*$\n?
-    # endCaptures:
-    #   '0': {name: constant.delimiter.block.sidebar.end.asciidoc}
-
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # block_sidebar:
-  #   comment: |
-  #     Examples:
-  #       ****
-  #       Lorem ipsum
-  #       ****
-  #
-  #     Note: Might need to add more includes, but these are the ones that arise
-  #     for me in practice.
-  #   name: string.quoted.block.sidebar.asciidoc
-  #   contentName: meta.block.sidebar.content.asciidoc
-  #   begin: ^(\*{4,})\s*$\n?
-  #   beginCaptures:
-  #     '0': {name: constant.delimiter.block.sidebar.begin.asciidoc}
-  #   end: ^\1\s*$\n?
-  #   endCaptures:
-  #     '0': {name: constant.delimiter.block.sidebar.end.asciidoc}
-  #   - include: lists
-  #   - include: block_comment
-  #   - include: block_listing
-  #   - include: lines
-  #   - include: inline
-  #   - include: characters
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 # -------------------------------------
 # @NOTE: Was commented out in original!
@@ -946,37 +688,6 @@ contexts:
       #   - include: characters
 
 
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # strong_double:
-  #   comment: |
-  #     Strong (bold) text (unconstrained variant).
-  #
-  #     Examples:
-  #       Lo**re**m **ipsum dolor**.
-  #       Lo[red]**re**m
-  #   name: markup.bold.double.asciidoc
-  #   contentName: meta.boldinner.double.asciidoc
-  #   begin: |-
-  #     (?x)
-  #     (\[[^\]]*?\])?  # might start with an attribute list
-  #     (?<!\\)         # must not be preceded by escape
-  #     (\*\*)
-  #   beginCaptures:
-  #     '1': {name: support.variable.attributelist.asciidoc}
-  #     '2': {name: punctuation.definition.bold.double.begin.asciidoc}
-  #   end: '\*\*'
-  #   endCaptures:
-  #     '0': {name: punctuation.definition.bold.double.end.asciidoc}
-  #   - include: emphasis_double
-  #   - include: monospaced_double
-  #   - include: mark_double
-  #   - include: emphasis
-  #   - include: monospaced
-  #   - include: mark
-  #   - include: superscript
-  #   - include: subscript
-  #   - include: characters
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
   #####################
   # STRONG CONSTRAINED
@@ -1022,40 +733,6 @@ contexts:
       #   - include: subscript
       #   - include: characters
 
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # strong:
-  #   comment: |
-  #     Strong (bold) text (constrained variant).
-  #
-  #     Examples:
-  #       *Lorem ipsum* dolor
-  #       [red]*Lorem ipsum* dolor
-  #   name: markup.bold.single.asciidoc
-  #   contentName: meta.boldinner.single.asciidoc
-  #   begin: |-
-  #     (?x)
-  #     (\[[^\]]*?\])?      # might start with an attributes list
-  #     (?<=^|\W)(?<!\\|})  # must be preceded by nonword character, and not by escape or } (attribute)
-  #     (\*)(?=\S)          # delimiter star that must be followed by a nonspace character
-  #   beginCaptures:
-  #     '1': {name: support.variable.attributelist.asciidoc}
-  #     '2': {name: punctuation.definition.bold.single.begin.asciidoc}
-  #   end: |-
-  #     (?x)
-  #     (?<=\S)(\*)       # delimiter star that must be preceded by a nonspace character
-  #     (?!\w)            # ...and followed by a nonword character
-  #   endCaptures:
-  #     '1': {name: punctuation.definition.bold.single.end.asciidoc}
-  #   - include: emphasis_double
-  #   - include: monospaced_double
-  #   - include: mark_double
-  #   - include: emphasis
-  #   - include: monospaced
-  #   - include: mark
-  #   - include: superscript
-  #   - include: subscript
-  #   - include: characters
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
   ########################
@@ -1101,37 +778,6 @@ contexts:
     #   - include: characters
 
 
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # emphasis_double:
-  #   comment: |
-  #     Emphasized (italic) text (unconstrained variant).
-  #
-  #     Examples:
-  #       Lo__re__m __ipsum dolor__.
-  #       Lo[red]__re__m
-  #   name: markup.italic.double.asciidoc
-  #   contentName: meta.italicinner.double.asciidoc
-  #   begin: |-
-  #     (?x)
-  #     (\[[^\]]*?\])?  # might start with attribute list
-  #     (?<!\\)         # must not be preceded by escape
-  #     (__)
-  #   beginCaptures:
-  #     '1': {name: support.variable.attributelist.asciidoc}
-  #     '2': {name: punctuation.definition.italic.double.begin.asciidoc}
-  #   end: '__'
-  #   endCaptures:
-  #     '0': {name: punctuation.definition.italic.double.end.asciidoc}
-  #   - include: strong_double
-  #   - include: monospaced_double
-  #   - include: mark_double
-  #   - include: strong
-  #   - include: monospaced
-  #   - include: mark
-  #   - include: superscript
-  #   - include: subscript
-  #   - include: characters
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
   ######################
   # EMPHASIS CONSTRAINED
@@ -1179,41 +825,6 @@ contexts:
     # - include: subscript
     # - include: characters
 
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # emphasis:
-  #   comment: |
-  #     Emphasized (italic) text (constrained variant).
-  #
-  #     Examples:
-  #       _Lorem ipsum_ dolor
-  #       [red]_Lorem ipsum_ dolor
-  #   name: markup.italic.single.asciidoc
-  #   contentName: meta.italicinner.single.asciidoc
-  #   begin: |-
-  #     (?x)
-  #     (\[[^\]]*?\])?      # might be preceded by an attributes list
-  #     (?<=^|\W)(?<!\\|})  # must be preceded by nonword character, and not by escape or } (attribute)
-  #     (_)(?=\S)           # delimiter underscore that must be followed by a nonspace character
-  #   beginCaptures:
-  #     '1': {name: support.variable.attributelist.asciidoc}
-  #     '2': {name: punctuation.definition.italic.single.begin.asciidoc}
-  #   end: |-
-  #     (?x)
-  #     (?<=\S)(_)        # delimiter underscore that must be preceded by a nonspace character
-  #     (?!\w)            # ...and followed by a nonword character
-  #   endCaptures:
-  #     '1': {name: punctuation.definition.italic.single.end.asciidoc}
-  #   - include: strong_double
-  #   - include: monospaced_double
-  #   - include: mark_double
-  #   - include: strong
-  #   - include: monospaced
-  #   - include: mark
-  #   - include: superscript
-  #   - include: subscript
-  #   - include: characters
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
-
 
 
   ##########################
@@ -1256,37 +867,6 @@ contexts:
     # - include: subscript
     # - include: characters
 
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # monospaced_double:
-  #   comment: |
-  #     Monospaced text (unconstrained variant).
-  #
-  #     Examples:
-  #       Lo``re``m ``ipsum dolor``.
-  #       Lo[red]``re``m
-  #   name: string.other.literal.double.asciidoc
-  #   contentName: meta.literalinner.double.asciidoc
-  #   begin: |-
-  #     (?x)
-  #     (\[[^\]]*?\])?  # might start with attribute list
-  #     (?<!\\)         # must not be preceded by escape
-  #     (``)
-  #   beginCaptures:
-  #     '1': {name: support.variable.attributelist.asciidoc}
-  #     '2': {name: punctuation.definition.literal.double.begin.asciidoc}
-  #   end: '``'
-  #   endCaptures:
-  #     '0': {name: punctuation.definition.literal.double.end.asciidoc}
-  #   - include: strong_double
-  #   - include: emphasis_double
-  #   - include: mark_double
-  #   - include: strong
-  #   - include: emphasis
-  #   - include: mark
-  #   - include: superscript
-  #   - include: subscript
-  #   - include: characters
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
   ########################
@@ -1343,47 +923,13 @@ contexts:
   #   - include: characters
 
 
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # monospaced:
-  #   comment: |
-  #     Monospaced text (constrained variant).
-  #
-  #     Examples:
-  #       `Lorem ipsum` dolor
-  #       [red]`Lorem ipsum` dolor
-  #   name: string.other.literal.single.asciidoc
-  #   contentName: meta.literalinner.single.asciidoc
-  #   begin: |-
-  #     (?x)
-  #     (\[[^\]]*?\])?      # might start with attributes list
-  #     (?<=^|\W)(?<!\\|})  # must be preceded by nonword character, and not by escape or } (attribute)
-  #     (`)(?=\S)           # delimiter backtick that must be followed by a nonspace character
-  #   beginCaptures:
-  #     '1': {name: support.variable.attributelist.asciidoc}
-  #     '2': {name: punctuation.definition.literal.single.begin.asciidoc}
-  #   end: |-
-  #     (?x)
-  #     (?<=\S)(`)        # delimiter backtick that must be preceded by a nonspace character
-  #     (?!\w)            # ...and followed by a nonword character
-  #   endCaptures:
-  #     '1': {name: punctuation.definition.literal.single.end.asciidoc}
-  #   - include: strong_double
-  #   - include: emphasis_double
-  #   - include: mark_double
-  #   - include: strong
-  #   - include: emphasis
-  #   - include: mark
-  #   - include: superscript
-  #   - include: subscript
-  #   - include: characters
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
 
   #############
   # PASSTHROUGH
   #############
-  # Inline triple-plus and double dolar passthrough.
+  # Inline triple-plus and double dollar passthrough.
   # Examples:
   #   Lo+++re++++m +++ipsum dolor+++.
   #   Lo$$re$$m $$ipsum dolor$$.
@@ -1400,25 +946,6 @@ contexts:
           scope: constant.character.passthru.end.asciidoc
           pop: true
 
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # passthrough:
-  #   comment: |
-  #     Inline triple-plus and double dolar passthrough.
-  #
-  #     Examples:
-  #       Lo+++re++++m +++ipsum dolor+++.
-  #       Lo$$re$$m $$ipsum dolor$$.
-  #
-  #     Note: Must be dead first among the inlines, so as to take priority.
-  #   name: meta.passthru.inline.asciidoc
-  #   contentName: variable.parameter.passthruinner.asciidoc
-  #   begin: (\+\+\+|\$\$)
-  #   beginCaptures:
-  #     '1': {name: constant.character.passthru.begin.asciidoc}
-  #   end: '\1'
-  #   endCaptures:
-  #     '0': {name: constant.character.passthru.end.asciidoc}
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
   ####################
@@ -1455,51 +982,6 @@ contexts:
         #   - include: subscript
         #   - include: characters
 
-    # name: string.other.unquoted.double.asciidoc
-    # contentName: string.unquoted.unquotedinner.double.asciidoc
-    # begin: |-
-    #   (?x)
-    #   (\[[^\]]*?\])?  # might start with an attribute list (indeed, that is its purpose)
-    #   (?<!\\)         # must not be preceded by escape
-    #   (\#\#)
-    # beginCaptures:
-    #   '1': {name: support.variable.attributelist.asciidoc}
-    #   '2': {name: punctuation.definition.string.unquoted.double.begin.asciidoc}
-    # end: '\#\#'
-    # endCaptures:
-    #   '0': {name: punctuation.definition.string.unquoted.double.end.asciidoc}
-
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # mark_double:
-  #   comment: |
-  #     Marked text (unconstrained variant).
-  #
-  #     Examples:
-  #       Lo##re##m ##ipsum dolor##.
-  #       Lo[red]##re##m
-  #   name: string.other.unquoted.double.asciidoc
-  #   contentName: string.unquoted.unquotedinner.double.asciidoc
-  #   begin: |-
-  #     (?x)
-  #     (\[[^\]]*?\])?  # might start with an attribute list (indeed, that is its purpose)
-  #     (?<!\\)         # must not be preceded by escape
-  #     (\#\#)
-  #   beginCaptures:
-  #     '1': {name: support.variable.attributelist.asciidoc}
-  #     '2': {name: punctuation.definition.string.unquoted.double.begin.asciidoc}
-  #   end: '\#\#'
-  #   endCaptures:
-  #     '0': {name: punctuation.definition.string.unquoted.double.end.asciidoc}
-  #   - include: strong_double
-  #   - include: emphasis_double
-  #   - include: monospaced_double
-  #   - include: strong
-  #   - include: emphasis
-  #   - include: monospaced
-  #   - include: superscript
-  #   - include: subscript
-  #   - include: characters
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
   ##################
   # MARK CONSTRAINED
@@ -1540,40 +1022,6 @@ contexts:
 #        # - include: subscript
 #        # - include: characters
 
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # mark:
-  #   comment: |
-  #     Marked text (constrained variant).
-  #
-  #     Examples:
-  #       #Lorem ipsum# dolor
-  #       [red]#Lorem ipsum# dolor
-  #   name: string.other.unquoted.single.asciidoc
-  #   contentName: string.unquoted.unquotedinner.single.asciidoc
-  #   begin: |-
-  #     (?x)
-  #     (\[[^\]]*?\])?      # might start with attribute list (darned well better or why are we here)
-  #     (?<=^|\W)(?<!\\|})  # must be preceded by nonword character, and not by escape or } (attribute)
-  #     (\#)(?=\S)          # delimiter hash that must be followed by a nonspace character
-  #   beginCaptures:
-  #     '1': {name: support.variable.attributelist.asciidoc}
-  #     '2': {name: punctuation.definition.string.unquoted.single.begin.asciidoc}
-  #   end: |-
-  #     (?x)
-  #     (?<=\S)(\#)       # delimiter hash that must be preceded by a nonspace character
-  #     (?!\w)            # ...and followed by a nonword character
-  #   endCaptures:
-  #     '1': {name: punctuation.definition.string.unquoted.single.end.asciidoc}
-  #   - include: strong_double
-  #   - include: emphasis_double
-  #   - include: monospaced_double
-  #   - include: strong
-  #   - include: emphasis
-  #   - include: monospaced
-  #   - include: superscript
-  #   - include: subscript
-  #   - include: characters
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
   ###########
   # SUBSCRIPT
@@ -1610,38 +1058,6 @@ contexts:
       #   - include: characters
 
 
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # subscript:
-  #   comment: |
-  #     Subscript text.
-  #
-  #     Examples:
-  #       E=mc^2^
-  #       E=mc[red]^2^
-  #   name: string.other.subscript.asciidoc
-  #   contentName: meta.subscriptinner.asciidoc
-  #   begin: |-
-  #     (?x)
-  #     (\[[^\]]*?\])?  # might start with attribute list
-  #     (?<!\\)         # must not be preceded by escape
-  #     (~)
-  #   beginCaptures:
-  #     '1': {name: support.variable.attributelist.asciidoc}
-  #     '2': {name: punctuation.definition.string.subscript.begin.asciidoc}
-  #   end: '~'
-  #   endCaptures:
-  #     '0': {name: punctuation.definition.string.subscript.end.asciidoc}
-  #   - include: strong_double
-  #   - include: emphasis_double
-  #   - include: monospaced_double
-  #   - include: mark_double
-  #   - include: strong
-  #   - include: emphasis
-  #   - include: monospaced
-  #   - include: mark
-  #   - include: superscript
-  #   - include: characters
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
   #############
   # SUPERSCRIPT
@@ -1678,38 +1094,6 @@ contexts:
       #   - include: characters
 
 
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # superscript:
-  #   comment: |
-  #     Superscript text.
-  #
-  #     Examples:
-  #       H~2~O
-  #       H[red]~2~O
-  #   name: string.other.superscript.asciidoc
-  #   contentName: meta.superscriptinner.asciidoc
-  #   begin: |-
-  #     (?x)
-  #     (\[[^\]]*?\])?  # might start with attribute list
-  #     (?<!\\)         # no preceding escape
-  #     (\^)
-  #   beginCaptures:
-  #     '1': {name: support.variable.attributelist.asciidoc}
-  #     '2': {name: punctuation.definition.string.superscript.begin.asciidoc}
-  #   end: '^'
-  #   endCaptures:
-  #     '0': {name: punctuation.definition.string.superscript.end.asciidoc}
-  #   - include: strong_double
-  #   - include: emphasis_double
-  #   - include: monospaced_double
-  #   - include: mark_double
-  #   - include: strong
-  #   - include: emphasis
-  #   - include: monospaced
-  #   - include: mark
-  #   - include: subscript
-  #   - include: characters
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 #*******************************************************************************
 #                                                                              *
@@ -1743,19 +1127,6 @@ contexts:
         1: punctuation.definition.comment.line.asciidoc
         2: meta.line.comment.content.asciidoc
 
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # inline_comment:
-  #   comment: |
-  #     Inline comment.
-  #
-  #     Examples:
-  #       // This is just a comment!
-  #   name: comment.line.double-slash.asciidoc
-  #   match: ^(//)([^/\n].*|)$\n?
-  #   captures:
-  #     '1': {name: punctuation.definition.comment.line.asciidoc}
-  #     '2': {name: meta.line.comment.content.asciidoc}
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
   #################
   # ATTRIBUTE ENTRY
@@ -1788,34 +1159,6 @@ contexts:
           pop: true
         #   - include: characters
 
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # attribute_entry:
-  #   comment: |
-  #     An attribute entry.
-  #
-  #     Examples:
-  #       :my-attribute: value
-  #       :sectnums!:
-  #       :!sectnums:
-  #   name: meta.attributeentry.asciidoc
-  #   contentName: meta.attributeentry.value.asciidoc
-  #   begin: |-
-  #     (?x)
-  #     ^(:)                          # opening delimiter
-  #     (!)?                          # bang symbol (unset attribute)
-  #     ([A-Za-z0-9_][A-Za-z0-9_-]*)  # attribute name
-  #     (!)?                          # bang symbol (unset attribute)
-  #     (:)                           # closing delimiter
-  #     (?:\s+|(?=$))
-  #   beginCaptures:
-  #     '1': {name: punctuation.definition.attributeentry.attrname.begin.asciidoc}
-  #     '2': {name: punctuation.definition.attributeentry.unset.asciidoc}
-  #     '3': {name: support.variable.attribute.asciidoc}
-  #     '4': {name: punctuation.definition.attributeentry.unset.asciidoc}
-  #     '5': {name: punctuation.definition.attributeentry.attrname.end.asciidoc}
-  #   end: $\n?
-  #   - include: characters
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
   #####################
   # ATTRIBUTE LIST LINE
@@ -1840,14 +1183,11 @@ contexts:
   #############
   # BLOCK TITLE
   #############
-  # Title of a block. Exludes custom block titles for better
+  # Title of a block. Excludes custom block titles for better
   # scoping / preventing overlap.
   # Examples:
   #   .My title
   #   Lorem ipsum dolor.
-
-  # IMPORTANT: This element differs in @bsmith-n4 and original!
-  #            @bsmith-n4 doesn't scope the dot.
 
   block_title:
     - match: ^(\.)(\w.*)$\n?
@@ -1855,32 +1195,6 @@ contexts:
         1: punctuation.definition.blockheading.asciidoc
         2: markup.heading.block.asciidoc
 
-  # >>>>>>>> bsmith-n4 >>>>>>>>
-  # block_title:
-  #   comment: |
-  #     Title of a block. Exludes custom block titles for better
-  #     scoping / preventing overlap.
-  #
-  #     Examples:
-  #       .My title
-  #       Lorem ipsum dolor.
-  #   name: markup.heading.block.asciidoc
-  #   match: ^(\.)\w.*$\n?
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-  # >>>>>>> Asciidoctor >>>>>>>
-  # block_title:
-  #   comment: |
-  #     Title of a block.
-  #
-  #     Examples:
-  #       .My title
-  #       Lorem ipsum dolor.
-  #   name: markup.heading.block.asciidoc
-  #   match: ^(\.)\w.*$\n?
-  #   captures:
-  #     '1': {name: punctuation.definition.blockheading.asciidoc}
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
   ##########
   # BLOCK ID
@@ -1898,21 +1212,6 @@ contexts:
         2: markup.underline.blockid.id.asciidoc
         3: punctuation.definition.blockid.end.asciidoc
 
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # block_id:
-  #   comment: |
-  #     A block id (i.e. anchor).
-  #
-  #     Examples:
-  #       [[myid]]
-  #       Lorem ipsum dolor.
-  #   name: meta.tag.blockid.asciidoc
-  #   match: ^(\[\[)([^\[].*)(\]\])\s*$\n?
-  #   captures:
-  #     '1': {name: punctuation.definition.blockid.begin.asciidoc}
-  #     '2': {name: markup.underline.blockid.id.asciidoc}
-  #     '3': {name: punctuation.definition.blockid.end.asciidoc}
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
   ###########
   # BLOCK REQ
@@ -1955,18 +1254,6 @@ contexts:
       scope: constant.linebreak.asciidoc
 
 
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # inline_break:
-  #   comment: |
-  #     Line hard break with a plus sign (+).
-  #
-  #     Examples:
-  #       Rubies are red, +
-  #       Topazes are blue.
-  #   name: constant.linebreak.asciidoc
-  #   match: (?<=\s)\+$\n?
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
-
   ###################
   # LIST CONTINUATION
   ###################
@@ -1982,11 +1269,6 @@ contexts:
     - match: ^\+\s*$\n?
       scope: constant.listcontinuation.asciidoc
 
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # list_continuation:
-  #   name: constant.listcontinuation.asciidoc
-  #   match: ^\+\s*$\n?
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
   ##################
   # BLOCK PAGE BREAK
@@ -2001,17 +1283,6 @@ contexts:
       scope: meta.separator.pagebreak.asciidoc
 
 
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # block_page_break:
-  #   comment: |
-  #     A page break.
-  #
-  #     Examples:
-  #       <<<
-  #       <<<<<
-  #   name: meta.separator.pagebreak.asciidoc
-  #   match: ^<{3,}$\n?
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
   ######################
   # BLOCK THEMATIC BREAK
@@ -2026,17 +1297,6 @@ contexts:
       scope: meta.separator.ruler.asciidoc
 
 
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # block_thematic_break:
-  #   comment: |
-  #     A thematic break (aka horizontal rule).
-  #
-  #     Examples:
-  #       '''
-  #       ''''''
-  #   name: meta.separator.ruler.asciidoc
-  #   match: ^'{3,}$\n?
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
   ##################
   # SECTION TEMPLATE
@@ -2129,35 +1389,6 @@ contexts:
       captures:
         1: punctuation.definition.list_item.asciidoc
 
-# Markdwon scopes:
-#    text.html.markdown.gfm
-#    markup.list.unnumbered.markdown
-#    punctuation.definition.list_item.markdown
-
-      # scope: markup.list.bulleted.asciidoc
-
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # ulist_item_marker:
-  #   comment: |
-  #     Marker of an unordered (bullet) list item.
-  #
-  #     Examples:
-  #       * level 1
-  #       ** level 2
-  #       *** level 3
-  #       **** level 4
-  #       ***** level 5
-  #       - level 1
-  #       -- level 2
-  #       --- level 3
-  #       ---- level 4
-  #       ----- level 5
-  #   name: markup.list.bulleted.asciidoc
-  #   match: ^(\s*(\-|\*{1,5}))\s+(?=\S)
-  #   captures:
-  #     '1': {name: string.unquoted.list.bullet.asciidoc}
-  #     '2': {name: constant.numeric.list.bullet.asciidoc}
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
   ####################
   # COLIST ITEM MARKER
@@ -2296,18 +1527,6 @@ contexts:
         1: punctuation.definition.heading.asciidoc
         2: entity.name.section.asciidoc
 
-  # >>>>>>> Asciidoctor >>>>>>>
-  # match: ^(=) (\w.*)$\n?
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # title_level_0:
-  #   name: markup.heading.level.0.asciidoc
-  #   match: ^(=) (`?\w.*)$\n?                        # <- TWEAKED by @bsmith-n4
-  #   captures:
-  #     '1': {name: punctuation.definition.heading.asciidoc}
-  #     '2': {name: entity.name.section.asciidoc}
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
   title_level_1:
     - match: ^(==) (`?\w.*)$\n?
@@ -2316,18 +1535,6 @@ contexts:
         1: punctuation.definition.heading.asciidoc
         2: entity.name.section.asciidoc
 
-  # >>>>>>> Asciidoctor >>>>>>>
-  #   match: ^(==) (\w.*)$\n?
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # title_level_1:
-  #   name: markup.heading.level.1.asciidoc
-  #   match: ^(==) (`?\w.*)$\n?                       # <- TWEAKED by @bsmith-n4
-  #   captures:
-  #     '1': {name: punctuation.definition.heading.asciidoc}
-  #     '2': {name: entity.name.section.asciidoc}
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
   title_level_2:
     - match: ^(===) (`?\w.*)$\n?
@@ -2336,18 +1543,6 @@ contexts:
         1: punctuation.definition.heading.asciidoc
         2: entity.name.section.asciidoc
 
-  # >>>>>>> Asciidoctor >>>>>>>
-  #   match: ^(===) (\w.*)$\n?
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # title_level_2:
-  #   name: markup.heading.level.2.asciidoc
-  #   match: ^(===) (`?\w.*)$\n?                      # <- TWEAKED by @bsmith-n4
-  #   captures:
-  #     '1': {name: punctuation.definition.heading.asciidoc}
-  #     '2': {name: entity.name.section.asciidoc}
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
   title_level_3:
     - match: ^(====) (`?\w.*)$\n?
@@ -2356,18 +1551,6 @@ contexts:
         1: punctuation.definition.heading.asciidoc
         2: entity.name.section.asciidoc
 
-  # >>>>>>> Asciidoctor >>>>>>>
-  #   match: ^(====) (\w.*)$\n?
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # title_level_3:
-  #   name: markup.heading.level.3.asciidoc
-  #   match: ^(====) (`?\w.*)$\n?                     # <- TWEAKED by @bsmith-n4
-  #   captures:
-  #     '1': {name: punctuation.definition.heading.asciidoc}
-  #     '2': {name: entity.name.section.asciidoc}
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
   title_level_4:
     - match: ^(=====) (`?\w.*)$\n?
@@ -2376,18 +1559,6 @@ contexts:
         1: punctuation.definition.heading.asciidoc
         2: entity.name.section.asciidoc
 
-  # >>>>>>> Asciidoctor >>>>>>>
-  #   match: ^(=====) (\w.*)$\n?
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # title_level_4:
-  #   name: markup.heading.level.4.asciidoc
-  #   match: ^(=====) (`?\w.*)$\n?                    # <- TWEAKED by @bsmith-n4
-  #   captures:
-  #     '1': {name: punctuation.definition.heading.asciidoc}
-  #     '2': {name: entity.name.section.asciidoc}
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
   title_level_5:
     - match: ^(======) (`?\w.*)$\n
@@ -2396,18 +1567,6 @@ contexts:
         1: punctuation.definition.heading.asciidoc
         2: entity.name.section.asciidoc
 
-  # >>>>>>> Asciidoctor >>>>>>>
-  #   match: ^(======) (\w.*)$\n?
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # title_level_5:
-  #   name: markup.heading.level.5.asciidoc
-  #   match: ^(======) (`?\w.*)$\n?                   # <- TWEAKED by @bsmith-n4
-  #   captures:
-  #     '1': {name: punctuation.definition.heading.asciidoc}
-  #     '2': {name: entity.name.section.asciidoc}
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 #*******************************************************************************
 #                                                                              *
