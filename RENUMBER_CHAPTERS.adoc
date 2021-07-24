@@ -1,0 +1,47 @@
+= AsciiDoc: Renumber Chapters
+
+The "`AsciiDoc: Renumber Chapters`" command is used to adjust numbered chapter headings.
+There are two use cases for this:
+
+. A manuscript has existing numbers in the chapter headings (== Chapter 9: Saving the Cat), but a chapter has been moved/deleted/added.
+. The chapter headings are not yet numbered (== Saving the Cat), but the author wishes them to be.
+
+This command can be invoked via the Command Palette (`ctrl-shift-P`): "`AsciiDoc: Renumber Chapters`".
+It can also be invoked via the Tools menu: `Tools` > `AsciiDoc` > `Renumber Chapters`.
+(There is no predefined key shortcut, since this command is not used that often, but one can certainly be defined.)
+
+This tool works automatically.
+There is no configuration.
+
+== Numbering Options
+
+* Rendered as numbers ("== Chapter 99" or just "== 99")
+* Rendered as words ("== Chapter Ninety Nine" or just "== Ninety Nine")
+
+Specifically, the word "Chapter" is optional, and it's the only word that may be used (spelled out).
+
+== Descriptive Titles
+
+If the number is followed by a colon and a descriptive title, that will be preserved
+(e.g. "== Chapter 9: Saving the Cat" will become "== Chapter 8: Saving the Cat").
+
+== How the Format is Determined
+
+. The tool looks at every chapter heading line (starting with exactly two equal signs).
+. It first looks for the optional word "chapter" (any case).
+. It then looks for a number (all digits) or some text that might be a spelled-out number (letters, hyphens, and/or spaces).
+. This has to be followed by a colon or the end of the line.
+
+If it matches this pattern, then it will be renumbered.
+If not, then the line is ignored (as if it was plain text).
+
+* If the word "chapter" is there, then it will be preserved (but converted to title case, "Chapter").
+* If the number was all digits, then the new number will be digits.
+* Otherwise, the number will be spelled out (in title case).
+* Any colon and whatever follows will be preserved as is (same casing).
+
+== Changing from Unnumbered to Numbered
+
+If the manuscript chapter headings are not currently numbered and the author wishes them to be, simply perform a search-and-replace on "\^== " and change it to "== Chapter 1: ", "== Chapter Umteen: ", "== 1: ", or "== Umteen: ".
+Then run the tool.
+

@@ -1,3 +1,4 @@
 [
-  { "caption": "AsciiDoc: Fix Up Converted Prose","command": "asciidoc_prose_fixup" }
+  { "caption": "AsciiDoc: Fix Up Converted Prose","command": "asciidoc_prose_fixup" },
+  { "caption": "AsciiDoc: Renumber Chapters","command": "asciidoc_renumber_chapters" }
 ]

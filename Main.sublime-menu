@@ -8,6 +8,9 @@
         "mnemonic": "A",
         "children": [
           {
+            "caption": "Renumber Chapters",
+            "command": "asciidoc_renumber_chapters" },
+          {
             "caption": "Fix Up Converted Prose",
             "command": "asciidoc_prose_fixup"
           }
