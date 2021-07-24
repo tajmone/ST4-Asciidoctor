@@ -1,6 +1,22 @@
 [
   {
-    "caption": "Preferences",
+    "id": "tools",
+    "children": [
+      {
+        "caption": "AsciiDoc",
+        "id": "asciidoc-tools",
+        "mnemonic": "A",
+        "children": [
+          {
+            "caption": "Fix Up Converted Prose",
+            "command": "asciidoc_prose_fixup"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "preferences",
     "children": [
       {
         "caption": "Package Settings",
@@ -24,8 +40,6 @@
         "id": "package-settings",
         "mnemonic": "P"
       }
-    ],
-    "id": "preferences",
-    "mnemonic": "n"
+    ]
   }
 ]
