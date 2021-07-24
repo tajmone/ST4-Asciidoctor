@@ -1,0 +1,6 @@
+<snippet>
+  <description>HTTP Link</description>
+  <content><![CDATA[https://${1:$SELECTION}.com[] $0]]></content>
+  <tabTrigger>http</tabTrigger>
+  <scope>text.asciidoc</scope>
+</snippet>
