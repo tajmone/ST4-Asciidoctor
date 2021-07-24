@@ -110,6 +110,7 @@ For the above reasons, it's possible that during the Alpha stage various syntax 
 | Table              | `= `<kbd>Tab</kbd>                        |
 
 
+(In case you are not familiar, the Button and Keyboard Shortcut snippets are for in-line macros that render the text to resemble UI buttons and keycaps, respectively.)
 
 ## Others
 

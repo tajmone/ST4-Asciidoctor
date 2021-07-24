@@ -17,6 +17,9 @@ ___*.*
 *.lnk
 *.url
 
+# The backup file of a color scheme (before all of the "col..." rules are auto-generated).
+*.chback
+
 #########################
 ## USER-SPECIFIC FILES ##
 #########################
