@@ -1,0 +1,51 @@
+= AsciiDoc: Fix Up Converted Prose
+
+The "`AsciiDoc: Fix Up Converted Prose`" command is used to clean up a manuscript that has been converted to AsciiDoc, e.g. by PanDoc.
+For example:
+
+`pandoc --from=docx --to=asciidoc --wrap=none --atx-headers --extract-media=extracted-media The_Manuscript.docx > The_Manuscript.adoc`
+
+This command can be invoked via the Command Palette (`ctrl-shift-P`): "`AsciiDoc: Fix Up Converted Prose`".
+It can also be invoked via the Tools menu: `Tools` > `AsciiDoc` > `Fix Up Converted Prose`.
+(There is no predefined key shortcut, since this command is not used that often, but one can certainly be defined.)
+
+NOTE: This tool is *intended for prose* (fiction or nonfiction).
+It may or may not be appropriate for technical writing or other documents.
+
+IMPORTANT: Make a copy of the manuscript before running this command.
+Then, *compare the original file to the fixed-up one* to make sure every change is proper.
+
+TIP: On Windows, download the free WinMerge program to do the comparison.
+It makes it simple to navigate between differences (alt-down-arrow/alt-up-arrow).
+To revert a particular difference, just press alt-right-arrow (if the original is on the left), or alt-left-arrow (if the original is on the right).
+
+This command performs over 20 operations.
+Sorry, but there is no configuration for this.
+It's all-or-nothing.
+So, see above regarding using a compare tool to inspect and/or revert the resulting changes, one by one.
+
+* *White Space*
+** Removes all leading spaces and trailing spaces from every line.
+** Changes tabs to a single space.
+** Collapses multiple spaces to just one space.
+* *Punctuation*
+** Converts ellipses and m-dashes to AsciiDoc syntax.
+** Ensures that all m-dashes are represented by exactly 2 dashes.
+** AsciiDoctor can't handle the normal m-dash notation at the end of a quotation, so an html entity is used instead.
+** Ensures exactly one space before and after ellipses and m-dashes that are mid-sentence (between words).
+** Undoes Word-style smart quotes, making sure to distinguish a possessive apostrophe from a closing quote.
+** Smartens dumb quotes (i.e. using AsciiDoc typographic quote notation).
+* *Lists*
+** Ensures bullet point syntax (exactly one space following).
+* *Paragraphs*
+** Breaks up paragraphs so that each sentence is on its own line (for version control support).
+** Converts scene breaks using ``#``s or ``*``s to the AsciiDoc horizontal-rule syntax.
+* *Anchors*
+** Replaces Word-style figure captions with AsciiDoc block ID and block title syntax.
+** Replaces Word-style references to figures with AsciiDoc xref syntax.
+** Deletes any block IDs automatically inserted (by PanDoc).
+* *Common Manuscript Errors*
+** Fixes misplaced commas near parentheticals.
+** Fixes transposed end-of-quotation punctuation -- i.e. moves the punctuation to inside the quotes.
+* *Misc.*
+** Converts HTML Entities to AsciiDoc attribute notation.
