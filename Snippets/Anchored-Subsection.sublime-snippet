@@ -1,0 +1,9 @@
+<snippet>
+   <description>Anchored Subsection</description>
+   <content><![CDATA[[[${1/( )|([A-Z])|([^-0-9a-z])/(?1-:)(?2\l$2:)(?3:)/g}]]
+=== ${1:term}
+
+$0]]></content>
+   <tabTrigger>[[</tabTrigger>
+   <scope>text.asciidoc</scope>
+</snippet>

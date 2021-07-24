@@ -108,8 +108,31 @@ For the above reasons, it's possible that during the Alpha stage various syntax 
 | Section Title 1–5  | `h1` <kbd>Tab</kbd> … `h5` <kbd>Tab</kbd> |
 | Sidebar block      |                                           |
 | Table              | `= `<kbd>Tab</kbd>                        |
+| Anchored Subsection| `[[` <kbd>Tab</kbd>                       |
+| Anchor Reference   | `<<` <kbd>Tab</kbd>                       |
 
 
+### Anchored Subsection 
+
+This snippet ensures that your anchor names properly conform (lower-case, no spaces).
+
+Type this: `[[` <kbd>Tab</kbd> Navigable Text
+
+And you get this:
+```
+    [[navigable-text]]
+    === Navigable Text
+```
+
+
+### Anchor Reference 
+
+Type this: `<<` <kbd>Tab</kbd> Navigable Text
+
+And you get this:
+```
+    <<navigable-text,Navigable Text>>
+```
 
 ## Others
 
