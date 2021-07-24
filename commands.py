@@ -73,7 +73,7 @@ class AsciidocRunCommandsCommand(TextCommand):
 
 
 class AsciidocProseFixupCommand(TextCommand):
-    """ 
+    """
     Cleans up a manuscript that has been converted to AsciiDoc, e.g. by PanDoc...
 
     pandoc --from=docx --to=asciidoc --wrap=none --atx-headers --extract-media=extracted-media $FILENAME.docx > $FILENAME..adoc
@@ -155,13 +155,13 @@ class AsciidocProseFixupCommand(TextCommand):
         txt = re.sub(r'`"(,|\.|\?|\!)', "\\1`\"", txt)
         txt = re.sub(r"`'(,|\.|\?|\!)", "\\1`'", txt)
 
-        # Fix misplaced commas near parentheticals 
+        # Fix misplaced commas near parentheticals
         txt = re.sub(r",( *\([^)]*?\))", "\\1,", txt)
 
         # One sentence per line -- allowing for closing quotes and closing italics
         txt = re.sub(r'(\.|\?|\!)(`?["\']?)(_?) +([^a-z])', "\\1\\2\\3\n\\4", txt)
 
-        # Fix false line breaks after abbreviations, single initials and ellipses 
+        # Fix false line breaks after abbreviations, single initials and ellipses
         txt = re.sub(r'(Mrs?|Ms|Drs?|Prof|\baka|\bp|\badj|\bn|\bv|a\.k\.a|e\.g|\bvs|\best|i\.e|P\.O| [A-Z]| \.\.)\. *\n', '\\1. ', txt, flags=re.MULTILINE)
 
         # HTML Entities to Attributes
@@ -175,4 +175,3 @@ class AsciidocProseFixupCommand(TextCommand):
         txt = re.sub(r' *-- *`"', '{mdash}`"', txt)
 
         self._update_file(txt)
-        
