@@ -112,7 +112,7 @@ For the above reasons, it's possible that during the Alpha stage various syntax 
 | Anchor Reference   | `<<` <kbd>Tab</kbd>                       |
 
 
-### Anchored Subsection 
+### Anchored Subsection
 
 This snippet ensures that your anchor names properly conform (lower-case, no spaces).
 
@@ -125,7 +125,7 @@ And you get this:
 ```
 
 
-### Anchor Reference 
+### Anchor Reference
 
 Type this: `<<` <kbd>Tab</kbd> Navigable Text
 
@@ -343,3 +343,4 @@ THE SOFTWARE.
 [Asciidoctor Project]: https://github.com/asciidoctor "View the Asciidoctor Project's profile on GitHub"
 
 <!-- EOF -->
+
