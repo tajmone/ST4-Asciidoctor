@@ -104,7 +104,7 @@ For the above reasons, it's possible that during the Alpha stage various syntax 
 | Keyboard Shortcut  | `kbd` <kbd>Tab</kbd>                      |
 | Listing Block      | `--` <kbd>Tab</kbd>                       |
 | Passthrough Block  |                                           |
-| Quote Block        | `__` <kbd>Tab</kbd>                       |
+| Quote Block        | `__` <kbd>Tab</kbd> or `""` <kbd>Tab</kbd> |
 | Section Title 1–5  | `h1` <kbd>Tab</kbd> … `h5` <kbd>Tab</kbd> |
 | Sidebar block      |                                           |
 | Table              | `= `<kbd>Tab</kbd>                        |
