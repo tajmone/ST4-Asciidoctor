@@ -67,8 +67,10 @@ Spanning multiple lines.` Normal text.
 =======================================
 `a very long monospace.
 Spanning multiple lines.` Normal text.
-// <-^^^^^^^^^^^^^^^^^^^^  meta.literalinner.single
-// <-^^^^^^^^^^^^^^^^^^^   string.other.literal.single
+// <-                      meta.literalinner.single
+//^^^^^^^^^^^^^^^^^^^^^^^  meta.literalinner.single
+// <-                      string.other.literal.single
+//^^^^^^^^^^^^^^^^^^^^^^   string.other.literal.single
 //                      ^  punctuation.definition.literal.single.end
 //                       ^^^^^^^^^^^^^^  - meta.literalinner.single
 =======================================

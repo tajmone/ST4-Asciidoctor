@@ -39,14 +39,18 @@
 
 
 ===== Level 4 Section Title
-//<-^ markup.heading.level.4
-//<-^ punctuation.definition.heading
+//<-  markup.heading.level.4
+//^^^ markup.heading.level.4
+//<-  punctuation.definition.heading
+//^^^ punctuation.definition.heading
 //    ^^^^^^^^^^^^^^^^^^^^^ entity.name.section
 
 
 ====== Level 5 Section Title
-//<-^^ markup.heading.level.5
-//<-^^ punctuation.definition.heading
+//<-   markup.heading.level.5
+//^^^^ markup.heading.level.5
+//<-   punctuation.definition.heading
+//^^^^ punctuation.definition.heading
 //     ^^^^^^^^^^^^^^^^^^^^^ entity.name.section
 
 // EOF //

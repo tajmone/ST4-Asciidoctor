@@ -16,38 +16,41 @@ https://asciidoctor.org/docs/user-manual/#using-attributes-set-assign-and-refere
 
 
 :sectnums:
-//<-^^^^^^   meta.attributeentry
+//<-         meta.attributeentry
+//^^^^^^^^   meta.attributeentry
 //^^^^^^^    support.variable.attribute
 //<-         punctuation.definition.attributeentry.attrname.begin
 //       ^   punctuation.definition.attributeentry.attrname.end
-//<-     ^  -support.variable.attribute
+//<-        -support.variable.attribute
+//       ^  -support.variable.attribute
 
 :toc: left
-//<-^^^^^^   meta.attributeentry
+//<-         meta.attributeentry
+//^^^^^^^^   meta.attributeentry
 //    ^^^^   meta.attributeentry.value
 //<-^^      -meta.attributeentry.value
 
 :experimental!:
-//<-^^^^^^^^^^    meta.attributeentry
+//<-              meta.attributeentry
+//^^^^^^^^^^^^    meta.attributeentry
 //^^^^^^^^^^^     support.variable.attribute
 //<-              punctuation.definition.attributeentry.attrname.begin
 //            ^   punctuation.definition.attributeentry.attrname.end
-//<-          ^  -support.variable.attribute
+//<-             -support.variable.attribute
+//            ^  -support.variable.attribute
 //           ^    punctuation.definition.attributeentry.unset
 
 WARNING: Ignore the garbage below (required to test some elements in the source file)...
 
 :!linkattrs:
-//<-^^^^^^^^   meta.attributeentry
+//<-           meta.attributeentry
+//^^^^^^^^^^   meta.attributeentry
 //^^^^^^^^^    support.variable.attribute
 //<-           punctuation.definition.attributeentry.attrname.begin
 //         ^   punctuation.definition.attributeentry.attrname.end
-//<-       ^  -support.variable.attribute
+//<-          -support.variable.attribute
+//         ^  -support.variable.attribute
  //<-          punctuation.definition.attributeentry.unset
-
-
-
-
 
 
 // EOF //

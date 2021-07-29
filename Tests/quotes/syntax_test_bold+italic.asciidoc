@@ -61,8 +61,10 @@ Spanning multiple lines.__ Normal text.
 =======================================
 Example: __a very long italic text.
 Spanning multiple lines.__ Normal text.
-// <-^^^^^^^^^^^^^^^^^^^^^  meta.italicinner.double
-// <-^^^^^^^^^^^^^^^^^^^    markup.italic.double
+// <-                       meta.italicinner.double
+//^^^^^^^^^^^^^^^^^^^^^^^^  meta.italicinner.double
+// <-                       markup.italic.double
+//^^^^^^^^^^^^^^^^^^^^^^    markup.italic.double
 //                      ^^  punctuation.definition.italic.double.end
 //                        ^^^^^^^^^^^^^^  - meta.italicinner.double
 =======================================
@@ -82,8 +84,10 @@ Spanning multiple lines.** Normal text.
 =======================================
 Example: **a very long bold text.
 Spanning multiple lines.** Normal text.
-// <-^^^^^^^^^^^^^^^^^^^^^  meta.boldinner.double
-// <-^^^^^^^^^^^^^^^^^^^    markup.bold.double
+// <-                       meta.boldinner.double
+//^^^^^^^^^^^^^^^^^^^^^^^^  meta.boldinner.double
+// <-                       markup.bold.double
+//^^^^^^^^^^^^^^^^^^^^^^    markup.bold.double
 //                      ^^  punctuation.definition.bold.double.end
 //                        ^^^^^^^^^^^^^^  - meta.boldinner.double
 =======================================

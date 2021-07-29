@@ -68,8 +68,10 @@ Spanning multiple lines._ Normal text.
 ======================================
 _A very long italic text.
 Spanning multiple lines._ Normal text.
-// <-^^^^^^^^^^^^^^^^^^^^  meta.italicinner.single
-// <-^^^^^^^^^^^^^^^^^^^   markup.italic.single
+// <-                      meta.italicinner.single
+//^^^^^^^^^^^^^^^^^^^^^^^  meta.italicinner.single
+// <-                      markup.italic.single
+//^^^^^^^^^^^^^^^^^^^^^^   markup.italic.single
 //                      ^  punctuation.definition.italic.single.end
 //                       ^^^^^^^^^^^^^^  - meta.italicinner.single
 ======================================
@@ -164,7 +166,8 @@ __italics with**bold** and``monospaced`` inside__it.
 
 ===================================================
 __italics with**bold** and``monospaced`` inside__it.
-// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.italicinner.double
+// <-                                             meta.italicinner.double
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.italicinner.double
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   markup.italic.double
 //            ^^^^^^^^                            meta.boldinner.double
 //                        ^^^^^^^^^^^^^^          meta.literalinner.double

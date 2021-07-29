@@ -16,7 +16,8 @@ A paragraph with a custom ID anchor.
 [.big.red]*Result*
 
 [[my_id]]
-//<-^^^^^ meta.tag.blockid
+//<-      meta.tag.blockid
+//^^^^^^^ meta.tag.blockid
 //^^^^^   markup.underline.blockid.id
 //<-      punctuation.definition.blockid.begin
 //     ^^ punctuation.definition.blockid.end

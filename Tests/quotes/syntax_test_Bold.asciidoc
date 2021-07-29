@@ -68,8 +68,10 @@ Spanning multiple lines.* Normal text.
 ======================================
 *A very long bold text.
 Spanning multiple lines.* Normal text.
-// <-^^^^^^^^^^^^^^^^^^^^  meta.boldinner.single
-// <-^^^^^^^^^^^^^^^^^^    markup.bold.single
+// <-                      meta.boldinner.single
+//^^^^^^^^^^^^^^^^^^^^^^^  meta.boldinner.single
+// <-                      markup.bold.single
+//^^^^^^^^^^^^^^^^^^^^^    markup.bold.single
 //                      ^  punctuation.definition.bold.single.end
 //                       ^^^^^^^^^^^^^^  - meta.boldinner.single
 ======================================
@@ -164,7 +166,8 @@ Testing *bold with _italics_ and `monospaced` inside it.*
 
 ===================================================
 **bold with__italics__ and``monospaced`` inside**it.
-// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.boldinner.double
+// <-                                             meta.boldinner.double
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.boldinner.double
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   markup.bold.double
 //         ^^^^^^^^^^^                            meta.italicinner.double
 //                        ^^^^^^^^^^^^^^          meta.literalinner.double
