@@ -1,0 +1,521 @@
+= AsciiDoc Examples That Demonstrate Syntax Highlighting
+
+// This example is heavily based on
+// https://github.com/powerman/asciidoc-cheatsheet/blob/master/full.adoc
+Author Name <author.email@example.com>
+:Revision: 1.0
+:Some-Attribute: Some value
+:toc:
+:toclevels: 1
+
+toc::[]
+
+
+
+== Attributes
+
+Author is "{author}" with email <{email}>,
+some attribute's value is {someattribute}.
+
+// Any line with an unknown attribute is removed.
+Line with attribute like {nosuchattribute}.
+
+Escaped: \{author} and +++{author}+++
+
+
+
+== Headers
+
+== Level 1
+Text.
+
+=== Level 2
+Text.
+
+==== Level 3
+Text.
+
+===== Level 4
+Text.
+
+
+
+IMPORTANT: This syntax definition does not recognize the following old-style headings, and in fact chokes on them:
+
+....
+=Level 1
+-------
+Text.
+
+Level 2
+~~~~~~~
+Text.
+
+Level 3
+^^^^^^^
+Text.
+
+Level 4
++++++++
+Text.
+....
+
+
+
+== Horizontal Rule:
+
+''''
+
+
+
+== Paragraphs
+
+.Optional Title
+Usual
+paragraph.
+
+Second paragraph.
+
+.Optional Title
+ Literal paragraph.
+  Must be indented.
+
+.Optional Title
+[source,perl]
+die 'connect: '.$dbh->errstr;
+
+Not a code in next paragraph.
+
+
+
+== Admonitions
+
+// Type of admonition (NOTE/TIP/…) should be
+// shown as an icon, not as text.
+.Optional Title
+NOTE: This is an example
+      single-paragraph note.
+
+.Optional Title
+[NOTE]
+This is an example
+single-paragraph note.
+
+TIP: Some tip text.
+
+IMPORTANT: Some important text.
+
+WARNING: Some warning text.
+
+CAUTION: Some caution text.
+
+
+
+== Blocks
+
+.Optional Title for Listing Block
+----
+*Listing* Block
+
+Use: code or file listings
+----
+
+.Optional Title for Source Code Block
+[source,perl]
+----
+# *Source* block
+# Use: highlight code listings
+# (require `source-highlight` or `pygmentize`)
+use DBI;
+my $dbh = DBI->connect('...',$u,$p)
+    or die "connect: $dbh->errstr";
+----
+
+.Optional Title for Sidebar Block
+****
+*Sidebar* Block
+
+Use: sidebar notes :)
+****
+
+.Optional Title for Example Block
+==========================
+*Example* Block
+
+Use: examples :)
+==========================
+
+// Example caption removed
+[caption="Custom: "]
+==========================
+Default caption "Example:"
+can be changed.
+==========================
+
+.Optional Title for Example Block Used as Admonition
+[NOTE]
+===============================
+*NOTE* Block
+
+Use: multi-paragraph notes.
+===============================
+
+////
+*Comment* block
+
+Use: hide comments
+////
+
+++++
+*Passthrough* Block
+<p>
+Use: backend-specific markup like
+<table border="1">
+<tr><td>1</td><td>2</td></tr>
+</table>
+++++
+
+.Optional Title for Literal Block
+....
+*Literal* Block
+
+Use: workaround when literal
+paragraph (indented) like
+  1. First.
+  2. Second.
+incorrectly processed as list.
+....
+
+.Optional Title for Quote Block
+[quote, cite author, cite source]
+____
+*Quote* Block
+
+Use: cite somebody
+____
+
+
+
+== Text
+(with "`constrained formatting`")
+
+This paragraph has a forced +
+line break.
+
+normal, _italic_, *bold*, +mono+.
+
+"`double quoted`", '`single quoted`'.
+
+normal, ^super^, ~sub~.
+
+Command: `ls -al`
+
++mono with *bold*+
+
+`passthrough with *bold*`
+
+Path: '/some/filez.txt', '.b'
+
+[red]#red text# [yellow-background]#on yellow#
+[big]#large# [red yellow-background big]*all bold*
+
+
+
+== Characters
+(with "`unconstrained formatting`")
+
+n__i__**b**++m++[red]##r##
+
+(C) (R) (TM) -- ... -> <- => <= &#182;
+
+=== Escaped
+
+\_italic_, +++_italic_+++,
+
++++<b>bold</b>+++, $$<b>normal</b>$$
+
+\&#182;
+
+
+
+== Macros: links, images & include
+
+If you'll need to use space in url/path you should replace it with %20.
+
+[[anchor-1]]
+Paragraph or block 1.
+
+
+<<anchor-1>>,
+<<anchor-1,First anchor>>,
+xref:anchor-2[],
+xref:anchor-2[Second anchor].
+
+
+link:README.adoc[This document]
+link:README.adoc[]
+link:/[This site root]
+
+
+
+http://google.com
+http://google.com[Google Search]
+mailto:root@localhost[email admin]
+
+
+
+First home
+image:images/icons/home.png[]
+, second home
+image:images/icons/home.png[Alt text]
+.
+
+.Block image
+image::images/icons/home.png[]
+image::images/icons/home.png[Alt text]
+
+.Thumbnail linked to full image
+image:/images/font/640-screen2.gif[
+"My screenshot",width=128,
+link="/images/font/640-screen2.gif"]
+
+This is example how files
+can be included.
+
+include::footer.txt[]
+
+[source,perl]
+----
+include::script.pl[]
+----
+
+
+
+== Lists
+
+.Bulleted
+* bullet
+* bullet
+  - bullet
+  - bullet
+* bullet
+** bullet
+** bullet
+*** bullet
+*** bullet
+**** bullet
+**** bullet
+***** bullet
+***** bullet
+**** bullet
+*** bullet
+** bullet
+* bullet
+
+.Bulleted 2
+- bullet
+  * bullet
+
+.Ordered
+. number
+. number
+  .. letter
+  .. letter
+. number
+.. loweralpha
+.. loweralpha
+... lowerroman
+... lowerroman
+.... upperalpha
+.... upperalpha
+..... upperroman
+..... upperroman
+.... upperalpha
+... lowerroman
+.. loweralpha
+. number
+
+.Ordered 2
+a. letter
+b. letter
+   .. letter2
+   .. letter2
+       .  number
+       .  number
+           1. number2
+           2. number2
+           3. number2
+           4. number2
+       .  number
+   .. letter2
+c. letter
+
+.Labeled
+Term 1::
+    Definition 1
+Term 2::
+    Definition 2
+    Term 2.1;;
+        Definition 2.1
+    Term 2.2;;
+        Definition 2.2
+Term 3::
+    Definition 3
+Term 4:: Definition 4
+Term 4.1::: Definition 4.1
+Term 4.2::: Definition 4.2
+Term 4.2.1:::: Definition 4.2.1
+Term 4.2.2:::: Definition 4.2.2
+Term 4.3::: Definition 4.3
+Term 5:: Definition 5
+
+.Labeled 2
+Term 1;;
+    Definition 1
+    Term 1.1::
+        Definition 1.1
+
+[horizontal]
+.Labeled horizontal
+Term 1:: Definition 1
+Term 2:: Definition 2
+[horizontal]
+    Term 2.1;;
+        Definition 2.1
+    Term 2.2;;
+        Definition 2.2
+Term 3::
+    Definition 3
+Term 4:: Definition 4
+[horizontal]
+Term 4.1::: Definition 4.1
+Term 4.2::: Definition 4.2
+[horizontal]
+Term 4.2.1:::: Definition 4.2.1
+Term 4.2.2:::: Definition 4.2.2
+Term 4.3::: Definition 4.3
+Term 5:: Definition 5
+
+[qanda]
+.Q&A
+Question 1::
+    Answer 1
+Question 2:: Answer 2
+
+.Break between two lists
+. number
+. number
+
+Independent paragraph break list.
+
+. number
+
+.Using an Optional Header Starts a New List, Too
+. number
+
+--
+. List block define list boundary too
+. number
+. number
+--
+
+--
+. number
+. number
+--
+
+.Continuation
+- bullet
+continuation
+. number
+  continuation
+* bullet
+
+  literal continuation
+
+.. letter
++
+Non-literal continuation.
++
+----
+any block can be
+
+included in list
+----
++
+Last continuation.
+
+
+
+.Using a List Block Allows a Sublist to be Included
+- bullet
+  * bullet
++
+--
+    - bullet
+      * bullet
+--
+  * bullet
+- bullet
+  . number
+    .. letter
++
+--
+      . number
+        .. letter
+--
+    .. letter
+  . number
+
+
+
+== Tables
+
+You can fill table from CSV file using +include::+ macros inside table.
+
+.An example table
+[options="header,footer"]
+|=======================
+|Col 1|Col 2      |Col 3
+|1    |Item 1     |a
+|2    |Item 2     |b
+|3    |Item 3     |c
+|6    |Three items|d
+|=======================
+
+.CSV data, 15% each column
+[format="csv",width="60%",cols="4"]
+[frame="topbot",grid="none"]
+|======
+1,2,3,4
+a,b,c,d
+A,B,C,D
+|======
+
+[grid="rows",format="csv"]
+[options="header",cols="^,<,<s,<,>m"]
+|===========================
+ID,FName,LName,Address,Phone
+1,Vasya,Pupkin,London,+123
+2,X,Y,"A,B",45678
+|===========================
+
+
+
+.Multiline cells, row/col span
+|====
+|Date |Duration |Avg HR |Notes
+
+|22-Aug-08 .2+^.^|10:24 | 157 |
+Worked out MSHR (max sustainable
+heart rate) by going hard
+for this interval.
+
+|22-Aug-08 | 152 |
+Back-to-back with previous interval.
+
+|24-Aug-08 3+^|none
+
+|====
+
+
