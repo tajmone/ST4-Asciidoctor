@@ -162,6 +162,8 @@ You should therefore install it manually, via Git:
 
 3. Restart SublimeText.
 
+> __NOTE__ — The thus installed package won't self update, you'll have to manually run a `git pull` in the package folder, or come up with some automated scripted solution to do so.
+
 
 # Credits
 
@@ -194,6 +196,14 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ```
+
+
+<!-- MarkdownTOC:excluded -->
+## asciispec-sublime
+
+Some syntax improvements were also taken from [Brian Thomas Smith]'s own fork of the original repository:
+
+- https://github.com/bsmith-n4/asciispec-sublime
 
 
 <!-- MarkdownTOC:excluded -->
@@ -335,10 +345,12 @@ THE SOFTWARE.
 [Ashwin Shenoy]: https://forum.sublimetext.com/u/UltraInstinct05 "View Ashwin Shenoy's Sublime Forum profile"
 [Brett Terpstra]: https://brettterpstra.com "Visit Brett Terpstra's website"
 [Brian Thomas Smith]: https://github.com/bsmith-n4 "View Brian Thomas Smith's GitHub profile"
+[Brian Thomas Smith]: https://github.com/bsmith-n4 "View Brian Thomas Smith's GitHub profile"
 [Jakub Jirutka]: https://github.com/jirutka "View Jakub Jirutka's GitHub profile"
 [Keith Hall]: https://forum.sublimetext.com/u/kingkeith "View Keith Hall's Sublime Forum profile"
 [Matt Neuburg]: https://github.com/mattneub "View Matt Neuburg's GitHub profile"
 [Raoul Wols]: https://forum.sublimetext.com/u/rwols "View Raoul Wols's Sublime Forum profile"
+
 
 [Asciidoctor Project]: https://github.com/asciidoctor "View the Asciidoctor Project's profile on GitHub"
 
