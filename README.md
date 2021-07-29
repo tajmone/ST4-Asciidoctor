@@ -45,37 +45,38 @@ At a high level, this package offers:
 
 ## Project Status
 
-This my personal fork of the __[sublimetext-asciidoc]__ package from the [Asciidoctor Project], created by [Matt Neuburg] and [Jakub Jirutka]:
+This is a fork of the __[sublimetext-asciidoc]__ package from the [Asciidoctor Project], created by [Matt Neuburg] and [Jakub Jirutka]:
 
 - https://github.com/asciidoctor/sublimetext-asciidoc
 
-The original package didn't perform too well, frequently breaking up documents highlighting in various common use cases.
-The upstream repository has been stale since August 2015, and various third party pull requests with fixes to the known problems were never merged.
-
+The original package is buggy, and that repository has not been maintained (stale since August 2015).
+Numerous pull requests with fixes to some of the known problems were never merged.
 Furthermore, the original package uses the old `.tmLanguage` syntax format.
 
-
-This package is a "usable Alpha".
-It's usable since I actually use it every day to work on big sized AsciiDoc projects, but it's still in its Alpha stage since I might arbitrarily change the scopes naming convention at any time.
+This fork addresses all of that.
+This is currently considered a "usable alpha" (as of early 2021).
+Indeed, it's used daily on large, complicated AsciiDoc projects.
+The "alpha" status merely reflects that implementation details are subject to change (e.g. how the syntax scopes are named).
 
 Here's a brief summary of how the original package was improved so far:
 
 - The AsciiDoc syntax was ported from the old `.tmLanguage` syntax format of __Sublime Text 2__ to the `.sublime-syntax` format of __Sublime Text 3__.
-- Before migrating to the `.sublime-syntax` format, I've integrated some third party fixes to know problems, which I found in other forks of the upstream repository (see [Credits section] further break-downs).
-- I've added syntax tests to spot broken features and monitor syntax integrity during development.
-- I've either fixed or temporarily disabled the markup elements that were breaking up documents.
+(Before migrating, several third party fixes to known problems found in other forks were incorporated. See [Credits section].)
+- A suite of syntax tests were added to maintain integrity during development.
+- Poorly handled syntax highlighting (for certain markup elements) have either been fixed or disabled.
 
 ## Goals
 
-Since I work with AsciiDoc on a daily basis, I need a package that I can rely on, which doesn't break up a document when I use certain markup elements in a same context, or because some special characters are being wrongly parsed as markup formatting.
+1. *Not settling for a poor syntax-highlighting implementation.* The old (`.tmLanguage`) syntax definition often misinterpreted perfectly valid syntax as being something else. This would cause the highlighting to go wonky part-way through the document.
+So markup features that were causing trouble have been disabled here, because "less is more" when having to chose between feature richness and features that actually work.
 
-I was tired of having to resort to horrible hacks to prevent documents break down just because the original syntax was parsing special characters like `*`, `_` or `^` as opening quoting markers, for which there was no closing delimiter, when they were used for other legitimate markup purposes.
+2. *To reach enough maturity to warrant becoming a full-fledged package hosted on [Package Control].*
+Unless and until somebody surprises the AsciiDoc community by releasing an AsciiDoc [language server], this package will have to suffice.
 
-So I've opted to temporary disable any markup features which were causing trouble, because "less is more" when you have to chose between feature richness and features that actually work without breaking documents in real usage scenarios.
+3. *To encourage adoption and feedback,* by providing excellent documentation and responsive support.
 
-My main goal is just to have a reliable AsciiDoc syntax which I can use in my daily work; I don't yet know if this project will ever reach maturity and become a full-fledged package hosted on [Package Control].
-I keep hoping that one day someone will surprise the AsciiDoc community by releasing an AsciiDoc [language server] — which I believe it's the only viable way to implement a reliable and feature-rich AsciiDoc package.
-In the meantime, I'll keep doing my best to improve this package, hoping that third parties might join in and contribute to its growth.
+4. *To encourage contributions.* Lively discussions are taking place in https://github.com/tajmone/ST3-Asciidoctor/discussions and https://github.com/tajmone/ST3-Asciidoctor/issues.
+
 
 ## Issues
 
