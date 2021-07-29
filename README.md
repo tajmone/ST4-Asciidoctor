@@ -1,6 +1,6 @@
-# Asciidoctor Package for SublimeText 3
+# Asciidoctor Package for SublimeText 3 and 4
 
-Adds [AsciiDoc] support to [SublimeText 3], targeting [Asciidoctor].
+Adds [AsciiDoc] support to [SublimeText 3] and 4, targeting [Asciidoctor].
 
 - https://github.com/tajmone/ST3-Asciidoctor
 
@@ -15,9 +15,12 @@ Adds [AsciiDoc] support to [SublimeText 3], targeting [Asciidoctor].
     - [Goals](#goals)
     - [Issues](#issues)
 - [Features](#features)
+    - [File Associations](#file-associations)
+    - [Syntax Highlighting](#syntax-highlighting)
     - [Keymaps](#keymaps)
     - [Snippets](#snippets)
-    - [Others](#others)
+    - [Symbol Lists](#symbol-lists)
+    - [Completions](#completions)
 - [Installation](#installation)
 - [Credits](#credits)
 - [Acknowledgments](#acknowledgments)
@@ -31,6 +34,17 @@ Adds [AsciiDoc] support to [SublimeText 3], targeting [Asciidoctor].
 
 # About
 
+This is a SublimeText plug-in (package) that enhances the experience of writing documents using AsciiDoc (AsciiDoctor) markup.
+At a high level, this package offers:
+
+- Syntax Highlighting (with customizable color schemes)
+- A (growing) library of snippets to save on typing common elements
+- A (growing) library of commands that do some "heavy lifting"
+- Configuration settings that tell SublimeText how to best work with AsciiDoc (e.g. file associations).
+
+
+## Project Status
+
 This my personal fork of the __[sublimetext-asciidoc]__ package from the [Asciidoctor Project], created by [Matt Neuburg] and [Jakub Jirutka]:
 
 - https://github.com/asciidoctor/sublimetext-asciidoc
@@ -40,8 +54,6 @@ The upstream repository has been stale since August 2015, and various third part
 
 Furthermore, the original package uses the old `.tmLanguage` syntax format.
 
-
-## Project Status
 
 This package is a "usable Alpha".
 It's usable since I actually use it every day to work on big sized AsciiDoc projects, but it's still in its Alpha stage since I might arbitrarily change the scopes naming convention at any time.
@@ -77,47 +89,56 @@ For the above reasons, it's possible that during the Alpha stage various syntax 
 
 # Features
 
+
+## File Associations
+
+This package associates AsciiDoc with files that end in: `.ad`, `.adoc`, or `.asciidoc`.
+
+
+## Syntax Highlighting
+
+This package includes an AsciiDoc-specific syntax definition.
+With it, SublimeText will accordingly apply a (customizable) color scheme to any AsciiDoc file.
+
+
 ## Keymaps
 
-* Asterisks (strong), underscores (emphasis), backticks (monospaced), English quotation marks, and Czech quotation marks are autopaired and will wrap selected text.
-    - If you start an empty pair and hit backspace, both elements are deleted.
-    - If you start an empty asterisks pair and hit <kbd>Space</kbd> or <kbd>Tab</kbd>, the right element is deleted (because you probably wanted to start a list, not a strong text).
-* At the end of a (un)ordered list item, pressing <kbd>Enter</kbd> will automatically insert the new list item "bullet."
-    - Pressing <kbd>Enter</kbd> on the blank list item will remove it.
-    - Pressing <kbd>Tab</kbd> on the blank list item, or selected item(s), will increase nesting level and indent it.
-    - Pressing <kbd>Shift</kbd> <kbd>Tab</kbd> on the blank list item, or selected item(s), will decrease nesting level and unindent it.
-    - You can disable indentation of list items in your settings file.
-* At the end of a callouts list item, pressing <kbd>Enter</kbd> will automatically insert the new list item with incremented number.
-    - Pressing <kbd>Enter</kbd> on the blank list item will remove it.
+| Action             | Default Shortcut                          |   Notes                                   |
+|--------------------|-------------------------------------------|-------------------------------------------|
+| Auto-Paired        | Asterisks, underscores, backticks, quotation marks | See [KEYMAP_DETAILS.adoc](Docs/KEYMAP_DETAILS.adoc)  |
+| Lists and Callouts | <kbd>Enter</kbd>                          | Automatically sets up the next item. See [KEYMAP_DETAILS.adoc](Docs/KEYMAP_DETAILS.adoc)  |
+| Comment/Uncomment  | SublimeText's default (usually <kbd>Ctrl</kbd> + <kbd>/</kbd>) | AsciiDoc comments begin with `//` |
+
 
 ## Snippets
 
-|        Name        |                  Trigger                  |
-|--------------------|-------------------------------------------|
-| Button             | `btn` <kbd>Tab</kbd>                      |
-| Comment Block      | `//` <kbd>Tab</kbd>                       |
-| Document Title     | `h0` <kbd>Tab</kbd>                       |
-| Example Block      |                                           |
-| Footnote Reference | `fnr` <kbd>Tab</kbd>                      |
-| Footnote           | `fn` <kbd>Tab</kbd>                       |
-| Image              | `img` <kbd>Tab</kbd>                      |
-| Keyboard Shortcut  | `kbd` <kbd>Tab</kbd>                      |
-| Listing Block      | `--` <kbd>Tab</kbd>                       |
-| Passthrough Block  |                                           |
-| Quote Block        | `__` <kbd>Tab</kbd> or `""` <kbd>Tab</kbd> |
-| Section Title 1–5  | `h1` <kbd>Tab</kbd> … `h5` <kbd>Tab</kbd> |
-| Sidebar block      |                                           |
-| Table              | `= `<kbd>Tab</kbd>                        |
+|        Name        |                  Trigger                  |   Notes                                   |
+|--------------------|-------------------------------------------|-------------------------------------------|
+| Button             | `btn` <kbd>Tab</kbd>         | See [SNIPPET_DETAILS.adoc](Docs/SNIPPET_DETAILS.adoc#btn)  |
+| Comment Block      | `//` <kbd>Tab</kbd>                       |                                           |
+| Document Title     | `h0` <kbd>Tab</kbd>                       |                                           |
+| Example Block      |                                           |                                           |
+| Footnote Reference | `fnr` <kbd>Tab</kbd>                      |                                           |
+| Footnote           | `fn` <kbd>Tab</kbd>                       |                                           |
+| Image              | `img` <kbd>Tab</kbd>                      |                                           |
+| Keyboard Shortcut  | `kbd` <kbd>Tab</kbd>         | See [SNIPPET_DETAILS.adoc](Docs/SNIPPET_DETAILS.adoc#btn)  |
+| Listing Block      | `--` <kbd>Tab</kbd>                       |                                           |
+| Passthrough Block  |                                           |                                           |
+| Quote Block        | `__` <kbd>Tab</kbd> or `""` <kbd>Tab</kbd> |                                           |
+| Section Title 1–5  | `h1` <kbd>Tab</kbd> … `h5` <kbd>Tab</kbd> |                                           |
+| Sidebar block      |                                           |                                           |
+| Table              | `= `<kbd>Tab</kbd>                        |                                           |
 
 
-(In case you are not familiar, the Button and Keyboard Shortcut snippets are for in-line macros that render the text to resemble UI buttons and keycaps, respectively.)
+## Symbol Lists
 
-## Others
+Document and section titles are displayed in the local symbol list ( <kbd>Ctrl</kbd> + <kbd>R</kbd> / <kbd>Cmd</kbd> + <kbd>R</kbd>) and the global symbol list ( <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> / <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd>).
+In the local symbol list, titles are nicely indented.
+In the global symbol list, titles will start with `=`, so you will know they belong to AsciiDoc files at a glance. Also they will be on top of the list because of the precedence of `=`.
 
-* Displays document and section titles in the local symbol list ( <kbd>Ctrl</kbd> <kbd>R</kbd> / <kbd>Cmd</kbd> <kbd>R</kbd>) and the global symbol list ( <kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>R</kbd> / <kbd>Cmd</kbd> <kbd>Shift</kbd> <kbd>R</kbd>).
-    - In the local symbol list, titles are nicely indented.
-    - In the global symbol list, titles will start with `=`, so you will know they belong to AsciiDoc files at a glance. Also they will be on top of the list because of the presedence of `=`.
-* Defines [comment markers], so you can use [default commands] to comment and uncomment lines of text.
+
+## Completions
+
 * Provides completions for attributes (built-in and locally defined) and cross references (local anchors and titles).
 
 # Installation
@@ -321,3 +342,4 @@ THE SOFTWARE.
 [Asciidoctor Project]: https://github.com/asciidoctor "View the Asciidoctor Project's profile on GitHub"
 
 <!-- EOF -->
+

@@ -1,0 +1,13 @@
+= Snippet Details
+
+[[btn]]
+== Button and Keyboard Macros
+
+(In case you are not familiar, the Button and Keyboard Shortcut snippets are for in-line macros that render the text to resemble UI buttons and keycaps, respectively.)
+
+----
+kbd:[Enter]
+btn:[OK]
+----
+
+
