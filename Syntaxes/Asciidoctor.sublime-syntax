@@ -652,10 +652,10 @@ contexts:
     - include: emphasis_double
     - include: monospaced_double
     - include: mark_double
+    - include: mark
     - include: strong
     - include: emphasis
     - include: monospaced
-    # - include: mark           # problematic!
     - include: superscript    # problematic!
     - include: subscript
 
@@ -1040,35 +1040,33 @@ contexts:
   #   #Lorem ipsum# dolor
   #   [red]#Lorem ipsum# dolor
 
-  # @PROBLEM: Breaks everything! seems like optional "start with attribute"
-  #           causes anything to match anything else!
-#  mark:
-#    - match: |
-#        (?x)
-#        (\[[^\]]*?\])?      # might start with attribute list (darned well better or why are we here)
-#        (?<=^|\W)(?<!\\|})  # must be preceded by nonword character, and not by escape or } (attribute)
-#        (\#)(?=\S)          # delimiter hash that must be followed by a nonspace character
-#      captures:
-#        1: support.variable.attributelist.asciidoc
-#        2: punctuation.definition.string.unquoted.single.begin.asciidoc
-#      push:
-#        - meta_scope: string.other.unquoted.single.asciidoc
-#        - meta_content_scope: string.unquoted.unquotedinner.single.asciidoc
-#        - match: |
-#            (?x)
-#            (?<=\S)(\#)       # delimiter hash that must be preceded by a nonspace character
-#            (?!\w)            # ...and followed by a nonword character
-#          scope: punctuation.definition.string.unquoted.single.end.asciidoc
-#          pop: true
-#        # - include: strong_double
-#        # - include: emphasis_double
-#        # - include: monospaced_double
-#        # - include: strong
-#        # - include: emphasis
-#        # - include: monospaced
-#        # - include: superscript
-#        # - include: subscript
-#        # - include: characters
+  mark:
+    - match: |
+        (?x)
+        (\[[^\]]*?\])?      # might start with attribute list (darned well better or why are we here)
+        (?<=^|\W)(?<!\\|})  # must be preceded by nonword character, and not by escape or } (attribute)
+        (\#)(?=\S)          # delimiter hash that must be followed by a nonspace character
+      captures:
+        1: support.variable.attributelist.asciidoc
+        2: punctuation.definition.string.unquoted.single.begin.asciidoc
+      push:
+        - meta_scope: string.other.unquoted.single.asciidoc
+        - meta_content_scope: string.unquoted.unquotedinner.single.asciidoc
+        - match: |
+            (?x)
+            (?<=\S)(\#)       # delimiter hash that must be preceded by a nonspace character
+            (?!\w)            # ...and followed by a nonword character
+          scope: punctuation.definition.string.unquoted.single.end.asciidoc
+          pop: true
+        # - include: strong_double
+        # - include: emphasis_double
+        # - include: monospaced_double
+        # - include: strong
+        # - include: emphasis
+        # - include: monospaced
+        # - include: superscript
+        # - include: subscript
+        # - include: characters
 
 
   ###########

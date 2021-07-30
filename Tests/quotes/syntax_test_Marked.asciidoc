@@ -14,12 +14,6 @@ But right now, our syntax treats thes alike, so we'll just keep them here for th
 
 == Highlight/Mark Constrained
 
-[WARNING]
-==========================
-**TEST NOT ACTIVE!** -- Constrained Highlight/Mark was temporarily suppressed (i.e. commented out) in the syntax because it was breaking up documents.
-(see: https://github.com/tajmone/ST3-Asciidoctor/issues/2[#2^])
-==========================
-
 [.big.red]*Source*
 
 [source,asciidoc]
@@ -32,7 +26,15 @@ This is #highlighted# text.
 
 ===============================================
 Werewolves are #allergic to cinnamon#.
+//             ^                        punctuation.definition.string.unquoted.single.begin
+//                                  ^   punctuation.definition.string.unquoted.single.end
+//              ^^^^^^^^^^^^^^^^^^^^    string.other.unquoted.single
+//               ^^^^^^^^^^^^^^^^^^     string.unquoted.unquotedinner.single
 This is #highlighted# text.
+//      ^               punctuation.definition.string.unquoted.single.begin
+//                  ^   punctuation.definition.string.unquoted.single.end
+//       ^^^^^^^^^^^    string.other.unquoted.single
+//        ^^^^^^^^^     string.unquoted.unquotedinner.single
 ===============================================
 
 [.big.red]*Source*
@@ -46,6 +48,11 @@ Do werewolves believe in [small]#small print#?
 
 ===============================================
 Do werewolves believe in [small]#small print#?
+//                       ^^^^^^^                support.variable.attributelist
+//                              ^               punctuation.definition.string.unquoted.single.begin
+//                                          ^   punctuation.definition.string.unquoted.single.end
+//                               ^^^^^^^^^^^    string.other.unquoted.single
+//                                ^^^^^^^^^     string.unquoted.unquotedinner.single
 ===============================================
 
 
@@ -80,6 +87,8 @@ This is ##highlighted##text.
 
 ===============================================
 [big]##O##nce upon an infinite loop.
+//<-        support.variable.attributelist
+//^^^       support.variable.attributelist
 //   ^^     punctuation.definition.string.unquoted.double.begin
 //      ^^  punctuation.definition.string.unquoted.double.end
 //   ^^^^^  string.other.unquoted.double
