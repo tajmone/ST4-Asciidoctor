@@ -1,43 +1,89 @@
 // SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
 = Custom Styling With Attributes
 
-Manual reference:
-https://asciidoctor.org/docs/user-manual/#custom-styling-with-attributes[19.5. Custom Styling With Attributes]
+AsciiDoc Documentation reference:
+https://docs.asciidoctor.org/asciidoc/latest/text/highlight/[Highlight^]
+
+[NOTE]
+==============
+Some of these examples are actually
+https://docs.asciidoctor.org/asciidoc/latest/text/text-span-built-in-roles/#text-span-syntax[Text Spans^], rather than Highlight/Mark formatting.
+But right now, our syntax treats thes alike, so we'll just keep them here for the time being.
+==============
 
 
-== Mark/Highlight
+== Highlight/Mark Constrained
+
+[WARNING]
+==========================
+**TEST NOT ACTIVE!** -- Constrained Highlight/Mark was temporarily suppressed (i.e. commented out) in the syntax because it was breaking up documents.
+(see: https://github.com/tajmone/ST3-Asciidoctor/issues/2[#2^])
+==========================
 
 [.big.red]*Source*
 
 [source,asciidoc]
+--------------------------------------
 Werewolves are #allergic to cinnamon#.
-This is ##highlighted##text.
+This is #highlighted# text.
+--------------------------------------
 
 [.big.red]*Result*
 
 ===============================================
 Werewolves are #allergic to cinnamon#.
-This is ##highlighted##text.
-//      ^^^^^^^^^^^^^^^ string.other.unquoted.double
-//        ^^^^^^^^^^^   string.unquoted.unquotedinner.double
+This is #highlighted# text.
 ===============================================
 
 [.big.red]*Source*
 
-.................................................
+[source,asciidoc]
+----------------------------------------------
 Do werewolves believe in [small]#small print#?
-
-[big]##O##nce upon an infinite loop.
-.................................................
+----------------------------------------------
 
 [.big.red]*Result*
 
 ===============================================
 Do werewolves believe in [small]#small print#?
+===============================================
 
+
+
+== Highlight/Mark Unconstrained
+
+[.big.red]*Source*
+
+[source,asciidoc]
+----------------------------
+This is ##highlighted##text.
+----------------------------
+
+[.big.red]*Result*
+
+===============================================
+This is ##highlighted##text.
+//      ^^               punctuation.definition.string.unquoted.double.begin
+//                   ^^  punctuation.definition.string.unquoted.double.end
+//      ^^^^^^^^^^^^^^^  string.other.unquoted.double
+//        ^^^^^^^^^^^    string.unquoted.unquotedinner.double
+===============================================
+
+[.big.red]*Source*
+
+[source,asciidoc]
+------------------------------------
 [big]##O##nce upon an infinite loop.
-//   ^^^^^ string.other.unquoted.double
-//     ^   string.unquoted.unquotedinner.double
+------------------------------------
+
+[.big.red]*Result*
+
+===============================================
+[big]##O##nce upon an infinite loop.
+//   ^^     punctuation.definition.string.unquoted.double.begin
+//      ^^  punctuation.definition.string.unquoted.double.end
+//   ^^^^^  string.other.unquoted.double
+//     ^    string.unquoted.unquotedinner.double
 
 ===============================================
 

@@ -1,8 +1,8 @@
 // SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
 = List continuation
 
-Manual reference:
-https://asciidoctor.org/docs/user-manual/#list-continuation[§20.2.1. List continuation]
+AsciiDoc Documentation reference:
+https://docs.asciidoctor.org/asciidoc/latest/lists/continuation/#list-continuation[List continuation^]
 
 [.big.red]*Source*
 

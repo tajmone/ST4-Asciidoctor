@@ -1,8 +1,8 @@
 // SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
 = Page Breaks
 
-Manual reference:
-https://asciidoctor.org/docs/user-manual/#page-break[§25. Page Break]
+AsciiDoc Documentation reference:
+https://docs.asciidoctor.org/asciidoc/latest/blocks/breaks/#page-breaks[Page breaks^]
 
 .Example 1
 [source,asciidoc]

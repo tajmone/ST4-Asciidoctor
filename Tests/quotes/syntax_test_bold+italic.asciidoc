@@ -1,16 +1,18 @@
 // SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
 = Bold and Italic Text Formatting
 
-Manual reference:
-https://asciidoctor.org/docs/user-manual/#bold-and-italic[§19.1. Bold and Italic]
+AsciiDoc Documentation references:
+
+* https://docs.asciidoctor.org/asciidoc/latest/text/bold/[Bold^]
+* https://docs.asciidoctor.org/asciidoc/latest/text/italic/[Italic^]
 
 Bold and Italic are part of AsciiDoc text formatting elements, belonging to the
-https://asciidoctor.org/docs/user-manual/#formatting-marks[_quotes_ category].
+https://docs.asciidoctor.org/asciidoc/latest/text/[_quotes_ category^].
 
 == Constrained
 
-Manual reference:
-https://asciidoctor.org/docs/user-manual/#constrained-quotes[§9.1. Constrained quotes]
+AsciiDoc Documentation reference:
+https://docs.asciidoctor.org/asciidoc/latest/text/#constrained[Constrained formatting pair^]
 
 Example: I'm _in italic_. I'm not.
 //           ^^^^^^^^^^^   meta.italicinner.single
@@ -26,8 +28,8 @@ Example: I'm *in bold*. I'm not.
 
 == Unconstrained
 
-Manual reference:
-https://asciidoctor.org/docs/user-manual/#unconstrained-quotes[§9.2. Unconstrained quotes]
+AsciiDoc Documentation reference:
+https://docs.asciidoctor.org/asciidoc/latest/text/#unconstrained[Unconstrained formatting pair^]
 
 Example: __supper__motivated.
 //       ^^^^^^^^^^   meta.italicinner.double

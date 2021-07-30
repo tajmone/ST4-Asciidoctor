@@ -1,8 +1,8 @@
 // SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
 = Subscript
 
-Manual reference:
-https://asciidoctor.org/docs/user-manual/#subscript-and-superscript[§19.3. Subscript and Superscript]
+AsciiDoc Documentation reference:
+https://docs.asciidoctor.org/asciidoc/latest/text/subscript-and-superscript/[Subscript and Superscript^]
 
 [.big.red]*Source*
 

@@ -1,8 +1,8 @@
 // SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
 = Block ID
 
-Manual reference:
-https://asciidoctor.org/docs/user-manual/#anchordef[§27.2. Defining an Anchor]
+AsciiDoc Documentation reference:
+https://docs.asciidoctor.org/asciidoc/latest/sections/custom-ids/[Assign Custom IDs and Reference Text^]
 
 [.big.red]*Source*
 

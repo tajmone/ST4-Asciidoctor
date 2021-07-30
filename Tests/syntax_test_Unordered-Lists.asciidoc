@@ -1,8 +1,8 @@
 // SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
 = Unordered List
 
-Manual reference:
-https://asciidoctor.org/docs/user-manual/#unordered-lists[§20. Unordered Lists]
+AsciiDoc Documentation reference:
+https://docs.asciidoctor.org/asciidoc/latest/lists/unordered/[Unordered Lists^]
 
 [.big.red]*Source*
 

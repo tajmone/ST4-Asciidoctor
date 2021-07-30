@@ -1,8 +1,8 @@
 // SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
 = Attribute Entries
 
-Manual reference:
-https://asciidoctor.org/docs/user-manual/#using-attributes-set-assign-and-reference[§10.3. Using Attributes: Set, Assign, and Reference]
+AsciiDoc Documentation reference:
+https://docs.asciidoctor.org/asciidoc/latest/attributes/attribute-entries/[Attribute Entries^]
 
 .Examples
 [source,asciidoc]

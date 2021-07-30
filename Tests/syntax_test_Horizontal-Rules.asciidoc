@@ -1,8 +1,8 @@
 // SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
 = Horizontal Rules
 
-Manual reference:
-https://asciidoctor.org/docs/user-manual/#horizontal-rules[§24. Horizontal Rules]
+AsciiDoc Documentation reference:
+https://docs.asciidoctor.org/asciidoc/latest/blocks/breaks/#thematic-breaks[Thematic breaks^]
 
 .Example 1
 [source,asciidoc]

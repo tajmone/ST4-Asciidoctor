@@ -1,8 +1,8 @@
 // SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
 = Passthrough
 
-Manual reference:
-https://asciidoctor.org/docs/user-manual/#pass-macros[§40.1. Passthrough Macros]
+AsciiDoc Documentation reference:
+https://docs.asciidoctor.org/asciidoc/latest/pass/pass-macro/#inline-passthrough-macros[Inline passthrough macros^]
 
 single and double plus ::
 A special syntax for preventing text from being formatted.
@@ -19,8 +19,8 @@ Like the triple plus, does not apply any substitutions and doesn't support expli
 
 == Literal Monospace
 
-Manual reference:
-https://asciidoctor.org/docs/user-manual/#literal-monospace[§19.4.1. Literal Monospace]
+AsciiDoc Documentation reference:
+https://docs.asciidoctor.org/asciidoc/latest/text/monospace/#literal-monospace[Literal Monospace^]
 
 WARNING: The following example is not being tested!
 (`+` and `++` elements currently not implemented)
@@ -39,8 +39,8 @@ Value of `+{doctitle}+` is `{doctitle}`.
 
 == Triple Plus Passthrough
 
-Manual reference:
-https://asciidoctor.org/docs/user-manual/#triple-plus-passthrough[§40.1.2. Triple plus passthrough]
+AsciiDoc Documentation reference:
+https://docs.asciidoctor.org/asciidoc/latest/pass/pass-macro/#triple-plus[Triple plus macro^]
 
 With triple plus no substitutions occur whatsoever, not even special chars escapes.
 

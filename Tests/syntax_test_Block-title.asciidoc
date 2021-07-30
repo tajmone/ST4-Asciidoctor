@@ -1,8 +1,8 @@
 // SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
 = Block Titles
 
-Manual reference:
-https://asciidoctor.org/docs/user-manual/#title[§17.1. Title]
+AsciiDoc Documentation reference:
+https://docs.asciidoctor.org/asciidoc/latest/blocks/add-title/[Add a Title to a Block^]
 
 [.big.red]*Source*
 

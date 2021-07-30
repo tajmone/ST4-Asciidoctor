@@ -1,16 +1,16 @@
 // SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
 = Monospace Text Formatting
 
-Manual reference:
-https://asciidoctor.org/docs/user-manual/#mono[§19.4. Monospace]
+AsciiDoc Documentation reference:
+https://docs.asciidoctor.org/asciidoc/latest/text/monospace/[Monospace^]
 
 Monospace is one of AsciiDoc text formatting elements, belonging to the
-https://asciidoctor.org/docs/user-manual/#formatting-marks[_quotes_ category].
+https://docs.asciidoctor.org/asciidoc/latest/text/[_quotes_ category^].
 
 == Constrained
 
-Manual reference:
-https://asciidoctor.org/docs/user-manual/#constrained-quotes[§9.1. Constrained quotes]
+AsciiDoc Documentation reference:
+https://docs.asciidoctor.org/asciidoc/latest/text/#constrained[Constrained formatting pair^]
 
 [.big.red]*Source*
 
@@ -30,8 +30,8 @@ This `is monospaced`. This is not.
 
 == Unconstrained
 
-Manual reference:
-https://asciidoctor.org/docs/user-manual/#unconstrained-quotes[§9.2. Unconstrained quotes]
+AsciiDoc Documentation reference:
+https://docs.asciidoctor.org/asciidoc/latest/text/#unconstrained[Unconstrained formatting pair^]
 
 [.big.red]*Source*
 
