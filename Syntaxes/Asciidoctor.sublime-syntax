@@ -38,7 +38,7 @@ contexts:
 
 # Some definitions whose goal is just capturing some elements to prevent false
 # positives that break the document. Some of this will later on be replaced with
-# proper capturing elemeents, but for now they are needed to keep the syntax
+# proper capturing elements, but for now they are needed to keep the syntax
 # from falling apart...
 
   # We need this to consume table option like `[cols="3*^"]`, otherwise the `^`
@@ -148,7 +148,7 @@ contexts:
   #   ```
 
   # TODO: Check if fence delimiter can be more than three backticks.
-  # TODO: Add lang name from match regex group.
+  # TODO: Add lang name from match RegEx group.
 
   block_source_fenced:
     - match: ^(```)(\w+)?\s*$\n?
@@ -748,8 +748,8 @@ contexts:
     - match: |
         (?x)
         (\[[^\]]*?\])?      # might start with an attributes list
-        (?<=^|\W)(?<!\\|})  # must be preceded by nonword character, and not by escape or } (attribute)
-        (\*)(?=\S)          # delimiter star that must be followed by a nonspace character
+        (?<=^|\W)(?<!\\|})  # must be preceded by non-word char, and not by escape or } (attribute)
+        (\*)(?=\S)          # star delimiter must be followed by a non-space char
       captures:
         1: support.variable.attributelist.asciidoc
         2: punctuation.definition.bold.single.begin.asciidoc
@@ -766,8 +766,8 @@ contexts:
     - include: monospaced
     - match: |
         (?x)
-        (?<=\S)(\*)       # delimiter star that must be preceded by a nonspace character
-        (?!\w)            # ...and followed by a nonword character
+        (?<=\S)(\*)       # star delimiter must be preceded by a non-space char
+        (?!\w)            # ... and followed by a non-word char
       scope: punctuation.definition.bold.single.end.asciidoc
       pop: true
       #   - include: emphasis_double
@@ -840,8 +840,8 @@ contexts:
     - match: |
         (?x)
         (\[[^\]]*?\])?      # might be preceded by an attributes list
-        (?<=^|\W)(?<!\\|})  # must be preceded by nonword character, and not by escape or } (attribute)
-        (_)(?=\S)           # delimiter underscore that must be followed by a nonspace character
+        (?<=^|\W)(?<!\\|})  # must be preceded by non-word char, and not by escape or } (attribute)
+        (_)(?=\S)           # underscore delimiter must be followed by a non-space char
       captures:
         1: support.variable.attributelist.asciidoc
         2: punctuation.definition.italic.single.begin.asciidoc
@@ -858,8 +858,8 @@ contexts:
     - include: monospaced
     - match: |
         (?x)
-        (?<=\S)(_)        # delimiter underscore that must be preceded by a nonspace character
-        (?!\w)            # ...and followed by a nonword character
+        (?<=\S)(_)        # underscore delimiter must be preceded by a non-space char
+        (?!\w)            # ... and followed by a non-word char
       scope: punctuation.definition.italic.single.end.asciidoc
       pop: true
     # - include: strong_double
@@ -941,8 +941,8 @@ contexts:
     - match: |
         (?x)
         (\[[^\]]*?\])?      # might start with attributes list
-        (?<=^|\W)(?<!\\|})  # must be preceded by nonword character, and not by escape or } (attribute)
-        (`)(?=\S)           # delimiter backtick that must be followed by a nonspace character
+        (?<=^|\W)(?<!\\|})  # must be preceded by non-word char, and not by escape or } (attribute)
+        (`)(?=\S)           # backtick delimiter must be followed by a non-space char
       captures:
         1: support.variable.attributelist.asciidoc
         2: punctuation.definition.literal.single.begin.asciidoc
@@ -955,8 +955,8 @@ contexts:
     - include: line_comment
     - match: |
         (?x)
-        (?<=\S)(`)        # delimiter backtick that must be preceded by a nonspace character
-        (?!\w)            # ...and followed by a nonword character
+        (?<=\S)(`)        # backtick delimiter must be preceded by a non-space char
+        (?!\w)            # ... and followed by a non-word char
       scope: punctuation.definition.literal.single.end.asciidoc
       pop: true
   #   - include: strong_double
@@ -1041,11 +1041,15 @@ contexts:
   #   [red]#Lorem ipsum# dolor
 
   mark:
+    # NOTE: The '&' in `(?<![\\}&])` was added to ensure it's not preceded by
+    #       an & to avoid matching HTML entities like '&#182;'. It could be
+    #       removed once HTML entities are properly handled by the syntax, but
+    #       we'll need to ensure that they always have precedence over this.
     - match: |
         (?x)
-        (\[[^\]]*?\])?      # might start with attribute list (darned well better or why are we here)
-        (?<=^|\W)(?<!\\|})  # must be preceded by nonword character, and not by escape or } (attribute)
-        (\#)(?=\S)          # delimiter hash that must be followed by a nonspace character
+        (\[[^\]]*?\])?       # might start with attribute list (darned well better or why are we here)
+        (?<=^|\W)(?<![\\}&]) # must be preceded by non-word char, and not by escape or } (attribute)
+        (\#)(?=\S)           # hash delimiter must be followed by a non-space char
       captures:
         1: support.variable.attributelist.asciidoc
         2: punctuation.definition.string.unquoted.single.begin.asciidoc
@@ -1054,8 +1058,8 @@ contexts:
         - meta_content_scope: string.unquoted.unquotedinner.single.asciidoc
         - match: |
             (?x)
-            (?<=\S)(\#)       # delimiter hash that must be preceded by a nonspace character
-            (?!\w)            # ...and followed by a nonword character
+            (?<=\S)(\#)       # hash delimiter must be preceded by a non-space char
+            (?!\w)            # ... and followed by a non-word char
           scope: punctuation.definition.string.unquoted.single.end.asciidoc
           pop: true
         # - include: strong_double
