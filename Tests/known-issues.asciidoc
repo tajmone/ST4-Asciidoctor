@@ -1,6 +1,6 @@
 = Known Issues
 Tristano Ajmone <tajmone@gmail.com>
-:revdate: 2020-10-04
+:revdate: 2022-04-16
 :lang: en
 // TOC Settings:
 :toclevels: 5
@@ -10,39 +10,39 @@ Tristano Ajmone <tajmone@gmail.com>
 // Cross References:
 :idprefix:
 :xrefstyle: full
-// Misc Settings:
-:experimental: true
-:icons: font
-:linkattrs: true
-:reproducible: true
-:sectanchors:
 
-// *****************************************************************************
-// *                            Document Preamble                              *
-// *****************************************************************************
+// Document Preamble
+// =================
 
 This document contains some annotated examples of problematic syntax elements which need to be fixed, and for which there aren't any proper Sublime Text syntax tests yet.
 
 
-== Tables
+== Literal Characters
 
-There are still some problems with tables, especially with cell delimiters with _cell specifiers_ containing special characters (e.g. ``.*+^``), because some of them are being parsed as quote markup -- and chances are that even those which aren't problematic now will become a problem later on, when we enable all supported elements inside tables; so we need to keep an eye on these advanced cell delimiters.
+Although the situation was greatly improved, there are still cases of valid literal characters occurrences being false-positively captured as if they were delimiters of some dual-delimited markup construct.
 
-We need to capture tables -- from their opening `|===` delimiter to the closing delimiter -- so that we can properly match cell delimiters with special characters, thus preventing the syntax from breaking up.
-(See https://github.com/tajmone/ST3-Asciidoctor/issues/5[Issue #5^])
+=== Literal Asterisks
 
-[cols="<m,2*<d"]
-|===============================================================================
-3+^| header spanning three cells
+The following paragraph contains a literal `*` which the syntax false-positvely matches as a bold delimiter:
 
-3*| repeating cell
+[source,asciidoc]
+calculate (4*3/2)*1
 
-.^| v-align center
->| h-align right
-a| ADoc cell +
-ADoc cell +
-ADoc cell +
-ADoc cell
-|===============================================================================
+===================
+calculate (4*3/2)*1
+===================
+
+For more info and possible solutions, see https://github.com/tajmone/ST3-Asciidoctor/discussions/36[Discussion #36^].
+
+=== Literal Hash Symbol
+
+One of the most problematic chars is the `#` symbol which currently needs to be replace by the `&num;` SGML entity to prevent the syntax from highlighting it as an opening mark delimiter, which badly breaks the document since currently there's no bail-out at EOL mechanism for this element.
+
+[source,asciidoc]
+Example #1 demonstrates...
+
+==========================
+Example #1 demonstrates...
+==========================
 
 // EOF //
