@@ -8,16 +8,17 @@
 # -- https://asciidoctor.org/
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
-# Copyright (c) Tristano Ajmone, 2019. MIT License.
+# Copyright (c) Tristano Ajmone, 2019-2022. MIT License.
 # ------------------------------------------------------------------------------
 
 name:    AsciiDoc (Asciidoctor)
 comment: AsciiDoc Syntax
-file_extensions:
-  - ad
-  - adoc
-  - asciidoc
+version: 2
 scope: text.asciidoc
+file_extensions:
+  - adoc
+  - asc
+  - asciidoc
 
 # variables:
 
