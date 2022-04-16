@@ -32,7 +32,7 @@ calculate (4*3/2)*1
 calculate (4*3/2)*1
 ===================
 
-For more info and possible solutions, see https://github.com/tajmone/ST3-Asciidoctor/discussions/36[Discussion #36^].
+For more info and possible solutions, see https://github.com/tajmone/ST4-Asciidoctor/discussions/36[Discussion #36^].
 
 === Literal Hash Symbol
 

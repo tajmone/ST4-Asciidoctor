@@ -80,7 +80,7 @@ For more info on how syntax testing works, see:
 Every test file must be named according to the `syntax_test_<markup element>.asciidoc` convention, and the very first line must contain the following comment:
 
 ```asciidoc
-// SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+// SYNTAX TEST "Packages/ST4-Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
 ```
 
 

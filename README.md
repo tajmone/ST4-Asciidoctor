@@ -2,7 +2,7 @@
 
 Adds [AsciiDoc] support to [Sublime Text 4], targeting [Asciidoctor].
 
-- https://github.com/tajmone/ST3-Asciidoctor
+- https://github.com/tajmone/ST4-Asciidoctor
 
 -----
 
@@ -10,6 +10,9 @@ Adds [AsciiDoc] support to [Sublime Text 4], targeting [Asciidoctor].
 
 <!-- MarkdownTOC autolink="true" bracket="round" autoanchor="false" lowercase="only_ascii" uri_encoding="true" levels="1,2,3,4" -->
 
+- [Installation](#installation)
+    - [Users' Setup Instructions](#users-setup-instructions)
+    - [Contributors' Setup Instructions](#contributors-setup-instructions)
 - [About](#about)
     - [Project Status](#project-status)
     - [Goals](#goals)
@@ -21,7 +24,6 @@ Adds [AsciiDoc] support to [Sublime Text 4], targeting [Asciidoctor].
     - [Snippets](#snippets)
     - [Symbol Lists](#symbol-lists)
     - [Completions](#completions)
-- [Installation](#installation)
 - [Credits](#credits)
 - [Acknowledgments](#acknowledgments)
 - [Contributing](#contributing)
@@ -30,6 +32,57 @@ Adds [AsciiDoc] support to [Sublime Text 4], targeting [Asciidoctor].
 <!-- /MarkdownTOC -->
 
 -----
+
+# Installation
+
+> **IMPORTANT** — If you have installed the **[sublimetext-asciidoc]** package, you _must uninstall it_ before attempting to install this package!
+>
+> If you've installed the **[AsciiDoc][ST2 AsciiDoc]** package, you're strongly advised to uninstall it, or disable it, or at least to manually associate the AsciiDoc extensions (`.adoc`, `.asciidoc` and `.asc`) with this Asciidoctor plugin.
+
+Right now, this repository is not a full-fledged package that can be installed using the [Package Control] official channel, but it can be installed via the Package Control tool of Sublime Text by following a couple of extra steps.
+
+Depending on whether you intend to install this package just for your personal use, or if you're planning to contribute to the package contents via Git, the installation procedure differs.
+
+
+## Users' Setup Instructions
+
+These instructions will allow you to install this package from GitHub using the Package Control tool even though the package is not listed at the [Package Control] website/channel.
+
+1. Open the Command Palette by pressing <kbd>ctrl</kbd>shift<kbd></kbd>p<kbd></kbd> (Windows and Linux) or <kbd>cmd</kbd>shift<kbd></kbd>p<kbd></kbd> (Mac).
+
+2. Select the **Package Control: Add Repository** command (by clicking it with the mouse or pressing <kbd>enter</kbd>).
+    + You'll see an input box appear at the bottom of the editor interface, next to a label stating "GitHub, GitLab or BitBucket Web URL...". Copy and paste in the input box the URL of this repository:
+
+            https://github.com/tajmone/ST4-Asciidoctor
+
+3. Open again the Command Palette and select the **Package Control: Install Package** command.
+    + Now the **ST4-Asciidoctor** package will be listed among the packages available for installation: find it and select it to proceede with its installation.
+
+Now the **ST4-Asciidoctor** package will be automatically updated whenever a new release is available.
+
+
+## Contributors' Setup Instructions
+
+If you're planning to actively contribute to this package via Git pull requests you should fork-it and install it manually, via Git:
+
+1. Create your own fork of the repository on GitHub.
+
+2. From your terminal, navigate to your "Packages" subdirectory inside [ST4's data directory]:
+    * Windows: `%APPDATA%\Sublime Text 4\Packages\`
+    * Linux: `~/.config/sublime-text-4/Packages/`
+    * OS X: `~/Library/Application\ Support/Sublime\ Text\ 4/Packages/`
+
+3. From that directory, invoke Git to clone your fork of this repository:
+
+        git clone https://github.com/<YOUR_GITHUB_USERNAME>/ST4-Asciidoctor
+
+    where the URL in the above sample command will be replaces by the actual URL to your fork of this repository.
+
+4. Restart Sublime Text.
+
+> **NOTE** — The thus installed package _won't self update_! you'll have to manually execute a `git pull` in the package folder, or come up with some automated scripted solution to do so.
+
+With this installation method, you're free to switch between the various repository branches, which allows you to immediately test your changes to package from within Sublime Text.
 
 
 # About
@@ -154,28 +207,6 @@ In the global symbol list, titles will start with `=`, so you will know they bel
 ## Completions
 
 * Provides completions for attributes (built-in and locally defined) and cross references (local anchors and titles).
-
-# Installation
-
-> **IMPORTANT** — If you have installed the **[sublimetext-asciidoc]** package, you must uninstall it before attempting to install this package!
->
-> If you've installed the **[AsciiDoc][ST2 AsciiDoc]** package, you're strongly advised to uninstall it, or disable it, or at least to manually associate the AsciiDoc extensions (`.adoc`, `.asciidoc` and `.asc`) with this Asciidoctor plugin.
-
-Right now, this repository is not a full-fledged package that can be installed using the [Package Control] directory.
-
-You should therefore install it manually, via Git:
-
-1. From your terminal, navigate to your Packages subdirectory under the ST3's data directory:
-    * OS X: `~/Library/Application\ Support/Sublime\ Text\ 3/Packages/`
-    * Linux: `~/.config/sublime-text-3/Packages/`
-    * Windows: `%APPDATA%\Sublime Text 3\Packages\`
-2. From that directory, invoke Git to clone this repository into the `Asciidoctor` subdirectory:
-
-        git clone https://github.com/tajmone/ST3-Asciidoctor.git Asciidoctor
-
-3. Restart Sublime Text.
-
-> **NOTE** — The thus installed package won't self update, you'll have to manually run a `git pull` in the package folder, or come up with some automated scripted solution to do so.
 
 
 # Credits
@@ -325,12 +356,12 @@ THE SOFTWARE.
 [language server]: https://microsoft.github.io/language-server-protocol "Learn more about the Language Server Protocol and language servers"
 [LSP]: https://microsoft.github.io/language-server-protocol "Learn more about the Language Server Protocol and language servers"
 [MIT License]: http://opensource.org/licenses/MIT/
-[opening an Issue]: https://github.com/tajmone/ST3-Asciidoctor/issues/new/choose "Open a new Issue on this repository"
+[opening an Issue]: https://github.com/tajmone/ST4-Asciidoctor/issues/new/choose "Open a new Issue on this repository"
 [EditorConfig]: https://editorconfig.org "Visit EditorConfig website"
 [Tree-sitter]: https://tree-sitter.github.io "Visit Tree-sitter website"
 [sublimelsp]: https://github.com/sublimelsp/LSP/ "Visit the Sublime Text LSP package repository"
 
-<!-- ST3 links & docs -->
+<!-- ST links & docs -->
 
 [Sublime Text]: https://www.sublimetext.com "Visit Sublime Text website"
 [Sublime Text 2]: https://www.sublimetext.com/2 "Visit Sublime Text 2 webpage"
@@ -340,20 +371,21 @@ THE SOFTWARE.
 
 [comment markers]: https://docs.sublimetext.io/reference/comments.html#file-format "Learn more on Sublime Text Community Documentation"
 [default commands]: https://docs.sublimetext.io/reference/comments.html#related-keyboard-shortcuts "Learn more on Sublime Text Community Documentation"
+[ST4's data directory]: https://www.sublimetext.com/docs/packages.html#locations "ST4 Docs » Packages » Locations"
 
 <!-- ST packages -->
 
 [AsciiDoc-TextMate-2.tmbundle]: https://github.com/mattneub/AsciiDoc-TextMate-2.tmbundle "Visit GitHub repository"
+[asciispec-sublime]: https://github.com/bsmith-n4/asciispec-sublime "Visit GitHub repository"
 [MarkdownEditing]: https://github.com/SublimeText-Markdown/MarkdownEditing "Visit GitHub repository"
 [Package Control]: https://packagecontrol.io
 [ST2 AsciiDoc]: https://packagecontrol.io/packages/AsciiDoc "View package at PackageControl.io"
 [sublimetext-asciidoc]: https://github.com/asciidoctor/sublimetext-asciidoc "Visit GitHub repository"
-[asciispec-sublime]: https://github.com/bsmith-n4/asciispec-sublime "Visit GitHub repository"
 
 <!-- repo refs -->
 
-[Discussions]: https://github.com/tajmone/ST3-Asciidoctor/discussions "Visit the repository Discussions area"
-[Issues]: https://github.com/tajmone/ST3-Asciidoctor/issues "Visit the repository Issues area"
+[Discussions]: https://github.com/tajmone/ST4-Asciidoctor/discussions "Visit the repository Discussions area"
+[Issues]: https://github.com/tajmone/ST4-Asciidoctor/issues "Visit the repository Issues area"
 
 <!-- XRefs -->
 
@@ -374,7 +406,6 @@ THE SOFTWARE.
 [Keith Hall]: https://forum.sublimetext.com/u/kingkeith "View Keith Hall's Sublime Forum profile"
 [Matt Neuburg]: https://github.com/mattneub "View Matt Neuburg's GitHub profile"
 [Raoul Wols]: https://forum.sublimetext.com/u/rwols "View Raoul Wols's Sublime Forum profile"
-
 
 [Asciidoctor Project]: https://github.com/asciidoctor "View the Asciidoctor Project's profile on GitHub"
 

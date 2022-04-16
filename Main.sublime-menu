@@ -9,7 +9,7 @@
             "caption": "Asciidoctor",
             "children": [
               {
-                "args": { "file": "${packages}/Asciidoctor/Asciidoctor.sublime-settings" },
+                "args": { "file": "${packages}/ST4-Asciidoctor/Asciidoctor.sublime-settings" },
                 "caption": "Settings \u2013 Default",
                 "command": "open_file"
               },

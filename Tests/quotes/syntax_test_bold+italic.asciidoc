@@ -1,4 +1,4 @@
-// SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+// SYNTAX TEST "Packages/ST4-Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
 = Bold and Italic Text Formatting
 
 AsciiDoc Documentation references:
