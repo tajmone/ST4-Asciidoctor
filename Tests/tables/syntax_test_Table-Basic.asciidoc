@@ -1,0 +1,99 @@
+// SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+= Tables
+
+AsciiDoc Documentation reference:
+https://docs.asciidoctor.org/asciidoc/latest/tables/build-a-basic-table/[Tables]
+
+
+== Basic Table
+
+[.big.red]*Source*
+
+[source,asciidoc]
+.....................
+[cols="2"]
+|====================
+| header   | header
+
+| cell 1,1 | cell 1,2
+| cell 2,1 | cell 2,2
+|====================
+.....................
+
+[.big.red]*Result*
+
+[cols="2"]
+|====================
+//<-                    constant.delimiter.block.table.begin
+//^^^^^^^^^^^^^^^^^^^   constant.delimiter.block.table.begin
+//<-                    meta.table
+//^^^^^^^^^^^^^^^^^^^   meta.table
+| header   | header
+// <-                   constant.delimiter.cell-separator
+//         ^            constant.delimiter.cell-separator
+//^^^^^^^^^^^^^^^^^^^   meta.table
+| cell 1,1 | cell 1,2
+//         ^            constant.delimiter.cell-separator
+//^^^^^^^^^^^^^^^^^^^   meta.table
+| cell 2,1 | cell 2,2
+//^^^^^^^^^^^^^^^^^^^   meta.table
+|====================
+//<-                    constant.delimiter.block.table.end
+//^^^^^^^^^^^^^^^^^^^   constant.delimiter.block.table.end
+//^^^^^^^^^^^^^^^^^^^   meta.table
+
+Lorem Ipsum.
+//^^^^^^^^^^           -meta.table
+
+
+== Unbalances Delimiters
+
+Currently the syntax doesn't support nested tables, so unbalanced delimiters should simply be ignored.
+
+
+[.big.red]*Source*
+
+[source,asciidoc]
+.....................
+[cols="2"]
+|====================
+| header   | header
+
+| cell 1,1 | cell 1,2
+|==================
+| cell 2,1 | cell 2,2
+|======================
+|====================
+.....................
+
+[WARNING]
+=====================
+The *Result* of the above example is not reproduced here for it would fail conversion!
+
+The source document contains an `ifeval::[0==1]` directive to exclude it from the final doc, whilst still allowing to syntax-test it in ST.
+=====================
+
+// Exclude from generated doc!
+ifeval::[0==1]
+
+[cols="2"]
+|====================
+| header   | header
+
+| cell 1,1 | cell 1,2
+|==================
+//<-                      text.asciidoc
+//^^^^^^^^^^^^^^^^^       text.asciidoc
+//<-                     -constant.delimiter.block.table.end
+//^^^^^^^^^^^^^^^^^      -constant.delimiter.block.table.end
+| cell 2,1 | cell 2,2
+//^^^^^^^^^^^^^^^^^^^     meta.table
+|======================
+//<-                      text.asciidoc
+//^^^^^^^^^^^^^^^^^^^^^   text.asciidoc
+//<-                     -constant.delimiter.block.table.end
+//^^^^^^^^^^^^^^^^^^^^^  -constant.delimiter.block.table.end
+|====================
+endif::[]
+
+// EOF //

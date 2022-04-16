@@ -63,6 +63,7 @@ contexts:
     - include: block_quote
     - include: block_example
     - include: block_open
+    - include: block_table
       # #- include: '#block_paragraph'           # <- COMMENTED OUT IN ORIGINAL! REMOVED by @bsmith-n4
 
   ################
@@ -337,6 +338,39 @@ contexts:
   #     '2': {name: punctuation.definition.callout.end.asciidoc}
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+
+
+  ###############
+  # TABLES BLOCKS
+  ###############
+
+  block_table:
+    - match: (^\|={3,}\n)
+      scope: constant.delimiter.block.table.begin.asciidoc
+      set: block_table_inside
+
+  block_table_inside:
+    - meta_scope: meta.table.asciidoc
+    - match: '\1'
+      scope: constant.delimiter.block.table.end.asciidoc
+      pop: true
+    - match: (^\|={3,}$) # Unbalanced delimiter (ignore it)
+    - include: any_comments
+    - include: cell_separator
+
+# <span factor><span op><h-align op><v-align op><style op>|
+# <duplication factor><duplication op><h-align op><v-align op><style op>|
+# <factor><span or duplication op><h-align op><v-align op><style op>|
+# <factor><span or duplication op><h-align op><v-align op><style op>|
+  cell_separator:
+    - match: '(?x)(
+        ((?:\.\d+|\d+\.\d+|\d+)\+)?
+        (\d+\*)?
+        (\.[<>^]|[<>^]\.[<>^]|[<>^])?
+        ([adehlms])?
+        \|
+      )'
+      scope: constant.delimiter.cell-separator.asciidoc
 
 #-----------------------------------------------------------------------------#
 #                             C H A R A C T E R S                             #

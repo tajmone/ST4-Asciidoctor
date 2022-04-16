@@ -1,0 +1,195 @@
+// SYNTAX TEST "Packages/Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+= Tables: Cells Separators
+
+AsciiDoc Documentation reference:
+https://docs.asciidoctor.org/asciidoc/latest/tables/add-cells-and-rows/[Add Cells and Rows to a Table]
+
+
+== Test Spans
+
+[.big.red]*Source*
+
+[source,asciidoc]
+.....................
+[cols="3"]
+|===========================================
+| header 1          | header 2    | header 3
+
+| cell 1,1          | cell 1,2    | cell 1,3
+| cell 2,1        2+| cell span 2,2-3
+.2+| raw span 3-4,1 | cell 3,2    | cell 3,3
+                    | cell 4,2    | cell 4,3
+2.2+| block span 5-6, 1-2         | cell 5,3
+                                  | cell 6,3
+|===========================================
+.....................
+
+[.big.red]*Result*
+
+[cols="3"]
+|===========================================
+| header 1          | header 2    | header 3
+
+| cell 1,1          | cell 1,2    | cell 1,3
+| cell 2,1        2+| cell span 2,2-3
+//                ^^^                         constant.delimiter.cell-separator
+.2+| raw span 3-4,1 | cell 3,2    | cell 3,3
+//<-                                          constant.delimiter.cell-separator
+//^^                                          constant.delimiter.cell-separator
+                    | cell 4,2    | cell 4,3
+2.2+| block span 5-6, 1-2         | cell 5,3
+//<-                                          constant.delimiter.cell-separator
+//^^^                                         constant.delimiter.cell-separator
+                                  | cell 6,3
+|===========================================
+
+
+== Test Duplicate Cells
+
+[.big.red]*Source*
+
+[source,asciidoc]
+.....................
+[cols="3"]
+|===============================
+| header 1 | header 2 | header 3
+| cell 1,1 | cell 1,2 | cell 1,3
+2*| twice             | cell 2,3
+3*| thrice
+|===============================
+.....................
+
+[.big.red]*Result*
+
+[cols="3"]
+|===============================
+| header 1 | header 2 | header 3
+| cell 1,1 | cell 1,2 | cell 1,3
+2*| twice             | cell 2,3
+//<-                              constant.delimiter.cell-separator
+//^                               constant.delimiter.cell-separator
+3*| thrice
+//<-                              constant.delimiter.cell-separator
+//^                               constant.delimiter.cell-separator
+|===============================
+
+== Test Cell Alignments
+
+[.big.red]*Source*
+
+[source,asciidoc]
+.....................
+[cols="3"]
+|=======================================================
+| header 1            | header 2        | header 3
+
+^| horiz. centered   <| left aligned   >| right aligned
+.^| vert. centered  .<| top aligned   .>| bottom aligned
+^.^| h+v centered  <.<| top & left   >.>| bottom & right
+|=======================================================
+.....................
+
+[.big.red]*Result*
+
+[cols="3"]
+|=======================================================
+| header 1            | header 2        | header 3
+
+^| horiz. centered   <| left aligned   >| right aligned
+//<-                                                     constant.delimiter.cell-separator
+//                   ^^                                  constant.delimiter.cell-separator
+//                                     ^^                constant.delimiter.cell-separator
+.^| vert. centered  .<| top aligned   .>| bottom aligned
+//<-                                                     constant.delimiter.cell-separator
+//^                                                      constant.delimiter.cell-separator
+//                  ^^^                                  constant.delimiter.cell-separator
+//                                    ^^^                constant.delimiter.cell-separator
+^.^| h+v centered  <.<| top & left   >.>| bottom & right
+//<-                                                     constant.delimiter.cell-separator
+//^                                                      constant.delimiter.cell-separator
+//                  ^^^                                  constant.delimiter.cell-separator
+//                                    ^^^                constant.delimiter.cell-separator
+|=======================================================
+
+== Test Styles
+
+[.big.red]*Source*
+
+[source,asciidoc]
+.....................
+[cols="2"]
+|========================
+| header      | header
+
+d| Default   a| AsciiDoc
+e| Emphasis  s| Strong
+l| Literal   m| Monospace
+h| Header     | none
+|========================
+.....................
+
+[.big.red]*Result*
+
+[cols="2"]
+|========================
+| header      | header
+
+d| Default   a| AsciiDoc
+//<-                      constant.delimiter.cell-separator
+//           ^^           constant.delimiter.cell-separator
+e| Emphasis  s| Strong
+//<-                      constant.delimiter.cell-separator
+//           ^^           constant.delimiter.cell-separator
+l| Literal   m| Monospace
+//<-                      constant.delimiter.cell-separator
+//           ^^           constant.delimiter.cell-separator
+h| Header     | none
+//<-                      constant.delimiter.cell-separator
+|========================
+
+
+== Test Mixed Operators
+
+[.big.red]*Source*
+
+[source,asciidoc]
+.....................
+[cols="3"]
+|=========================================
+| header 1 | header 2 ^| header 3 centered
+
+.^m| V-centered monospace
+2+a| AsciDoc span 2
+
+=============
+example block
+=============
+
+3*>h| 3{asterisk} header & right
+|=========================================
+.....................
+
+[.big.red]*Result*
+
+[cols="3"]
+|=========================================
+| header 1 | header 2 ^| header 3 centered
+
+.^m| V-centered monospace
+//<-                      constant.delimiter.cell-separator
+//^^                      constant.delimiter.cell-separator
+
+2+a| AsciDoc span 2
+//<-                      constant.delimiter.cell-separator
+//^^                      constant.delimiter.cell-separator
+
+=============
+example block
+=============
+
+3*>h| 3{asterisk} header & right
+//<-                       constant.delimiter.cell-separator
+//^^^                      constant.delimiter.cell-separator
+|=========================================
+
+// EOF //

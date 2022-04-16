@@ -24,6 +24,7 @@ This directory contains the test suite for the AsciiDoc ST3 syntax.
 
 - [`/blocks/`][blocks/] — block elements.
 - [`/quotes/`][quotes/] — inline quote markup elements.
+- [`/tables/`][tables/] — AsciiDoc tables (deserve a folder of their own).
 - `syntax_test_*.asciidoc` — tests for markup elements without a category.
 - `_syntax_test_*.asciidoc` — disabled test files that fail the test.
 - `*.asciidoc` — misc. non-test documents.
@@ -103,8 +104,9 @@ This directory also contains some `*.asciidoc` files which are not part of the t
 
 <!-- files & folders -->
 
-[blocks/]: ./blocks "Navigate to folder"
-[quotes/]: ./quotes "Navigate to folder"
+[blocks/]: ./blocks "Navigate to block tests folder"
+[quotes/]: ./quotes "Navigate to inline quotes tests folder"
+[tables/]: ./tables "Navigate to tables tests folder"
 
 [conv.sh]: ./convert2html.sh "View script source"
 
