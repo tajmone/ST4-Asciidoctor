@@ -36,7 +36,7 @@ For more info and possible solutions, see https://github.com/tajmone/ST3-Asciido
 
 === Literal Hash Symbol
 
-One of the most problematic chars is the `#` symbol which currently needs to be replace by the `&num;` SGML entity to prevent the syntax from highlighting it as an opening mark delimiter, which badly breaks the document since currently there's no bail-out at EOL mechanism for this element.
+One of the most problematic chars is the `#` symbol which currently needs to be replace by the `&num;` SGML entity to prevent the syntax from highlighting it as an opening mark delimiter:
 
 [source,asciidoc]
 Example #1 demonstrates...
@@ -44,5 +44,8 @@ Example #1 demonstrates...
 ==========================
 Example #1 demonstrates...
 ==========================
+
+
+I've now added a bail-out at empty-line fail-safe mechanism to mitigate the damage of such false positives, but we still need to be able to avoid these false positives altogether by better inspection of the surrounding context.
 
 // EOF //

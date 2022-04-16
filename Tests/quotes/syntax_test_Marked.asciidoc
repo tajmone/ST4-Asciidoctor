@@ -2,7 +2,8 @@
 = Custom Styling With Attributes
 
 AsciiDoc Documentation reference:
-https://docs.asciidoctor.org/asciidoc/latest/text/highlight/[Highlight^]
+https://docs.asciidoctor.org/asciidoc/latest/text/highlight/[Highlight^] and
+https://docs.asciidoctor.org/asciidoc/latest/text/text-span-built-in-roles/[Text Span^].
 
 [NOTE]
 ==============
@@ -95,5 +96,108 @@ This is ##highlighted##text.
 //     ^    string.unquoted.unquotedinner.double
 
 ===============================================
+
+== Multi-line
+
+Mark and Span text can carry on across multiple lines:
+
+=== Multi-line Constrained
+
+[.big.red]*Source*
+
+[source,asciidoc]
+---------------------------
+Werewolves are #allergic to
+cinnamon#.
+---------------------------
+
+[.big.red]*Result*
+
+===============================================
+Werewolves are #allergic to
+cinnamon#.
+//      ^    punctuation.definition.string.unquoted.single.end
+//^^^^^^^    string.other.unquoted.single
+//^^^^^^     string.unquoted.unquotedinner.single
+//       ^  -string.other.unquoted.single
+//       ^  -string.unquoted.unquotedinner.single
+===============================================
+
+=== Multi-line Unconstrained
+
+[.big.red]*Source*
+
+[source,asciidoc]
+---------------------------
+Werewolves are ##allergic to
+cinnamon##.
+---------------------------
+
+[.big.red]*Result*
+
+===============================================
+Werewolves are ##allergic to
+cinnamon##.
+//      ^^    punctuation.definition.string.unquoted.double.end
+//^^^^^^^^    string.other.unquoted.double
+//^^^^^^      string.unquoted.unquotedinner.double
+//        ^  -string.other.unquoted.double
+//        ^  -string.unquoted.unquotedinner.double
+===============================================
+
+== Multi-line Fail-safes
+
+But if a blank line is found before matching the closing delimiter, then the syntax bails out to prevent breaking the whole document.
+
+This mechanism is a fail-safe against false positive matches of literal `#` symbols as if they were a mark delimiter, which unfortunately still occur in the current syntax.
+
+=== Multi-line Constrained w/ Blank Line
+
+[.big.red]*Source*
+
+[source,asciidoc]
+---------------------------
+Example #1 illustrates how
+to achieve what described so far.
+
+Lorem ipsum.
+---------------------------
+
+[.big.red]*Result*
+
+===============================================
+Example #1 illustrates how
+to achieve what described so far.
+
+// <- invalid.illegal
+Lorem ipsum.
+//^^^^^^^^^^  -string.other.unquoted.single
+//^^^^^^^^^^  -string.unquoted.unquotedinner.single
+===============================================
+
+=== Multi-line Unconstrained w/ Blank Line
+
+[.big.red]*Source*
+
+[source,asciidoc]
+---------------------------
+Example ##1 illustrates how
+to achieve what described so far.
+
+Lorem ipsum.
+---------------------------
+
+[.big.red]*Result*
+
+===============================================
+Example ##1 illustrates how
+to achieve what described so far.
+
+// <- invalid.illegal
+Lorem ipsum.
+//^^^^^^^^^^  -string.other.unquoted
+//^^^^^^^^^^  -string.unquoted.unquotedinner
+===============================================
+
 
 // EOF //

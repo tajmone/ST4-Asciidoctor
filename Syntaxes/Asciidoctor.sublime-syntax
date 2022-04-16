@@ -1048,21 +1048,24 @@ contexts:
       captures:
         1: support.variable.attributelist.asciidoc
         2: punctuation.definition.string.unquoted.double.begin.asciidoc
-      push:
-        - meta_scope: string.other.unquoted.double.asciidoc
-        - meta_content_scope: string.unquoted.unquotedinner.double.asciidoc
-        - match: \#\#
-          scope: punctuation.definition.string.unquoted.double.end.asciidoc
-          pop: true
-        #   - include: strong_double
-        #   - include: emphasis_double
-        #   - include: monospaced_double
-        #   - include: strong
-        #   - include: emphasis
-        #   - include: monospaced
-        #   - include: superscript
-        #   - include: subscript
-        #   - include: characters
+      push: mark_double_inside
+
+  mark_double_inside:
+    - meta_scope: string.other.unquoted.double.asciidoc
+    - meta_content_scope: string.unquoted.unquotedinner.double.asciidoc
+    - match: \#\#
+      scope: punctuation.definition.string.unquoted.double.end.asciidoc
+      pop: true
+    - include: error_on_empty_line # mitigate iteral # false positives!
+    #   - include: strong_double
+    #   - include: emphasis_double
+    #   - include: monospaced_double
+    #   - include: strong
+    #   - include: emphasis
+    #   - include: monospaced
+    #   - include: superscript
+    #   - include: subscript
+    #   - include: characters
 
 
 
@@ -1088,24 +1091,26 @@ contexts:
       captures:
         1: support.variable.attributelist.asciidoc
         2: punctuation.definition.string.unquoted.single.begin.asciidoc
-      push:
-        - meta_scope: string.other.unquoted.single.asciidoc
-        - meta_content_scope: string.unquoted.unquotedinner.single.asciidoc
-        - match: |
-            (?x)
-            (?<=\S)(\#)       # hash delimiter must be preceded by a non-space char
-            (?!\w)            # ... and followed by a non-word char
-          scope: punctuation.definition.string.unquoted.single.end.asciidoc
-          pop: true
-        # - include: strong_double
-        # - include: emphasis_double
-        # - include: monospaced_double
-        # - include: strong
-        # - include: emphasis
-        # - include: monospaced
-        # - include: superscript
-        # - include: subscript
-        # - include: characters
+      push: mark_inside
+  mark_inside:
+    - meta_scope: string.other.unquoted.single.asciidoc
+    - meta_content_scope: string.unquoted.unquotedinner.single.asciidoc
+    - match: |
+        (?x)
+        (?<=\S)(\#)       # hash delimiter must be preceded by a non-space char
+        (?!\w)            # ... and followed by a non-word char
+      scope: punctuation.definition.string.unquoted.single.end.asciidoc
+      pop: true
+    - include: error_on_empty_line # mitigate iteral # false positives!
+    # - include: strong_double
+    # - include: emphasis_double
+    # - include: monospaced_double
+    # - include: strong
+    # - include: emphasis
+    # - include: monospaced
+    # - include: superscript
+    # - include: subscript
+    # - include: characters
 
 
   ###########
