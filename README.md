@@ -1,5 +1,10 @@
 # Asciidoctor Package for Sublime Text 4
 
+![Package Status][Package badge]&nbsp;
+[![ST Version][ST badge]][ST Link]&nbsp;
+[![MIT License][License badge]][LICENSE]&nbsp;
+[![Build Status][Travis badge]][Travis link]
+
 Adds [AsciiDoc] support to [Sublime Text 4], targeting [Asciidoctor].
 
 - https://github.com/tajmone/ST4-Asciidoctor
@@ -338,6 +343,15 @@ THE SOFTWARE.
 <!-- XRefs -->
 
 [Credits section]: #credits "Jump to section"
+
+<!-- badges -->
+
+[Package badge]: https://img.shields.io/badge/version-0.1.1-orange "ST4-Asciidoctor is currently in Alpha stage"
+[Travis badge]: https://app.travis-ci.com/tajmone/ST4-Asciidoctor.svg?branch=master "Travis CI: EditorConfig validation status"
+[Travis link]: https://app.travis-ci.com/github/tajmone/ST4-Asciidoctor
+[ST badge]: https://img.shields.io/badge/Sublime_Text-4131-yellow?logo=sublime-text&logoColor=FF9800 "Sublime Text version used in development (click to visit download page)"
+[ST link]: https://www.sublimetext.com/download
+[License badge]: https://img.shields.io/badge/License-MIT-blue
 
 <!-- project files & folders -->
 
