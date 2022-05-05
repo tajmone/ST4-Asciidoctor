@@ -4,6 +4,10 @@ Adds [AsciiDoc] support to [Sublime Text 4], targeting [Asciidoctor].
 
 - https://github.com/tajmone/ST4-Asciidoctor
 
+To learn more about the package features see the online user guide:
+
+- https://tajmone.github.io/ST4-Asciidoctor
+
 -----
 
 **Table of Contents**
@@ -17,13 +21,6 @@ Adds [AsciiDoc] support to [Sublime Text 4], targeting [Asciidoctor].
     - [Project Status](#project-status)
     - [Goals](#goals)
     - [Challenges](#challenges)
-- [Features](#features)
-    - [File Associations](#file-associations)
-    - [Syntax Highlighting](#syntax-highlighting)
-    - [Keymaps](#keymaps)
-    - [Snippets](#snippets)
-    - [Symbol Lists](#symbol-lists)
-    - [Completions](#completions)
 - [Credits](#credits)
 - [Acknowledgments](#acknowledgments)
 - [Contributing](#contributing)
@@ -94,6 +91,10 @@ This is a Sublime Text package that enhances the experience of writing documents
 - A (growing) library of commands that do some "heavy lifting".
 - Configuration settings that tell Sublime Text how to best work with AsciiDoc (e.g. file associations).
 
+To learn more about the package features see the online user guide:
+
+- https://tajmone.github.io/ST4-Asciidoctor
+
 
 ## Project Status
 
@@ -157,58 +158,6 @@ Since AsciiDoc offers many alternative ways to express its markup elements, find
 For the above reasons, it's possible that during the Alpha stage various syntax elements will be temporarily disabled from time to time, due to new contextual problems rising when other elements are added, fixed or reintroduced.
 
 
-# Features
-
-## File Associations
-
-This package associates AsciiDoc with the `.adoc`, `.asc`, and `.asciidoc` file extensions.
-
-## Syntax Highlighting
-
-This package includes an AsciiDoc-specific syntax definition.
-With it, Sublime Text will accordingly apply a (customizable) color scheme to any AsciiDoc file.
-
-## Keymaps
-
-|       Action       |                   Default Shortcut                  |                Notes                 |
-|--------------------|-----------------------------------------------------|--------------------------------------|
-| Auto-Paired        | Asterisks, underscores, backticks, quotation marks  |                                      |
-| Lists and Callouts | <kbd>Enter</kbd>                                    | Automatically sets up the next item. |
-| Comment/Uncomment  | ST default (usually <kbd>Ctrl</kbd> + <kbd>/</kbd>) | AsciiDoc comments begin with `//`    |
-
-
-## Snippets
-
-|        Name        |                  Trigger                   |
-|--------------------|--------------------------------------------|
-| Button             | `btn` <kbd>Tab</kbd>                       |
-| Comment Block      | `//` <kbd>Tab</kbd>                        |
-| Document Title     | `h0` <kbd>Tab</kbd>                        |
-| Example Block      |                                            |
-| Footnote Reference | `fnr` <kbd>Tab</kbd>                       |
-| Footnote           | `fn` <kbd>Tab</kbd>                        |
-| Image              | `img` <kbd>Tab</kbd>                       |
-| Keyboard Shortcut  | `kbd` <kbd>Tab</kbd>                       |
-| Listing Block      | `--` <kbd>Tab</kbd>                        |
-| Passthrough Block  |                                            |
-| Quote Block        | `__` <kbd>Tab</kbd> or `""` <kbd>Tab</kbd> |
-| Section Title 1–5  | `h1` <kbd>Tab</kbd> … `h5` <kbd>Tab</kbd>  |
-| Sidebar block      |                                            |
-| Table              | `= `<kbd>Tab</kbd>                         |
-
-
-## Symbol Lists
-
-Document and section titles are displayed in the local symbol list ( <kbd>Ctrl</kbd> + <kbd>R</kbd> / <kbd>Cmd</kbd> + <kbd>R</kbd>) and the global symbol list ( <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> / <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd>).
-In the local symbol list, titles are nicely indented.
-In the global symbol list, titles will start with `=`, so you will know they belong to AsciiDoc files at a glance. Also they will be on top of the list because of the precedence of `=`.
-
-
-## Completions
-
-* Provides completions for attributes (built-in and locally defined) and cross references (local anchors and titles).
-
-
 # Credits
 
 <!-- MarkdownTOC:excluded -->
@@ -219,7 +168,6 @@ This repository was forked from the **[sublimetext-asciidoc]** package by the [A
 ```
 The MIT License
 
-Copyright 2019-2022 Tristano Ajmone <https://github.com/tajmone>
 Copyright 2014 Matt Neuburg <http://www.apeth.net/matt/default.html>
 Copyright 2015 Jakub Jirutka <jakub@jirutka.cz> and the Asciidoctor Project.
 
@@ -323,7 +271,7 @@ For the full text of the license, see the [`LICENSE`][LICENSE] file.
 ```
 The MIT License
 
-Copyright 2020 Tristano Ajmone <https://github.com/tajmone>
+Copyright 2019-2022 Tristano Ajmone <https://github.com/tajmone>
 Copyright 2014 Matt Neuburg <http://www.apeth.net/matt/default.html>
 Copyright 2015 Jakub Jirutka <jakub@jirutka.cz> and the Asciidoctor Project.
 
