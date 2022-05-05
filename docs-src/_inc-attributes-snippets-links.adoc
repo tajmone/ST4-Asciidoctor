@@ -1,0 +1,24 @@
+
+////
+Define attributes for Snippets-Table substitutions with the snippet
+name and a link to the Asciidoctor documentation.
+////
+
+:snip_Button: https://docs.asciidoctor.org/asciidoc/latest/macros/ui-macros/[Button^, title="Asciidoctor Manual » Button macro"]
+:snip_CommentBlock: https://docs.asciidoctor.org/asciidoc/latest/comments/#comment-blocks[Comment Block^, title="Asciidoctor Manual » Comment blocks"]
+:snip_ExampleBlock: https://docs.asciidoctor.org/asciidoc/latest/blocks/example-blocks/[Example Block^, title="Asciidoctor Manual » Example blocks"]
+:snip_KbdShortcut: https://docs.asciidoctor.org/asciidoc/latest/macros/keyboard-macro/[Keyboard Shortcut^, title="Asciidoctor Manual » Keyboard macro"]
+:snip_ListingBlock: https://docs.asciidoctor.org/asciidoc/latest/verbatim/listing-blocks/[Listing Block^, title="Asciidoctor Manual » Listing blocks"]
+:snip_PassthroughBlock: https://docs.asciidoctor.org/asciidoc/latest/pass/pass-block/[Passthrough Block^, title="Asciidoctor Manual » Passthrough blocks"]
+:snip_QuotedBlock: https://docs.asciidoctor.org/asciidoc/latest/blocks/blockquotes/[Quoted Block^, title="Asciidoctor Manual » Quoted block"]
+:snip_SidebarBlock: https://docs.asciidoctor.org/asciidoc/latest/blocks/sidebars/#delimited-sidebar-syntax[Sidebar Block^, title="Asciidoctor Manual » Delimited sidebar syntax"]
+:snip_Table: https://docs.asciidoctor.org/asciidoc/latest/tables/[Table^, title="Asciidoctor Manual » Tables"]
+:snip_Footnote: https://docs.asciidoctor.org/asciidoc/latest/macros/footnote/[Footnote^, title="Asciidoctor Manual » Footnotes"]
+:snip_FootnoteRef: https://docs.asciidoctor.org/asciidoc/latest/macros/footnote/#footnote-macro-syntax[Footnote Reference^, title="Asciidoctor Manual » Footnote macro syntax"]
+:snip_ImageBlock: https://docs.asciidoctor.org/asciidoc/latest/macros/images/#block-image-macro[Image (block)^, title="Asciidoctor Manual » Block image macro"]
+
+////
+:snip_XXX: LNK[XXX^, title="Asciidoctor Manual » XXX"]
+////
+
+// EOF //

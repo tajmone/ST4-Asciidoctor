@@ -1,0 +1,45 @@
+= ST4-Asciidoctor Manual
+:author: Tristano Ajmone
+:email: <tajmone@gmail.com>
+:revdate: 2022-05-04
+:revnumber: 0.1.0
+:revremark: Alpha
+:version-label: v
+:lang: en
+:doctype: book
+// TOC Settings:
+:toclevels: 5
+:toc: left
+// Sections Numbering:
+:sectnums!:
+:sectnumlevels: 2
+// Cross References:
+:idprefix:
+:xrefstyle: full
+:chapter-refsig: Ch.
+:section-refsig: Sec.
+:appendix-refsig: App.
+// Misc Settings:
+:experimental: true
+:icons: font
+:linkattrs: true
+:reproducible: true
+:sectanchors:
+// Paths:
+:imagesdir: images
+
+// Custom attributes for substitutions:
+include::_inc-attributes-custom.adoc[]
+
+// Preamble
+// ========
+
+Userguide for the
+https://github.com/tajmone/ST4-Asciidoctor[ST4-Asciidoctor^, title="Visit the package repository at GitHub"]
+package.
+
+
+include::intro.adoc[]
+include::features.adoc[]
+
+// EOF //

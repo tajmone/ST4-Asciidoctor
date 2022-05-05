@@ -170,31 +170,31 @@ With it, Sublime Text will accordingly apply a (customizable) color scheme to an
 
 ## Keymaps
 
-|       Action       |                   Default Shortcut                  |                                          Notes                                           |
-|--------------------|-----------------------------------------------------|------------------------------------------------------------------------------------------|
-| Auto-Paired        | Asterisks, underscores, backticks, quotation marks  | See [KEYMAP_DETAILS.adoc](Docs/KEYMAP_DETAILS.adoc)                                      |
-| Lists and Callouts | <kbd>Enter</kbd>                                    | Automatically sets up the next item. See [KEYMAP_DETAILS.adoc](Docs/KEYMAP_DETAILS.adoc) |
-| Comment/Uncomment  | ST default (usually <kbd>Ctrl</kbd> + <kbd>/</kbd>) | AsciiDoc comments begin with `//`                                                        |
+|       Action       |                   Default Shortcut                  |                Notes                 |
+|--------------------|-----------------------------------------------------|--------------------------------------|
+| Auto-Paired        | Asterisks, underscores, backticks, quotation marks  |                                      |
+| Lists and Callouts | <kbd>Enter</kbd>                                    | Automatically sets up the next item. |
+| Comment/Uncomment  | ST default (usually <kbd>Ctrl</kbd> + <kbd>/</kbd>) | AsciiDoc comments begin with `//`    |
 
 
 ## Snippets
 
-|        Name        |                  Trigger                   |                           Notes                           |
-|--------------------|--------------------------------------------|-----------------------------------------------------------|
-| Button             | `btn` <kbd>Tab</kbd>                       | See [SNIPPET_DETAILS.adoc](Docs/SNIPPET_DETAILS.adoc#btn) |
-| Comment Block      | `//` <kbd>Tab</kbd>                        |                                                           |
-| Document Title     | `h0` <kbd>Tab</kbd>                        |                                                           |
-| Example Block      |                                            |                                                           |
-| Footnote Reference | `fnr` <kbd>Tab</kbd>                       |                                                           |
-| Footnote           | `fn` <kbd>Tab</kbd>                        |                                                           |
-| Image              | `img` <kbd>Tab</kbd>                       |                                                           |
-| Keyboard Shortcut  | `kbd` <kbd>Tab</kbd>                       | See [SNIPPET_DETAILS.adoc](Docs/SNIPPET_DETAILS.adoc#btn) |
-| Listing Block      | `--` <kbd>Tab</kbd>                        |                                                           |
-| Passthrough Block  |                                            |                                                           |
-| Quote Block        | `__` <kbd>Tab</kbd> or `""` <kbd>Tab</kbd> |                                                           |
-| Section Title 1–5  | `h1` <kbd>Tab</kbd> … `h5` <kbd>Tab</kbd>  |                                                           |
-| Sidebar block      |                                            |                                                           |
-| Table              | `= `<kbd>Tab</kbd>                         |                                                           |
+|        Name        |                  Trigger                   |
+|--------------------|--------------------------------------------|
+| Button             | `btn` <kbd>Tab</kbd>                       |
+| Comment Block      | `//` <kbd>Tab</kbd>                        |
+| Document Title     | `h0` <kbd>Tab</kbd>                        |
+| Example Block      |                                            |
+| Footnote Reference | `fnr` <kbd>Tab</kbd>                       |
+| Footnote           | `fn` <kbd>Tab</kbd>                        |
+| Image              | `img` <kbd>Tab</kbd>                       |
+| Keyboard Shortcut  | `kbd` <kbd>Tab</kbd>                       |
+| Listing Block      | `--` <kbd>Tab</kbd>                        |
+| Passthrough Block  |                                            |
+| Quote Block        | `__` <kbd>Tab</kbd> or `""` <kbd>Tab</kbd> |
+| Section Title 1–5  | `h1` <kbd>Tab</kbd> … `h5` <kbd>Tab</kbd>  |
+| Sidebar block      |                                            |
+| Table              | `= `<kbd>Tab</kbd>                         |
 
 
 ## Symbol Lists

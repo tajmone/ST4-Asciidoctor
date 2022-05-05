@@ -44,6 +44,7 @@ rakefile    Ruby
 ################################################
 
 _assets/    export-ignore
+docs-src/   export-ignore
 Examples/   export-ignore
 script/     export-ignore
 Tests/      export-ignore

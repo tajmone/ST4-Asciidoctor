@@ -1,0 +1,115 @@
+= Package Features
+
+The list of editing features natively supported by the package.
+
+
+== Snippets
+
+The following table lists the package snippets and their features.
+
+// Attributes definitions for substitutions in Table below:
+include::_inc-attributes-snippets-links.adoc[]
+
+
+[.center]
+[%autowidth]
+[cols="2*<d,2*^d,<d"]
+|=============================================================================
+| Name                    | Trigger                           |  S  | W  | Fields
+
+| {snip_Button}           | `btn` kbd:[Tab]                   | {N} |    |
+| {snip_CommentBlock}     | `//` kbd:[Tab]                    | {Y} | 78 |
+| Document Title          | `h0` kbd:[Tab]                    | {N} |    |
+| {snip_ExampleBlock}     | _n/a_                             | {Y} | 78 | Title
+| {snip_Footnote}         | `fn` kbd:[Tab]                    | {Y} |    |
+| {snip_FootnoteRef}      | `fnr` kbd:[Tab]                   | {Y} |    | ID
+| {snip_ImageBlock}       | `img` kbd:[Tab]                   | {N} |    | Title, path, alt text, width, height
+| {snip_KbdShortcut}      | `kbd` kbd:[Tab]                   | {N} |    |
+| {snip_ListingBlock}     | `--` kbd:[Tab]                    | {Y} | 78 | Lang
+| {snip_PassthroughBlock} | _n/a_                             | {Y} | 78 | Title
+| {snip_QuotedBlock}      | `__` kbd:[Tab] or `""` kbd:[Tab]  | {Y} | 78 | Attribution, Title
+| Section Titles 1–5      | `h1` kbd:[Tab] ... `h5` kbd:[Tab] | {N} |    |
+| {snip_SidebarBlock}     | `sbar` kbd:[Tab]                  | {Y} | 78 |
+| {snip_Table}            | `{vbar}=` kbd:[Tab]               | {N} | 78 | Caption, cols, opts
+|=============================================================================
+
+The meaning of the table columns are:
+
+[horizontal]
+[.red]#Name# ::
+The exact name of the snippet, for invoking it via the Command Palette.
+
+[.red]#Trigger# ::
+The snippet text trigger (if any).
+
+[.red]#S#{nbsp}[_Selection_] ::
+whether the snippets preserve or not the current selection (if any).
+
+[.red]#W#{nbsp}[_Width_] ::
+The width of elements which can be optionally represented my multiple characters, e.g. block delimiters.
+In most cases, block delimiters generated via snippets are extended to 78 characters, for decorative purposes.
+
+[.red]#Fields# ::
+The list of extra supported fields (if any) which the user can navigate through via kbd:[Tab], usually holding some preset values.
+
+
+== Completions
+
+* Provides completions for attributes (built-in and locally defined) and cross references (local anchors and titles).
+
+
+== Keymap Details
+
+
+=== Comments
+
+Both inline and block comments are support via the default Sublime Text key bindings -- usually, kbd:[Ctrl]+kbd:[Numpad /] and kbd:[Ctrl]+kbd:[Shift]+kbd:[Numpad /], respectively.
+
+
+=== Auto-Paired Punctuation
+
+* Asterisks (strong), underscores (emphasis), backticks (monospaced), English quotation marks, and Czech quotation marks are autopaired and will wrap selected text.
+** If you start an empty pair and hit backspace, both elements are deleted.
+** If you start an empty asterisks pair and hit kbd:[Space] or kbd:[Tab], the right element is deleted (because you probably wanted to start a list, not a strong text).
+
+
+=== Lists and Callouts
+
+* At the end of a list item (ordered or unordered), pressing kbd:[Enter] will automatically insert the new list item "`bullet.`"
+** Pressing kbd:[Enter] on the blank list item will remove it.
+** Pressing kbd:[Tab] on the blank list item, or selected item(s), will increase the nesting level and indent it.
+** Pressing kbd:[Shift] + kbd:[Tab] on the blank list item, or selected item(s), will decrease nesting level and unindent it.
+* At the end of a callouts list item, pressing kbd:[Enter] will automatically insert the new list item with an incremented number.
+** Pressing kbd:[Enter] on the blank list item will remove it.
+
+// @TODO: Explain how to disable lists indentation!
+
+TIP: You can disable indentation of list items in your settings file.
+
+
+== Symbols Indexing
+
+This section illustrates how the package handles {ST_SymbolsIndexing} and the various Goto functionality associated with it:
+
+[horizontal]
+Local symbols ::
+i.e symbols in the current document -- accessible via:
+* _Menu_: menu:Goto[Goto Symbol...]
+* _Keyboard_: kbd:[Ctrl]+kbd:[R]/kbd:[Cmd]+kbd:[R]
+
+Global{nbsp}symbols ::
+i.e symbols in the current project -- accessible via:
+* _Menu_: menu:Goto[Goto Symbol in Project...]
+* _Keyboard_: kbd:[Ctrl]+kbd:[Shift]+kbd:[R]/kbd:[Cmd]+kbd:[Shift]+kbd:[R]
+
+=== Section Titles
+
+Document and section titles are displayed in both the local and global _Goto Symbol_ lists:
+
+* In the local symbol list, titles are nicely indented according to hierarchy.
+* In the global symbol list, titles are prefixed with `=` characters (as in the AsciiDoc source), which allows to quickly filter them out by typing `=`, as well as providing an easy visual cue to identify them.
+
+////
+// This is no longer true with ST4:
+Furthermore, they will be on top of the list because of the precedence of `=`.
+////

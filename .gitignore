@@ -8,6 +8,7 @@
 *.pyc
 *.sublime-workspace
 *html
+!/docs/*.html
 
 ## TMP Work Files
 #################

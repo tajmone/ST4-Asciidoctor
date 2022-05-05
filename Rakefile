@@ -1,4 +1,4 @@
-=begin "Rakefile" v0.1.0 | 2022/04/16| by Tristano Ajmone
+=begin "Rakefile" v0.2.0 | 2022/04/17| by Tristano Ajmone
 ================================================================================
 Rake automation for the Sublime Asciidoctor package.
 ================================================================================
@@ -10,13 +10,27 @@ require './_assets/rake/globals.rb'
 require './_assets/rake/asciidoc.rb'
 
 # ==============================================================================
-# --------------------{  P R O J E C T   S E T T I N G S  }---------------------
+# -------------------------------{  T A S K S  }--------------------------------
 # ==============================================================================
 
-# We use the @ precedence modifier to ensure that document-defined attributes
-# will always override CLI definitions.
+task :default => [:guide, :tests_html]
 
-ADOC_OPTS = <<~HEREDOC
+## Clean & Clobber
+##################
+require 'rake/clean'
+CLOBBER.include('Tests/**/*.html')
+CLOBBER.include('docs/*.html')
+
+## Syntax Tests to HTML
+#######################
+
+desc "Convert syntax test to HTML"
+task :tests_html
+
+# We use the @ precedence modifier so that document-defined
+# attributes will always override CLI definitions.
+
+TESTS_ADOC_OPTS = <<~HEREDOC
   --failure-level WARN \
   --verbose \
   --timings \
@@ -29,31 +43,39 @@ ADOC_OPTS = <<~HEREDOC
   -a !caption=@
 HEREDOC
 
-# ==============================================================================
-# -------------------------------{  T A S K S  }--------------------------------
-# ==============================================================================
-
-task :default => :html
-
-## Clean & Clobber
-##################
-require 'rake/clean'
-CLOBBER.include('Tests/**/*.html')
-
-## Syntax Tests to HTML
-#######################
-
-desc "Convert syntax test to HTML"
-task :html
-
 TEST_DOCS = FileList['Tests/**/*.asciidoc'].exclude('__*.*').each do |f|
-  task :default => f.ext('.html')
+  html_doc = f.ext('.html')
+  task :tests_html => html_doc
+  file html_doc => f do |t|
+    AsciidoctorConvert(t.source, TESTS_ADOC_OPTS)
+  end
 end
 
-# ==============================================================================
-# -------------------------------{  R U L E S  }--------------------------------
-# ==============================================================================
+## Build Documentation
+######################
 
-rule '.html' => '.asciidoc' do |t|
-  AsciidoctorConvert(t.source, ADOC_OPTS)
+desc "Build HTML user guide"
+task :guide
+
+GUIDE_SRC = 'docs-src/index.asciidoc'
+GUIDE_HTM = 'docs/index.html'
+
+GUIDE_DEPS = FileList[
+  GUIDE_SRC,
+  'docs-src/*.adoc',
+  '_assets/rake/*.rb'
+]
+
+GUIDE_ADOC_OPTS = <<~HEREDOC
+  --failure-level WARN \
+  --verbose \
+  --timings \
+  --safe-mode unsafe \
+  --destination-dir=../docs
+HEREDOC
+
+task :guide => GUIDE_HTM
+
+file GUIDE_HTM => GUIDE_DEPS do |f|
+  AsciidoctorConvert(GUIDE_SRC, GUIDE_ADOC_OPTS)
 end

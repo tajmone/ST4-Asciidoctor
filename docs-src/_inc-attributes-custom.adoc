@@ -1,0 +1,26 @@
+// ***************************************
+// * CUSTOM ATTRIBUTES FOR SUBSTITUTIONS *
+// ***************************************
+
+// Special Characters
+// ==================
+// Check-mark & Cross dingbats:
+:Y: &#10003;
+:N: &#10007;
+
+// Links: Asciidoctor Documentation
+// ================================
+
+////
+:AD_XXX: LNK[XXX^, title="Asciidoctor Manual » XXX"]
+////
+
+// Links: Sublime Text Documentation
+// =================================
+:ST_SymbolsIndexing: https://www.sublimetext.com/docs/indexing.html[symbols indexing^, title="Sublime Text Documentation » Indexing"]
+
+////
+:ST_XXX: LNK[XXX^, title="Sublime Text Documentation » XXX"]
+////
+
+// EOF //

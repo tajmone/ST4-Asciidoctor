@@ -1,0 +1,10 @@
+[preface]
+= Introduction
+
+The goal of this Manual is to document the various features of the ST4-Asciidoctor package, serving as a reference guide, and at the same time try to illustrate how to maximize the benefits of the package by providing practical editing tips via usage guidelines.
+
+To simplify learning for AsciiDoc or Sublime Text newbies, some technical terms contain links to their official documentation, so that they might be easily looked up for more information.
+
+The Manual is still a work-in-progress in its early stages.
+
+// EOF //
