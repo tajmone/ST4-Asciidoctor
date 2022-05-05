@@ -1,10 +1,26 @@
 [preface]
 = Introduction
 
-The goal of this Manual is to document the various features of the ST4-Asciidoctor package, serving as a reference guide, and at the same time try to illustrate how to maximize the benefits of the package by providing practical editing tips via usage guidelines.
+The goal of this guide is to document the various features of the ST4-Asciidoctor package, serving as a reference guide, and at the same time try to illustrate how to maximize the benefits of the package by providing practical editing tips via usage guidelines.
 
 To simplify learning for AsciiDoc or Sublime Text newbies, some technical terms contain links to their official documentation, so that they might be easily looked up for more information.
 
 The Manual is still a work-in-progress in its early stages.
+
+[TIP]
+===================
+You're advised to consult this guide from time to time because while the package is in Alpha stage it's subject to features changes, so you might discover that after an update the package is not working as before.
+Once the package will reach v1.0.0, braking changes will occur rarely.
+===================
+
+
+[discrete]
+== Accessing the User Guide
+
+You can quickly access this online user guide from within Sublime Text via the menu:
+
+* menu:Preferences[Package Settings > Asciidoctor > User Guide]
+
+Although access to the guide requires an Internet connection, the advantage of an online guide is that you'll always have access to the latest documentation, since this guide is often updated between package releases.
 
 // EOF //

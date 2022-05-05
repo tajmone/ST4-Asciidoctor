@@ -3,6 +3,15 @@
 The list of editing features natively supported by the package.
 
 
+== Associated File Extensions
+
+The following file extensions are automatically recognized as AsciiDoc files:
+
+* `.adoc`
+* `.asc`
+* `.asciidoc`
+
+
 == Snippets
 
 The following table lists the package snippets and their features.

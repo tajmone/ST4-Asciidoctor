@@ -1,31 +1,41 @@
 [
   {
-    "caption": "Preferences",
+    "id": "preferences",
     "children": [
       {
         "caption": "Package Settings",
+        "mnemonic": "P",
+        "id": "package-settings",
         "children": [
           {
             "caption": "Asciidoctor",
             "children": [
               {
-                "args": { "file": "${packages}/ST4-Asciidoctor/Asciidoctor.sublime-settings" },
                 "caption": "Settings \u2013 Default",
-                "command": "open_file"
+                "command": "open_file",
+                "args": {
+                  "file": "${packages}/ST4-Asciidoctor/Asciidoctor.sublime-settings"
+                }
               },
               {
-                "args": { "file": "${packages}/User/Asciidoctor.sublime-settings" },
                 "caption": "Settings \u2013 User",
-                "command": "open_file"
+                "command": "open_file",
+                "args": {
+                  "file": "${packages}/User/Asciidoctor.sublime-settings"
+                }
+              },
+              { "caption": "-", },
+              {
+                "caption": "User Guide",
+                "command": "open_url",
+                "args": {
+                  "url": "https://tajmone.github.io/ST4-Asciidoctor/"
+                }
               }
             ]
           }
-        ],
-        "id": "package-settings",
-        "mnemonic": "P"
+        ]
       }
-    ],
-    "id": "preferences",
-    "mnemonic": "n"
+    ]
   }
 ]
