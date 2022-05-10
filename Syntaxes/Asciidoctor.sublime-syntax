@@ -668,14 +668,14 @@ contexts:
 
   inline:
     - include: passthrough
-    - include: strong_double
-    - include: emphasis_double
-    - include: monospaced_double
-    - include: mark_double
-    - include: mark
-    - include: strong
-    - include: emphasis
-    - include: monospaced
+    - include: strong_unconstrained
+    - include: emphasis_unconstrained
+    - include: monospaced_unconstrained
+    - include: mark_unconstrained
+    - include: mark_constrained
+    - include: strong_constrained
+    - include: emphasis_constrained
+    - include: monospaced_constrained
     - include: superscript    # problematic!
     - include: subscript
 
@@ -690,7 +690,7 @@ contexts:
   #   Lo**re**m **ipsum dolor**.
   #   Lo[red]**re**m
 
-  strong_double:
+  strong_unconstrained:
     - match: |
         (?x)
         (\[[^\]]*?\])?  # might start with an attribute list
@@ -699,33 +699,33 @@ contexts:
       captures:
         1: support.variable.attributelist.asciidoc
         2: punctuation.definition.bold.double.begin.asciidoc
-      push: inside_strong_double
+      push: inside_strong_unconstrained
 
-  inside_strong_double:
+  inside_strong_unconstrained:
     - meta_content_scope: markup.bold.double.asciidoc
     - meta_scope: meta.boldinner.double.asciidoc
     - include: error_on_empty_line
     - include: line_comment
-    - include: emphasis_double
-    - include: emphasis
-    - include: monospaced_double
-    - include: monospaced
+    - include: emphasis_unconstrained
+    - include: emphasis_constrained
+    - include: monospaced_unconstrained
+    - include: monospaced_constrained
     - match: \*\*
       scope: punctuation.definition.bold.double.end.asciidoc
       pop: true
-      #   - include: emphasis_double
-      #   - include: monospaced_double
-      #   - include: mark_double
-      #   - include: emphasis
-      #   - include: monospaced
-      #   - include: mark
+      #   - include: emphasis_unconstrained
+      #   - include: monospaced_unconstrained
+      #   - include: mark_unconstrained
+      #   - include: emphasis_constrained
+      #   - include: monospaced_constrained
+      #   - include: mark_constrained
       #   - include: superscript
       #   - include: subscript
       #   - include: characters
 
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # strong_double:
+  # strong_unconstrained:
   #   comment: |
   #     Strong (bold) text (unconstrained variant).
   #
@@ -745,12 +745,12 @@ contexts:
   #   end: '\*\*'
   #   endCaptures:
   #     '0': {name: punctuation.definition.bold.double.end.asciidoc}
-  #   - include: emphasis_double
-  #   - include: monospaced_double
-  #   - include: mark_double
-  #   - include: emphasis
-  #   - include: monospaced
-  #   - include: mark
+  #   - include: emphasis_unconstrained
+  #   - include: monospaced_unconstrained
+  #   - include: mark_unconstrained
+  #   - include: emphasis_constrained
+  #   - include: monospaced_constrained
+  #   - include: mark_constrained
   #   - include: superscript
   #   - include: subscript
   #   - include: characters
@@ -764,7 +764,7 @@ contexts:
   # Examples:
   #   *Lorem ipsum* dolor
   #   [red]*Lorem ipsum* dolor
-  strong:
+  strong_constrained:
     - match: |
         (?x)
         (\[[^\]]*?\])?      # might start with an attributes list
@@ -773,29 +773,29 @@ contexts:
       captures:
         1: support.variable.attributelist.asciidoc
         2: punctuation.definition.bold.single.begin.asciidoc
-      push: inside_strong
+      push: inside_strong_constrained
 
-  inside_strong:
+  inside_strong_constrained:
     - meta_content_scope: markup.bold.single.asciidoc
     - meta_scope: meta.boldinner.single.asciidoc
     - include: error_on_empty_line
     - include: line_comment
-    - include: emphasis_double
-    - include: emphasis
-    - include: monospaced_double
-    - include: monospaced
+    - include: emphasis_unconstrained
+    - include: emphasis_constrained
+    - include: monospaced_unconstrained
+    - include: monospaced_constrained
     - match: |
         (?x)
         (?<=\S)(\*)       # star delimiter must be preceded by a non-space char
         (?!\w)            # ... and followed by a non-word char
       scope: punctuation.definition.bold.single.end.asciidoc
       pop: true
-      #   - include: emphasis_double
-      #   - include: monospaced_double
-      #   - include: mark_double
-      #   - include: emphasis
-      #   - include: monospaced
-      #   - include: mark
+      #   - include: emphasis_unconstrained
+      #   - include: monospaced_unconstrained
+      #   - include: mark_unconstrained
+      #   - include: emphasis_constrained
+      #   - include: monospaced_constrained
+      #   - include: mark_constrained
       #   - include: superscript
       #   - include: subscript
       #   - include: characters
@@ -811,7 +811,7 @@ contexts:
   #   Lo__re__m __ipsum dolor__.
   #   Lo[red]__re__m
 
-  emphasis_double:
+  emphasis_unconstrained:
     - match: |
         (?x)
         (\[[^\]]*?\])?  # might start with attribute list
@@ -820,26 +820,26 @@ contexts:
       captures:
         1: support.variable.attributelist.asciidoc
         2: punctuation.definition.italic.double.begin.asciidoc
-      push: inside_emphasis_double
+      push: inside_emphasis_unconstrained
 
-  inside_emphasis_double:
+  inside_emphasis_unconstrained:
     - meta_content_scope: markup.italic.double.asciidoc
     - meta_scope: meta.italicinner.double.asciidoc
     - include: error_on_empty_line
     - include: line_comment
-    - include: strong_double
-    - include: strong
-    - include: monospaced_double
-    - include: monospaced
+    - include: strong_unconstrained
+    - include: strong_constrained
+    - include: monospaced_unconstrained
+    - include: monospaced_constrained
     - match: '__'
       scope: punctuation.definition.italic.double.end.asciidoc
       pop: true
-    #   - include: strong_double
-    #   - include: monospaced_double
-    #   - include: mark_double
-    #   - include: strong
-    #   - include: monospaced
-    #   - include: mark
+    #   - include: strong_unconstrained
+    #   - include: monospaced_unconstrained
+    #   - include: mark_unconstrained
+    #   - include: strong_constrained
+    #   - include: monospaced_constrained
+    #   - include: mark_constrained
     #   - include: superscript
     #   - include: subscript
     #   - include: characters
@@ -856,7 +856,7 @@ contexts:
   #   _Lorem ipsum_ dolor
   #   [red]_Lorem ipsum_ dolor
 
-  emphasis:
+  emphasis_constrained:
     - match: |
         (?x)
         (\[[^\]]*?\])?      # might be preceded by an attributes list
@@ -865,29 +865,29 @@ contexts:
       captures:
         1: support.variable.attributelist.asciidoc
         2: punctuation.definition.italic.single.begin.asciidoc
-      push: inside_emphasis
+      push: inside_emphasis_constrained
 
-  inside_emphasis:
+  inside_emphasis_constrained:
     - meta_content_scope: markup.italic.single.asciidoc
     - meta_scope: meta.italicinner.single.asciidoc
     - include: error_on_empty_line
     - include: line_comment
-    - include: strong_double
-    - include: strong
-    - include: monospaced_double
-    - include: monospaced
+    - include: strong_unconstrained
+    - include: strong_constrained
+    - include: monospaced_unconstrained
+    - include: monospaced_constrained
     - match: |
         (?x)
         (?<=\S)(_)        # underscore delimiter must be preceded by a non-space char
         (?!\w)            # ... and followed by a non-word char
       scope: punctuation.definition.italic.single.end.asciidoc
       pop: true
-    # - include: strong_double
-    # - include: monospaced_double
-    # - include: mark_double
-    # - include: strong
-    # - include: monospaced
-    # - include: mark
+    # - include: strong_unconstrained
+    # - include: monospaced_unconstrained
+    # - include: mark_unconstrained
+    # - include: strong_constrained
+    # - include: monospaced_constrained
+    # - include: mark_constrained
     # - include: superscript
     # - include: subscript
     # - include: characters
@@ -904,7 +904,7 @@ contexts:
   #   Lo``re``m ``ipsum dolor``.
   #   Lo[red]``re``m
 
-  monospaced_double:
+  monospaced_unconstrained:
     - match: |
         (?x)
         (\[[^\]]*?\])?  # might start with attribute list
@@ -914,9 +914,9 @@ contexts:
       captures:
         1: support.variable.attributelist.asciidoc
         2: punctuation.definition.literal.double.begin.asciidoc
-      push: inside_monospaced_double
+      push: inside_monospaced_unconstrained
 
-  inside_monospaced_double:
+  inside_monospaced_unconstrained:
     - meta_content_scope: string.other.literal.double.asciidoc
     - meta_scope: meta.literalinner.double.asciidoc
     - include: error_on_empty_line
@@ -924,12 +924,12 @@ contexts:
     - match: '``'
       scope: punctuation.definition.literal.double.end.asciidoc
       pop: true
-    # - include: strong_double
-    # - include: emphasis_double
-    # - include: mark_double
-    # - include: strong
-    # - include: emphasis
-    # - include: mark
+    # - include: strong_unconstrained
+    # - include: emphasis_unconstrained
+    # - include: mark_unconstrained
+    # - include: strong_constrained
+    # - include: emphasis_constrained
+    # - include: mark_constrained
     # - include: superscript
     # - include: subscript
     # - include: characters
@@ -946,7 +946,7 @@ contexts:
   #   `Lorem ipsum` dolor
   #   [red]`Lorem ipsum` dolor
 
-  monospaced:
+  monospaced_constrained:
     # False positive: typographic quotes followed by single backtick:
     - match: (["']`)(`(?!`))?
       captures:
@@ -966,9 +966,9 @@ contexts:
       captures:
         1: support.variable.attributelist.asciidoc
         2: punctuation.definition.literal.single.begin.asciidoc
-      push: inside_monospaced
+      push: inside_monospaced_constrained
 
-  inside_monospaced:
+  inside_monospaced_constrained:
     - meta_content_scope: string.other.literal.single.asciidoc
     - meta_scope: meta.literalinner.single.asciidoc
     - include: error_on_empty_line
@@ -979,12 +979,12 @@ contexts:
         (?!\w)            # ... and followed by a non-word char
       scope: punctuation.definition.literal.single.end.asciidoc
       pop: true
-  #   - include: strong_double
-  #   - include: emphasis_double
-  #   - include: mark_double
-  #   - include: strong
-  #   - include: emphasis
-  #   - include: mark
+  #   - include: strong_unconstrained
+  #   - include: emphasis_unconstrained
+  #   - include: mark_unconstrained
+  #   - include: strong_constrained
+  #   - include: emphasis_constrained
+  #   - include: mark_constrained
   #   - include: superscript
   #   - include: subscript
   #   - include: characters
@@ -1024,7 +1024,7 @@ contexts:
   #   Lo##re##m ##ipsum dolor##.
   #   Lo[red]##re##m
 
-  mark_double:
+  mark_unconstrained:
     - match: |
         (?x)
         (\[[^\]]*?\])?  # might start with an attribute list (indeed, that is its purpose)
@@ -1033,21 +1033,21 @@ contexts:
       captures:
         1: support.variable.attributelist.asciidoc
         2: punctuation.definition.string.unquoted.double.begin.asciidoc
-      push: mark_double_inside
+      push: mark_unconstrained_inside
 
-  mark_double_inside:
+  mark_unconstrained_inside:
     - meta_scope: string.other.unquoted.double.asciidoc
     - meta_content_scope: string.unquoted.unquotedinner.double.asciidoc
     - match: \#\#
       scope: punctuation.definition.string.unquoted.double.end.asciidoc
       pop: true
     - include: error_on_empty_line # mitigate iteral # false positives!
-    #   - include: strong_double
-    #   - include: emphasis_double
-    #   - include: monospaced_double
-    #   - include: strong
-    #   - include: emphasis
-    #   - include: monospaced
+    #   - include: strong_unconstrained
+    #   - include: emphasis_unconstrained
+    #   - include: monospaced_unconstrained
+    #   - include: strong_constrained
+    #   - include: emphasis_constrained
+    #   - include: monospaced_constrained
     #   - include: superscript
     #   - include: subscript
     #   - include: characters
@@ -1063,7 +1063,7 @@ contexts:
   #   #Lorem ipsum# dolor
   #   [red]#Lorem ipsum# dolor
 
-  mark:
+  mark_constrained:
     # NOTE: The '&' in `(?<![\\}&])` was added to ensure it's not preceded by
     #       an & to avoid matching HTML entities like '&#182;'. It could be
     #       removed once HTML entities are properly handled by the syntax, but
@@ -1087,12 +1087,12 @@ contexts:
       scope: punctuation.definition.string.unquoted.single.end.asciidoc
       pop: true
     - include: error_on_empty_line # mitigate iteral # false positives!
-    # - include: strong_double
-    # - include: emphasis_double
-    # - include: monospaced_double
-    # - include: strong
-    # - include: emphasis
-    # - include: monospaced
+    # - include: strong_unconstrained
+    # - include: emphasis_unconstrained
+    # - include: monospaced_unconstrained
+    # - include: strong_constrained
+    # - include: emphasis_constrained
+    # - include: monospaced_constrained
     # - include: superscript
     # - include: subscript
     # - include: characters
@@ -1121,14 +1121,14 @@ contexts:
         - match: \~
           scope: punctuation.definition.string.subscript.end.asciidoc
           pop: true
-      #   - include: strong_double
-      #   - include: emphasis_double
-      #   - include: monospaced_double
-      #   - include: mark_double
-      #   - include: strong
-      #   - include: emphasis
-      #   - include: monospaced
-      #   - include: mark
+      #   - include: strong_unconstrained
+      #   - include: emphasis_unconstrained
+      #   - include: monospaced_unconstrained
+      #   - include: mark_unconstrained
+      #   - include: strong_constrained
+      #   - include: emphasis_constrained
+      #   - include: monospaced_constrained
+      #   - include: mark_constrained
       #   - include: superscript
       #   - include: characters
 
@@ -1157,14 +1157,14 @@ contexts:
         - match: \^
           scope: punctuation.definition.string.superscript.end.asciidoc
           pop: true
-      #   - include: strong_double
-      #   - include: emphasis_double
-      #   - include: monospaced_double
-      #   - include: mark_double
-      #   - include: strong
-      #   - include: emphasis
-      #   - include: monospaced
-      #   - include: mark
+      #   - include: strong_unconstrained
+      #   - include: emphasis_unconstrained
+      #   - include: monospaced_unconstrained
+      #   - include: mark_unconstrained
+      #   - include: strong_constrained
+      #   - include: emphasis_constrained
+      #   - include: monospaced_constrained
+      #   - include: mark_constrained
       #   - include: subscript
       #   - include: characters
 
@@ -1702,7 +1702,7 @@ contexts:
       #   - match: (`)(\1)
       #     scope: punctuation.definition.string.end.asciidoc
       #     pop: true
-      #   - include: monospaced_double # Single backticks are literals!
+      #   - include: monospaced_unconstrained # Single backticks are literals!
 
 
 # /// EOF ///
