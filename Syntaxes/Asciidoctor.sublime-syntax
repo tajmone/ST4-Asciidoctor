@@ -951,12 +951,10 @@ contexts:
     - match: (["']`)(`(?!`))?
       captures:
         1: punctuation.definition.string.begin.asciidoc
-      pop: true
     # False positive: closing typographic quotes:
     - match: (`["'])
       captures:
         1: punctuation.definition.string.end.asciidoc
-      pop: true
     # Capture real monospaced formatting:
     - match: |
         (?x)
