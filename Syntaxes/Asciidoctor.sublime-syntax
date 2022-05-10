@@ -36,6 +36,29 @@ contexts:
 
 #*******************************************************************************
 #                                                                              *
+#                                H E L P E R S                                 *
+#                                                                              *
+#*******************************************************************************
+
+# Currently used in this syntax, but useful to have around in order to improve
+# source readability.
+
+  force-pop:
+    - match: '(?=\S)'
+      pop: true
+
+  pop-at-EOL:
+    - match: '(?=[\n$])'
+      pop: true
+
+  consume-whitespace:
+    - match: '[ \t]+'
+
+  consume-EOL:
+    - match: '[\n$]'
+
+#*******************************************************************************
+#                                                                              *
 #                         B L O C K    E L E M E N T S                         *
 #                                                                              *
 #*******************************************************************************
