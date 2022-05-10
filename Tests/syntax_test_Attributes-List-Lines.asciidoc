@@ -1,0 +1,35 @@
+// SYNTAX TEST "Packages/ST4-Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+= Attribute Lists Lines
+
+AsciiDoc Documentation reference:
+https://docs.asciidoctor.org/asciidoc/latest/attributes/element-attributes/#attribute-list[Attribute lists^]
+
+Block attribute lists are referred to in this package as "`Attribute Lists Lines`" since they occupy an entire line by themselves.
+They are scoped as `support.variable.attributelist.asciidoc`.
+
+Their contents must be properly handled to prevent false-positive matches that could break the document, e.g. the caret in the `cols` table attribute `<.^h` must not be matched as a superscript delimiter:
+
+.Examples
+[source,asciidoc]
+..................
+[cols="<.^h,<.<a"]
+|=================
+| R1 | Lorem.
+| R2 | Ipsum.
+|=================
+..................
+
+
+[.big.red]*Result*
+
+[cols="<.^h,<.<a"]
+// <-                punctuation.definition.attributelistline.begin
+//               ^   punctuation.definition.attributelistline.end
+//^^^^^^^^^^^^^^^^   support.variable.attributelist
+//       ^         - punctuation.definition.string.superscript
+|=================
+| R1 | Lorem.
+| R2 | Ipsum.
+|=================
+
+// EOF //

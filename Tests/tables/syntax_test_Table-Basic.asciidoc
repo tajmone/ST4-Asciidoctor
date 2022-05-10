@@ -23,6 +23,9 @@ https://docs.asciidoctor.org/asciidoc/latest/tables/build-a-basic-table/[Tables]
 [.big.red]*Result*
 
 [cols="2"]
+// <-       punctuation.definition.attributelistline.begin
+//       ^  punctuation.definition.attributelistline.end
+//^^^^^^^^  support.variable.attributelist
 |====================
 //<-                    constant.delimiter.block.table.begin
 //^^^^^^^^^^^^^^^^^^^   constant.delimiter.block.table.begin
