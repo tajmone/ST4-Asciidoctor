@@ -668,22 +668,23 @@ contexts:
 
   inline:
     - include: passthrough
-    - include: strong_unconstrained
-    - include: emphasis_unconstrained
-    - include: monospaced_unconstrained
-    - include: mark_unconstrained
-    - include: mark_constrained
-    - include: strong_constrained
-    - include: emphasis_constrained
-    - include: monospaced_constrained
+    - include: strong
+    - include: emphasis
+    - include: monospaced
+    - include: mark
     - include: superscript    # problematic!
     - include: subscript
 
+  ########
+  # STRONG
+  ########
 
+  strong:
+    - include: strong_unconstrained
+    - include: strong_constrained
 
-  ######################
   # STRONG UNCONSTRAINED
-  ######################
+  # ====================
   # Was: "STRONG DOUBLE"
   # Strong (bold) text (unconstrained variant).
   # Examples:
@@ -706,10 +707,8 @@ contexts:
     - meta_scope: meta.boldinner.double.asciidoc
     - include: error_on_empty_line
     - include: line_comment
-    - include: emphasis_unconstrained
-    - include: emphasis_constrained
-    - include: monospaced_unconstrained
-    - include: monospaced_constrained
+    - include: emphasis
+    - include: monospaced
     - match: \*\*
       scope: punctuation.definition.bold.double.end.asciidoc
       pop: true
@@ -756,9 +755,9 @@ contexts:
   #   - include: characters
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-  #####################
+
   # STRONG CONSTRAINED
-  #####################
+  # ====================
   # Was: "STRONG"
   # Strong (bold) text (unconstrained variant).
   # Examples:
@@ -780,10 +779,8 @@ contexts:
     - meta_scope: meta.boldinner.single.asciidoc
     - include: error_on_empty_line
     - include: line_comment
-    - include: emphasis_unconstrained
-    - include: emphasis_constrained
-    - include: monospaced_unconstrained
-    - include: monospaced_constrained
+    - include: emphasis
+    - include: monospaced
     - match: |
         (?x)
         (?<=\S)(\*)       # star delimiter must be preceded by a non-space char
@@ -801,10 +798,16 @@ contexts:
       #   - include: characters
 
 
+  ##########
+  # EMPHASIS
+  ##########
 
-  ########################
+  emphasis:
+    - include: emphasis_unconstrained
+    - include: emphasis_constrained
+
   # EMPHASIS UNCONSTRAINED
-  ########################
+  # ======================
   # Was: "EMPHASIS DOUBLE"
   # Emphasized (italic) text (unconstrained variant).
   # Examples:
@@ -827,10 +830,8 @@ contexts:
     - meta_scope: meta.italicinner.double.asciidoc
     - include: error_on_empty_line
     - include: line_comment
-    - include: strong_unconstrained
-    - include: strong_constrained
-    - include: monospaced_unconstrained
-    - include: monospaced_constrained
+    - include: strong
+    - include: monospaced
     - match: '__'
       scope: punctuation.definition.italic.double.end.asciidoc
       pop: true
@@ -845,10 +846,8 @@ contexts:
     #   - include: characters
 
 
-
-  ######################
   # EMPHASIS CONSTRAINED
-  ######################
+  # ====================
   # Was: "EMPHASIS"
   # Emphasized (italic) text (constrained variant).
   #
@@ -872,10 +871,8 @@ contexts:
     - meta_scope: meta.italicinner.single.asciidoc
     - include: error_on_empty_line
     - include: line_comment
-    - include: strong_unconstrained
-    - include: strong_constrained
-    - include: monospaced_unconstrained
-    - include: monospaced_constrained
+    - include: strong
+    - include: monospaced
     - match: |
         (?x)
         (?<=\S)(_)        # underscore delimiter must be preceded by a non-space char
@@ -892,11 +889,16 @@ contexts:
     # - include: subscript
     # - include: characters
 
+  ############
+  # MONOSPACED
+  ############
 
+  monospaced:
+    - include: monospaced_unconstrained
+    - include: monospaced_constrained
 
-  ##########################
   # MONOSPACED UNCONSTRAINED
-  ##########################
+  # ========================
   # Was: "MONOSPACED DOUBLE"
   # Monospaced text (unconstrained variant).
   #
@@ -935,10 +937,8 @@ contexts:
     # - include: characters
 
 
-
-  ########################
   # MONOSPACED CONSTRAINED
-  ########################
+  # ======================
   # Was: "MONOSPACED"
   # Monospaced text (constrained variant).
   #
@@ -991,8 +991,6 @@ contexts:
 
 
 
-
-
   #############
   # PASSTHROUGH
   #############
@@ -1013,11 +1011,16 @@ contexts:
           scope: constant.character.passthru.end.asciidoc
           pop: true
 
-
-
   ####################
   # MARK UNCONSTRAINED
   ####################
+
+  mark:
+    - include: mark_unconstrained
+    - include: mark_constrained
+
+  # MARK UNCONSTRAINED
+  # ==================
   # Was: "MARK DOUBLE"
   # Marked text (unconstrained variant).
   # Examples:
@@ -1041,7 +1044,7 @@ contexts:
     - match: \#\#
       scope: punctuation.definition.string.unquoted.double.end.asciidoc
       pop: true
-    - include: error_on_empty_line # mitigate iteral # false positives!
+    - include: error_on_empty_line # mitigate literal '#' false positives!
     #   - include: strong_unconstrained
     #   - include: emphasis_unconstrained
     #   - include: monospaced_unconstrained
@@ -1053,10 +1056,8 @@ contexts:
     #   - include: characters
 
 
-
-  ##################
   # MARK CONSTRAINED
-  ##################
+  # ================
   # Was: "MARK"
   # Marked text (constrained variant).
   # Examples:
@@ -1086,7 +1087,7 @@ contexts:
         (?!\w)            # ... and followed by a non-word char
       scope: punctuation.definition.string.unquoted.single.end.asciidoc
       pop: true
-    - include: error_on_empty_line # mitigate iteral # false positives!
+    - include: error_on_empty_line # mitigate iteral '#' false positives!
     # - include: strong_unconstrained
     # - include: emphasis_unconstrained
     # - include: monospaced_unconstrained
