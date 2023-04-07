@@ -21,31 +21,7 @@ This document contains some annotated examples of problematic syntax elements wh
 
 Although the situation was greatly improved, there are still cases of valid literal characters occurrences being false-positively captured as if they were delimiters of some dual-delimited markup construct.
 
-=== Literal Asterisks
-
-The following paragraph contains a literal `*` which the syntax false-positvely matches as a bold delimiter:
-
-[source,asciidoc]
-calculate (4*3/2)*1
-
-===================
-calculate (4*3/2)*1
-===================
-
-For more info and possible solutions, see https://github.com/tajmone/ST4-Asciidoctor/discussions/36[Discussion #36^].
-
-=== Literal Hash Symbol
-
-One of the most problematic chars is the `#` symbol which currently needs to be replace by the `&num;` SGML entity to prevent the syntax from highlighting it as an opening mark delimiter:
-
-[source,asciidoc]
-Example #1 demonstrates...
-
-==========================
-Example #1 demonstrates...
-==========================
-
-
-I've now added a bail-out at empty-line fail-safe mechanism to mitigate the damage of such false positives, but we still need to be able to avoid these false positives altogether by better inspection of the surrounding context.
+NOTE: All previously mentioned examples have now been fixed.
+But there are surely more false-positive examples to be found.
 
 // EOF //

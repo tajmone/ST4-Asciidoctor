@@ -23,9 +23,13 @@ file_extensions:
   - asc
   - asciidoc
 
-# variables:
+variables:
+  block_delimiters: '^[_=\.\-]{4,}$'
 
 contexts:
+  prototype:
+  - include: escapes
+  - include: xml_entities
   main:
   - include: lists
   - include: blocks
@@ -90,6 +94,7 @@ contexts:
     - match: ^(/{4,})\s*$\n?
       scope: punctuation.definition.comment.begin.asciidoc
       push:
+        - meta_include_prototype: false
         - meta_scope: meta.block.comment.content.asciidoc
         - meta_content_scope: comment.block.asciidoc
         - match: ^\1\s*$\n?
@@ -613,25 +618,6 @@ contexts:
   #      )
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-  ################
-  # NAMED ENTITIES
-  ################
-  # Character entity reference
-  # Examples:
-  #   &nbsp;
-  #   &sup2;
-
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # entity_name:
-  #   comment: |
-  #     Character entity reference
-  #
-  #     Examples:
-  #       &nbsp;
-  #       &sup2;
-  #   name: constant.character.entity.xml.asciidoc
-  #   match: (?<!\\)&([a-zA-Z][a-zA-Z0-9]*);
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
   #######
   # XREFS
@@ -810,21 +796,41 @@ contexts:
   # Examples:
   #   *Lorem ipsum* dolor
   #   [red]*Lorem ipsum* dolor
+
+
+# @NOTE: This was the original RegEx, which forces the old RE engine due to
+#        lookbehind assertions:
+
+  # strong_constrained:
+  #   - match: |
+  #       (?x)
+  #       (\[[^\]]*?\])?      # might start with an attributes list
+  #       (?<=^|\W)(?<!\\|})  # must be preceded by non-word char, and not by escape or } (attribute)
+  #       (\*)(?=\S)          # star delimiter must be followed by a non-space char
+  #     captures:
+  #       1: support.variable.attributelist.asciidoc
+  #       2: punctuation.definition.bold.single.begin.asciidoc
+  #     push: inside_strong_constrained
   strong_constrained:
-    - match: |
-        (?x)
-        (\[[^\]]*?\])?      # might start with an attributes list
-        (?<=^|\W)(?<!\\|})  # must be preceded by non-word char, and not by escape or } (attribute)
-        (\*)(?=\S)          # star delimiter must be followed by a non-space char
+    - match: (?=\[[^\]]*?\]\*|\*)
+      branch_point: branch_strong_constrained
+      branch:
+        - maybe_strong_constrained
+        - literal_asterisk
+  maybe_strong_constrained:
+    # might start with an attribute list (indeed, that is its purpose)
+    - match: (\[[^\]]*?\])(\*)|(\*)
       captures:
         1: support.variable.attributelist.asciidoc
         2: punctuation.definition.bold.single.begin.asciidoc
+        3: punctuation.definition.bold.single.begin.asciidoc
       push: inside_strong_constrained
-
   inside_strong_constrained:
     - meta_content_scope: markup.bold.single.asciidoc
     - meta_scope: meta.boldinner.single.asciidoc
-    - include: error_on_empty_line
+    # An empty line or block delimiters trigger branch failure and rewinding:
+    - match: '^$|{{block_delimiters}}'
+      fail: branch_strong_constrained
     - include: line_comment
     - include: emphasis
     - include: monospaced
@@ -833,16 +839,13 @@ contexts:
         (?<=\S)(\*)       # star delimiter must be preceded by a non-space char
         (?!\w)            # ... and followed by a non-word char
       scope: punctuation.definition.bold.single.end.asciidoc
+      pop: 2
+
+  literal_asterisk:
+    # Scoped only for testing purposes. (maybe useful for plug-ins?)
+    - match: '\*'
+      scope: constant.character.literal.asterisk
       pop: true
-      #   - include: emphasis_unconstrained
-      #   - include: monospaced_unconstrained
-      #   - include: mark_unconstrained
-      #   - include: emphasis_constrained
-      #   - include: monospaced_constrained
-      #   - include: mark_constrained
-      #   - include: superscript
-      #   - include: subscript
-      #   - include: characters
 
 
   ##########
@@ -966,6 +969,7 @@ contexts:
       push: inside_monospaced_unconstrained
 
   inside_monospaced_unconstrained:
+    - meta_include_prototype: false
     - meta_content_scope: string.other.literal.double.asciidoc
     - meta_scope: meta.literalinner.double.asciidoc
     - include: error_on_empty_line
@@ -1014,6 +1018,7 @@ contexts:
       push: inside_monospaced_constrained
 
   inside_monospaced_constrained:
+    - meta_include_prototype: false
     - meta_content_scope: string.other.literal.single.asciidoc
     - meta_scope: meta.literalinner.single.asciidoc
     - include: error_on_empty_line
@@ -1109,30 +1114,46 @@ contexts:
   #   #Lorem ipsum# dolor
   #   [red]#Lorem ipsum# dolor
 
-  mark_constrained:
     # NOTE: The '&' in `(?<![\\}&])` was added to ensure it's not preceded by
     #       an & to avoid matching HTML entities like '&#182;'. It could be
     #       removed once HTML entities are properly handled by the syntax, but
     #       we'll need to ensure that they always have precedence over this.
-    - match: |
-        (?x)
-        (\[[^\]]*?\])?       # might start with attribute list (darned well better or why are we here)
-        (?<=^|\W)(?<![\\}&]) # must be preceded by non-word char, and not by escape or } (attribute)
-        (\#)(?=\S)           # hash delimiter must be followed by a non-space char
+  mark_constrained:
+    - match: (?=\[[^\]]*?\]\#|\#)
+      branch_point: branch_mark_constrained
+      branch:
+        - maybe_mark_constrained
+        - literal_hash
+
+# @NOTE: This was the original RegEx, which forces the old RE engine due to
+#        lookbehind assertions:
+    # - match: |
+    #     (?x)
+    #     (\[[^\]]*?\])?       # might start with attribute list (darned well better or why are we here)
+    #     (?<=^|\W)(?<![\\}&]) # must be preceded by non-word char, and not by escape or } (attribute)
+    #     (\#)(?=\S)           # hash delimiter must be followed by a non-space char
+  maybe_mark_constrained:
+    # might start with an attribute list (indeed, that is its purpose)
+    - match: (\[[^\]]*?\])(\#)|(\#)
       captures:
         1: support.variable.attributelist.asciidoc
         2: punctuation.definition.string.unquoted.single.begin.asciidoc
+        3: punctuation.definition.string.unquoted.single.begin.asciidoc
       push: mark_inside
   mark_inside:
     - meta_scope: string.other.unquoted.single.asciidoc
     - meta_content_scope: string.unquoted.unquotedinner.single.asciidoc
-    - match: |
-        (?x)
-        (?<=\S)(\#)       # hash delimiter must be preceded by a non-space char
-        (?!\w)            # ... and followed by a non-word char
+    # - match: '\\\#'
+    #   scope: constant.character.escape.asciidoc
+    #   pop: 2
+    - match: '\#'
       scope: punctuation.definition.string.unquoted.single.end.asciidoc
-      pop: true
-    - include: error_on_empty_line # mitigate iteral '#' false positives!
+      pop: 2
+    # An empty line or block delimiters trigger branch failure and rewinding:
+    - match: '^$|{{block_delimiters}}'
+      fail: branch_mark_constrained
+  # - include: error_on_empty_line # <- old workaround, replaced by branching.
+# @TODO: Add 'include's for possible inline formatting:
     # - include: strong_unconstrained
     # - include: emphasis_unconstrained
     # - include: monospaced_unconstrained
@@ -1143,6 +1164,12 @@ contexts:
     # - include: subscript
     # - include: characters
 
+  literal_hash:
+    # Scoped only for testing purposes. (maybe useful for plug-ins?)
+    - match: '\#'
+      scope: constant.character.literal.hash.asciidoc
+      # scope: punctuation.definition.hash
+      pop: true
 
   ###########
   # SUBSCRIPT
@@ -1673,6 +1700,74 @@ contexts:
     - include: line_comment
     - include: block_comment
 
+#*******************************************************************************
+#                                                                              *
+#                            M I S C E L A N N E A                             *
+#                                                                              *
+#*******************************************************************************
+# Various definitions added by me, some of which still unused except for tests!
+
+  ####################
+  # TYPOGRAPHIC QUOTES
+  ####################
+  # Added by me to prevent false-positives with monospace...
+  # STATUS: UNUSED DRAFT!
+
+  curly_quotes: # NOT USED!
+    - match: ("|')(`)
+      scope: punctuation.definition.string.begin.asciidoc
+    - match: (`)("|')
+      scope: punctuation.definition.string.end.asciidoc
+      # push:
+      #   - match: (`)(\1)
+      #     scope: punctuation.definition.string.end.asciidoc
+      #     pop: true
+      #   - include: monospaced_unconstrained # Single backticks are literals!
+
+#*******************************************************************************
+#                                                                              *
+#                             P R O T O T Y P E S                              *
+#                                                                              *
+#*******************************************************************************
+
+  #########
+  # ESCAPES
+  #########
+  # In AsciiDoc, certain characters need to be escaped with a backslash:
+  #        # & - ` * _ + . ! ( ) { } [ ] \ > :
+  # @TODO: This might not be a complete list of characters need to be escaped.
+  # @TODO: Add support for double \\ escaping ('\\__', '\\**', etc.).
+
+  escapes:
+    - match: \\[\#&\-`*_+\.!(){}\[\]\\>:]
+      scope: constant.character.escape.asciidoc
+
+  # originally:
+  # - match: \\(?=[-`*_#+.!(){}\[\]\\>:])
+
+
+  ##############
+  # XML ENTITIES
+  ##############
+
+  xml_entities:
+    - include: xml_entity_decimal
+    - include: xml_entity_hexadecimal
+    - include: xml_entity_named
+
+  xml_entity_decimal:
+    # Examples: &#182;
+    - match: '&#([\d]{2,4});'
+      scope: constant.character.entity.xml.decimal.asciidoc
+
+  xml_entity_hexadecimal:
+    # Examples: &#x278a; &#x278A; &#182;
+    - match: '&#(x[0-9a-fA-f]{2,4});'
+      scope: constant.character.entity.xml.hexadecimal.asciidoc
+
+  xml_entity_named:
+    # Examples: &nbsp; &sup2;
+    - match: '&([a-zA-Z][a-zA-Z0-9]*);'
+      scope: constant.character.entity.xml.named.asciidoc
 
 # /// EOF ///
-

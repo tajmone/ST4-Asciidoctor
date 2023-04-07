@@ -1,0 +1,71 @@
+// SYNTAX TEST "Packages/ST4-Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+= Escape Sequences
+
+Asciidoctor rules for backslash escaping are rather entangled, because a `\` is treated as an escape only when it precedes a punctuation character that would otherwise act as an actual special symbol (formatting, etc.).
+If the symbol following the `\` is just a literal character in the (unescaped) context, than the `\` is treated as a literal backslash too.
+
+* https://docs.asciidoctor.org/asciidoc/latest/subs/prevent/#escape-with-backslashes[AsciiDoc Documentation » Escape with backslashes^]
+
+Since the package can't possibly contextualize each `\` occurrence, it will treat any backlash followed by an "`escapeable character`" as an escape sequence, even though in the final document they might be rendered both as literal characters.
+
+
+== Escapeable Characters
+
+These are the characters which can be backlash-escaped:
+
+    # & - ` * _ + . ! ( ) { } [ ] \ > :
+
+
+WARNING: The above list needs to be checked.
+It's based on the original package, but missing characters were added since, and probably more are missing, and some of the above still need confirmation.
+
+IMPORTANT: Check Asciidoctor source code for the list of escapeable charaters.
+
+
+ifeval::[0 == 1]
+Test: \# \& \- \` \* \_ \+ \. \!
+//    ^^                           constant.character.escape
+//       ^^                        constant.character.escape
+//          ^^                     constant.character.escape
+//             ^^                  constant.character.escape
+//                ^^               constant.character.escape
+//                   ^^            constant.character.escape
+//                      ^^         constant.character.escape
+//                         ^^      constant.character.escape
+//                            ^^   constant.character.escape
+
+Test: \( \) \{ \} \[ \] \\ \> \:
+//    ^^                           constant.character.escape
+//       ^^                        constant.character.escape
+//          ^^                     constant.character.escape
+//             ^^                  constant.character.escape
+//                ^^               constant.character.escape
+//                   ^^            constant.character.escape
+//                      ^^         constant.character.escape
+//                         ^^      constant.character.escape
+//                            ^^   constant.character.escape
+endif::[]
+
+
+== Double Backlash Escaping
+
+Double backlash escaping (`\\`) is currently unsupported:
+
+____
+To prevent two adjacent characters (e.g., `__`, `##`), from being interpreted as AsciiDoc syntax you need to precede it with two backslashes (`\\`).
+____
+
+
+[.big.red]*Source*
+
+[source,asciidoc]
+-----------------------------------------------------------------------
+Text \\__func__ will be enclosed in double underscores, not italicized.
+-----------------------------------------------------------------------
+
+[.big.red]*Result*
+
+=======================================================================
+Text \\__func__ will be enclosed in double underscores, not italicized.
+=======================================================================
+

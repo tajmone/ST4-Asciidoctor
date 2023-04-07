@@ -4,7 +4,7 @@
 AsciiDoc Documentation reference:
 https://docs.asciidoctor.org/asciidoc/latest/text/bold/[Bold^]
 
-Bold is one of AsciiDoc text formatting elements, belonging to the
+Bold/Strong is one of AsciiDoc text formatting elements, belonging to the
 https://docs.asciidoctor.org/asciidoc/latest/text/[_quotes_ category^].
 
 
@@ -53,7 +53,7 @@ SublimeText is **super**fast.
 
 == Multi-line
 
-Bold text can span across multiple lines in the same paragraph, as long as no blank lines or block elements are encountered between the opening and closing bold delimiter:
+Unconstrained strong text can span across multiple lines in the same paragraph, as long as no blank lines or block elements are encountered between the opening and closing bold delimiter:
 
 [.big.red]*Source*
 
@@ -112,24 +112,77 @@ But if a blank line is encountered before the closing delimiter -- i.e. if the t
 
 [source,asciidoc]
 ...............................................
-*A very long bold text spanning multiple lines.
+A very long-**bold text spanning multiple lines.
 
-With blank lines inbetween.*
+With blank lines inbetween.**
 ...............................................
 
 [.big.red]*Result*
 
 ===============================================
-*A very long bold text spanning multiple lines.
-// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.boldinner.single
+A very long-**bold text spanning multiple lines.
+//          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   meta.boldinner.double
 
 // <- invalid.illegal
-With blank lines inbetween.*
-// ^^^^^^^^^^^^^^^^^^^^^^^^^  - meta.boldinner.single
+With blank lines inbetween.**
+// ^^^^^^^^^^^^^^^^^^^^^^^^    - meta.boldinner.double
+//                         ^^    punctuation.definition.bold.double.begin
 
 ===============================================
 
 The AsciiDoc syntax will handle such cases by interrupting bold-parsing when encountering a blank line, and scoping the first blank line as `invalid` -- to draw the user's attention to the problem.
+
+NOTE: This is a temporary workaround.
+It will soon be replaced by proper handling via context branching instead.
+
+
+== False Positives Checks
+
+Let's test for false positive matches of `*` occurrences which are _not_ strong delimiters...
+
+
+=== Literal Asterisk Character
+
+The syntax now exploits context branching to detect literal `*` symbols and treat them accordingly without breaking syntax highlighting.
+
+[.big.red]*Source*
+
+[source,asciidoc]
+-------------------
+Example: 2 * 6 = 12
+-------------------
+
+[.big.red]*Result*
+
+===================
+Example: 2 * 6 = 12
+//         ^ constant.character.literal.asterisk
+===================
+
+
+=== Escaped Asterisk Character
+
+A `*` symbols preceded by the `\` escape symbol should not be considered a strong delimiter.
+
+[.big.red]*Source*
+
+[source,asciidoc]
+----------------------------
+Ecaped \*asterisk* not bold.
+----------------------------
+
+[.big.red]*Result*
+
+===============================================
+Ecaped \*asterisk* not bold.
+//     ^^            constant.character.escape
+//      ^           -constant.character.literal.asterisk
+//      ^           -punctuation.definition.string.unquoted
+//               ^  -punctuation.definition.string.unquoted
+//               ^   constant.character.literal.asterisk
+===============================================
+
+
 
 
 == Nested Elements

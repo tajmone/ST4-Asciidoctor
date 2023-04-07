@@ -40,4 +40,22 @@ Block Comment
 Back to normal text.
 // <-^^^^^^^^^^^^^^^ - comment
 
+// =================
+// PROTOTYPES CHECKS
+// =================
+
+// Make sure that nothing inside comments is scopes otherwise...
+
+// &num; &#169;
+// ^^^^^^^^^^^^    comment.line.double-slash
+// ^^^^^          -constant.character.entity
+//       ^^^^^^   -constant.character.entity
+
+////
+   &num; &#169;
+// ^^^^^^^^^^^^    comment.block.asciidoc
+// ^^^^^          -constant.character.entity
+//       ^^^^^^   -constant.character.entity
+////
+
 // EOF //

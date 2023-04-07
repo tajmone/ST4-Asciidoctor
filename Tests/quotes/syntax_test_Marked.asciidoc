@@ -145,13 +145,14 @@ cinnamon##.
 //        ^  -string.unquoted.unquotedinner.double
 ===============================================
 
-== Multi-line Fail-safes
+== False Positives Checks
 
-But if a blank line is found before matching the closing delimiter, then the syntax bails out to prevent breaking the whole document.
+Let's test for false positive matches of `#` occurrences which are _not_ marked delimiters...
 
-This mechanism is a fail-safe against false positive matches of literal `#` symbols as if they were a mark delimiter, which unfortunately still occur in the current syntax.
 
-=== Multi-line Constrained w/ Blank Line
+=== Literal Hash Character
+
+The syntax now exploits context branching to detect literal `#` symbols and treat them accordingly without breaking syntax highlighting.
 
 [.big.red]*Source*
 
@@ -159,23 +160,69 @@ This mechanism is a fail-safe against false positive matches of literal `#` symb
 ---------------------------
 Example #1 illustrates how
 to achieve what described so far.
-
-Lorem ipsum.
 ---------------------------
 
 [.big.red]*Result*
 
 ===============================================
 Example #1 illustrates how
+//      ^ constant.character.literal.hash
 to achieve what described so far.
-
-// <- invalid.illegal
-Lorem ipsum.
-//^^^^^^^^^^  -string.other.unquoted.single
-//^^^^^^^^^^  -string.unquoted.unquotedinner.single
 ===============================================
 
-=== Multi-line Unconstrained w/ Blank Line
+
+=== Escaped Hash Character
+
+A `#` symbols preceded by the `\` escape symbol should not be considered a marked delimiter.
+
+[.big.red]*Source*
+
+[source,asciidoc]
+---------------------------
+Ecaped \#hash# not marked.
+---------------------------
+
+[.big.red]*Result*
+
+===============================================
+Ecaped \#hash# not marked.
+//     ^^        constant.character.escape
+//      ^       -constant.character.literal.hash
+//      ^       -punctuation.definition.string.unquoted
+//           ^  -punctuation.definition.string.unquoted
+//           ^   constant.character.literal.hash
+===============================================
+
+
+=== HTML Entities Safeguard
+
+Proper handling of numerical HTML/XML entities should prevent the `#` symbol in their definition from being treated as a constrained marked delimiter -- i.e. by ensuring that HTML entities are being handled with a higher priority, but also via proper RegEx definitions checking the surrounding characters of marked delimiters.
+
+[.big.red]*Source*
+
+[source,asciidoc]
+-------------------------------------------
+HTML entity &#169; is the Copyright symbol.
+-------------------------------------------
+
+[.big.red]*Result*
+
+===========================================
+HTML entity &#169; is the Copyright symbol.
+//           ^      -constant.character.literal.hash
+//           ^      -punctuation.definition.string.unquoted
+//          ^^^^^^   constant.character.entity.xml
+===========================================
+
+
+=== Multi-line Fail-safes
+
+But if a blank line is found before matching the closing delimiter, then the syntax bails out to prevent breaking the whole document.
+
+This mechanism is a fail-safe against false positive matches of literal `#` symbols as if they were a mark delimiter, which unfortunately still occur in the current syntax.
+
+
+==== Multi-line Unconstrained w/ Blank Line
 
 [.big.red]*Source*
 
@@ -198,6 +245,5 @@ Lorem ipsum.
 //^^^^^^^^^^  -string.other.unquoted
 //^^^^^^^^^^  -string.unquoted.unquotedinner
 ===============================================
-
 
 // EOF //

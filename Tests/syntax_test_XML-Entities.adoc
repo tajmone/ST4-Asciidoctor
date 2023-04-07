@@ -1,0 +1,25 @@
+// SYNTAX TEST "Packages/ST4-Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+= XML Entities
+
+E.g. &lt; aka &#60; aka &#xA0;/&#xa0;
+//   ^^^^                              constant.character.entity.xml.named
+//            ^^^^^                    constant.character.entity.xml.decimal
+//                      ^^^^^^         constant.character.entity.xml.hexadecimal
+//                             ^^^^^^  constant.character.entity.xml.hexadecimal
+
+== Escaped Entities
+
+E.g. \&lt;
+//   ^^^^^  -constant.character.entity.xml
+//   ^^      constant.character.escape
+
+E.g. \&#60;
+//   ^^       constant.character.escape
+//   ^^^^^^  -constant.character.entity.xml
+//     ^     -punctuation.definition.string.unquoted
+
+E.g. \&#xA0;
+//   ^^        constant.character.escape
+//   ^^^^^^^  -constant.character.entity.xml
+//     ^     -punctuation.definition.string.unquoted
+
