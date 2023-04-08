@@ -276,7 +276,7 @@ For the full text of the license, see the [`LICENSE`][LICENSE] file.
 ```
 The MIT License
 
-Copyright 2019-2022 Tristano Ajmone <https://github.com/tajmone>
+Copyright 2019-2024 Tristano Ajmone <https://github.com/tajmone>
 Copyright 2014 Matt Neuburg <http://www.apeth.net/matt/default.html>
 Copyright 2015 Jakub Jirutka <jakub@jirutka.cz> and the Asciidoctor Project.
 
