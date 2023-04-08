@@ -1,8 +1,8 @@
 // SYNTAX TEST "Packages/ST4-Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
 = Escape Sequences
 
-Asciidoctor rules for backslash escaping are rather entangled, because a `\` is treated as an escape only when it precedes a punctuation character that would otherwise act as an actual special symbol (formatting, etc.).
-If the symbol following the `\` is just a literal character in the (unescaped) context, than the `\` is treated as a literal backslash too.
+Asciidoctor rules for backslash escaping are rather entangled, because a `\` (or `\\` for double char escaping) is treated as an escape only when it precedes a punctuation character that would otherwise act as an actual special symbol (formatting, etc.).
+If the symbol following the `\` is just a literal character in the (unescaped) context, than the `\` is treated as a literal backslash too and preserved in the final document.
 
 * https://docs.asciidoctor.org/asciidoc/latest/subs/prevent/#escape-with-backslashes[AsciiDoc Documentation » Escape with backslashes^]
 
@@ -24,32 +24,32 @@ IMPORTANT: Check Asciidoctor source code for the list of escapeable charaters.
 
 ifeval::[0 == 1]
 Test: \# \& \- \` \* \_ \+ \. \!
-//    ^^                           constant.character.escape
-//       ^^                        constant.character.escape
-//          ^^                     constant.character.escape
-//             ^^                  constant.character.escape
-//                ^^               constant.character.escape
-//                   ^^            constant.character.escape
-//                      ^^         constant.character.escape
-//                         ^^      constant.character.escape
-//                            ^^   constant.character.escape
+//    ^^                           constant.character.escape.single
+//       ^^                        constant.character.escape.single
+//          ^^                     constant.character.escape.single
+//             ^^                  constant.character.escape.single
+//                ^^               constant.character.escape.single
+//                   ^^            constant.character.escape.single
+//                      ^^         constant.character.escape.single
+//                         ^^      constant.character.escape.single
+//                            ^^   constant.character.escape.single
 
 Test: \( \) \{ \} \[ \] \\ \> \:
-//    ^^                           constant.character.escape
-//       ^^                        constant.character.escape
-//          ^^                     constant.character.escape
-//             ^^                  constant.character.escape
-//                ^^               constant.character.escape
-//                   ^^            constant.character.escape
-//                      ^^         constant.character.escape
-//                         ^^      constant.character.escape
-//                            ^^   constant.character.escape
+//    ^^                           constant.character.escape.single
+//       ^^                        constant.character.escape.single
+//          ^^                     constant.character.escape.single
+//             ^^                  constant.character.escape.single
+//                ^^               constant.character.escape.single
+//                   ^^            constant.character.escape.single
+//                      ^^         constant.character.escape.single
+//                         ^^      constant.character.escape.single
+//                            ^^   constant.character.escape.single
 endif::[]
 
 
 == Double Backlash Escaping
 
-Double backlash escaping (`\\`) is currently unsupported:
+Double backlash escaping (`\\`) is also supported:
 
 ____
 To prevent two adjacent characters (e.g., `__`, `##`), from being interpreted as AsciiDoc syntax you need to precede it with two backslashes (`\\`).
@@ -67,5 +67,36 @@ Text \\__func__ will be enclosed in double underscores, not italicized.
 
 =======================================================================
 Text \\__func__ will be enclosed in double underscores, not italicized.
+//   ^^^^  constant.character.escape.double
 =======================================================================
 
+
+WARNING: Currently, double escaping supports the same characters as single escaping (listed above), although the actual list of candidate characters might differ in reality---I'm simply guessing them.
+
+IMPORTANT: Check Asciidoctor source code for the list of double escapeable charaters.
+
+ifeval::[0 == 1]
+Test: \\## \\&& \\-- \\`` \\** \\__
+//    ^^^^                            constant.character.escape.double
+//         ^^^^                       constant.character.escape.double
+//              ^^^^                  constant.character.escape.double
+//                   ^^^^             constant.character.escape.double
+//                        ^^^^        constant.character.escape.double
+//                             ^^^^   constant.character.escape.double
+
+Test: \\++ \\.. \\!! \\(( \\)) \\{{
+//    ^^^^                            constant.character.escape.double
+//         ^^^^                       constant.character.escape.double
+//              ^^^^                  constant.character.escape.double
+//                   ^^^^             constant.character.escape.double
+//                        ^^^^        constant.character.escape.double
+//                             ^^^^   constant.character.escape.double
+
+Test: \\}} \\[[ \\]] \\\\ \\>> \\::
+//    ^^^^                            constant.character.escape.double
+//         ^^^^                       constant.character.escape.double
+//              ^^^^                  constant.character.escape.double
+//                   ^^^^             constant.character.escape.double
+//                        ^^^^        constant.character.escape.double
+//                             ^^^^   constant.character.escape.double
+endif::[]

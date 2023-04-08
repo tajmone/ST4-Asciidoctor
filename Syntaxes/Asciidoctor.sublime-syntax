@@ -1733,17 +1733,25 @@ contexts:
   #########
   # ESCAPES
   #########
-  # In AsciiDoc, certain characters need to be escaped with a backslash:
-  #        # & - ` * _ + . ! ( ) { } [ ] \ > :
-  # @TODO: This might not be a complete list of characters need to be escaped.
-  # @TODO: Add support for double \\ escaping ('\\__', '\\**', etc.).
+  # In AsciiDoc, certain characters need to be escaped with a backslash,
+  # either a single '/' or double '//' depending on whether the special
+  # char occurs once or twice, respectively.
+  # @TODO: These might not be complete lists of characters which can be escaped.
+  #        Originally:
+  #        - match: \\(?=[-`*_#+.!(){}\[\]\\>:])
+  # @TODO: The double-escape characters are just guesses, need to check them.
 
   escapes:
-    - match: \\[\#&\-`*_+\.!(){}\[\]\\>:]
-      scope: constant.character.escape.asciidoc
-
-  # originally:
-  # - match: \\(?=[-`*_#+.!(){}\[\]\\>:])
+    - include: escapes_double # (1)
+    - include: escapes_single # (2)
+  escapes_double:
+    # chars: # & - ` * _ + . ! ( ) { } [ ] \ > :
+    - match: '\\\\[\#&\-`*_+\.!(){}\[\]\\>:]{2}'
+      scope: constant.character.escape.double.asciidoc
+  escapes_single:
+    # chars: # & - ` * _ + . ! ( ) { } [ ] \ > :
+    - match: '\\[\#&\-`*_+\.!(){}\[\]\\>:]'
+      scope: constant.character.escape.single.asciidoc
 
 
   ##############
