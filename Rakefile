@@ -1,4 +1,4 @@
-=begin "Rakefile" v0.2.0 | 2022/04/17| by Tristano Ajmone
+=begin "Rakefile" v0.3.0 | 2024/02/03| by Tristano Ajmone
 ================================================================================
 Rake automation for the Sublime Asciidoctor package.
 ================================================================================
@@ -43,11 +43,14 @@ TESTS_ADOC_OPTS = <<~HEREDOC
   -a !caption=@
 HEREDOC
 
-TEST_DOCS = FileList['Tests/**/*.asciidoc'].exclude('__*.*').each do |f|
-  html_doc = f.ext('.html')
+TEST_DOCS = FileList['Tests/**/*.asciidoc'].exclude(
+    '__*.*',
+    '**/_syntax_test_*.*'
+  ).each do |f|
+  html_doc = f.ext('.html').sub('syntax_test_', '')
   task :tests_html => html_doc
   file html_doc => f do |t|
-    AsciidoctorConvert(t.source, TESTS_ADOC_OPTS)
+    AsciidoctorConvert(t.source, html_doc.pathmap("%f"), TESTS_ADOC_OPTS)
   end
 end
 
@@ -77,5 +80,5 @@ HEREDOC
 task :guide => GUIDE_HTM
 
 file GUIDE_HTM => GUIDE_DEPS do |f|
-  AsciidoctorConvert(GUIDE_SRC, GUIDE_ADOC_OPTS)
+  AsciidoctorConvert(GUIDE_SRC, "index.html", GUIDE_ADOC_OPTS)
 end

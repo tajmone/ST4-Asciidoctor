@@ -27,6 +27,8 @@ Most tests are self-documenting and can be converted to HTML via Rake by typing 
 Test files are grouped in subfolders according to category; tests which don't belong to any specific category are kept in the this root tests folder.
 
 - [`/blocks/`][blocks/] — block elements.
+- [`/characters/`][characters/] — HTML entities, character escapes, ecc.
+- [`/lists/`][lists/] — lists related tests.
 - [`/quotes/`][quotes/] — inline quote markup elements.
 - [`/tables/`][tables/] — AsciiDoc tables (deserve a folder of their own).
 
@@ -34,16 +36,30 @@ Test files are grouped in subfolders according to category; tests which don't be
 
 The following naming conventions apply to this directory tree:
 
-- `syntax_test_*.asciidoc` — syntax tests that are valid AsciiDoc documents.
-- `syntax_test_*.adoc` — syntax tests that are malformed AsciiDoc documents.
-- `_syntax_test_*.asciidoc` — disabled test files that fail syntax testing.
-- `*.asciidoc` — misc. non-test documents, for information purposes.
-- `___*.*` — Files and folders ignored by Git.
+- `syntax_test_*.asciidoc` — syntax tests that are **valid AsciiDoc documents**\:
+    - will be converted by Rake to HTML (without the `syntax_test_` prefix).
+- `syntax_test_*.adoc` — syntax tests that are **malformed AsciiDoc documents**\:
+    - _will not_ be converted by Rake to HTML.
+- `_syntax_test_*.asciidoc` — temporary **disabled test files** that fail syntax testing\:
+    - _will not_ be converted by Rake to HTML.
+- `*.asciidoc` — misc. **non-test documents**, for information purposes\:
+    - will be converted by Rake to HTML, preserving original file-name part.
+- `___*.*` — Files and folders ignored by Git\:
+    - _will not_ be converted by Rake to HTML, even if file has `.asciidoc` extension.
 
 
 # HTML-Convertible Test Files
 
-Every `*.asciidoc` test file is also a valid AsciiDoc source file, which can be converted to HTML via Rake for the following purposes:
+Every `Tests/**/*.asciidoc` file (whether a test file or otherwise) must be a valid/well-formed AsciiDoc source file, because it will be converted to HTML by the Rake build (these HTML files are ignored by Git).
+
+> **NOTE** — The `syntax_test_` prefix will be removed from the generated HTML documents in order to avoid Sublime Text detecting them as syntax texts for HTML.
+
+<!-- sep -->
+
+> **IMPORTANT** — Please always test via `rake` that all test-files eligible for HTML conversion (`.asciidoc` extension) do pass the Rake build (which is set to invoke Asciidoctor with `--failure-level WARN`, to ensure only well-formed documents are kept in the tests folder).
+> If, for whatever reason, a test-file fails HTML conversion, just change its extension to `.adoc`, so that it will be ignored by Rake but still be used as a syntax-test by Sublime Text.
+
+These are the reasons why we convert the (well-formed) test files to HTML:
 
 1. Verify with Asciidoctor that the test file is a valid AsciiDoc source, and capture any formatting errors and edge cases (i.e. formatting not working as expected).
 2. Simplify tracking the syntax tests by reading them as documents that explain the nature of the tests, providing examples and references links.
@@ -129,8 +145,9 @@ This directory also contains some `*.asciidoc` files which are not part of the t
 <!-- files & folders -->
 
 [blocks/]: ./blocks "Navigate to block tests folder"
+[characters/]: ./characters "Navigate to characters tests folder"
+[lists/]: ./lists "Navigate to lists tests folder"
 [quotes/]: ./quotes "Navigate to inline quotes tests folder"
 [tables/]: ./tables "Navigate to tables tests folder"
-
 
 <!-- EOF -->

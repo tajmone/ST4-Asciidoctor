@@ -349,7 +349,7 @@ THE SOFTWARE.
 [Package badge]: https://img.shields.io/badge/version-0.1.2-orange "ST4-Asciidoctor is currently in Alpha stage"
 [Travis badge]: https://app.travis-ci.com/tajmone/ST4-Asciidoctor.svg?branch=master "Travis CI: EditorConfig validation status"
 [Travis link]: https://app.travis-ci.com/github/tajmone/ST4-Asciidoctor
-[ST badge]: https://img.shields.io/badge/Sublime_Text-4131-yellow?logo=sublime-text&logoColor=FF9800 "Sublime Text version used in development (click to visit download page)"
+[ST badge]: https://img.shields.io/badge/Sublime_Text-4168-yellow?logo=sublime-text&logoColor=FF9800 "Sublime Text version used in development (click to visit download page)"
 [ST link]: https://www.sublimetext.com/download
 [License badge]: https://img.shields.io/badge/License-MIT-blue
 

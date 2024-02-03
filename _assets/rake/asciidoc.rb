@@ -1,4 +1,4 @@
-=begin "asciidoc.rb" v0.3.1 | 2022/04/16 | by Tristano Ajmone | MIT License
+=begin "asciidoc.rb" v0.4.0 | 2024/02/03 | by Tristano Ajmone | MIT License
 ================================================================================
 Some custom Rake helper methods for automating common Asciidoctor operations
 that we use across different documentation projects.
@@ -11,12 +11,12 @@ https://github.com/alan-if/alan-i18n/tree/main/_assets/rake
 require 'asciidoctor'
 require 'Open3'
 
-def AsciidoctorConvert(source_file, adoc_opts = "")
+def AsciidoctorConvert(source_file, out_file, adoc_opts = "")
   # ----------------------------------------------------------------------------
   TaskHeader("Converting to HTML: #{source_file}")
   src_dir = source_file.pathmap("%d")
   src_file = source_file.pathmap("%f")
-  adoc_opts = adoc_opts.chomp + " #{src_file}"
+  adoc_opts = adoc_opts.chomp + " -o#{out_file} #{src_file}"
   cd "#{$repo_root}/#{src_dir}"
   begin
     stdout, stderr, status = Open3.capture3("asciidoctor #{adoc_opts}")
@@ -24,7 +24,6 @@ def AsciidoctorConvert(source_file, adoc_opts = "")
     raise unless status.success?
   rescue
     rake_msg = our_msg = "Asciidoctor conversion failed: #{source_file}"
-    out_file = src_file.ext('.html')
     if File.file?(out_file)
       our_msg = "Asciidoctor reported some problems during conversion.\n" \
         "The generated HTML file should not be considered safe to deploy."
