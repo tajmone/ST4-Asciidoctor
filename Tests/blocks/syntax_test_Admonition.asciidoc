@@ -1,0 +1,92 @@
+// SYNTAX TEST "Packages/ST4-Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+= Admonition Blocks
+
+Manual Reference:
+https://docs.asciidoctor.org/asciidoc/latest/blocks/admonitions[Admonitions^]
+
+
+== NOTE
+
+[.big.red]*Source*
+
+[source,asciidoc]
+----------------------
+NOTE: Be careful what you wish for.
+----------------------
+
+[.big.red]*Result*
+
+============================
+NOTE: Be careful what you wish for.
+//<- support.constant.admonitionword.asciidoc
+============================
+
+
+== IMPORTANT
+
+[.big.red]*Source*
+
+[source,asciidoc]
+----------------------
+IMPORTANT: Be careful what you wish for.
+----------------------
+
+[.big.red]*Result*
+
+============================
+IMPORTANT: Be careful what you wish for.
+//<- support.constant.admonitionword.asciidoc
+============================
+
+
+== WARNING (be aware)
+
+[.big.red]*Source*
+
+[source,asciidoc]
+----------------------
+WARNING: Be careful what you wish for.
+----------------------
+
+[.big.red]*Result*
+
+============================
+WARNING: Be careful what you wish for.
+//<- support.constant.admonitionword.asciidoc
+============================
+
+
+== CAUTION (act accordingly)
+
+[.big.red]*Source*
+
+[source,asciidoc]
+----------------------
+CAUTION: Be careful what you wish for.
+----------------------
+
+[.big.red]*Result*
+
+============================
+CAUTION: Be careful what you wish for.
+//<- support.constant.admonitionword.asciidoc
+============================
+
+
+== TIP
+
+[.big.red]*Source*
+
+[source,asciidoc]
+----------------------
+TIP: Be careful what you wish for.
+----------------------
+
+[.big.red]*Result*
+
+============================
+TIP: Be careful what you wish for.
+//<- support.constant.admonitionword.asciidoc
+============================
+
+// EOF //

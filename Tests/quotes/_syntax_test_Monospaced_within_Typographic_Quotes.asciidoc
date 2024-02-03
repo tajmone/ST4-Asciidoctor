@@ -1,0 +1,47 @@
+// SYNTAX TEST "Packages/ST4-Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+= Monospace Text Formatting
+
+
+== Edge Cases
+
+See
+https://asciidoctor.org/docs/user-manual/#unconstrained-formatting-edge-cases[§9.4. Unconstrained formatting edge cases]
+
+=== Unconstrained Within Typographic Quotes
+
+
+[.big.red]*Source*
+
+[source,asciidoc]
+......................................
+A monospaced phrase inside typographic quotes: "```endpoints```"
+......................................
+
+
+[.big.red]*Result*
+
+======================================
+A monospaced phrase inside typographic quotes: "```endpoints```"
+======================================
+
+Unconstrained inline code within curly quotes:
+
+[.big.red]*Source*
+
+[source,asciidoc]
+......................................
+Example: "```Procedure("xyz")```".
+......................................
+
+
+[.big.red]*Result*
+
+======================================
+Example: "```Procedure("xyz")```".
+//         ^^^^^^^^^^^^^^^^^^^^   meta.literalinner.double
+//         ^^                     punctuation.definition.literal.double.begin
+//                           ^^   punctuation.definition.literal.double.end
+//       ^^                       punctuation.definition.string.begin
+//                             ^^ punctuation.definition.string.end
+======================================
+

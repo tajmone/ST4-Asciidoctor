@@ -45,7 +45,7 @@ The following naming conventions apply to this directory tree:
 Every `*.asciidoc` test file is also a valid AsciiDoc source file, which can be converted to HTML via Rake for the following purposes:
 
 1. Verify with Asciidoctor that the test file is a valid AsciiDoc source, and capture any formatting errors and edge cases (i.e. formatting not working as expected).
-2. Simplify tracking the syntax tests by reading them as documents that explain the nature of the tests, providing examples and and references links.
+2. Simplify tracking the syntax tests by reading them as documents that explain the nature of the tests, providing examples and references links.
 
 The size-bloat added by this approach to the test files shouldn't be a concern, for tests are only carried out by developers and maintainers of the syntax.
 On the other hand, this approach simplifies understanding how the test suite works, making it easier to join the project for anyone wishing to contributing to the syntax.
@@ -53,7 +53,7 @@ On the other hand, this approach simplifies understanding how the test suite wor
 Besides, AsciiDoc being a rather complex syntax, the need for well-documented tests is a felt need, because there are many edge cases to keep in mind during the tests, and because any changes to the syntax definition could easily introduce unexpected breaking behaviors.
 
 If a test file has the `*.adoc` extension it's means that it's a malformed AsciiDoc document.
-This usually happens because of the need to use an alternative comment delimiter in the first line, in order to allow correct testing of some rare edge-cases contexts, which can makes the document unconvertable due interference with its header.
+This usually happens because of the need to use an alternative comment delimiter in the first line, in order to allow correct testing of some rare edge-case contexts, which can make the document unconvertable due interference with its header.
 
 These `*.adoc` files won't be converted to HTML, but you can still read them in ST4, for they are only partially malformed, and can still be used for manual inspection.
 

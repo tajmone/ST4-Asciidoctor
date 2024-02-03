@@ -1,0 +1,40 @@
+// SYNTAX TEST "Packages/ST4-Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+= Index Term
+
+AsciiDoc Documentation reference:
+https://docs.asciidoctor.org/asciidoc/latest/sections/user-index/#index-terms[Index Terms^]
+
+== Index Terms
+
+[.big.red].Source.
+
+[source,asciidoc]
+..........................
+A ((flow)) index term appears in both the text and the index.
+A concealed index term appears only in the index.
+(((concealed index term)))
+(((index term,concealed)))
+..........................
+
+[.big.red].Result.
+
+============================
+A ((flow)) index term appears in both the text and the index.
+//^^^^^^^^                                                          variable.other.indexterm.double.asciidoc
+//^^                                                                constant.character.indexterm.double.begin.asciidoc
+//  ^^^^                                                            variable.other.indexterm.double.asciidoc
+//      ^^                                                          constant.character.indexterm.double.end.asciidoc
+A concealed term is only in the index. (((concealed index term)))
+//                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^   variable.other.indexterm.triple.asciidoc
+//                                     ^^^                          constant.character.indexterm.triple.begin.asciidoc
+//                                        ^^^^^^^^^^^^^^^^^^^^      variable.other.indexterm.triple.asciidoc
+//                                                            ^^^   constant.character.indexterm.triple.end.asciidoc
+A concealed term can be grouped. (((index term,concealed)))
+//                               ^^^^^^^^^^^^^^^^^^^^^^^^^^         variable.other.indexterm.triple.asciidoc
+//                               ^^^                                constant.character.indexterm.triple.begin.asciidoc
+//                                  ^^^^^^^^^^^^^^^^^^^^            variable.other.indexterm.triple.asciidoc
+//                                                      ^^^         constant.character.indexterm.triple.end.asciidoc
+============================
+
+
+//? EOF //

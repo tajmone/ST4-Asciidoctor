@@ -1,0 +1,57 @@
+// SYNTAX TEST "Packages/ST4-Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+= Attribute Reference
+
+AsciiDoc Documentation reference:
+https://docs.asciidoctor.org/asciidoc/latest/macros/xref[Xref^]
+
+== Xref Link with Default Display Text
+
+[.big.red].Source.
+
+[source,asciidoc]
+..........................
+See also <<baz>>.
+..........................
+
+[.big.red].Result.
+
+============================
+See also <<baz>>.
+//       ^^^^^^^     meta.xref.asciidoc
+//         ^^^       variable.parameter.xref.link.asciidoc
+//       ^^          constant.character.xref.begin.asciidoc
+//            ^^     constant.character.xref.end.asciidoc
+============================
+
+
+== Xref Link with Custom Display Text
+
+[.big.red].Source.
+
+[source,asciidoc]
+..........................
+See also <<foo-bar,Foo Bar>>.
+..........................
+
+[.big.red].Result.
+
+============================
+See also <<foo-bar,Foo Bar>>.
+//       ^^^^^^^^^^^^^^^^^^^                       meta.xref.asciidoc
+//         ^^^^^^^                                 variable.parameter.xref.link.asciidoc
+//                ^                                text.asciidoc
+//                 ^^^^^^^                         variable.parameter.xref.display.asciidoc
+//       ^^                                        constant.character.xref.begin.asciidoc
+//                        ^^                       constant.character.xref.end.asciidoc
+See also <<white-space  ,  white space allowed>>.
+//       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   meta.xref.asciidoc
+//         ^^^^^^^^^^^                             variable.parameter.xref.link.asciidoc
+//                    ^^^^^                        text.asciidoc
+//                         ^^^^^^^^^^^^^^^^^^^     variable.parameter.xref.display.asciidoc
+//       ^^                                        constant.character.xref.begin.asciidoc
+//                                            ^^   constant.character.xref.end.asciidoc
+============================
+
+
+
+//? EOF //

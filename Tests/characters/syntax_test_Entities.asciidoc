@@ -1,0 +1,43 @@
+// SYNTAX TEST "Packages/ST4-Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+= AsciiDoc Entities
+
+
+Manual Reference:
+https://docs.asciidoctor.org/asciidoc/latest/subs/replacements/[Character Replacement Substitutions^]
+
+
+== Numeric Entities
+
+[.big.red]*Source*
+
+[source,asciidoc]
+----------------------
+Special characters include &#x278a; and &#182;.
+----------------------
+
+[.big.red]*Result*
+
+============================
+Special characters include &#x278a; and &#182;.
+//                         ^^^^^^^^                constant.character.entity.asciidoc
+//                                      ^^^^^^     constant.character.entity.asciidoc
+============================
+
+
+== Named Entities
+
+[.big.red]*Source*
+
+[source,asciidoc]
+----------------------
+A non-breaking&nbsp;space is in here.
+----------------------
+
+[.big.red]*Result*
+
+============================
+A non-breaking&nbsp;space is in here.
+//            ^^^^^^                        constant.character.entity.xml.asciidoc
+============================
+
+// EOF //

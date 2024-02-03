@@ -1,0 +1,30 @@
+// SYNTAX TEST "Packages/ST4-Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+= Attribute Reference
+
+AsciiDoc Documentation reference:
+https://docs.asciidoctor.org/asciidoc/latest/attributes/attribute-entry-substitutions//[Attribute Entry Substitutions^]
+
+[.big.red].Source.
+
+[source,asciidoc]
+..........................
+:lb: pound
+
+1 {lb} carrots, sliced
+..........................
+
+[.big.red].Result.
+
+============================
+:lb: pound
+
+1 {lb} carrots, sliced
+//^^^^                      text.asciidoc
+//^                         constant.character.attributes.reference.begin.asciidoc
+//   ^                      constant.character.attributes.reference.end.asciidoc
+// ^^                       support.variable.attribute.asciidoc
+============================
+
+
+
+//? EOF //

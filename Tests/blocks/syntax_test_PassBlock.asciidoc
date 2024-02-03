@@ -2,7 +2,7 @@
 = Pass Blocks
 
 Manual Reference:
-https://asciidoctor.org/docs/user-manual/#pass-blocks[§40.2. Passthrough Blocks]
+https://asciidoctor.org/docs/user-manual/#pass-blocks[§40.2. passthrough Blocks]
 
 The passthrough block and pass block style exclude block content from all substitutions (unless specified otherwise).
 

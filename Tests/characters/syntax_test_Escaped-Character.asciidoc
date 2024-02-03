@@ -1,0 +1,73 @@
+// SYNTAX TEST "Packages/ST4-Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+= AsciiDoc Escaped Characters
+
+
+Manual Reference:
+https://docs.asciidoctor.org/asciidoc/latest/subs/prevent[Escape and Prevent Substitutions^]
+
+
+== Escaping with a Backslash
+
+[.big.red]*Source*
+
+[source,asciidoc]
+----------------------
+\-
+\`not monospaced`
+\*not bold*
+\_not italic_
+\#not marked#
+\+
+\.
+\!
+\(
+\)
+\{
+\}
+\\
+\[
+\\
+\]
+\\
+----------------------
+
+[.big.red]*Result*
+
+============================
+\-
+//<- constant.character.escape.asciidoc
+\`not monospaced`
+//<- constant.character.escape.asciidoc
+\*not bold*
+//<- constant.character.escape.asciidoc
+\_not italic_
+//<- constant.character.escape.asciidoc
+\#not marked#
+//<- constant.character.escape.asciidoc
+\+
+//<- constant.character.escape.asciidoc
+\.
+//<- constant.character.escape.asciidoc
+\!
+//<- constant.character.escape.asciidoc
+\(
+//<- constant.character.escape.asciidoc
+\)
+//<- constant.character.escape.asciidoc
+\{
+//<- constant.character.escape.asciidoc
+\}
+//<- constant.character.escape.asciidoc
+\\
+//<- constant.character.escape.asciidoc
+\[
+//<- constant.character.escape.asciidoc
+\\
+//<- constant.character.escape.asciidoc
+\]
+//<- constant.character.escape.asciidoc
+\\
+//<- constant.character.escape.asciidoc
+============================
+
+// EOF //
