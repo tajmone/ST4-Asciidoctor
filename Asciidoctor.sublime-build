@@ -1,0 +1,18 @@
+{
+    "selector": "text.asciidoc",
+    "working_dir": "$file_path",
+    "file_regex": "^asciidoctor:[^:]*:\\s+(\\w+\\.\\w+): line ([0-9]*)",
+    "shell_cmd": "asciidoctor -b html5 $file_name",
+    "variants": [
+        {
+            "name": "EPUB",
+            "shell_cmd": "asciidoctor-epub3 $file_name"
+        },
+        {
+            "name": "DOCX",
+            "windows": {
+              "shell_cmd": "call \"$packages\\ST4-Asciidoctor\\script\\Asciidoctor_build_docx.bat\" \"$file_path\" $file_base_name $file_extension"
+            }
+        }
+    ]
+}

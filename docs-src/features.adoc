@@ -1,4 +1,8 @@
 = Package Features
+// The kbd:[] macros won't work unless the experimental attribute is turned on.
+:experimental: true
+:Y: Yes
+:N: No
 
 The list of editing features natively supported by the package.
 
@@ -122,3 +126,55 @@ Document and section titles are displayed in both the local and global _Goto Sym
 // This is no longer true with ST4:
 Furthermore, they will be on top of the list because of the precedence of `=`.
 ////
+
+
+== Build System
+
+This package defines a build system for AsciiDoc files that targets *HTML*, *EPUB*, and *DOCX*.
+With the source AsciiDoc file open in the editor, simply press kbd:[Ctrl]+kbd:[Shift]+kbd:[B] to invoke the build system, and then select your target.
+
+.Targets
+[opts="autowidth"]
+|=============================================================================
+| Asciidoctor        | Generates HTML
+| Asciidoctor - EPUB | Generates EPUB (via `asciidoctor-epub3`)
+| Asciidoctor - DOCX | Generates a Word document (via `pandoc`)
+|=============================================================================
+
+Or, press kbd:[Ctrl]+kbd:[B] to repeat the build for the last target selected.
+
+In all cases, the generated file will be placed alongside the source file, in the same folder.
+In the case of a DOCX file, it will be opened automatically using your system's default program for the DOCX file type.
+
+=== Build System Requirements
+
+* For HTML, this assumes that `asciidoctor` is installed on the system path.
+* For EPUB, this assumes that `asciidoctor-epub3` is installed on the system path.
+* For DOCX, this assumes that `pandoc` is installed on the system path (along with `asciidoctor`).
+
+NOTE: There is currently only a `Windows` implementation for DOCX.
+
+=== Specifying a reference.docx file for Pandoc
+
+Pandoc has the ability to start with a reference DOCX file that, for example, defines all of the paragraph and character styles you'd like to be included in the target.
+This build system supports three different ways to specify such a reference docx file for pandoc to use:
+
+. If the AsciiDoc source file contains an attribute definition for `:pandoc:`, `:pandoc-ref:`, or `:pandoc-reference:`, and the value of that attribute exists as a file, then it will be used.
+NOTE: There is nothing special about us using an attribute definition for this.
+This build system searches the source file directly for the file reference, so we could have buried it in a comment, for example.
+Using attribute syntax just seemed appropriate.
+By the time the source file is processed by AsciiDoctor, the `:pandoc...:` attribute will just be ignored.
+Be aware that if there are multiple `:pandoc...:` attributes defined in the file, only the last one will be used.
+Also, this script will only find `:pandoc...:` attributes that are in the main source file, not in any included files.
+
+. If `.\reference.docx` exists, it will be used.
+
+. If `.\.pandoc\reference.docx` exists, it will be used.
+
+. Otherwise, no reference file will be used.
+
+=== Usage Tips
+
+You can leave an *HMTL* file open in your browser while you regenerate it.
+Then, just refresh the page with kbd:[F5].
+For *EPUB* and *DOCX* files, however, you must close them before they can be regenerated.
