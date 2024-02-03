@@ -1,0 +1,49 @@
+// SYNTAX TEST "Packages/ST4-Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+
+////
+NOTE: This file is excluded from Rake's conversion to HTML because the non
+sequential numbering of the callout list fails Asciidoctor conversion.
+////
+
+[source,ruby]
+-----------------------
+require 'sinatra' <1>
+
+get '/hi' do <42> <333>
+  "Hello World!"
+end
+-----------------------
+
+<1> Library import
+//<-                     string.unquoted.list.callout.asciidoc
+//<-                     constant.numeric.callout.asciidoc
+//<-                     punctuation.definition.calloutlistnumber.begin.asciidoc
+ //<-                    string.unquoted.list.callout.asciidoc
+ //<-                    constant.numeric.callout.asciidoc
+//^                      string.unquoted.list.callout.asciidoc
+//^                      constant.numeric.callout.asciidoc
+//^                      punctuation.definition.calloutlistnumber.end.asciidoc
+<42> URL mapping
+//<-                     string.unquoted.list.callout.asciidoc
+//<-                     constant.numeric.callout.asciidoc
+//<-                     punctuation.definition.calloutlistnumber.begin.asciidoc
+ //<-                    string.unquoted.list.callout.asciidoc
+ //<-                    constant.numeric.callout.asciidoc
+  //<-                   string.unquoted.list.callout.asciidoc
+  //<-                   constant.numeric.callout.asciidoc
+// ^                     string.unquoted.list.callout.asciidoc
+// ^                     constant.numeric.callout.asciidoc
+// ^                     punctuation.definition.calloutlistnumber.end.asciidoc
+<333> Response block
+//<-                     string.unquoted.list.callout.asciidoc
+//<-                     constant.numeric.callout.asciidoc
+//<-                     punctuation.definition.calloutlistnumber.begin.asciidoc
+ //<-                    string.unquoted.list.callout.asciidoc
+ //<-                    constant.numeric.callout.asciidoc
+  //<-                   string.unquoted.list.callout.asciidoc
+  //<-                   constant.numeric.callout.asciidoc
+   //<-                  string.unquoted.list.callout.asciidoc
+   //<-                  constant.numeric.callout.asciidoc
+//  ^                    string.unquoted.list.callout.asciidoc
+//  ^                    constant.numeric.callout.asciidoc
+//  ^                    punctuation.definition.calloutlistnumber.end.asciidoc

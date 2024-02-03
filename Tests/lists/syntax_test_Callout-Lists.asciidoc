@@ -2,7 +2,7 @@
 = Callout List
 
 AsciiDoc Documentation reference:
-https://docs.asciidoctor.org/asciidoc/latest/verbatim/callouts/[Callout Lists^]
+https://docstor.org/asciidoc/latest/verbatim/callouts/[Callout Lists^]
 
 == Callout Lists
 
@@ -10,52 +10,52 @@ https://docs.asciidoctor.org/asciidoc/latest/verbatim/callouts/[Callout Lists^]
 
 [source,asciidoc]
 ......................................
+[source,ruby]
+-----------------------
 require 'sinatra' <1>
 
-get '/hi' do <42> <333>
+get '/hi' do <2> <3>
   "Hello World!"
 end
+-----------------------
 
 <1> Library import
-<42> URL mapping
-<333> Response block
+<2> URL mapping
+<3> Response block
 ......................................
 
 
 [.big.red]*Result*
 
+////
+NOTE: In the first test below we're forced to add two spaces indentation before
+the callout in order to test each character, due to comment delimiter being
+two-chars wide. But that's fine as far as the ST syntax goes...
+////
+
 ======================================
 [source,ruby]
-
+-----------------------
 require 'sinatra' <1>
 
-get '/hi' do <42> <333>
+get '/hi' do <2> <3>
   "Hello World!"
 end
+-----------------------
 
-<1> Library import
-//<-                     string.unquoted.list.callout.asciidoc
- //<-                    string.unquoted.list.callout.asciidoc
-//^                      string.unquoted.list.callout.asciidoc
- //<-                    constant.numeric.callout.asciidoc
-//<-                     punctuation.definition.calloutlistnumber.begin.asciidoc
-//^                      punctuation.definition.calloutlistnumber.end.asciidoc
-<42> URL mapping
-//<-                     string.unquoted.list.callout.asciidoc
- //<-                    string.unquoted.list.callout.asciidoc
-//^^                     string.unquoted.list.callout.asciidoc
- //<-                    constant.numeric.callout.asciidoc
-//^                      constant.numeric.callout.asciidoc
-//<-                     punctuation.definition.calloutlistnumber.begin.asciidoc
-// ^                     punctuation.definition.calloutlistnumber.end.asciidoc
-<333> Response block
-//<-                     string.unquoted.list.callout.asciidoc
- //<-                    string.unquoted.list.callout.asciidoc
-//^^^                    string.unquoted.list.callout.asciidoc
- //<-                    constant.numeric.callout.asciidoc
-//^^                     constant.numeric.callout.asciidoc
-//<-                     punctuation.definition.calloutlistnumber.begin.asciidoc
-//  ^                    punctuation.definition.calloutlistnumber.end.asciidoc
+  <1> Library import
+//^^^                   string.unquoted.list.callout
+//^                     punctuation.definition.calloutlistnumber.begin
+// ^                    constant.numeric.callout
+//  ^                   punctuation.definition.calloutlistnumber.end
+<2> URL mapping
+//<-                    string.unquoted.list.callout
+//<-                    constant.numeric.callout
+//<-                    punctuation.definition.calloutlistnumber.begin
+<3> Response block
+//^                     string.unquoted.list.callout
+//^                     constant.numeric.callout
+//^                     punctuation.definition.calloutlistnumber.end
 ======================================
 
 // EOF //
