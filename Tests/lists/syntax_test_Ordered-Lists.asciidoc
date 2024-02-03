@@ -4,7 +4,7 @@
 AsciiDoc Documentation reference:
 https://docs.asciidoctor.org/asciidoc/latest/lists/ordered/[Ordered Lists^]
 
-[.big.red].Source.
+[.big.red]*Source*
 
 [source,asciidoc]
 ......................................
@@ -16,18 +16,25 @@ https://docs.asciidoctor.org/asciidoc/latest/lists/ordered/[Ordered Lists^]
 ......................................
 
 
-[.big.red].Result.
+[.big.red]*Result*
 
 ======================================
 . Level 1
-//<-      punctuation.definition.list_item
-//^      -punctuation.definition.list_item
+//<-          punctuation.definition.list_item
+//^          -punctuation.definition.list_item
 .. Level 2
 ... Level 3
+//<-          punctuation.definition.list_item
+//^           punctuation.definition.list_item
+// ^         -punctuation.definition.list_item
 .... Level 4
+//<-          punctuation.definition.list_item
+//^^          punctuation.definition.list_item
+//  ^        -punctuation.definition.list_item
 ..... Level 5
-//<-^     punctuation.definition.list_item
-//   ^   -punctuation.definition.list_item
+//<-          punctuation.definition.list_item
+//^^^         punctuation.definition.list_item
+//   ^       -punctuation.definition.list_item
 ======================================
 
 

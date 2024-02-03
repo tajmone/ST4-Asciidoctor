@@ -15,35 +15,35 @@ end
 -----------------------
 
 <1> Library import
-//<-                     string.unquoted.list.callout.asciidoc
-//<-                     constant.numeric.callout.asciidoc
-//<-                     punctuation.definition.calloutlistnumber.begin.asciidoc
- //<-                    string.unquoted.list.callout.asciidoc
- //<-                    constant.numeric.callout.asciidoc
-//^                      string.unquoted.list.callout.asciidoc
-//^                      constant.numeric.callout.asciidoc
-//^                      punctuation.definition.calloutlistnumber.end.asciidoc
+//<-                     string.unquoted.list.callout
+//<-                     constant.numeric.callout
+//<-                     punctuation.definition.calloutlistnumber.begin
+ //<-                    string.unquoted.list.callout
+ //<-                    constant.numeric.callout
+//^                      string.unquoted.list.callout
+//^                      constant.numeric.callout
+//^                      punctuation.definition.calloutlistnumber.end
 <42> URL mapping
-//<-                     string.unquoted.list.callout.asciidoc
-//<-                     constant.numeric.callout.asciidoc
-//<-                     punctuation.definition.calloutlistnumber.begin.asciidoc
- //<-                    string.unquoted.list.callout.asciidoc
- //<-                    constant.numeric.callout.asciidoc
-  //<-                   string.unquoted.list.callout.asciidoc
-  //<-                   constant.numeric.callout.asciidoc
-// ^                     string.unquoted.list.callout.asciidoc
-// ^                     constant.numeric.callout.asciidoc
-// ^                     punctuation.definition.calloutlistnumber.end.asciidoc
+//<-                     string.unquoted.list.callout
+//<-                     constant.numeric.callout
+//<-                     punctuation.definition.calloutlistnumber.begin
+ //<-                    string.unquoted.list.callout
+ //<-                    constant.numeric.callout
+  //<-                   string.unquoted.list.callout
+  //<-                   constant.numeric.callout
+// ^                     string.unquoted.list.callout
+// ^                     constant.numeric.callout
+// ^                     punctuation.definition.calloutlistnumber.end
 <333> Response block
-//<-                     string.unquoted.list.callout.asciidoc
-//<-                     constant.numeric.callout.asciidoc
-//<-                     punctuation.definition.calloutlistnumber.begin.asciidoc
- //<-                    string.unquoted.list.callout.asciidoc
- //<-                    constant.numeric.callout.asciidoc
-  //<-                   string.unquoted.list.callout.asciidoc
-  //<-                   constant.numeric.callout.asciidoc
-   //<-                  string.unquoted.list.callout.asciidoc
-   //<-                  constant.numeric.callout.asciidoc
-//  ^                    string.unquoted.list.callout.asciidoc
-//  ^                    constant.numeric.callout.asciidoc
-//  ^                    punctuation.definition.calloutlistnumber.end.asciidoc
+//<-                     string.unquoted.list.callout
+//<-                     constant.numeric.callout
+//<-                     punctuation.definition.calloutlistnumber.begin
+ //<-                    string.unquoted.list.callout
+ //<-                    constant.numeric.callout
+  //<-                   string.unquoted.list.callout
+  //<-                   constant.numeric.callout
+   //<-                  string.unquoted.list.callout
+   //<-                  constant.numeric.callout
+//  ^                    string.unquoted.list.callout
+//  ^                    constant.numeric.callout
+//  ^                    punctuation.definition.calloutlistnumber.end

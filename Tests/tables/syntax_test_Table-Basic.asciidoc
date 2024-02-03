@@ -2,7 +2,7 @@
 = Tables
 
 AsciiDoc Documentation reference:
-https://docs.asciidoctor.org/asciidoc/latest/tables/build-a-basic-table/[Tables]
+https://docs.asciidoctor.org/asciidoc/latest/tables/build-a-basic-table/[Tables^]
 
 
 == Basic Table
@@ -23,7 +23,7 @@ https://docs.asciidoctor.org/asciidoc/latest/tables/build-a-basic-table/[Tables]
 [.big.red]*Result*
 
 [cols="2"]
-// <-       punctuation.definition.attributelistline.begin
+//<-        punctuation.definition.attributelistline.begin
 //       ^  punctuation.definition.attributelistline.end
 //^^^^^^^^  support.variable.attributelist
 |====================
@@ -32,11 +32,15 @@ https://docs.asciidoctor.org/asciidoc/latest/tables/build-a-basic-table/[Tables]
 //<-                    meta.table
 //^^^^^^^^^^^^^^^^^^^   meta.table
 | header   | header
-// <-                   constant.delimiter.cell-separator
+//<-                    constant.delimiter.cell-separator
 //         ^            constant.delimiter.cell-separator
+//^^^^^^^^^            -constant.delimiter.cell-separator
+//          ^^^^^^^    -constant.delimiter.cell-separator
 //^^^^^^^^^^^^^^^^^^^   meta.table
 | cell 1,1 | cell 1,2
 //         ^            constant.delimiter.cell-separator
+//^^^^^^^^^            -constant.delimiter.cell-separator
+//          ^^^^^^^^^  -constant.delimiter.cell-separator
 //^^^^^^^^^^^^^^^^^^^   meta.table
 | cell 2,1 | cell 2,2
 //^^^^^^^^^^^^^^^^^^^   meta.table
@@ -51,7 +55,7 @@ Lorem Ipsum.
 
 == Unbalances Delimiters
 
-Currently the syntax doesn't support nested tables, so unbalanced delimiters should simply be ignored.
+All unbalanced delimiters within a table are simply ignored.
 
 
 [.big.red]*Source*
@@ -91,12 +95,17 @@ ifeval::[0==1]
 //^^^^^^^^^^^^^^^^^      -constant.delimiter.block.table.end
 | cell 2,1 | cell 2,2
 //^^^^^^^^^^^^^^^^^^^     meta.table
+//<-                      constant.delimiter.cell-separator
+//         ^              constant.delimiter.cell-separator
 |======================
 //<-                      text.asciidoc
 //^^^^^^^^^^^^^^^^^^^^^   text.asciidoc
 //<-                     -constant.delimiter.block.table.end
 //^^^^^^^^^^^^^^^^^^^^^  -constant.delimiter.block.table.end
 |====================
+//<-                      constant.delimiter.block.table.end
+//^^^^^^^^^^^^^^^^^^^     constant.delimiter.block.table.end
 endif::[]
+
 
 // EOF //

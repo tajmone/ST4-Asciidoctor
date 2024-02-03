@@ -24,10 +24,10 @@ Example: '`text`' and "`text`".
 
 ======================================
 Example: '`text`' and "`text`".
-//       ^^                    punctuation.definition.curlyquote.single.begin.asciidoc
-//             ^^              punctuation.definition.curlyquote.single.end.asciidoc
-//                    ^^       punctuation.definition.curlyquote.double.begin.asciidoc
-//                          ^^ punctuation.definition.curlyquote.double.end.asciidoc
+//       ^^                    punctuation.definition.curlyquote.single.begin
+//             ^^              punctuation.definition.curlyquote.single.end
+//                    ^^       punctuation.definition.curlyquote.double.begin
+//                          ^^ punctuation.definition.curlyquote.double.end
 //
 ======================================
 
@@ -35,26 +35,26 @@ Example: '`text`' and "`text`".
 
 == Monospaced Within Typographic Quotes
 
-Monospaced text within typographic quotes are currently not identified as being monospaced by the syntax highlighting, but neither do they interfere with the typographic quotes themsleves being highlighted.:
+Monospaced text within typographic quotes is not currently being scoped as such by the syntax, but it doesn't interfere with the actual typographic quotes being highlighted properly:
 
 [.big.red]*Source*
 
 [source,asciidoc]
 ......................................
-Hello world `#ZZZ` ssss.
+Hello world `#ZZZ` end.
 
-Hello world "```xxx `YYY` xx```" ssss.
+Hello world "```xxx `YYY` xx```" end.
 ......................................
 
 
 [.big.red]*Result*
 
 ======================================
-Hello world `#ZZZ` ssss.
+Hello world `#ZZZ` end.
 
-Hello world "```xxx `YYY` xx```" ssss.
-//          ^^                         punctuation.definition.curlyquote.double.begin.asciidoc
-//                            ^^       punctuation.definition.curlyquote.double.end.asciidoc
+Hello world "```xxx `YYY` xx```" end.
+//          ^^                         punctuation.definition.curlyquote.double.begin
+//                            ^^       punctuation.definition.curlyquote.double.end
 ======================================
 
 
@@ -62,20 +62,20 @@ Hello world "```xxx `YYY` xx```" ssss.
 
 [source,asciidoc]
 ......................................
-Hello world `#ZZZ` ssss.
+Hello world `#ZZZ` end.
 
-Hello world '```xxx `YYY` xx```' ssss.
+Hello world '```xxx `YYY` xx```' end.
 ......................................
 
 
 [.big.red]*Result*
 
 ======================================
-Hello world `#ZZZ` ssss.
+Hello world `#ZZZ` end.
 
-Hello world '```xxx `YYY` xx```' ssss.
-//          ^^                         punctuation.definition.curlyquote.single.begin.asciidoc
-//                            ^^       punctuation.definition.curlyquote.single.end.asciidoc
+Hello world '```xxx `YYY` xx```' end.
+//          ^^                         punctuation.definition.curlyquote.single.begin
+//                            ^^       punctuation.definition.curlyquote.single.end
 ======================================
 
 

@@ -2,9 +2,10 @@
 = Callout List
 
 AsciiDoc Documentation reference:
-https://docstor.org/asciidoc/latest/verbatim/callouts/[Callout Lists^]
+https://docs.asciidoctor.org/asciidoc/latest/verbatim/callouts/[Callouts^]
 
-== Callout Lists
+
+== Example 1
 
 [.big.red]*Source*
 
@@ -27,12 +28,6 @@ end
 
 [.big.red]*Result*
 
-////
-NOTE: In the first test below we're forced to add two spaces indentation before
-the callout in order to test each character, due to comment delimiter being
-two-chars wide. But that's fine as far as the ST syntax goes...
-////
-
 ======================================
 [source,ruby]
 -----------------------
@@ -43,11 +38,19 @@ get '/hi' do <2> <3>
 end
 -----------------------
 
-  <1> Library import
-//^^^                   string.unquoted.list.callout
-//^                     punctuation.definition.calloutlistnumber.begin
-// ^                    constant.numeric.callout
-//  ^                   punctuation.definition.calloutlistnumber.end
+<1> Library import
+<2> URL mapping
+<3> Response block
+======================================
+
+ifeval::[0 == 1]
+<1> Library import
+//<-                    string.unquoted.list.callout
+//<-                    constant.numeric.callout
+//<-                    punctuation.definition.calloutlistnumber.begin
+//^                     string.unquoted.list.callout
+//^                     constant.numeric.callout
+//^                     punctuation.definition.calloutlistnumber.end
 <2> URL mapping
 //<-                    string.unquoted.list.callout
 //<-                    constant.numeric.callout
@@ -56,6 +59,27 @@ end
 //^                     string.unquoted.list.callout
 //^                     constant.numeric.callout
 //^                     punctuation.definition.calloutlistnumber.end
-======================================
+endif::[]
+
+
+[NOTE]
+==========================
+Ideally, for how tests above we could have used an `+++{empty}+++` or `{+++blank+++}` attribute to force indentation of the `<1>` callout, in order to allow more room for testing single characters scopes with carets (`^`):
+
+[source,asciidoc,subs=attributes]
+\{blank}<1> Library import
+{blank}//     ^^^    string.unquoted.list.callout
+{blank}//     ^^^    constant.numeric.callout
+{blank}//     ^      punctuation.definition.calloutlistnumber.begin
+{blank}//       ^    punctuation.definition.calloutlistnumber.end
+{blank}//      ^     string.unquoted.list.callout.asciidoc
+{blank}//      ^     constant.numeric.callout.asciidoc
+
+
+Asciidoctor would ignore the `+++{empty}+++` or `{+++blank+++}` attributes, since they don't emit anything, so the list will be represented as expected in the final generated document.
+
+Currently the syntax doesn't allow for attributes to be placed at the beginning of the line.
+It might be worth considering tweaking the syntax in that respect, even though this might be an edge case rarely found in real-case usage.
+==========================
 
 // EOF //

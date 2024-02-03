@@ -9,7 +9,7 @@ https://docs.asciidoctor.org/asciidoc/latest/text/text-span-built-in-roles/[Text
 ==============
 Some of these examples are actually
 https://docs.asciidoctor.org/asciidoc/latest/text/text-span-built-in-roles/#text-span-syntax[Text Spans^], rather than Highlight/Mark formatting.
-But right now, our syntax treats thes alike, so we'll just keep them here for the time being.
+But right now, our syntax treats them alike, so we'll just keep them here for the time being.
 ==============
 
 
@@ -28,14 +28,21 @@ This is #highlighted# text.
 ===============================================
 Werewolves are #allergic to cinnamon#.
 //             ^                        punctuation.definition.string.unquoted.single.begin
+//             ^                       -string.unquoted.unquotedinner.single
 //                                  ^   punctuation.definition.string.unquoted.single.end
-//              ^^^^^^^^^^^^^^^^^^^^    string.other.unquoted.single
-//               ^^^^^^^^^^^^^^^^^^     string.unquoted.unquotedinner.single
+//                                  ^  -string.unquoted.unquotedinner.single
+//             ^^^^^^^^^^^^^^^^^^^^^^   string.other.unquoted.single
+//              ^^^^^^^^^^^^^^^^^^^^    string.unquoted.unquotedinner.single
+//                                   ^ -string.other.unquoted
 This is #highlighted# text.
-//      ^               punctuation.definition.string.unquoted.single.begin
-//                  ^   punctuation.definition.string.unquoted.single.end
-//       ^^^^^^^^^^^    string.other.unquoted.single
-//        ^^^^^^^^^     string.unquoted.unquotedinner.single
+//      ^                               punctuation.definition.string.unquoted.single.begin
+//      ^                              -string.unquoted.unquotedinner.single
+//                  ^                   punctuation.definition.string.unquoted.single.end
+//                  ^                  -string.unquoted.unquotedinner.single
+//      ^^^^^^^^^^^^^                   string.other.unquoted.single
+//       ^^^^^^^^^^                     string.unquoted.unquotedinner.single
+//                   ^^^^^^            -string.other.unquoted
+//                   ^^^^^^            -string.unquoted.unquotedinner
 ===============================================
 
 [.big.red]*Source*
@@ -49,11 +56,15 @@ Do werewolves believe in [small]#small print#?
 
 ===============================================
 Do werewolves believe in [small]#small print#?
-//                       ^^^^^^^                support.variable.attributelist
-//                              ^               punctuation.definition.string.unquoted.single.begin
-//                                          ^   punctuation.definition.string.unquoted.single.end
-//                               ^^^^^^^^^^^    string.other.unquoted.single
-//                                ^^^^^^^^^     string.unquoted.unquotedinner.single
+//                       ^^^^^^^                 support.variable.attributelist
+//                              ^                punctuation.definition.string.unquoted.single.begin
+//                              ^               -support.variable.attributelist
+//                              ^               -string.unquoted.unquotedinner.single
+//                                          ^    punctuation.definition.string.unquoted.single.end
+//                       ^^^^^^^^^^^^^^^^^^^     string.other.unquoted.single
+//                                ^^^^^^^^^      string.unquoted.unquotedinner.single
+//                                           ^  -string.other.unquoted
+//                                           ^  -string.unquoted.unquotedinner
 ===============================================
 
 
@@ -71,10 +82,12 @@ This is ##highlighted##text.
 
 ===============================================
 This is ##highlighted##text.
-//      ^^               punctuation.definition.string.unquoted.double.begin
-//                   ^^  punctuation.definition.string.unquoted.double.end
-//      ^^^^^^^^^^^^^^^  string.other.unquoted.double
-//        ^^^^^^^^^^^    string.unquoted.unquotedinner.double
+//      ^^                        punctuation.definition.string.unquoted.double.begin
+//                   ^^           punctuation.definition.string.unquoted.double.end
+//      ^^^^^^^^^^^^^^^           string.other.unquoted.double
+//        ^^^^^^^^^^^             string.unquoted.unquotedinner.double
+//                     ^^^^^     -string.other.unquoted
+//                     ^^^^^     -string.unquoted.unquotedinner
 ===============================================
 
 [.big.red]*Source*
@@ -88,14 +101,17 @@ This is ##highlighted##text.
 
 ===============================================
 [big]##O##nce upon an infinite loop.
-//<-        support.variable.attributelist
-//^^^       support.variable.attributelist
-//   ^^     punctuation.definition.string.unquoted.double.begin
-//      ^^  punctuation.definition.string.unquoted.double.end
-//   ^^^^^  string.other.unquoted.double
-//     ^    string.unquoted.unquotedinner.double
-
+//^^^^^^^^         string.other.unquoted.double
+//<-               support.variable.attributelist
+//^^^              support.variable.attributelist
+//   ^^^^^^^^     -support.variable.attributelist
+//   ^^            punctuation.definition.string.unquoted.double.begin
+//      ^^         punctuation.definition.string.unquoted.double.end
+//     ^           string.unquoted.unquotedinner.double
+//        ^^^     -string.other.unquoted
+//        ^^^     -string.unquoted.unquotedinner
 ===============================================
+
 
 == Multi-line
 
@@ -119,8 +135,8 @@ cinnamon#.
 //      ^    punctuation.definition.string.unquoted.single.end
 //^^^^^^^    string.other.unquoted.single
 //^^^^^^     string.unquoted.unquotedinner.single
-//       ^  -string.other.unquoted.single
-//       ^  -string.unquoted.unquotedinner.single
+//       ^  -string.other.unquoted
+//       ^  -string.unquoted.unquotedinner
 ===============================================
 
 === Multi-line Unconstrained
@@ -141,8 +157,8 @@ cinnamon##.
 //      ^^    punctuation.definition.string.unquoted.double.end
 //^^^^^^^^    string.other.unquoted.double
 //^^^^^^      string.unquoted.unquotedinner.double
-//        ^  -string.other.unquoted.double
-//        ^  -string.unquoted.unquotedinner.double
+//        ^  -string.other.unquoted
+//        ^  -string.unquoted.unquotedinner
 ===============================================
 
 == False Positives Checks
@@ -166,7 +182,8 @@ to achieve what described so far.
 
 ===============================================
 Example #1 illustrates how
-//      ^ constant.character.literal.hash
+//      ^        constant.character.literal.hash
+//      ^       -punctuation.definition.string.unquoted
 to achieve what described so far.
 ===============================================
 
@@ -240,10 +257,10 @@ Lorem ipsum.
 Example ##1 illustrates how
 to achieve what described so far.
 
-// <- invalid.illegal
+//<-                          invalid.illegal
 Lorem ipsum.
-//^^^^^^^^^^  -string.other.unquoted
-//^^^^^^^^^^  -string.unquoted.unquotedinner
+//^^^^^^^^^^                 -string.other.unquoted
+//^^^^^^^^^^                 -string.unquoted.unquotedinner
 ===============================================
 
 // EOF //

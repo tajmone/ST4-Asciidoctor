@@ -1,33 +1,145 @@
 // SYNTAX TEST "Packages/ST4-Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
 = Fenced Code Blocks
 
+AsciiDoc supports Markdown-style fenced code blocks (three backtick delimiters).
+
+See:
+https://docs.asciidoctor.org/asciidoc/latest/syntax-quick-reference/#ex-fenced[AsciiDoc Syntax Quick Reference » Example 94. Fenced code block with syntax highlighting^]
+
+WARNING: The syntax only supports fences with three backticks (``{backtick}{backtick}{backtick}``), and so does Asciidoctor -- even though Markdown supports more than three backticks, as long as delimiters are balanced (that's for allowing nested delimiters in code examples).
+
+
+== Triple Backtick Code Block
+
+[.big.red]*Source*
+
+[source,asciidoc]
+......................................
 ```
-// <- meta.embedded.block.listing
-// <- constant.delimiter.listing.begin
+get '/hi' do
+  "Hello World!"
+end
+```
+......................................
+
+[.big.red]*Result*
+
+======================================
+```
+get '/hi' do
+  "Hello World!"
+end
+```
+======================================
+
+ifeval::[0 == 1]
+```
+//<-                meta.embedded.block.listing
+//^                 meta.embedded.block.listing
+//<-                constant.delimiter.listing.begin
+//^                 constant.delimiter.listing.begin
 require 'sinatra'
-// <-^^^^^^^^^^^^ meta.embedded.block.listing
-// <-^^^^^^^^^^^^ source.block.listing.content
+//<-                meta.embedded.block.listing
+//^^^^^^^^^^^^^^^   meta.embedded.block.listing
+//<-                source.block.listing.content
+//^^^^^^^^^^^^^^^   source.block.listing.content
 get '/hi' do
   "Hello World!"
 end
 
 ```
-// <- meta.embedded.block.listing
-// <- constant.delimiter.listing.end
+//<-                meta.embedded.block.listing
+//^                 meta.embedded.block.listing
+//<-                constant.delimiter.listing.end
+//^                 constant.delimiter.listing.end
 
 Normal text.
-// <- - meta.embedded.block.listing
+// <-              -meta.embedded.block.listing
+endif::[]
 
 
 == Empty Block
 
+[.big.red]*Source*
 
+[source,asciidoc]
+......................................
 ```
 ```
-// <- meta.embedded.block.listing
-// <- constant.delimiter.listing.end
+......................................
+
+
+[.big.red]*Result*
+
+======================================
+```
+```
+======================================
+
+ifeval::[0 == 1]
+```
+//<-        meta.embedded.block.listing
+//^         meta.embedded.block.listing
+//<-        constant.delimiter.listing.begin
+//^         constant.delimiter.listing.begin
+```
+//<-        meta.embedded.block.listing
+//^         meta.embedded.block.listing
+//<-        constant.delimiter.listing.end
+//^         constant.delimiter.listing.end
 
 Normal text.
-// <- - meta.embedded.block.listing
+// <-      -meta.embedded.block.listing
+endif::[]
+
+
+== Code Blocks with Language
+
+Like Markdown, Asciidoctor supports adding the language name after the opening delimiter.
+Currently, the Syntax treats the language name as part of the delimiter, but it must follow the backticks unspaced (I'm not sure how Asciidoctor actually supports this in real usage).
+
+[.big.red]*Source*
+
+[source,asciidoc]
+......................................
+```ruby
+puts "Hello, Ruby!";
+```
+......................................
+
+
+[.big.red]*Result*
+
+======================================
+```ruby
+puts "Hello, Ruby!";
+```
+======================================
+
+TIP: Note how the listing block now shows "`Ruby`" when hovering the mouse.
+Also, if you inspect the HTML source you'll see that `class="language-ruby"` and `data-lang="ruby"` where added to the `<code>` tag this time.
+
+
+ifeval::[0 == 1]
+```ruby
+//<-                    meta.embedded.block.listing
+//^^^^^                 meta.embedded.block.listing
+//<-                    constant.delimiter.listing.begin
+//^^^^^                 constant.delimiter.listing.begin
+puts "Hello, Ruby!";
+//<-                    meta.embedded.block.listing
+//^^^^^^^^^^^^^^^^^^    meta.embedded.block.listing
+//<-                    source.block.listing.content
+//^^^^^^^^^^^^^^^^^^    source.block.listing.content
+```
+//<-                    meta.embedded.block.listing
+//^                     meta.embedded.block.listing
+//<-                    constant.delimiter.listing.end
+//^                     constant.delimiter.listing.end
+
+
+Normal text.
+// <-      -meta.embedded.block.listing
+endif::[]
 
 // EOF //

@@ -6,51 +6,65 @@
 // *                         AsciiDoc Headings Tests                           *
 // *                                                                           *
 // *****************************************************************************
-// This file tests the standard AsciiDoc syntax for Section Titles (Headings 1-5)
-// using two to six '=' signs, and one for Part Titles in books or for the
-// Document Title:
-// 		https://asciidoctor.org/docs/user-manual/#sections
 
-// The number of equal signs matches the heading level in the HTML output.
-// For example, Section Level 1 becomes an H2 heading.
+This file tests standard AsciiDoc syntax for Section Titles (Headings 1-5) using two to six `=` signs, and one for Part Titles in books or for the Document Title.
+
+The number of equal signs matches the heading level in the HTML output.
+For example, Section Level 1 becomes an H2 heading.
+
+AsciiDoc Documentation reference:
+https://docs.asciidoctor.org/asciidoc/latest/sections/titles-and-levels/[Section Titles and Levels^]
+
 
 = Document Title (Level 0)
-// <- text
-// <- markup.heading.level.0
-// <- punctuation.definition.heading
-// ^^^^^^^^^^^^^^^^^^^^^^^ entity.name.section
+//<-                         text
+//<-                         markup.heading.level.0
+//<-                         punctuation.definition.heading
+//^^^^^^^^^^^^^^^^^^^^^^^^   entity.name.section
+//<-                        -entity.name.section
+
 
 == Level 1 Section Title
-// <- markup.heading.level.1
-// <- punctuation.definition.heading
-// ^^^^^^^^^^^^^^^^^^^^^ entity.name.section
+// <-                        markup.heading.level.1
+// <-                        punctuation.definition.heading
+// ^^^^^^^^^^^^^^^^^^^^^     entity.name.section
+//<-                        -entity.name.section
+//^                         -entity.name.section
 
 
 === Level 2 Section Title
-// <- markup.heading.level.2
-// <- punctuation.definition.heading
-//  ^^^^^^^^^^^^^^^^^^^^^ entity.name.section
+//<-                         markup.heading.level.2
+//<-                         punctuation.definition.heading
+//  ^^^^^^^^^^^^^^^^^^^^^    entity.name.section
+//<-                        -entity.name.section
+//^^                        -entity.name.section
 
 
 ==== Level 3 Section Title
-//<- markup.heading.level.3
-//<- punctuation.definition.heading
-//   ^^^^^^^^^^^^^^^^^^^^^ entity.name.section
+//<-                         markup.heading.level.3
+//<-                         punctuation.definition.heading
+//   ^^^^^^^^^^^^^^^^^^^^^   entity.name.section
+//<-                        -entity.name.section
+//^^^                       -entity.name.section
 
 
 ===== Level 4 Section Title
-//<-  markup.heading.level.4
-//^^^ markup.heading.level.4
-//<-  punctuation.definition.heading
-//^^^ punctuation.definition.heading
-//    ^^^^^^^^^^^^^^^^^^^^^ entity.name.section
+//<-                         markup.heading.level.4
+//^^^                        markup.heading.level.4
+//<-                         punctuation.definition.heading
+//^^^                        punctuation.definition.heading
+//    ^^^^^^^^^^^^^^^^^^^^^  entity.name.section
+//<-                        -entity.name.section
+//^^^^                      -entity.name.section
 
 
 ====== Level 5 Section Title
-//<-   markup.heading.level.5
-//^^^^ markup.heading.level.5
-//<-   punctuation.definition.heading
-//^^^^ punctuation.definition.heading
-//     ^^^^^^^^^^^^^^^^^^^^^ entity.name.section
+//<-                          markup.heading.level.5
+//^^^^                        markup.heading.level.5
+//<-                          punctuation.definition.heading
+//^^^^                        punctuation.definition.heading
+//     ^^^^^^^^^^^^^^^^^^^^^  entity.name.section
+//<-                         -entity.name.section
+//^^^^^                      -entity.name.section
 
 // EOF //

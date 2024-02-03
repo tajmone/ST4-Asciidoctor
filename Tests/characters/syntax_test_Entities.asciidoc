@@ -2,7 +2,7 @@
 = AsciiDoc Entities
 
 
-Manual Reference:
+AsciiDoc Documentation reference:
 https://docs.asciidoctor.org/asciidoc/latest/subs/replacements/[Character Replacement Substitutions^]
 
 

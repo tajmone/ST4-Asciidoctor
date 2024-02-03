@@ -10,16 +10,16 @@ E.g. &lt; aka &#60; aka &#xA0;/&#xa0;
 == Escaped Entities
 
 E.g. \&lt;
-//   ^^^^^  -constant.character.entity.xml
-//   ^^      constant.character.escape
+//   ^^^^^    -constant.character.entity.xml
+//   ^^        constant.character.escape
 
 E.g. \&#60;
-//   ^^       constant.character.escape
-//   ^^^^^^  -constant.character.entity.xml
-//     ^     -punctuation.definition.string.unquoted
+//   ^^        constant.character.escape
+//   ^^^^^^   -constant.character.entity.xml
+//     ^      -punctuation.definition.string.unquoted
 
 E.g. \&#xA0;
 //   ^^        constant.character.escape
 //   ^^^^^^^  -constant.character.entity.xml
-//     ^     -punctuation.definition.string.unquoted
+//     ^      -punctuation.definition.string.unquoted
 

@@ -1,8 +1,8 @@
 // SYNTAX TEST "Packages/ST4-Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
 = Quote Blocks
 
-Manual Reference:
-https://asciidoctor.org/docs/user-manual/#quote[35.1. Quote]
+AsciiDoc Documentation reference:
+https://docs.asciidoctor.org/asciidoc/latest/blocks/blockquotes/#quoted-block[Quoted block^]
 
 [.big.red]*Source*
 
@@ -19,16 +19,20 @@ ____
 
 [quote, Monty Python and the Holy Grail]
 ____
-// <- meta.block.quote.content
-// <- constant.delimiter.block.quote.begin
+//<-                constant.delimiter.block.quote.begin
+//^^                constant.delimiter.block.quote.begin
+//<-                meta.block.quote.content
 Lorem ipsum.
-// <-^^^^^^^  meta.block.quote.content
-// ^^^^^^^^^  markup.quote.block
+//<-                meta.block.quote.content
+//^^^^^^^^^^        meta.block.quote.content
+//^^^^^^^^^^        markup.quote.block
 ____
-// <- meta.block.quote.content
-// <- constant.delimiter.block.quote.end
+//<-                constant.delimiter.block.quote.end
+//^^                constant.delimiter.block.quote.end
+//<-                meta.block.quote.content
+//^^                meta.block.quote.content
 
 Back to normal text.
-// <-  - meta.block.quote.content
+//<-               -meta.block.quote.content
 
 // EOF //

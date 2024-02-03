@@ -68,12 +68,12 @@ Spanning multiple lines.* Normal text.
 ======================================
 *A very long bold text.
 Spanning multiple lines.* Normal text.
-// <-                      meta.boldinner.single
-//^^^^^^^^^^^^^^^^^^^^^^^  meta.boldinner.single
-// <-                      markup.bold.single
-//^^^^^^^^^^^^^^^^^^^^^    markup.bold.single
-//                      ^  punctuation.definition.bold.single.end
-//                       ^^^^^^^^^^^^^^  - meta.boldinner.single
+//<-                                      meta.boldinner.single
+//^^^^^^^^^^^^^^^^^^^^^^^                 meta.boldinner.single
+//<-                                      markup.bold.single
+//^^^^^^^^^^^^^^^^^^^^^                   markup.bold.single
+//                      ^                 punctuation.definition.bold.single.end
+//                       ^^^^^^^^^^^^^^  -meta.boldinner.single
 ======================================
 
 
@@ -95,10 +95,13 @@ with a single line comment inbetween.* Normal text.
 ===================================================
 *A bold text spanning multiple lines
 // a comment
-//^^^^^^^^^^ comment.line.double-slash   meta.line.comment.content
-//^^^^^^^^^^ meta.boldinner
+//^^^^^^^^^^    comment.line.double-slash
+//^^^^^^^^^^    meta.line.comment.content
+//^^^^^^^^^^    meta.boldinner
 with a single line comment inbetween.* Normal text.
-// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.boldinner.single
+//<-                                                  meta.boldinner.single
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                meta.boldinner.single
+//                                    ^^^^^^^^^^^^^  -meta.boldinner.single
 ===================================================
 
 Block comments (like any other block elements) are not OK, and will break the quote.
@@ -123,9 +126,9 @@ With blank lines inbetween.**
 A very long-**bold text spanning multiple lines.
 //          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   meta.boldinner.double
 
-// <- invalid.illegal
+//<-                                               invalid.illegal
 With blank lines inbetween.**
-// ^^^^^^^^^^^^^^^^^^^^^^^^    - meta.boldinner.double
+// ^^^^^^^^^^^^^^^^^^^^^^^^     -meta.boldinner.double
 //                         ^^    punctuation.definition.bold.double.begin
 
 ===============================================
@@ -156,7 +159,8 @@ Example: 2 * 6 = 12
 
 ===================
 Example: 2 * 6 = 12
-//         ^ constant.character.literal.asterisk
+//         ^          constant.character.literal.asterisk
+//         ^         -punctuation.definition.bold.single
 ===================
 
 
@@ -178,10 +182,11 @@ Ecaped \*asterisk* not bold.
 //     ^^            constant.character.escape
 //      ^           -constant.character.literal.asterisk
 //      ^           -punctuation.definition.string.unquoted
+//      ^           -punctuation.definition.bold.single
 //               ^  -punctuation.definition.string.unquoted
+//               ^  -punctuation.definition.bold.single
 //               ^   constant.character.literal.asterisk
 ===============================================
-
 
 
 
@@ -219,7 +224,7 @@ Testing *bold with _italics_ and `monospaced` inside it.*
 
 ===================================================
 **bold with__italics__ and``monospaced`` inside**it.
-// <-                                             meta.boldinner.double
+//<-                                              meta.boldinner.double
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.boldinner.double
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   markup.bold.double
 //         ^^^^^^^^^^^                            meta.italicinner.double

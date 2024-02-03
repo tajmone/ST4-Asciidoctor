@@ -21,10 +21,11 @@ This _is italic_. This is not.
 
 ==============================
 This _is italic_. This is not.
-//   ^^^^^^^^^^^   meta.italicinner.single
-//    ^^^^^^^^^    markup.italic.single
-//   ^             punctuation.definition.italic.single.begin
-//             ^   punctuation.definition.italic.single.end
+//   ^^^^^^^^^^^            meta.italicinner.single
+//    ^^^^^^^^^             markup.italic.single
+//   ^                      punctuation.definition.italic.single.begin
+//             ^            punctuation.definition.italic.single.end
+//              ^^^^^^^^   -markup.italic.single
 ==============================
 
 
@@ -42,11 +43,11 @@ SublimeText is __super__fast.
 
 =============================
 SublimeText is __super__fast.
-//             ^^^^^^^^^   meta.italicinner.double
-//               ^^^^^     markup.italic.double
-//             ^^          punctuation.definition.italic.double.begin
-//                    ^^   punctuation.definition.italic.double.end
-//                      ^^^^^ - markup.italic.double
+//             ^^^^^^^^^        meta.italicinner.double
+//               ^^^^^          markup.italic.double
+//             ^^               punctuation.definition.italic.double.begin
+//                    ^^        punctuation.definition.italic.double.end
+//                      ^^^^^  -markup.italic.double
 =============================
 
 
@@ -68,12 +69,12 @@ Spanning multiple lines._ Normal text.
 ======================================
 _A very long italic text.
 Spanning multiple lines._ Normal text.
-// <-                      meta.italicinner.single
+//<-                       meta.italicinner.single
 //^^^^^^^^^^^^^^^^^^^^^^^  meta.italicinner.single
-// <-                      markup.italic.single
+//<-                       markup.italic.single
 //^^^^^^^^^^^^^^^^^^^^^^   markup.italic.single
 //                      ^  punctuation.definition.italic.single.end
-//                       ^^^^^^^^^^^^^^  - meta.italicinner.single
+//                       ^^^^^^^^^^^^^^  -meta.italicinner.single
 ======================================
 
 
@@ -87,7 +88,7 @@ Single-line comments inside an italic text spanning across multiple lines will b
 ...................................................
 _An italic text spanning multiple lines
 // a comment
-with a single line comment inbetween._ Normal text.
+with a comment line inbetween._ Normal text.
 ...................................................
 
 [.big.red]*Result*
@@ -95,10 +96,13 @@ with a single line comment inbetween._ Normal text.
 ===================================================
 _An italic text spanning multiple lines
 // a comment
-//^^^^^^^^^^ comment.line.double-slash   meta.line.comment.content
-//^^^^^^^^^^ meta.italicinner
-with a single line comment inbetween._ Normal text.
-// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.italicinner.single
+//^^^^^^^^^^                                    comment.line.double-slash
+//^^^^^^^^^^                                    meta.line.comment.content
+//^^^^^^^^^^                                    meta.italicinner
+with a comment line inbetween._ Normal text.
+//<-                                            meta.italicinner.single
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                 meta.italicinner.single
+//                             ^^^^^^^^^^^^^   -meta.italicinner.single
 ===================================================
 
 Block comments (like any other block elements) are not OK, and will break the quote.
@@ -121,11 +125,13 @@ With blank lines inbetween._
 
 =================================================
 _A very long italic text spanning multiple lines.
-// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.italicinner.single
+//<-                                                meta.italicinner.single
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   meta.italicinner.single
 
-// <- invalid.illegal
+//<-                             invalid.illegal
 With blank lines inbetween._
-// ^^^^^^^^^^^^^^^^^^^^^^^^^   - meta.italicinner.single
+//<-                            -meta.italicinner.single
+//^^^^^^^^^^^^^^^^^^^^^^^^^     -meta.italicinner.single
 
 =================================================
 
@@ -144,14 +150,16 @@ Italic quotes allow nesting a variety of inline elements.
 [source,asciidoc]
 Testing _italics with *bold* and `monospaced` inside_ it.
 
-[.big.red]*Result*
-
 =========================================================
 Testing _italics with *bold* and `monospaced` inside_ it.
-//      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.italicinner.single
-//       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  markup.italic.single
-//                    ^^^^^^                          meta.boldinner.single
-//                               ^^^^^^^^^^^^         meta.literalinner.single
+//      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^       meta.italicinner.single
+//       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^        markup.italic.single
+//                    ^^^^^^                                meta.boldinner.single
+//                               ^^^^^^^^^^^^               meta.literalinner.single
+//^^^^^^                                                   -meta.italicinner
+//                                                   ^^^^^ -meta.italicinner
+//                                                   ^^^^^ -meta.boldinner
+//                                                   ^^^^^ -meta.literalinner
 =========================================================
 
 
@@ -166,11 +174,14 @@ __italics with**bold** and``monospaced`` inside__it.
 
 ===================================================
 __italics with**bold** and``monospaced`` inside__it.
-// <-                                             meta.italicinner.double
-//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.italicinner.double
-//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   markup.italic.double
-//            ^^^^^^^^                            meta.boldinner.double
-//                        ^^^^^^^^^^^^^^          meta.literalinner.double
+//<-                                                  meta.italicinner.double
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^     meta.italicinner.double
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^       markup.italic.double
+//            ^^^^^^^^                                meta.boldinner.double
+//                        ^^^^^^^^^^^^^^              meta.literalinner.double
+//                                               ^^^ -meta.italicinner
+//                                               ^^^ -meta.boldinner
+//                                               ^^^ -meta.literalinner
 ===================================================
 
 // EOF //

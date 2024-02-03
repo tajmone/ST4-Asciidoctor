@@ -1,4 +1,4 @@
-//? SYNTAX TEST "Packages/ST4-Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+// SYNTAX TEST "Packages/ST4-Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
 = Superscript
 
 AsciiDoc Documentation reference:
@@ -13,22 +13,22 @@ E=mc^2^, said Einstein.
 
 ============================
 E=mc^2^, said Einstein.
-//? ^^^  meta.superscriptinner
-//?  ^   string.other.superscript
-//? ^    punctuation.definition.string.superscript.begin
-//?   ^  punctuation.definition.string.superscript.end
+//  ^^^  meta.superscriptinner
+//   ^   string.other.superscript
+//  ^    punctuation.definition.string.superscript.begin
+//    ^  punctuation.definition.string.superscript.end
 ============================
 
 
 == False Positives
 
-We need to check that carets `^` occuring in other legitimate contexts are not being parsed as _superscipt_ delimiters.
+We need to check that carets `^` occuring in other legitimate contexts are not being parsed as _superscript_ delimiters.
 
 
 === Links
 
-The `^` is also used in links to indicate `targe_blank`.
-We need to ensure that it won't be parsed as a _superscipt_ delimiter.
+The `^` is also used in links to indicate `+++target="_blank"+++`.
+We need to ensure that it won't be parsed as a _superscript_ delimiter.
 
 [.big.red]*Source*
 
@@ -43,13 +43,13 @@ We need to ensure that it won't be parsed as a _superscipt_ delimiter.
 
 ============================
 * link:https://github.com/tajmone/ST4-Asciidoctor[ST4 Asciidoctor^]
-//?                                                              ^ - punctuation.definition.string.superscript
+//                                                               ^  -punctuation.definition.string.superscript
 * link:https://github.com/tajmone/ST4-Asciidoctor[^]
-//?                                               ^ - punctuation.definition.string.superscript
+//                                                ^                 -punctuation.definition.string.superscript
 * https://github.com/tajmone/ST4-Asciidoctor[ST4 Asciidoctor^]
-//?                                                         ^ - punctuation.definition.string.superscript
+//                                                          ^       -punctuation.definition.string.superscript
 * https://github.com/tajmone/ST4-Asciidoctor[^]
-//?                                          ^ - punctuation.definition.string.superscript
+//                                           ^                      -punctuation.definition.string.superscript
 ============================
 
 
@@ -62,7 +62,7 @@ Table might contain carets for central alignments of columns (`^`) and vertical 
 
 [source,asciidoc]
 -----------------
-[cols="3*^"]
+[cols="3*^.^"]
 |==========================
 | A1 | B1 | C1
 | A2 | B2 | C2
@@ -71,12 +71,13 @@ Table might contain carets for central alignments of columns (`^`) and vertical 
 
 [.big.red]*Result*
 
-[cols="3*^"]
-//?      ^ - punctuation.definition.string.superscript
+[cols="3*^.^"]
+//       ^      -punctuation.definition.string.superscript
+//         ^    -punctuation.definition.string.superscript
 |==========================
 | A1 | B1 | C1
 | A2 | B2 | C2
 |==========================
 
 
-//? EOF //
+// EOF //

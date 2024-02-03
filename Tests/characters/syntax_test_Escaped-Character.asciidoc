@@ -2,7 +2,7 @@
 = AsciiDoc Escaped Characters
 
 
-Manual Reference:
+AsciiDoc Documentation reference:
 https://docs.asciidoctor.org/asciidoc/latest/subs/prevent[Escape and Prevent Substitutions^]
 
 
@@ -12,62 +12,103 @@ https://docs.asciidoctor.org/asciidoc/latest/subs/prevent[Escape and Prevent Sub
 
 [source,asciidoc]
 ----------------------
-\-
-\`not monospaced`
-\*not bold*
-\_not italic_
-\#not marked#
-\+
-\.
-\!
-\(
-\)
-\{
-\}
-\\
-\[
-\\
-\]
-\\
+test: \-
+
+test: \`not monospaced\`
+
+test: \*not bold\*
+
+test: \_not italic\_
+
+test: \#not marked\#
+
+test: \+
+
+test: \.
+
+test: \!
+
+test: \(
+
+test: \)
+
+test: \{
+
+test: \}
+
+test: \\
+
+test: \[
+
+test: \\
+
+test: \]
+
+test: \\
 ----------------------
 
 [.big.red]*Result*
 
 ============================
-\-
-//<- constant.character.escape.single
-\`not monospaced`
-//<- constant.character.escape.single
-\*not bold*
-//<- constant.character.escape.single
-\_not italic_
-//<- constant.character.escape.single
-\#not marked#
-//<- constant.character.escape.single
-\+
-//<- constant.character.escape.single
-\.
-//<- constant.character.escape.single
-\!
-//<- constant.character.escape.single
-\(
-//<- constant.character.escape.single
-\)
-//<- constant.character.escape.single
-\{
-//<- constant.character.escape.single
-\}
-//<- constant.character.escape.single
-\\
-//<- constant.character.escape.single
-\[
-//<- constant.character.escape.single
-\\
-//<- constant.character.escape.single
-\]
-//<- constant.character.escape.single
-\\
-//<- constant.character.escape.single
+test: \-
+//    ^^                    constant.character.escape.single
+
+test: \`not monospaced\`
+//    ^^                    constant.character.escape.single
+//                    ^^    constant.character.escape.single
+//      ^^^^^^^^^^^^^^     -string.other.literal
+
+test: \*not bold\*
+//    ^^                    constant.character.escape.single
+//              ^^          constant.character.escape.single
+//      ^^^^^^^^           -markup.bold
+
+test: \_not italic\_
+//    ^^                    constant.character.escape.single
+//                ^^        constant.character.escape.single
+//      ^^^^^^^^^^         -markup.italic
+
+test: \#not marked\#
+//    ^^                    constant.character.escape.single
+//                ^^        constant.character.escape.single
+//      ^^^^^^^^^^         -string.other.unquoted
+//      ^^^^^^^^^^         -string.unquoted.unquotedinner
+
+test: \+
+//    ^^                    constant.character.escape.single
+
+test: \.
+//    ^^                    constant.character.escape.single
+
+test: \!
+//    ^^                    constant.character.escape.single
+
+test: \(
+//    ^^                    constant.character.escape.single
+
+test: \)
+//    ^^                    constant.character.escape.single
+
+test: \{
+//    ^^                    constant.character.escape.single
+
+test: \}
+//    ^^                    constant.character.escape.single
+
+test: \\
+//    ^^                    constant.character.escape.single
+
+test: \[
+//    ^^                    constant.character.escape.single
+
+test: \\
+//    ^^                    constant.character.escape.single
+
+test: \]
+//    ^^                    constant.character.escape.single
+
+test: \\
+//    ^^                    constant.character.escape.single
 ============================
 
 // EOF //

@@ -23,7 +23,7 @@ AsciiDoc Documentation reference:
 https://docs.asciidoctor.org/asciidoc/latest/text/monospace/#literal-monospace[Literal Monospace^]
 
 WARNING: The following example is not being tested!
-(`+` and `++` elements currently not implemented)
+(`{plus}` and `{plus}{plus}` elements currently not implemented)
 
 [.big.red]*Source*
 

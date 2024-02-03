@@ -31,19 +31,19 @@ Example: I'm *in bold*. I'm not.
 AsciiDoc Documentation reference:
 https://docs.asciidoctor.org/asciidoc/latest/text/#unconstrained[Unconstrained formatting pair^]
 
-Example: __supper__motivated.
-//       ^^^^^^^^^^   meta.italicinner.double
-//         ^^^^^^     markup.italic.double
-//       ^^           punctuation.definition.italic.double.begin
-//               ^^   punctuation.definition.italic.double.end
-//                 ^^^^^^^^^^  - markup.italic.double
+Example: __super__motivated.
+//       ^^^^^^^^^              meta.italicinner.double
+//         ^^^^^                markup.italic.double
+//       ^^                     punctuation.definition.italic.double.begin
+//              ^^              punctuation.definition.italic.double.end
+//                ^^^^^^^^^^   -markup.italic.double
 
-Example: **supper**motivated.
-//       ^^^^^^^^^^   meta.boldinner.double
-//         ^^^^^^     markup.bold.double
-//       ^^           punctuation.definition.bold.double.begin
-//               ^^   punctuation.definition.bold.double.end
-//                 ^^^^^^^^^^  - markup.bold.double
+Example: **super**motivated.
+//       ^^^^^^^^^              meta.boldinner.double
+//         ^^^^^                markup.bold.double
+//       ^^                     punctuation.definition.bold.double.begin
+//              ^^              punctuation.definition.bold.double.end
+//                ^^^^^^^^^^   -markup.bold.double
 
 == Multi-line
 
@@ -63,12 +63,12 @@ Spanning multiple lines.__ Normal text.
 =======================================
 Example: __a very long italic text.
 Spanning multiple lines.__ Normal text.
-// <-                       meta.italicinner.double
-//^^^^^^^^^^^^^^^^^^^^^^^^  meta.italicinner.double
-// <-                       markup.italic.double
-//^^^^^^^^^^^^^^^^^^^^^^    markup.italic.double
-//                      ^^  punctuation.definition.italic.double.end
-//                        ^^^^^^^^^^^^^^  - meta.italicinner.double
+//<-                                        meta.italicinner.double
+//^^^^^^^^^^^^^^^^^^^^^^^^                  meta.italicinner.double
+//<-                                        markup.italic.double
+//^^^^^^^^^^^^^^^^^^^^^^                    markup.italic.double
+//                      ^^                  punctuation.definition.italic.double.end
+//                        ^^^^^^^^^^^^^^   -meta.italicinner.double
 =======================================
 
 
@@ -86,12 +86,12 @@ Spanning multiple lines.** Normal text.
 =======================================
 Example: **a very long bold text.
 Spanning multiple lines.** Normal text.
-// <-                       meta.boldinner.double
-//^^^^^^^^^^^^^^^^^^^^^^^^  meta.boldinner.double
-// <-                       markup.bold.double
-//^^^^^^^^^^^^^^^^^^^^^^    markup.bold.double
-//                      ^^  punctuation.definition.bold.double.end
-//                        ^^^^^^^^^^^^^^  - meta.boldinner.double
+//<-                                        meta.boldinner.double
+//^^^^^^^^^^^^^^^^^^^^^^^^                  meta.boldinner.double
+//<-                                        markup.bold.double
+//^^^^^^^^^^^^^^^^^^^^^^                    markup.bold.double
+//                      ^^                  punctuation.definition.bold.double.end
+//                        ^^^^^^^^^^^^^^   -meta.boldinner.double
 =======================================
 
 
@@ -112,10 +112,11 @@ With blank lines inbetween.__
 ==============================================
 Example: __A very long italic text spanning multiple lines.
 
-// <- invalid.illegal
+//<-  invalid.illegal
 With blank lines inbetween.__
-// ^^^^^^^^^^^^^^^^^^^^^^^^  - meta.italicinner.double
+//^^^^^^^^^^^^^^^^^^^^^^^^^  -meta.italicinner.double
 
+//<-  invalid.illegal
 ==============================================
 
 
@@ -139,15 +140,16 @@ Example: **A very long bold text spanning multiple lines.
 
 // <- invalid.illegal
 With blank lines inbetween.**
-// ^^^^^^^^^^^^^^^^^^^^^^^^  - meta.boldinner.double
+// ^^^^^^^^^^^^^^^^^^^^^^^^  -meta.boldinner.double
 
+// <- invalid.illegal
 ==============================================
 
 
 
 === With Single-Line Comments
 
-Single-line comments will be ingored in the final text and are fine:
+Single-line comments will be ignored in the final text and are fine:
 
 [.big.red]*Source*
 
@@ -164,9 +166,11 @@ with a single line comment inbetween.__ Normal text.
 ======================================
 Example: __An italic text spanning multiple lines
 // a comment
-//^^^^^^^^^^ comment.line.double-slash   meta.line.comment.content
+//^^^^^^^^^^                                comment.line.double-slash
+//^^^^^^^^^^                                meta.line.comment.content
 with a single line comment inbetween.__ Normal text.
-// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.italicinner.double
+//<-                                        meta.italicinner.double
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^     meta.italicinner.double
 ======================================
 
 

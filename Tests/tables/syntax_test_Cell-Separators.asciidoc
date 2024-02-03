@@ -2,7 +2,7 @@
 = Tables: Cells Separators
 
 AsciiDoc Documentation reference:
-https://docs.asciidoctor.org/asciidoc/latest/tables/add-cells-and-rows/[Add Cells and Rows to a Table]
+https://docs.asciidoctor.org/asciidoc/latest/tables/add-cells-and-rows/[Add Cells and Rows to a Table^]
 
 
 == Test Spans
@@ -96,19 +96,28 @@ https://docs.asciidoctor.org/asciidoc/latest/tables/add-cells-and-rows/[Add Cell
 | header 1            | header 2        | header 3
 
 ^| horiz. centered   <| left aligned   >| right aligned
-//<-                                                     constant.delimiter.cell-separator
-//                   ^^                                  constant.delimiter.cell-separator
-//                                     ^^                constant.delimiter.cell-separator
+//<-                                                       constant.delimiter.cell-separator
+//                   ^^                                    constant.delimiter.cell-separator
+//                                     ^^                  constant.delimiter.cell-separator
+//^^^^^^^^^^^^^^^^^^^                                     -constant.delimiter.cell-separator
+//                     ^^^^^^^^^^^^^^^^                   -constant.delimiter.cell-separator
+//                                       ^^^^^^^^^^^^^^   -constant.delimiter.cell-separator
 .^| vert. centered  .<| top aligned   .>| bottom aligned
-//<-                                                     constant.delimiter.cell-separator
-//^                                                      constant.delimiter.cell-separator
-//                  ^^^                                  constant.delimiter.cell-separator
-//                                    ^^^                constant.delimiter.cell-separator
+//<-                                                       constant.delimiter.cell-separator
+//^                                                        constant.delimiter.cell-separator
+//                  ^^^                                    constant.delimiter.cell-separator
+//                                    ^^^                  constant.delimiter.cell-separator
+// ^^^^^^^^^^^^^^^^^                                      -constant.delimiter.cell-separator
+//                     ^^^^^^^^^^^^^^^                    -constant.delimiter.cell-separator
+//                                       ^^^^^^^^^^^^^^^  -constant.delimiter.cell-separator
 ^.^| h+v centered  <.<| top & left   >.>| bottom & right
-//<-                                                     constant.delimiter.cell-separator
-//^                                                      constant.delimiter.cell-separator
-//                  ^^^                                  constant.delimiter.cell-separator
-//                                    ^^^                constant.delimiter.cell-separator
+//<-                                                       constant.delimiter.cell-separator
+//^                                                        constant.delimiter.cell-separator
+//                 ^^^^                                    constant.delimiter.cell-separator
+//                                   ^^^^                  constant.delimiter.cell-separator
+//  ^^^^^^^^^^^^^^^                                       -constant.delimiter.cell-separator
+//                     ^^^^^^^^^^^^^^                     -constant.delimiter.cell-separator
+//                                       ^^^^^^^^^^^^^^^  -constant.delimiter.cell-separator
 |=======================================================
 
 == Test Styles
@@ -135,16 +144,25 @@ h| Header     | none
 | header      | header
 
 d| Default   a| AsciiDoc
-//<-                      constant.delimiter.cell-separator
-//           ^^           constant.delimiter.cell-separator
+//<-                        constant.delimiter.cell-separator
+//           ^^             constant.delimiter.cell-separator
+//^^^^^^^^^^^              -constant.delimiter.cell-separator
+//             ^^^^^^^^^   -constant.delimiter.cell-separator
 e| Emphasis  s| Strong
-//<-                      constant.delimiter.cell-separator
-//           ^^           constant.delimiter.cell-separator
+//<-                        constant.delimiter.cell-separator
+//           ^^             constant.delimiter.cell-separator
+//^^^^^^^^^^^              -constant.delimiter.cell-separator
+//             ^^^^^^^     -constant.delimiter.cell-separator
 l| Literal   m| Monospace
-//<-                      constant.delimiter.cell-separator
-//           ^^           constant.delimiter.cell-separator
+//<-                        constant.delimiter.cell-separator
+//           ^^             constant.delimiter.cell-separator
+//^^^^^^^^^^^              -constant.delimiter.cell-separator
+//             ^^^^^^^^^^  -constant.delimiter.cell-separator
 h| Header     | none
-//<-                      constant.delimiter.cell-separator
+//<-                        constant.delimiter.cell-separator
+//            ^             constant.delimiter.cell-separator
+//^^^^^^^^^^^^             -constant.delimiter.cell-separator
+//             ^^^^^^      -constant.delimiter.cell-separator
 |========================
 
 
@@ -176,20 +194,23 @@ example block
 | header 1 | header 2 ^| header 3 centered
 
 .^m| V-centered monospace
-//<-                      constant.delimiter.cell-separator
-//^^                      constant.delimiter.cell-separator
+//<-                         constant.delimiter.cell-separator
+//^^                         constant.delimiter.cell-separator
+//  ^^^^^^^^^^^^^^^^^^^^^   -constant.delimiter.cell-separator
 
 2+a| AsciDoc span 2
-//<-                      constant.delimiter.cell-separator
-//^^                      constant.delimiter.cell-separator
+//<-                         constant.delimiter.cell-separator
+//^^                         constant.delimiter.cell-separator
+//  ^^^^^^^^^^^^^^^         -constant.delimiter.cell-separator
 
 =============
 example block
 =============
 
 3*>h| 3{asterisk} header & right
-//<-                       constant.delimiter.cell-separator
-//^^^                      constant.delimiter.cell-separator
+//<-                         constant.delimiter.cell-separator
+//^^^                        constant.delimiter.cell-separator
+//   ^^^^^^^^^^^^^^^^^^^^^  -constant.delimiter.cell-separator
 |=========================================
 
 // EOF //

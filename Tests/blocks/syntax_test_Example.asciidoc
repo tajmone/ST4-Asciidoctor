@@ -6,6 +6,10 @@
 // *                                                                           *
 // *****************************************************************************
 
+AsciiDoc Documentation reference:
+https://docs.asciidoctor.org/asciidoc/latest/blocks/example-blocks/[Example Blocks^]
+
+
 [.big.red]*Source*
 
 [source,asciidoc]
@@ -19,12 +23,15 @@ Just an Example
 [.big.red]*Result*
 
 ==================================
-// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.block.example.content
-// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ constant.delimiter.example.begin
+//<-                                meta.block.example.content
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  meta.block.example.content
+//<-                                constant.delimiter.example.begin
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  constant.delimiter.example.begin
 Just an Example
-// <-^^^^^^^^^^  meta.block.example.content
-// <-^^^^^^^^^^  string.unquoted.block.example
+//<-                                meta.block.example.content
+//^^^^^^^^^^^^^                     string.unquoted.block.example
 ==================================
-// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ constant.delimiter.example.end
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  constant.delimiter.example.end
+//<-                                constant.delimiter.example.end
 
 // EOF //

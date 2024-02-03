@@ -4,27 +4,25 @@
 AsciiDoc Documentation reference:
 https://docs.asciidoctor.org/asciidoc/latest/attributes/attribute-entry-substitutions//[Attribute Entry Substitutions^]
 
-[.big.red].Source.
+[.big.red]*Source*
 
 [source,asciidoc]
-..........................
+.................
 :lb: pound
 
-1 {lb} carrots, sliced
-..........................
+1 {lb} carrots.
+.................
 
-[.big.red].Result.
+[.big.red]*Result*
 
-============================
+==================
 :lb: pound
 
-1 {lb} carrots, sliced
-//^^^^                      text.asciidoc
-//^                         constant.character.attributes.reference.begin.asciidoc
-//   ^                      constant.character.attributes.reference.end.asciidoc
-// ^^                       support.variable.attribute.asciidoc
-============================
+1 {lb} carrots.
+//^^^^             text
+//^                constant.character.attributes.reference.begin
+//   ^             constant.character.attributes.reference.end
+// ^^              support.variable.attribute
+==================
 
-
-
-//? EOF //
+// EOF //

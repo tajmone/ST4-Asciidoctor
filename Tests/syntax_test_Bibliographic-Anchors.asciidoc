@@ -8,6 +8,12 @@ https://docs.asciidoctor.org/asciidoc/latest/sections/bibliography[Bibliography^
 
 [source,asciidoc]
 ......................................
+_The Pragmatic Programmer_ <<pp>> should be required reading for all developers.
+To learn all about design patterns, refer to the book by the "`Gang of Four`" <<gof>>.
+
+[bibliography]
+== Bibliography
+
 * [[[pp]]] Andy Hunt & Dave Thomas. The Pragmatic Programmer:
 From Journeyman to Master. Addison-Wesley. 1999.
 * [[[gof,gang]]] Erich Gamma, Richard Helm, Ralph Johnson & John Vlissides.
@@ -16,6 +22,12 @@ Design Patterns: Elements of Reusable Object-Oriented Software. Addison-Wesley. 
 
 
 [.big.red]*Result*
+
+_The Pragmatic Programmer_ <<pp>> should be required reading for all developers.
+To learn all about design patterns, refer to the book by the "`Gang of Four`" <<gof>>.
+
+[bibliography]
+== Bibliography
 
 * [[[pp]]] Andy Hunt & Dave Thomas. The Pragmatic Programmer:
 //^^^                               punctuation.definition.biblioanchor.begin.asciidoc
@@ -27,8 +39,5 @@ From Journeyman to Master. Addison-Wesley. 1999.
 //   ^^^^^^^^                       storage.type.reference.biblioanchor.asciidoc
 //           ^^^                    punctuation.definition.biblioanchor.end.asciidoc
 Design Patterns: Elements of Reusable Object-Oriented Software. Addison-Wesley. 1994.
-
-A paragraph with a custom ID anchor.
-
 
 // EOF //

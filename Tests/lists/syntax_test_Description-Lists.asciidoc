@@ -4,18 +4,23 @@
 AsciiDoc Documentation reference:
 https://docs.asciidoctor.org/asciidoc/latest/lists/description/[Description Lists^]
 
-[.big.red].Source.
+The valid set of term delimiters is fixed: `::`, `:::`, `::::` and `;;`.
+When the term delimiter is changed, that term begins a new, nested description list.
+There's no direct correlation between the number of characters in the delimiter and the nesting level.
+
+
+== Colon Markers
 
 [source,asciidoc]
 ......................................
 Level 1 Term:: Defined
 Level 2 Term::: Defined
 Level 3 Term:::: Defined
-Level 1 Term;; Defined (semicolon)
+Level 4 Term;; Defined (semicolon)
 ......................................
 
 
-[.big.red].Result.
+[.big.red]*Result*
 
 ======================================
 Level 1 Term:: Defined
@@ -24,7 +29,7 @@ Level 2 Term::: Defined
 //          ^^^                  punctuation.definition.list.labeled
 Level 3 Term:::: Defined
 //          ^^^^                 punctuation.definition.list.labeled
-Level 1 Term;; Defined (semicolon)
+Level 4 Term;; Defined (semicolon)
 //          ^^                   punctuation.definition.list.labeled
 ======================================
 

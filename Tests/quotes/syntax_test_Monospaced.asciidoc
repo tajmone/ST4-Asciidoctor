@@ -21,10 +21,11 @@ This `is monospaced`. This is not.
 
 ============================
 This `is monospaced`. This is not.
-//   ^^^^^^^^^^^^^^^  meta.literalinner.single
-//    ^^^^^^^^^^^^^   string.other.literal.single
-//   ^                punctuation.definition.literal.single.begin
-//                 ^  punctuation.definition.literal.single.end
+//   ^^^^^^^^^^^^^^^        meta.literalinner.single
+//    ^^^^^^^^^^^^^         string.other.literal.single
+//   ^                      punctuation.definition.literal.single.begin
+//                 ^        punctuation.definition.literal.single.end
+//                  ^^^^^  -meta.literalinner
 ============================
 
 
@@ -42,11 +43,11 @@ SublimeText is ``super``fast.
 
 =============================
 SublimeText is ``super``fast.
-//             ^^^^^^^^^   meta.literalinner.double
-//               ^^^^^     string.other.literal.double
-//             ^^          punctuation.definition.literal.double.begin
-//                    ^^   punctuation.definition.literal.double.end
-//                      ^^^^^  - meta.literalinner.double
+//             ^^^^^^^^^        meta.literalinner.double
+//               ^^^^^          string.other.literal.double
+//             ^^               punctuation.definition.literal.double.begin
+//                    ^^        punctuation.definition.literal.double.end
+//                      ^^^^^  -meta.literalinner
 =============================
 
 
@@ -57,23 +58,23 @@ Monospaced text can span across multiple lines in the same paragraph, as long as
 [.big.red]*Source*
 
 [source,asciidoc]
-......................................
+.................................
 `a very long monospace.
-Spanning multiple lines.` Normal text.
-......................................
+Spanning multiple lines.` Normal.
+.................................
 
 [.big.red]*Result*
 
-=======================================
+=================================
 `a very long monospace.
-Spanning multiple lines.` Normal text.
-// <-                      meta.literalinner.single
-//^^^^^^^^^^^^^^^^^^^^^^^  meta.literalinner.single
-// <-                      string.other.literal.single
-//^^^^^^^^^^^^^^^^^^^^^^   string.other.literal.single
-//                      ^  punctuation.definition.literal.single.end
-//                       ^^^^^^^^^^^^^^  - meta.literalinner.single
-=======================================
+Spanning multiple lines.` Normal.
+//<-                                meta.literalinner.single
+//^^^^^^^^^^^^^^^^^^^^^^^           meta.literalinner.single
+//<-                                string.other.literal.single
+//^^^^^^^^^^^^^^^^^^^^^^            string.other.literal.single
+//                      ^           punctuation.definition.literal.single.end
+//                       ^^^^^^^^  -meta.literalinner
+=================================
 
 
 === With Line Comments
@@ -86,7 +87,7 @@ Single-line comments inside a monospaced text spanning across multiple lines wil
 ...................................................
 `A monospace text spanning multiple lines
 // a comment
-with a single line comment inbetween.` Normal text.
+with a single line comment inbetween.` Normal.
 ...................................................
 
 [.big.red]*Result*
@@ -97,8 +98,11 @@ with a single line comment inbetween.` Normal text.
 // a comment
 //^^^^^^^^^^ comment.line.double-slash   meta.line.comment.content
 //^^^^^^^^^^ meta.literalinner
-with a single line comment inbetween.` Normal text.
-// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.literalinner.single
+with a single line comment inbetween.` Normal.
+//<-                                            meta.literalinner.single
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^          meta.literalinner.single
+//                                   ^          punctuation.definition.literal.single.end
+//                                    ^^^^^^^  -meta.literalinner
 ===================================================
 
 Block comments (like any other block elements) are not OK, and will break the quote.
@@ -121,11 +125,12 @@ With blank lines inbetween.`
 
 ===============================================
 `A very long bold text spanning multiple lines.
-// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.literalinner.single
+//<-                                             meta.literalinner.single
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  meta.literalinner.single
 
-// <- invalid.illegal
+//<- invalid.illegal
 With blank lines inbetween.`
-// ^^^^^^^^^^^^^^^^^^^^^^^^^  - meta.literalinner.single
+//^^^^^^^^^^^^^^^^^^^^^^^^^^                    -meta.literalinner
 
 ===============================================
 
@@ -134,8 +139,8 @@ The AsciiDoc syntax will handle such cases by interrupting monospace-parsing whe
 
 == Edge Cases
 
-See
-https://asciidoctor.org/docs/user-manual/#unconstrained-formatting-edge-cases[§9.4. Unconstrained formatting edge cases]
+See:
+https://docs.asciidoctor.org/asciidoc/latest/text/troubleshoot-unconstrained-formatting/#unconstrained-edge-cases[Unconstrained pair edge cases^]
 
 
 
@@ -144,44 +149,52 @@ https://asciidoctor.org/docs/user-manual/#unconstrained-formatting-edge-cases[§
 // =============================================================================
 //                           Test for False-Positives
 // =============================================================================
-// Bacticks adjacent to single/double quote delimiters (straight) are for making
+// Backticks adjacent to single/double quote delimiters (straight) are for making
 // the quote curly, and should not be seen as monospaced/inline-code.
 
 
 [.big.red]*Source*
 
 [source,asciidoc]
-......................................
+...............................
 Example: '`text`' and "`text`".
-......................................
+...............................
 
 
 [.big.red]*Result*
 
-======================================
+===============================
 Example: '`text`' and "`text`".
-//       ^^                    punctuation.definition.curlyquote.single.begin.asciidoc
-//             ^^              punctuation.definition.curlyquote.single.end.asciidoc
-//                    ^^       punctuation.definition.curlyquote.double.begin.asciidoc
-//                          ^^ punctuation.definition.curlyquote.double.end.asciidoc
+//       ^^                    punctuation.definition.curlyquote.single.begin
+//             ^^              punctuation.definition.curlyquote.single.end
+//                    ^^       punctuation.definition.curlyquote.double.begin
+//                          ^^ punctuation.definition.curlyquote.double.end
 //
-======================================
+===============================
 
-Single backticks within typographic quotes are interpreted as literal characters.
+Single backticks within typographic quotes are interpreted as literal characters:
 
 [.big.red]*Source*
 
 [source,asciidoc]
-......................................
+........................................
 E.g. "``endpoints``" and '``endpoints``'
-......................................
+........................................
 
 
 [.big.red]*Result*
 
-======================================
+========================================
 E.g. "``endpoints``" and '``endpoints``'
-======================================
+//   ^^                                     punctuation.definition.curlyquote.double.begin
+//                ^^                        punctuation.definition.curlyquote.double.end
+//                       ^^                 punctuation.definition.curlyquote.single.begin
+//                                    ^^    punctuation.definition.curlyquote.single.end
+//     ^                                   -punctuation.definition.curlyquote
+//               ^                         -punctuation.definition.curlyquote
+//                         ^               -punctuation.definition.curlyquote
+//                                   ^     -punctuation.definition.curlyquote
+========================================
 
 
 
@@ -193,19 +206,30 @@ Let's check that these are not misinterpreted inside monospaced:
 
 [source,asciidoc]
 ......................................
-Hello world `#ZZZ` ssss.
+Hello world `#ZZZ` end.
 
-Hello world "```xxx `YYY` xx```" ssss.
+Hello world "```xxx `YYY` xxx```" end.
 ......................................
 
 
 [.big.red]*Result*
 
 ======================================
-Hello world `#ZZZ` ssss.
+Hello world `#ZZZ` end.
 
-Hello world "```xxx `YYY` xx```" ssss.
+Hello world "```xxx `YYY` xxx```" end.
 ======================================
 
+
+[WARNING]
+======================================
+Asciidoctor renders `YYY` as a nested `<code>` block within a `<code>` block:
+
+[source,html]
+<code>xxx <code>YYY</code> xxx</code>
+
+{blank}... that's probably a bug.
+Need more testing to understand how our Syntax should handle such edge cases.
+======================================
 
 // EOF //

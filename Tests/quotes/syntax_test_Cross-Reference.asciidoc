@@ -1,57 +1,60 @@
 // SYNTAX TEST "Packages/ST4-Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
-= Attribute Reference
+= Cross References
 
 AsciiDoc Documentation reference:
 https://docs.asciidoctor.org/asciidoc/latest/macros/xref[Xref^]
 
 == Xref Link with Default Display Text
 
-[.big.red].Source.
+[.big.red]*Source*
 
 [source,asciidoc]
 ..........................
 See also <<baz>>.
 ..........................
 
-[.big.red].Result.
+[.big.red]*Result*
 
 ============================
 See also <<baz>>.
-//       ^^^^^^^     meta.xref.asciidoc
-//         ^^^       variable.parameter.xref.link.asciidoc
-//       ^^          constant.character.xref.begin.asciidoc
-//            ^^     constant.character.xref.end.asciidoc
+//       ^^^^^^^     meta.xref
+//         ^^^       variable.parameter.xref.link
+//       ^^          constant.character.xref.begin
+//            ^^     constant.character.xref.end
 ============================
 
 
 == Xref Link with Custom Display Text
 
-[.big.red].Source.
+[.big.red]*Source*
 
 [source,asciidoc]
 ..........................
 See also <<foo-bar,Foo Bar>>.
+
+See also <<white-space  ,  white space allowed>>.
 ..........................
 
-[.big.red].Result.
+[.big.red]*Result*
 
 ============================
 See also <<foo-bar,Foo Bar>>.
-//       ^^^^^^^^^^^^^^^^^^^                       meta.xref.asciidoc
-//         ^^^^^^^                                 variable.parameter.xref.link.asciidoc
-//                ^                                text.asciidoc
-//                 ^^^^^^^                         variable.parameter.xref.display.asciidoc
-//       ^^                                        constant.character.xref.begin.asciidoc
-//                        ^^                       constant.character.xref.end.asciidoc
+//       ^^^^^^^^^^^^^^^^^^^                       meta.xref
+//       ^^                                        constant.character.xref.begin
+//                        ^^                       constant.character.xref.end
+//         ^^^^^^^                                 variable.parameter.xref.link
+//                 ^^^^^^^                         variable.parameter.xref.display
+//         ^^^^^^^^                               -variable.parameter.xref.display
+//                ^^^^^^^^                        -variable.parameter.xref.link
+
 See also <<white-space  ,  white space allowed>>.
-//       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   meta.xref.asciidoc
-//         ^^^^^^^^^^^                             variable.parameter.xref.link.asciidoc
-//                    ^^^^^                        text.asciidoc
-//                         ^^^^^^^^^^^^^^^^^^^     variable.parameter.xref.display.asciidoc
-//       ^^                                        constant.character.xref.begin.asciidoc
-//                                            ^^   constant.character.xref.end.asciidoc
+//       ^^                                        constant.character.xref.begin
+//                                            ^^   constant.character.xref.end
+//       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   meta.xref
+//         ^^^^^^^^^^^^^                           variable.parameter.xref.link
+//                         ^^^^^^^^^^^^^^^^^^^     variable.parameter.xref.display
+//         ^^^^^^^^^^^^^^^^                       -variable.parameter.xref.display
+//                      ^^^^^^^^^^^^^^^^^^^^^^    -variable.parameter.xref.link
 ============================
 
-
-
-//? EOF //
+// EOF //

@@ -14,7 +14,7 @@ https://docs.asciidoctor.org/asciidoc/latest/attributes/attribute-entries/[Attri
 :toc: left
 ......................................
 
-
+ifeval::[0 == 1]
 :sectnums:
 //<-         meta.attributeentry
 //^^^^^^^^   meta.attributeentry
@@ -40,8 +40,6 @@ https://docs.asciidoctor.org/asciidoc/latest/attributes/attribute-entries/[Attri
 //            ^  -support.variable.attribute
 //           ^    punctuation.definition.attributeentry.unset
 
-WARNING: Ignore the garbage below (required to test some elements in the source file)...
-
 :!linkattrs:
 //<-           meta.attributeentry
 //^^^^^^^^^^   meta.attributeentry
@@ -51,6 +49,6 @@ WARNING: Ignore the garbage below (required to test some elements in the source 
 //<-          -support.variable.attribute
 //         ^  -support.variable.attribute
  //<-          punctuation.definition.attributeentry.unset
-
+endif::[]
 
 // EOF //

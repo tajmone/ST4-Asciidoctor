@@ -9,13 +9,15 @@ https://docs.asciidoctor.org/asciidoc/latest/blocks/breaks/#thematic-breaks[Them
 '''
 
 '''
-//<- meta.separator.ruler
+//<-                meta.separator.ruler
+//^                 meta.separator.ruler
 
 .Example 2
 [source,asciidoc]
 '''''''''''''
 
 '''''''''''''
-//<-^^^^^^^^^ meta.separator.ruler
+//<-                meta.separator.ruler
+//^^^^^^^^^^^       meta.separator.ruler
 
 // EOF //

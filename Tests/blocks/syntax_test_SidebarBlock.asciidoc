@@ -1,8 +1,8 @@
 // SYNTAX TEST "Packages/ST4-Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
 = Sidebar Blocks
 
-Manual Reference:
-https://asciidoctor.org/docs/user-manual/#sidebar[33. Sidebar]
+AsciiDoc Documentation reference:
+https://docs.asciidoctor.org/asciidoc/latest/blocks/sidebars/[Sidebars^]
 
 [.big.red]*Source*
 
@@ -18,18 +18,22 @@ for producing professional documents like DocBook and LaTeX.
 [.big.red]*Result*
 
 ****
-//<- meta.block.sidebar.content
-//<- constant.delimiter.block.sidebar.begin
+//<-        meta.block.sidebar.content
+//^^        meta.block.sidebar.content
+//<-        constant.delimiter.block.sidebar.begin
+//^^        constant.delimiter.block.sidebar.begin
 AsciiDoc was first released in Nov 2002 by Stuart Rackham.
-//<- string.quoted.block.sidebar
-//<- meta.block.sidebar.content
+//<-        string.quoted.block.sidebar
+//<-        meta.block.sidebar.content
 It was designed from the start to be a shorthand syntax
 for producing professional documents like DocBook and LaTeX.
 ****
-//<- meta.block.sidebar.content
-//<- constant.delimiter.block.sidebar.end
+//<-        meta.block.sidebar.content
+//^^        meta.block.sidebar.content
+//<-        constant.delimiter.block.sidebar.end
+//^^        constant.delimiter.block.sidebar.end
 
 Back to normal text.
-// <-  - meta.block.open
+//<-       -meta.block
 
 // EOF //

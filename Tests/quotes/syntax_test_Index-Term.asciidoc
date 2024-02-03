@@ -6,35 +6,42 @@ https://docs.asciidoctor.org/asciidoc/latest/sections/user-index/#index-terms[In
 
 == Index Terms
 
-[.big.red].Source.
+[.big.red]*Source*
 
 [source,asciidoc]
 ..........................
 A ((flow)) index term appears in both the text and the index.
-A concealed index term appears only in the index.
-(((concealed index term)))
-(((index term,concealed)))
+
+A concealed term is only in the index.
+E.g. 1(((concealed index term))).
+
+A concealed term can be grouped.
+E.g. 2(((index term,concealed))).
 ..........................
 
-[.big.red].Result.
+[.big.red]*Result*
 
 ============================
 A ((flow)) index term appears in both the text and the index.
-//^^^^^^^^                                                          variable.other.indexterm.double.asciidoc
-//^^                                                                constant.character.indexterm.double.begin.asciidoc
-//  ^^^^                                                            variable.other.indexterm.double.asciidoc
-//      ^^                                                          constant.character.indexterm.double.end.asciidoc
-A concealed term is only in the index. (((concealed index term)))
-//                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^   variable.other.indexterm.triple.asciidoc
-//                                     ^^^                          constant.character.indexterm.triple.begin.asciidoc
-//                                        ^^^^^^^^^^^^^^^^^^^^      variable.other.indexterm.triple.asciidoc
-//                                                            ^^^   constant.character.indexterm.triple.end.asciidoc
-A concealed term can be grouped. (((index term,concealed)))
-//                               ^^^^^^^^^^^^^^^^^^^^^^^^^^         variable.other.indexterm.triple.asciidoc
-//                               ^^^                                constant.character.indexterm.triple.begin.asciidoc
-//                                  ^^^^^^^^^^^^^^^^^^^^            variable.other.indexterm.triple.asciidoc
-//                                                      ^^^         constant.character.indexterm.triple.end.asciidoc
+//^^^^^^^^                              variable.other.indexterm.double
+//^^                                    constant.character.indexterm.double.begin
+//  ^^^^                                variable.other.indexterm.double
+//      ^^                              constant.character.indexterm.double.end
+
+A concealed term is only in the index.
+E.g. 1(((concealed index term))).
+//    ^^^^^^^^^^^^^^^^^^^^^^^^^^         variable.other.indexterm.triple
+//    ^^^                                constant.character.indexterm.triple.begin
+//       ^^^^^^^^^^^^^^^^^^^^            variable.other.indexterm.triple
+//                           ^^^         constant.character.indexterm.triple.end
+
+A concealed term can be grouped.
+E.g. 2(((index term,concealed))).
+//    ^^^^^^^^^^^^^^^^^^^^^^^^^^         variable.other.indexterm.triple
+//    ^^^                                constant.character.indexterm.triple.begin
+//       ^^^^^^^^^^^^^^^^^^^^            variable.other.indexterm.triple
+//                           ^^^         constant.character.indexterm.triple.end
 ============================
 
 
-//? EOF //
+// EOF //

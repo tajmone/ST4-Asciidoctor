@@ -18,7 +18,9 @@ NOTE: Be careful what you wish for.
 
 ============================
 NOTE: Be careful what you wish for.
-//<- support.constant.admonitionword.asciidoc
+//<-                  support.constant.admonitionword
+//^^^                 support.constant.admonitionword
+//   ^^^^^^^^^^^^^   -support.constant.admonitionword
 ============================
 
 
@@ -35,7 +37,9 @@ IMPORTANT: Be careful what you wish for.
 
 ============================
 IMPORTANT: Be careful what you wish for.
-//<- support.constant.admonitionword.asciidoc
+//<-                       support.constant.admonitionword
+//^^^^^^^^                 support.constant.admonitionword
+//        ^^^^^^^^^^^^^   -support.constant.admonitionword
 ============================
 
 
@@ -52,7 +56,9 @@ WARNING: Be careful what you wish for.
 
 ============================
 WARNING: Be careful what you wish for.
-//<- support.constant.admonitionword.asciidoc
+//<-                    support.constant.admonitionword
+//^^^^^^                support.constant.admonitionword
+//      ^^^^^^^^^^^^   -support.constant.admonitionword
 ============================
 
 
@@ -69,7 +75,9 @@ CAUTION: Be careful what you wish for.
 
 ============================
 CAUTION: Be careful what you wish for.
-//<- support.constant.admonitionword.asciidoc
+//<-                     support.constant.admonitionword
+//^^^^^^                 support.constant.admonitionword
+//      ^^^^^^^^^^^^^   -support.constant.admonitionword
 ============================
 
 
@@ -86,7 +94,9 @@ TIP: Be careful what you wish for.
 
 ============================
 TIP: Be careful what you wish for.
-//<- support.constant.admonitionword.asciidoc
+//<-                 support.constant.admonitionword
+//^^                 support.constant.admonitionword
+//  ^^^^^^^^^^^^^   -support.constant.admonitionword
 ============================
 
 // EOF //

@@ -71,9 +71,9 @@ Text \\__func__ will be enclosed in double underscores, not italicized.
 =======================================================================
 
 
-WARNING: Currently, double escaping supports the same characters as single escaping (listed above), although the actual list of candidate characters might differ in reality---I'm simply guessing them.
+WARNING: Currently, double escaping supports the same characters as single escaping (listed above), although the actual list of candidate characters might differ in reality -- I'm simply guessing them.
 
-IMPORTANT: Check Asciidoctor source code for the list of double escapeable charaters.
+IMPORTANT: Check Asciidoctor source code for the list of double escapeable characters.
 
 ifeval::[0 == 1]
 Test: \\## \\&& \\-- \\`` \\** \\__

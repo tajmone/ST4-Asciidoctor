@@ -7,55 +7,66 @@
 // *****************************************************************************
 
 //
-// <- text
-// <- comment.line.double-slash
-// <- punctuation.definition.comment.line
+//<-                     text
+//<-                     comment.line.double-slash
+//<-                     punctuation.definition.comment.line
 
 
-// Single Line Comment
-// ^^^^^^^^^^^^^^^^^^^ text
-// ^^^^^^^^^^^^^^^^^^^ comment.line.double-slash
-// ^^^^^^^^^^^^^^^^^^^ meta.line.comment.content
+// SINGLE LINE COMMENT
+// ^^^^^^^^^^^^^^^^^^^   text
+// ^^^^^^^^^^^^^^^^^^^   comment.line.double-slash
+// ^^^^^^^^^^^^^^^^^^^   meta.line.comment.content
 
-Normal text.
-// <-^^^^^^^ text  - comment
+NORMAL TEXT.
+//<-                     text -comment
+//^^^^^^^^^              text -comment
 
 
 ////
-//<^ meta.block.comment.content   punctuation.definition.comment.begin
-Block Comment
-// ^^^^^^^^^^ comment.block
-// ^^^^^^^^^^ meta.block.comment.content
+//<-                     punctuation.definition.comment.begin
+//^^                     punctuation.definition.comment.begin
+//<-                     meta.block.comment.content
+//^^                     meta.block.comment.content
+BLOCK COMMENT
+//^^^^^^^^^^^            comment.block
+//^^^^^^^^^^^            meta.block.comment.content
 ////
-//<^  punctuation.definition.comment.end
+//<-                     punctuation.definition.comment.end
+
 
 ///////
-//<^^^^ meta.block.comment.content   punctuation.definition.comment.begin
-Block Comment
-// ^^^^^^^^^^ comment.block
-// ^^^^^^^^^^ meta.block.comment.content
+//<-                     punctuation.definition.comment.begin
+//^^^^^                  punctuation.definition.comment.begin
+//<-                     meta.block.comment.content
+//^^^^^                  meta.block.comment.content
+BLOCK COMMENT
+//^^^^^^^^^^^            comment.block
+//^^^^^^^^^^^            meta.block.comment.content
 ///////
-//<^^^^  punctuation.definition.comment.end
+//<-                     punctuation.definition.comment.end
+//^^^^^                  punctuation.definition.comment.end
 
-Back to normal text.
-// <-^^^^^^^^^^^^^^^ - comment
+BACK TO NORMAL TEXT.
+//<-                    -comment
+//^^^^^^^^^^^^^^^^^     -comment
+
 
 // =================
 // PROTOTYPES CHECKS
 // =================
 
-// Make sure that nothing inside comments is scopes otherwise...
+// Make sure that nothing inside comments is scoped otherwise...
 
 // &num; &#169;
-// ^^^^^^^^^^^^    comment.line.double-slash
-// ^^^^^          -constant.character.entity
-//       ^^^^^^   -constant.character.entity
+// ^^^^^^^^^^^^          comment.line.double-slash
+// ^^^^^                -constant.character.entity
+//       ^^^^^^         -constant.character.entity
 
 ////
    &num; &#169;
-// ^^^^^^^^^^^^    comment.block.asciidoc
-// ^^^^^          -constant.character.entity
-//       ^^^^^^   -constant.character.entity
+// ^^^^^^^^^^^^          comment.block
+// ^^^^^                -constant.character.entity
+//       ^^^^^^         -constant.character.entity
 ////
 
 // EOF //

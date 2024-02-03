@@ -1,20 +1,63 @@
 // SYNTAX TEST "Packages/ST4-Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
-= Listing Blocks
+= Listing Blocks (Delimited)
 // *****************************************************************************
 // *                                                                           *
 // *                              Listings Tests                               *
 // *                                                                           *
 // *****************************************************************************
 
+AsciiDoc Documentation reference:
+https://docs.asciidoctor.org/asciidoc/latest/verbatim/listing-blocks/#delimited-listing-block[Delimited listing block^]
 
+[.big.red]*Source*
+
+[source,asciidoc]
+......................................
 -----------------
-// <-^^^^^^^^^^^^ meta.embedded.block.listing  constant.delimiter.listing.begin
 require 'sinatra'
-// <-^^^^^^^^^^^^ meta.embedded.block.listing  source.block.listing.content
+
 get '/hi' do
   "Hello World!"
 end
 -----------------
-// <-^^^^^^^^^^^^ meta.embedded.block.listing  constant.delimiter.listing.end
+......................................
+
+
+[.big.red]*Result*
+
+======================================
+-----------------
+require 'sinatra'
+
+get '/hi' do
+  "Hello World!"
+end
+-----------------
+======================================
+
+ifeval::[0 == 1]
+-----------------
+//<-                constant.delimiter.listing.begin
+//^^^^^^^^^^^^^^^   constant.delimiter.listing.begin
+//<-                meta.embedded.block.listing
+//^^^^^^^^^^^^^^^   meta.embedded.block.listing
+require 'sinatra'
+//<-                meta.embedded.block.listing
+//^^^^^^^^^^^^^^^   meta.embedded.block.listing
+//<-                source.block.listing.content
+//^^^^^^^^^^^^^^^   source.block.listing.content
+//^^^^^^^^^^^^^^^  -constant.delimiter.listing
+get '/hi' do
+  "Hello World!"
+end
+-----------------
+//<-                meta.embedded.block.listing
+//^^^^^^^^^^^^^^^   meta.embedded.block.listing
+//<-                constant.delimiter.listing.end
+//^^^^^^^^^^^^^^^   constant.delimiter.listing.end
+
+Back to normal text.
+// <-              -meta.block.open
+endif::[]
 
 // EOF //

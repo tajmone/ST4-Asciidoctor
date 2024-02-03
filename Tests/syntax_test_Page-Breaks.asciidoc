@@ -9,13 +9,15 @@ https://docs.asciidoctor.org/asciidoc/latest/blocks/breaks/#page-breaks[Page bre
 <<<
 
 <<<
-//<- meta.separator.pagebreak
+//<-  meta.separator.pagebreak
+//^   meta.separator.pagebreak
 
 .Example 2
 [source,asciidoc]
 <<<<<<<<<<<<<
 
 <<<<<<<<<<<<<
-//<-^^^^^^^^^ meta.separator.pagebreak
+//<-            meta.separator.pagebreak
+//^^^^^^^^^^^   meta.separator.pagebreak
 
 // EOF //

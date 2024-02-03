@@ -1,12 +1,12 @@
 // SYNTAX TEST "Packages/ST4-Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
-= Pass Blocks
+= Passthrough Block
 
-Manual Reference:
-https://asciidoctor.org/docs/user-manual/#pass-blocks[§40.2. passthrough Blocks]
+AsciiDoc Documentation reference:
+https://docs.asciidoctor.org/asciidoc/latest/pass/pass-block/[Passthrough Blocks^]
 
 The passthrough block and pass block style exclude block content from all substitutions (unless specified otherwise).
 
-A passthrough block is delimited by four plus signs (`++++`).
+A passthrough block is delimited by four plus signs (`{plus}{plus}{plus}{plus}`).
 The pass style is implied.
 
 [.big.red]*Source*
@@ -21,21 +21,22 @@ The pass style is implied.
 
 (there's no visible result for the above passthrough block.)
 
+ifeval::[0 == 1]
 ++++
-// <- meta.embedded.block.passthrough
-// <- constant.delimiter.block.passthrough.begin
+//<-    meta.embedded.block.passthrough
+//<-    constant.delimiter.block.passthrough.begin
 <video poster="images/movie-reel.png">
-// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.block.passthrough
-// <-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.xml.block.passthrough.content
+//<-                                    meta.embedded.block.passthrough
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^    meta.embedded.block.passthrough
+//<-                                    text.xml.block.passthrough.content
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^    text.xml.block.passthrough.content
   <source src="videos/writing-zen.webm" type="video/webm">
 </video>
 ++++
-// <- meta.embedded.block.passthrough
-// <- constant.delimiter.block.passthrough.end
+//<-    meta.embedded.block.passthrough
+//<-    constant.delimiter.block.passthrough.end
 Back to normal text.
-// <- - meta.embedded.block.passthrough
-
-NOTE: The test comments after the opening delimiter leak through into the final document.
-It's a passthrough block, after all!
+//<-   -meta.embedded.block.passthrough
+endif::[]
 
 // EOF //

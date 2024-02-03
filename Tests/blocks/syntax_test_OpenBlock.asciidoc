@@ -1,8 +1,8 @@
 // SYNTAX TEST "Packages/ST4-Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
 = Open Blocks
 
-Manual Reference:
-https://asciidoctor.org/docs/user-manual/#open-blocks[41. Open Blocks]
+AsciiDoc Documentation reference:
+https://docs.asciidoctor.org/asciidoc/latest/blocks/open-blocks/[Open Blocks^]
 
 [.big.red]*Source*
 
@@ -17,16 +17,22 @@ or it can masquerade as any other block.
 
 [.big.red]*Result*
 
+======================================
 --
-//<- meta.block.open   constant.delimiter.block.open.begin
+//<-    meta.block.open
+//<-    constant.delimiter.block.open.begin
 An open block can be an anonymous container,
-//<-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.block.open
-//<-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.block.open.content
+//<-                                            meta.block.open
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^    meta.block.open
+//<-                                            meta.block.open.content
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^    meta.block.open.content
 or it can masquerade as any other block.
 --
-//<- meta.block.open   constant.delimiter.block.open.end
+//<-    meta.block.open
+//<-    constant.delimiter.block.open.end
+======================================
 
 Back to normal text.
-// <-  - meta.block.open
+// <-                -meta.block.open
 
 // EOF //
