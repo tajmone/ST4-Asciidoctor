@@ -399,7 +399,6 @@ contexts:
     - include: attribute_reference
     - include: entity_number
     - include: entity_name
-    - include: escape
   #   - include: replacement
   #   - include: macro_pass
     - include: macro
@@ -458,16 +457,6 @@ contexts:
   entity_name:
     - match: (?<!\\)&([a-zA-Z][a-zA-Z0-9]*);
       scope: constant.character.entity.xml.asciidoc
-
-  #########
-  # ESCAPES
-  #########
-  # In AsciiDoc, certain characters need to be escaped with a backslash.
-  # TODO This might not be a complete list of characters need to be escaped.
-
-  escape:
-    - match: \\(?=[-`*_#+.!(){}\[\]\\>:])
-      scope: constant.character.escape.asciidoc
 
   ###################
   # FLOW INDEXTERMS
