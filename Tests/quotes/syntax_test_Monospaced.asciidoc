@@ -137,44 +137,6 @@ The AsciiDoc syntax will handle such cases by interrupting monospace-parsing whe
 See
 https://asciidoctor.org/docs/user-manual/#unconstrained-formatting-edge-cases[§9.4. Unconstrained formatting edge cases]
 
-=== Unconstrained Within Typographic Quotes
-
-
-[.big.red]*Source*
-
-[source,asciidoc]
-......................................
-A monospaced phrase inside typographic quotes: "```endpoints```"
-......................................
-
-
-[.big.red]*Result*
-
-======================================
-A monospaced phrase inside typographic quotes: "```endpoints```"
-======================================
-
-Unconstrained inline code within curly quotes:
-
-[.big.red]*Source*
-
-[source,asciidoc]
-......................................
-Example: "```Procedure("xyz")```".
-......................................
-
-
-[.big.red]*Result*
-
-======================================
-Example: "```Procedure("xyz")```".
-//         ^^^^^^^^^^^^^^^^^^^^   meta.literalinner.double
-//         ^^                     punctuation.definition.literal.double.begin
-//                           ^^   punctuation.definition.literal.double.end
-//       ^^                       punctuation.definition.string.begin
-//                             ^^ punctuation.definition.string.end
-======================================
-
 
 
 == Typographic Quotes False Positives
@@ -198,10 +160,10 @@ Example: '`text`' and "`text`".
 
 ======================================
 Example: '`text`' and "`text`".
-//       ^^                    punctuation.definition.string
-//             ^^              punctuation.definition.string
-//                    ^^       punctuation.definition.string
-//                          ^^ punctuation.definition.string
+//       ^^                    punctuation.definition.curlyquote.single.begin.asciidoc
+//             ^^              punctuation.definition.curlyquote.single.end.asciidoc
+//                    ^^       punctuation.definition.curlyquote.double.begin.asciidoc
+//                          ^^ punctuation.definition.curlyquote.double.end.asciidoc
 //
 ======================================
 

@@ -1,0 +1,34 @@
+// SYNTAX TEST "Packages/ST4-Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+= Bibliographic Anchors
+
+AsciiDoc Documentation reference:
+https://docs.asciidoctor.org/asciidoc/latest/sections/bibliography[Bibliography^]
+
+[.big.red]*Source*
+
+[source,asciidoc]
+......................................
+* [[[pp]]] Andy Hunt & Dave Thomas. The Pragmatic Programmer:
+From Journeyman to Master. Addison-Wesley. 1999.
+* [[[gof,gang]]] Erich Gamma, Richard Helm, Ralph Johnson & John Vlissides.
+Design Patterns: Elements of Reusable Object-Oriented Software. Addison-Wesley. 1994.
+......................................
+
+
+[.big.red]*Result*
+
+* [[[pp]]] Andy Hunt & Dave Thomas. The Pragmatic Programmer:
+//^^^                               punctuation.definition.biblioanchor.begin.asciidoc
+//   ^^                             storage.type.reference.biblioanchor.asciidoc
+//     ^^^                          punctuation.definition.biblioanchor.end.asciidoc
+From Journeyman to Master. Addison-Wesley. 1999.
+* [[[gof,gang]]] Erich Gamma, Richard Helm, Ralph Johnson & John Vlissides.
+//^^^                               punctuation.definition.biblioanchor.begin.asciidoc
+//   ^^^^^^^^                       storage.type.reference.biblioanchor.asciidoc
+//           ^^^                    punctuation.definition.biblioanchor.end.asciidoc
+Design Patterns: Elements of Reusable Object-Oriented Software. Addison-Wesley. 1994.
+
+A paragraph with a custom ID anchor.
+
+
+// EOF //

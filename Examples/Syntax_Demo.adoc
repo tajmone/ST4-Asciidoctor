@@ -62,9 +62,15 @@ Text.
 
 
 
-== Horizontal Rule:
+== Horizontal Rule
 
-''''
+(aka. thematic break, aka. scene break)
+
+'''
+
+'''''''
+
+'''''''''''''''''''''''''
 
 
 
@@ -226,7 +232,8 @@ Path: '/some/filez.txt', '.b'
 
 n__i__**b**++m++[red]##r##
 
-(C) (R) (TM) -- ... -> <- => <= &#182;
+(C) (R) (TM) -- ... -> <- => <= &#182; &nbsp; &sup2;
+
 
 === Escaped
 
@@ -468,6 +475,19 @@ Last continuation.
   . number
 
 
+.Callouts
+----
+Something to be called out <1>
+
+Middle text.
+
+Something else to be called out <42>
+----
+
+<1> a callout
+<42> another callout
+
+
 
 == Tables
 
@@ -519,3 +539,23 @@ Back-to-back with previous interval.
 |====
 
 
+
+== Index Terms
+
+A ((flow index term)) appears within the text as well as in the index.
+A flow index term may only consist of a single term that is alphabetized as-is.
+
+A concealed index term does not appear in the text. (((concealed index term)))
+A concealed index term may have multiple parts. (((invisible text, concealed index term)))
+
+
+
+
+[bibliography]
+== References
+
+* [[[pp]]] Andy Hunt & Dave Thomas. The Pragmatic Programmer:
+From Journeyman to Master. Addison-Wesley. 1999.
+
+* [[[gof,gang]]] Erich Gamma, Richard Helm, Ralph Johnson & John Vlissides.
+Design Patterns: Elements of Reusable Object-Oriented Software. Addison-Wesley. 1994.

@@ -1,0 +1,82 @@
+// SYNTAX TEST "Packages/ST4-Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+= Typographic (Curved) Quotes Text Formatting
+
+AsciiDoc Documentation reference:
+https://docs.asciidoctor.org/asciidoc/latest/text/quotation-marks-and-apostrophes/[Quotation Marks and Apostrophes^]
+
+Quotation Marks and Apostrophes is one of AsciiDoc text formatting elements, belonging to the
+https://docs.asciidoctor.org/asciidoc/latest/subs/quotes/[_quotes_ category^].
+
+
+
+== Typographic Quotes
+
+
+[.big.red]*Source*
+
+[source,asciidoc]
+......................................
+Example: '`text`' and "`text`".
+......................................
+
+
+[.big.red]*Result*
+
+======================================
+Example: '`text`' and "`text`".
+//       ^^                    punctuation.definition.curlyquote.single.begin.asciidoc
+//             ^^              punctuation.definition.curlyquote.single.end.asciidoc
+//                    ^^       punctuation.definition.curlyquote.double.begin.asciidoc
+//                          ^^ punctuation.definition.curlyquote.double.end.asciidoc
+//
+======================================
+
+
+
+== Monospaced Within Typographic Quotes
+
+Monospaced text within typographic quotes are currently not identified as being monospaced by the syntax highlighting, but neither do they interfere with the typographic quotes themsleves being highlighted.:
+
+[.big.red]*Source*
+
+[source,asciidoc]
+......................................
+Hello world `#ZZZ` ssss.
+
+Hello world "```xxx `YYY` xx```" ssss.
+......................................
+
+
+[.big.red]*Result*
+
+======================================
+Hello world `#ZZZ` ssss.
+
+Hello world "```xxx `YYY` xx```" ssss.
+//          ^^                         punctuation.definition.curlyquote.double.begin.asciidoc
+//                            ^^       punctuation.definition.curlyquote.double.end.asciidoc
+======================================
+
+
+[.big.red]*Source*
+
+[source,asciidoc]
+......................................
+Hello world `#ZZZ` ssss.
+
+Hello world '```xxx `YYY` xx```' ssss.
+......................................
+
+
+[.big.red]*Result*
+
+======================================
+Hello world `#ZZZ` ssss.
+
+Hello world '```xxx `YYY` xx```' ssss.
+//          ^^                         punctuation.definition.curlyquote.single.begin.asciidoc
+//                            ^^       punctuation.definition.curlyquote.single.end.asciidoc
+======================================
+
+
+// EOF //

@@ -53,12 +53,12 @@ E.g. +++Is *bold*? \* {doctitle}+++
 
 ===================================
 E.g. +++Is *bold*? \* {doctitle}+++
-//   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  meta.passthru.inline
-//      ^^^^^^^^^^^^^^^^^^^^^^^^     variable.parameter.passthruinner
-//   ^^^                             constant.character.passthru.begin
-//   ^^^                            -variable.parameter.passthruinner
-//                              ^^^  constant.character.passthru.end
-//                              ^^^ -variable.parameter.passthruinner
+//   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  meta.passthrough.inline
+//      ^^^^^^^^^^^^^^^^^^^^^^^^     variable.parameter.passthroughinner
+//   ^^^                             constant.character.passthrough.begin
+//   ^^^                            -variable.parameter.passthroughinner
+//                              ^^^  constant.character.passthrough.end
+//                              ^^^ -variable.parameter.passthroughinner
 ===================================
 
 
@@ -75,12 +75,12 @@ E.g. $$Is *bold*? \* {doctitle}$$
 
 =================================
 E.g. $$Is *bold*? \* {doctitle}$$
-//   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^  meta.passthru.inline
-//     ^^^^^^^^^^^^^^^^^^^^^^^^    variable.parameter.passthruinner
-//   ^^                            constant.character.passthru.begin
-//   ^^                           -variable.parameter.passthruinner
-//                             ^^  constant.character.passthru.end
-//                             ^^ -variable.parameter.passthruinner
+//   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^  meta.passthrough.inline
+//     ^^^^^^^^^^^^^^^^^^^^^^^^    variable.parameter.passthroughinner
+//   ^^                            constant.character.passthrough.begin
+//   ^^                           -variable.parameter.passthroughinner
+//                             ^^  constant.character.passthrough.end
+//                             ^^ -variable.parameter.passthroughinner
 =================================
 
 // EOF //
