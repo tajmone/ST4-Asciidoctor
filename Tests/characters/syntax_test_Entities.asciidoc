@@ -19,8 +19,8 @@ Special characters include &#x278a; and &#182;.
 
 ============================
 Special characters include &#x278a; and &#182;.
-//                         ^^^^^^^^                constant.character.entity.asciidoc
-//                                      ^^^^^^     constant.character.entity.asciidoc
+//                         ^^^^^^^^                constant.character.entity.xml.hexadecimal
+//                                      ^^^^^^     constant.character.entity.xml.decimal
 ============================
 
 
@@ -37,7 +37,7 @@ A non-breaking&nbsp;space is in here.
 
 ============================
 A non-breaking&nbsp;space is in here.
-//            ^^^^^^                        constant.character.entity.xml.asciidoc
+//            ^^^^^^                        constant.character.entity.xml.named
 ============================
 
 // EOF //

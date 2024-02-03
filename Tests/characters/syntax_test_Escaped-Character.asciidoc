@@ -35,39 +35,39 @@ https://docs.asciidoctor.org/asciidoc/latest/subs/prevent[Escape and Prevent Sub
 
 ============================
 \-
-//<- constant.character.escape.asciidoc
+//<- constant.character.escape.single
 \`not monospaced`
-//<- constant.character.escape.asciidoc
+//<- constant.character.escape.single
 \*not bold*
-//<- constant.character.escape.asciidoc
+//<- constant.character.escape.single
 \_not italic_
-//<- constant.character.escape.asciidoc
+//<- constant.character.escape.single
 \#not marked#
-//<- constant.character.escape.asciidoc
+//<- constant.character.escape.single
 \+
-//<- constant.character.escape.asciidoc
+//<- constant.character.escape.single
 \.
-//<- constant.character.escape.asciidoc
+//<- constant.character.escape.single
 \!
-//<- constant.character.escape.asciidoc
+//<- constant.character.escape.single
 \(
-//<- constant.character.escape.asciidoc
+//<- constant.character.escape.single
 \)
-//<- constant.character.escape.asciidoc
+//<- constant.character.escape.single
 \{
-//<- constant.character.escape.asciidoc
+//<- constant.character.escape.single
 \}
-//<- constant.character.escape.asciidoc
+//<- constant.character.escape.single
 \\
-//<- constant.character.escape.asciidoc
+//<- constant.character.escape.single
 \[
-//<- constant.character.escape.asciidoc
+//<- constant.character.escape.single
 \\
-//<- constant.character.escape.asciidoc
+//<- constant.character.escape.single
 \]
-//<- constant.character.escape.asciidoc
+//<- constant.character.escape.single
 \\
-//<- constant.character.escape.asciidoc
+//<- constant.character.escape.single
 ============================
 
 // EOF //
