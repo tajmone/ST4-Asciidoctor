@@ -434,6 +434,184 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+pre.rouge table td { padding: 5px; }
+pre.rouge table pre { margin: 0; }
+pre.rouge {
+  color: #faf6e4;
+  background-color: #122b3b;
+}
+pre.rouge .gl {
+  color: #dee5e7;
+  background-color: #4e5d62;
+}
+pre.rouge .gp {
+  color: #a8e1fe;
+  font-weight: bold;
+}
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cm, pre.rouge .cpf, pre.rouge .c1, pre.rouge .cs {
+  color: #6c8b9f;
+  font-style: italic;
+}
+pre.rouge .cp {
+  color: #b2fd6d;
+  font-weight: bold;
+}
+pre.rouge .err {
+  color: #fefeec;
+  background-color: #cc0000;
+}
+pre.rouge .gr {
+  color: #cc0000;
+  font-weight: bold;
+  font-style: italic;
+}
+pre.rouge .k, pre.rouge .kd, pre.rouge .kv {
+  color: #f6dd62;
+  font-weight: bold;
+}
+pre.rouge .o, pre.rouge .ow {
+  color: #4df4ff;
+  font-weight: bold;
+}
+pre.rouge .p, pre.rouge .pi {
+  color: #4df4ff;
+}
+pre.rouge .gd {
+  color: #cc0000;
+}
+pre.rouge .gi {
+  color: #b2fd6d;
+}
+pre.rouge .ge {
+  font-style: italic;
+}
+pre.rouge .gs {
+  font-weight: bold;
+}
+pre.rouge .gt {
+  color: #dee5e7;
+  background-color: #4e5d62;
+}
+pre.rouge .kc {
+  color: #f696db;
+  font-weight: bold;
+}
+pre.rouge .kn {
+  color: #ffb000;
+  font-weight: bold;
+}
+pre.rouge .kp {
+  color: #ffb000;
+  font-weight: bold;
+}
+pre.rouge .kr {
+  color: #ffb000;
+  font-weight: bold;
+}
+pre.rouge .gh {
+  color: #ffb000;
+  font-weight: bold;
+}
+pre.rouge .gu {
+  color: #ffb000;
+  font-weight: bold;
+}
+pre.rouge .kt {
+  color: #b2fd6d;
+  font-weight: bold;
+}
+pre.rouge .no {
+  color: #b2fd6d;
+  font-weight: bold;
+}
+pre.rouge .nc {
+  color: #b2fd6d;
+  font-weight: bold;
+}
+pre.rouge .nd {
+  color: #b2fd6d;
+  font-weight: bold;
+}
+pre.rouge .nn {
+  color: #b2fd6d;
+  font-weight: bold;
+}
+pre.rouge .bp {
+  color: #b2fd6d;
+  font-weight: bold;
+}
+pre.rouge .ne {
+  color: #b2fd6d;
+  font-weight: bold;
+}
+pre.rouge .nl {
+  color: #ffb000;
+  font-weight: bold;
+}
+pre.rouge .nt {
+  color: #ffb000;
+  font-weight: bold;
+}
+pre.rouge .m, pre.rouge .mb, pre.rouge .mf, pre.rouge .mh, pre.rouge .mi, pre.rouge .il, pre.rouge .mo, pre.rouge .mx {
+  color: #f696db;
+  font-weight: bold;
+}
+pre.rouge .ld {
+  color: #f696db;
+  font-weight: bold;
+}
+pre.rouge .ss {
+  color: #f696db;
+  font-weight: bold;
+}
+pre.rouge .s, pre.rouge .sb, pre.rouge .dl, pre.rouge .sd, pre.rouge .s2, pre.rouge .sh, pre.rouge .sx, pre.rouge .sr, pre.rouge .s1 {
+  color: #fff0a6;
+  font-weight: bold;
+}
+pre.rouge .sa {
+  color: #f6dd62;
+  font-weight: bold;
+}
+pre.rouge .se {
+  color: #4df4ff;
+  font-weight: bold;
+}
+pre.rouge .sc {
+  color: #4df4ff;
+  font-weight: bold;
+}
+pre.rouge .si {
+  color: #4df4ff;
+  font-weight: bold;
+}
+pre.rouge .nb {
+  font-weight: bold;
+}
+pre.rouge .ni {
+  color: #999999;
+  font-weight: bold;
+}
+pre.rouge .w {
+  color: #BBBBBB;
+}
+pre.rouge .go {
+  color: #BBBBBB;
+}
+pre.rouge .nf, pre.rouge .fm {
+  color: #a8e1fe;
+}
+pre.rouge .py {
+  color: #a8e1fe;
+}
+pre.rouge .na {
+  color: #a8e1fe;
+}
+pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
+  color: #a8e1fe;
+  font-weight: bold;
+}
+</style>
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
@@ -441,8 +619,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="details">
 <span id="author" class="author">Tristano Ajmone</span><br>
 <span id="email" class="email">&lt;<a href="mailto:tajmone@gmail.com">tajmone@gmail.com</a>&gt;</span><br>
-<span id="revnumber">v 0.1.0,</span>
-<span id="revdate">2022-05-05</span>
+<span id="revnumber">v 0.1.3,</span>
+<span id="revdate">2024-02-04</span>
 <br><span id="revremark">Alpha</span>
 </div>
 <div id="toc" class="toc2">
@@ -452,6 +630,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#package_features">Package Features</a>
 <ul class="sectlevel1">
 <li><a href="#associated_file_extensions">Associated File Extensions</a></li>
+<li><a href="#color_schemes">Color Schemes</a></li>
 <li><a href="#snippets">Snippets</a></li>
 <li><a href="#completions">Completions</a></li>
 <li><a href="#keymap_details">Keymap Details</a>
@@ -464,6 +643,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#symbols_indexing">Symbols Indexing</a>
 <ul class="sectlevel2">
 <li><a href="#section_titles">Section Titles</a></li>
+</ul>
+</li>
+<li><a href="#build_system">Build System</a>
+<ul class="sectlevel2">
+<li><a href="#build_system_requirements">Build System Requirements</a></li>
+<li><a href="#specifying_a_reference_docx_file_for_pandoc">Specifying a reference.docx file for Pandoc</a></li>
+<li><a href="#usage_tips">Usage Tips</a></li>
 </ul>
 </li>
 </ul>
@@ -554,6 +740,30 @@ Once the package will reach v1.0.0, braking changes will occur rarely.</p>
 </div>
 </div>
 <div class="sect1">
+<h2 id="color_schemes"><a class="anchor" href="#color_schemes"></a>Color Schemes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The package ships with a dedicated color scheme (AsciiDoc Dark) which is enable by default in <code>Asciidoctor.sublime-settings</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="nl">"color_scheme"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AsciiDoc Dark.sublime-color-scheme"</span><span class="p">,</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can always override this setting and enforce a color scheme of your choice by creating your own <code>Asciidoctor.sublime-settings</code> in the <code>Packages/User</code> directory.</p>
+</div>
+<div class="paragraph">
+<p>The reason I&#8217;m currently enforcing the package default scheme is because the package is still under development, and this color scheme reflects the overall direction of my efforts in term of what I believe should be visually highlighted while working with the AsciiDoc syntax.
+Therefore, I would like all collaborators to the project to appreciate the native package scheme and its &#8220;flavor,&#8221; so to speak.</p>
+</div>
+<div class="paragraph">
+<p>Many elements of the AsciiDoc syntax rely on scopes names which are peculiar to AsciiDoc, and very unlikely to be covered by general purpose color schemes designed for programming languages or lightweight markup syntaxes (like Markdown, reST, etc.).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="snippets"><a class="anchor" href="#snippets"></a>Snippets</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -580,98 +790,98 @@ Once the package will reach v1.0.0, braking changes will occur rarely.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.asciidoctor.org/asciidoc/latest/macros/ui-macros/" title="Asciidoctor Manual » Button macro" target="_blank" rel="noopener">Button</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>btn</code> <kbd>Tab</kbd></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">&#10007;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-center valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.asciidoctor.org/asciidoc/latest/comments/#comment-blocks" title="Asciidoctor Manual » Comment blocks" target="_blank" rel="noopener">Comment Block</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>//</code> <kbd>Tab</kbd></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">&#10003;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">78</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Document Title</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>h0</code> <kbd>Tab</kbd></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">&#10007;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-center valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.asciidoctor.org/asciidoc/latest/blocks/example-blocks/" title="Asciidoctor Manual » Example blocks" target="_blank" rel="noopener">Example Block</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>n/a</em></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">&#10003;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">78</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Title</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.asciidoctor.org/asciidoc/latest/macros/footnote/" title="Asciidoctor Manual » Footnotes" target="_blank" rel="noopener">Footnote</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>fn</code> <kbd>Tab</kbd></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">&#10003;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-center valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.asciidoctor.org/asciidoc/latest/macros/footnote/#footnote-macro-syntax" title="Asciidoctor Manual » Footnote macro syntax" target="_blank" rel="noopener">Footnote Reference</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>fnr</code> <kbd>Tab</kbd></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">&#10003;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-center valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">ID</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.asciidoctor.org/asciidoc/latest/macros/images/#block-image-macro" title="Asciidoctor Manual » Block image macro" target="_blank" rel="noopener">Image (block)</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>img</code> <kbd>Tab</kbd></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">&#10007;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-center valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Title, path, alt text, width, height</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.asciidoctor.org/asciidoc/latest/macros/keyboard-macro/" title="Asciidoctor Manual » Keyboard macro" target="_blank" rel="noopener">Keyboard Shortcut</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>kbd</code> <kbd>Tab</kbd></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">&#10007;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-center valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.asciidoctor.org/asciidoc/latest/verbatim/listing-blocks/" title="Asciidoctor Manual » Listing blocks" target="_blank" rel="noopener">Listing Block</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>--</code> <kbd>Tab</kbd></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">&#10003;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">78</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Lang</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.asciidoctor.org/asciidoc/latest/pass/pass-block/" title="Asciidoctor Manual » Passthrough blocks" target="_blank" rel="noopener">Passthrough Block</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>n/a</em></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">&#10003;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">78</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Title</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.asciidoctor.org/asciidoc/latest/blocks/blockquotes/" title="Asciidoctor Manual » Quoted block" target="_blank" rel="noopener">Quoted Block</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>__</code> <kbd>Tab</kbd> or <code>""</code> <kbd>Tab</kbd></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">&#10003;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">78</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Attribution, Title</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Section Titles 1–5</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>h1</code> <kbd>Tab</kbd> &#8230;&#8203; <code>h5</code> <kbd>Tab</kbd></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">&#10007;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-center valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.asciidoctor.org/asciidoc/latest/blocks/sidebars/#delimited-sidebar-syntax" title="Asciidoctor Manual » Delimited sidebar syntax" target="_blank" rel="noopener">Sidebar Block</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>sbar</code> <kbd>Tab</kbd></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">&#10003;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Yes</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">78</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.asciidoctor.org/asciidoc/latest/tables/" title="Asciidoctor Manual » Tables" target="_blank" rel="noopener">Table</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>|=</code> <kbd>Tab</kbd></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">&#10007;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">No</p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock">78</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Caption, cols, opts</p></td>
 </tr>
@@ -879,10 +1089,112 @@ Global&#160;symbols
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="build_system"><a class="anchor" href="#build_system"></a>Build System</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This package defines a build system for AsciiDoc files that targets <strong>HTML</strong>, <strong>EPUB</strong>, and <strong>DOCX</strong>.
+With the source AsciiDoc file open in the editor, simply press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd> to invoke the build system, and then select your target.</p>
+</div>
+<table class="tableblock frame-all grid-all fit-content">
+<caption class="title">Table 1. Targets</caption>
+<colgroup>
+<col>
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Asciidoctor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Generates HTML</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Asciidoctor - EPUB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Generates EPUB (via <code>asciidoctor-epub3</code>)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Asciidoctor - DOCX</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Generates a Word document (via <code>pandoc</code>)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Or, press <kbd>Ctrl</kbd>+<kbd>B</kbd> to repeat the build for the last target selected.</p>
+</div>
+<div class="paragraph">
+<p>In all cases, the generated file will be placed alongside the source file, in the same folder.
+In the case of a DOCX file, it will be opened automatically using your system&#8217;s default program for the DOCX file type.</p>
+</div>
+<div class="sect2">
+<h3 id="build_system_requirements"><a class="anchor" href="#build_system_requirements"></a>Build System Requirements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>For HTML, this assumes that <code>asciidoctor</code> is installed on the system path.</p>
+</li>
+<li>
+<p>For EPUB, this assumes that <code>asciidoctor-epub3</code> is installed on the system path.</p>
+</li>
+<li>
+<p>For DOCX, this assumes that <code>pandoc</code> is installed on the system path (along with <code>asciidoctor</code>).</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+There is currently only a <code>Windows</code> implementation for DOCX.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="specifying_a_reference_docx_file_for_pandoc"><a class="anchor" href="#specifying_a_reference_docx_file_for_pandoc"></a>Specifying a reference.docx file for Pandoc</h3>
+<div class="paragraph">
+<p>Pandoc has the ability to start with a reference DOCX file that, for example, defines all of the paragraph and character styles you&#8217;d like to be included in the target.
+This build system supports three different ways to specify such a reference docx file for pandoc to use:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If the AsciiDoc source file contains an attribute definition for <code>:pandoc:</code>, <code>:pandoc-ref:</code>, or <code>:pandoc-reference:</code>, and the value of that attribute exists as a file, then it will be used.
+NOTE: There is nothing special about us using an attribute definition for this.
+This build system searches the source file directly for the file reference, so we could have buried it in a comment, for example.
+Using attribute syntax just seemed appropriate.
+By the time the source file is processed by AsciiDoctor, the <code>:pandoc&#8230;&#8203;:</code> attribute will just be ignored.
+Be aware that if there are multiple <code>:pandoc&#8230;&#8203;:</code> attributes defined in the file, only the last one will be used.
+Also, this script will only find <code>:pandoc&#8230;&#8203;:</code> attributes that are in the main source file, not in any included files.</p>
+</li>
+<li>
+<p>If <code>.\reference.docx</code> exists, it will be used.</p>
+</li>
+<li>
+<p>If <code>.\.pandoc\reference.docx</code> exists, it will be used.</p>
+</li>
+<li>
+<p>Otherwise, no reference file will be used.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="usage_tips"><a class="anchor" href="#usage_tips"></a>Usage Tips</h3>
+<div class="paragraph">
+<p>You can leave an <strong>HMTL</strong> file open in your browser while you regenerate it.
+Then, just refresh the page with <kbd>F5</kbd>.
+For <strong>EPUB</strong> and <strong>DOCX</strong> files, however, you must close them before they can be regenerated.</p>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-v 0.1.0<br>
+v 0.1.3<br>
 </div>
 </div>
 </body>

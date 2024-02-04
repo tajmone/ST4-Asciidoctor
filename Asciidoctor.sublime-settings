@@ -1,4 +1,6 @@
 {
+  "color_scheme": "AsciiDoc Dark.sublime-color-scheme",
+
   "indent_lists": true,
 
   // List of built-in attributes to display in completions.

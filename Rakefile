@@ -70,6 +70,8 @@ GUIDE_DEPS = FileList[
 ]
 
 GUIDE_ADOC_OPTS = <<~HEREDOC
+  -a source-highlighter=rouge \
+  -a rouge-style=thankful_eyes \
   --failure-level WARN \
   --verbose \
   --timings \

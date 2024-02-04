@@ -1,0 +1,339 @@
+// *****************************************************************************
+// *                                                                           *
+// *                    AsciiDoc Dark v0.1.0 (2024/02/04)                      *
+// *                                                                           *
+// *****************************************************************************
+{
+    "name":   "AsciiDoc Dark",
+    "author": "Tristano Ajmone",
+    "variables":
+    {
+        "black":        "#090b0c", // Almost black
+
+        "shade2":       "#1b2024", // Even darker
+        "shade1":       "#2d353c", // Darker
+        "base_hue":     "#3f4a54", // Base color
+        "tint1":        "#4b5864", // Less dark
+        "tint2":        "#566573", // Even less less dark
+
+        "tint3":        "#b1d0ec", // Midtone (complement 2 of 'base_hue')
+        "tint4":        "#d3e4f4", // between 'tint3' and 'white'
+        "white":        "#f5f9fd", // Almost white
+        "grey":         "#b4b9be", // (matching Grey of 'tint3')
+        "grey2":        "#8d949b", // darker grey (blend 2/4 of 'grey' with 'base_hue')
+
+        "blue":         "#5396d1", // Blue
+        "green":        "#60cf55", // Green
+        "orange":       "#ffa125", // Orange
+        "purple":       "#9e5aca", // Purple
+        "red":          "#ff2525", // Red
+        "yellow":       "#ffff25", // Yellow
+    },
+    "globals":
+    {
+        "foreground": "var(tint4)",
+        "background": "var(shade1)",
+
+        "caret": "var(white)",
+        "invisibles": "color(var(white) alpha(0.35))",
+        "line_highlight": "var(tint1)",
+
+        // Accents
+        "misspelling": "color(var(red) alpha(0.5))",
+        "minimap_border": "var(tint3)",
+        "accent": "color(var(red) alpha(0.5))",
+        "fold_marker": "var(yellow)",
+
+        // Gutter
+        "gutter": "var(shade1)",
+        "gutter_foreground": "var(grey2)",
+
+        // Selection
+        "selection": "var(tint4)",
+        "selection_foreground": "var(black)",
+        "selection_border": "var(tint3)",
+        "selection_border_width": "1",
+        "selection_corner_style": "round",  // round | cut | square
+        "selection_corner_radius": "3.5",   // (only for round or cut)
+        "inactive_selection": "var(grey2)",
+        "inactive_selection_foreground": "var(black)",
+
+        // Find
+        "highlight": "var(yellow)",
+        "find_highlight": "var(yellow)",
+        "find_highlight_foreground": "var(black)",
+
+        // Guides
+        "guide": "var(tint2)",
+        "active_guide": "color(var(tint3) alpha(0.6))",
+        "stack_guide":  "color(var(tint3) alpha(0.35))",
+
+        // Brackets
+        "brackets_options": "underline",
+        "brackets_foreground": "color(var(white) alpha(0.65))",
+        "bracket_contents_options": "underline",
+        "bracket_contents_foreground": "color(var(white) alpha(0.65))",
+
+        // Tags
+        "tags_options": "stippled_underline",
+        // "tags_foreground": "var(grey)",
+
+        // Shadows
+        "shadow": "var(black)",
+        "shadow_width": "32", // max: 32
+    },
+    "rules":
+    [
+        {
+        // =====================================================================
+        // COMMENTS
+        // =====================================================================
+            "name": "Comment",
+            "scope": "comment",
+            "foreground": "var(grey2)",
+            "font_style": "italic"
+        },
+        // =====================================================================
+        // MISC PUNCTUATION
+        // =====================================================================
+        {
+            "name": "Line-Breaks & List Continuations",
+            "scope": "constant.linebreak | constant.listcontinuation",
+            "foreground": "red",
+        },
+        // =====================================================================
+        // HORIZIONTAL RULES & PAGE-BREAKS
+        // =====================================================================
+        {
+            "name": "Page-Breaks",
+            "scope": "meta.separator.pagebreak",
+            "foreground": "orange",
+        },
+        {
+            "name": "Horizontal Rule",
+            "scope": "meta.separator.ruler",
+            "foreground": "orange",
+            "foreground": "orange",
+        },
+        // =====================================================================
+        // TEXT FORMATTING
+        // =====================================================================
+        {
+            "name": "Delimiters",
+            "scope": "punctuation.definition -punctuation.definition.comment",
+            "foreground": "red",
+        },
+        {
+            "name": "Bold",
+            "scope": "markup.bold",
+            "foreground": "orange",
+            "font_style": "bold",
+        },
+        {
+            "name": "Italic",
+            "scope": "markup.italic",
+            "foreground": "yellow",
+            "font_style": "italic",
+        },
+        {
+            "name": "Monospace",
+            "scope": "string.other.literal",
+            "background": "gainsboro",
+            "foreground": "black",
+        },
+        {
+            "name": "Monospace: Delimiter",
+            "scope": "punctuation.definition.literal",
+            "background": "color(gainsboro alpha(0.8))",
+            "font_style": "bold",
+        },
+        {
+            "name": "Mark",
+            "scope": "string.other.unquoted",
+            "background": "#ccff00",
+            "foreground": "black",
+        },
+        {
+            "name": "Mark: Delimiter",
+            "scope": "punctuation.definition.string.unquoted",
+            "font_style": "bold",
+        },
+        // =====================================================================
+        // PASSTHROUGH INLINE
+        // =====================================================================
+        {
+            "name": "Passthrough: Delimiter",
+            "scope": "constant.character.passthrough",
+            "foreground": "red",
+        },
+        {
+            "name": "Passthrough: Contents",
+            "scope": "variable.parameter.passthroughinner",
+            "foreground": "var(shade1)",
+        },
+        {
+            "name": "Passthrough: All",
+            "scope": "meta.passthrough.inline",
+            "background": "var(tint4)",
+        },
+        // =====================================================================
+        // ATTRIBUTES
+        // =====================================================================
+        {
+            "name": "Attribute Definition: Identifier",
+            "scope": "support.variable.attribute",
+            "foreground": "dodgerblue",
+        },
+        {
+            "name": "Attribute Definition: Delimiter",
+            "scope": "punctuation.definition.attributeentry.attrname",
+            "foreground": "red",
+        },
+        {
+            "name": "Attribute Definition: Unset",
+            "scope": "punctuation.definition.attributeentry.unset",
+            "foreground": "yellow",
+        },
+        {
+            "name": "Attribute Definition: Value",
+            "scope": "meta.attributeentry.value",
+            "foreground": "orange",
+        },
+        // =====================================================================
+        // BLOCK ID
+        // =====================================================================
+        {
+            "name": "Block ID",
+            "scope": "markup.underline.blockid.id",
+            "foreground": "dodgerblue",
+        },
+        // =====================================================================
+        // BLOCK TITLE
+        // =====================================================================
+        {
+            "name": "Block Title",
+            "scope": "markup.heading.block",
+            "foreground": "dodgerblue",
+        },
+        // =====================================================================
+        // BLOCKS
+        // =====================================================================
+        {
+            "name": "Block Delimiters",
+            "scope": "constant.delimiter",
+            "foreground": "red",
+        },
+        {
+            "name": "Fallback Blocks",
+            "scope": "constant.delimiter | string.literal.block",
+            "background": "darkslategray",
+        },
+        {
+            "name": "Fallback Blocks: Delimiter",
+            "scope": "constant.delimiter",
+            "background": "color(darkslategray alpha(0.4))",
+        },
+        // EXAMPLE BLOCK
+        {
+            "name": "Example",
+            "scope": "constant.delimiter.example | string.unquoted.block.example",
+            "background": "color(var(yellow) alpha(0.1))",
+        },
+        // SOURCE CODE BLOCK
+        {
+            "name": "Source Code",
+            "scope": "constant.delimiter.listing | source.block.listing",
+            "background": "gainsboro",
+            "foreground": "black",
+        },
+        {
+            "name": "Source Code: Delimiter",
+            "scope": "constant.delimiter.listing",
+            "background": "color(gainsboro alpha(0.9))",
+            "foreground": "red",
+        },
+
+        // =====================================================================
+        // SECTION TITLES
+        // =====================================================================
+        {
+            "name": "Section Titles",
+            "scope": "markup.heading.level",
+            "background": "dodgerblue",
+            "font_style": "bold",
+        },
+        {
+            "name": "Section Titles: Delimiter",
+            "scope": "punctuation.definition.heading",
+            "foreground": "white",
+            "foreground": "transparent",
+            "foreground": "var(shade1)",
+        },
+        {
+            "name": "Section Titles: Text",
+            "scope": "entity.name.section.asciidoc",
+            "font_style": "bold",
+            "foreground": "white",
+        },
+        // =====================================================================
+        // INVALID
+        // =====================================================================
+        {
+            "name": "Invalid",
+            "scope": "invalid",
+            "foreground": "var(white)",
+            "background": "var(red)",
+        },
+        {
+            "scope": "message.error",
+            "foreground": "color(var(red) alpha(0.5))",
+        },
+        // =====================================================================
+        // CONSTANTS
+        // =====================================================================
+        {
+            "scope": "constant.character.escape",
+            "foreground": "var(purple)",
+        },
+        // Bibliographic Anchors
+        {
+            "scope": "storage.type.reference.biblioanchor",
+            "foreground": "var(purple)",
+        },
+        {
+            "scope": "constant.character.entity",
+            "foreground": "var(orange)",
+        },
+        // Callouts
+        {
+            "scope": "punctuation.definition.calloutlistnumber",
+            "foreground": "var(red)",
+        },
+        {
+            "scope": "constant.numeric.callout",
+            "foreground": "var(yellow)",
+        },
+        // Admonitions
+        {
+            "scope": "support.constant.admonitionword",
+            "foreground": "var(orange)",
+        },
+        // X-Refs
+        {
+            "scope": "meta.xref",
+            "foreground": "color(var(red) lightness(70%))",
+        },
+        {
+            "scope": "constant.character.xref.(begin|end)",
+            "foreground": "color(var(red) lightness(70%))",
+        },
+        {
+            "scope": "variable.parameter.xref.link",
+            "foreground": "color(var(purple) lightness(70%))",
+        },
+        {
+            "scope": "variable.parameter.xref.display",
+            "foreground": "var(tint4)",
+        },
+    ]
+}
