@@ -18,7 +18,7 @@ The following file extensions are automatically recognized as AsciiDoc files:
 == Color Schemes
 
 This package ships with a dedicated color scheme ("`AsciiDoc Dark`") which takes full advantage of this package's AsciiDoc syntax specification.
-For example, the "`Molokai`", "`Breakers`", and "`Celeste`" color schemes that ship with ST4, only highlight Heading level 1 differently from the others, while the AsciiDoc Dark scheme has a different color for each of the different levels (= Title, == Chapter, === Section, ==== Subsection, ...).
+For example, the "`Molokai`", "`Breakers`", and "`Celeste`" color schemes that ship with ST4 do not bother to highlight the list bullets, nor the fences around tables, nor any of the markers that start and end various blocks (examples, sidebar, etc.).
 
 To enable the "`AsciiDoc Dark`" scheme, or pick any other color scheme of your choice, simply pull down the "`Preferences`" menu and use "`Select Color Scheme...`".
 
