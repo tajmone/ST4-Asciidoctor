@@ -17,20 +17,13 @@ The following file extensions are automatically recognized as AsciiDoc files:
 
 == Color Schemes
 
-The package ships with a dedicated color scheme (AsciiDoc Dark) which is enable by default in `Asciidoctor.sublime-settings`:
+This package ships with a dedicated color scheme ("`AsciiDoc Dark`") which takes full advantage of this package's AsciiDoc syntax specification.
+For example, the "`Molokai`", "`Breakers`", and "`Celeste`" color schemes that ship with ST4, only highlight Heading level 1 differently from the others, while the AsciiDoc Dark scheme has a different color for each of the different levels (= Title, == Chapter, === Section, ==== Subsection, ...).
 
-[source,json]
--------------------------------------------------------
-{
-  "color_scheme": "AsciiDoc Dark.sublime-color-scheme",
--------------------------------------------------------
+To enable the "`AsciiDoc Dark`" scheme, or pick any other color scheme of your choice, simply pull down the "`Preferences`" menu and use "`Select Color Scheme...`".
 
-You can always override this setting and enforce a color scheme of your choice by creating your own `Asciidoctor.sublime-settings` in the `Packages/User` directory.
-
-The reason I'm currently enforcing the package default scheme is because the package is still under development, and this color scheme reflects the overall direction of my efforts in term of what I believe should be visually highlighted while working with the AsciiDoc syntax.
-Therefore, I would like all collaborators to the project to appreciate the native package scheme and its "`flavor,`" so to speak.
-
-Many elements of the AsciiDoc syntax rely on scopes names which are peculiar to AsciiDoc, and very unlikely to be covered by general purpose color schemes designed for programming languages or lightweight markup syntaxes (like Markdown, reST, etc.).
+IMPORTANT: Since this package is still very much under development, it is important that collaborators use an AsciiDoc-specific color scheme in order to appreciate/experience/test the syntax highlighting nuances.
+Many elements of the AsciiDoc syntax rely on (fine-grained) scope names which are peculiar to AsciiDoc, and very unlikely to be covered by general-purpose color schemes designed for programming languages or lightweight markup syntaxes (like Markdown, reST, etc.).
 
 
 == Snippets

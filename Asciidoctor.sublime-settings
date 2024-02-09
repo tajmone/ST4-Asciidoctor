@@ -1,5 +1,11 @@
 {
-  "color_scheme": "AsciiDoc Dark.sublime-color-scheme",
+  // We are refraining from forcing the color_scheme here because, for one
+  // thing, there is a bug in ST4. When ST4 loads, it tries to find this
+  // scheme in the "Color Scheme - Default" package (which it is not) and
+  // then hangs with an OS Error (instead of just skipping that location and 
+  // searching on).
+
+  // "color_scheme": "AsciiDoc Dark.sublime-color-scheme",
 
   "indent_lists": true,
 
