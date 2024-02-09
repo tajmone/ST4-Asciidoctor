@@ -14,6 +14,9 @@
 #   Copyright 2015 Jakub Jirutka <jakub@jirutka.cz> and the Asciidoctor Project.
 # ------------------------------------------------------------------------------
 
+# For the guidelines on what to scope names to use for what elements,
+# see: https://www.sublimetext.com/docs/scope_naming.html
+
 name:    AsciiDoc (Asciidoctor)
 comment: AsciiDoc Syntax
 version: 2
@@ -1353,7 +1356,7 @@ contexts:
       captures:
         0: meta.tag.blockid.asciidoc
         1: punctuation.definition.blockid.begin.asciidoc
-        2: markup.underline.blockid.id.asciidoc
+        2: entity.name.label.asciidoc
         3: punctuation.definition.blockid.end.asciidoc
 
 
