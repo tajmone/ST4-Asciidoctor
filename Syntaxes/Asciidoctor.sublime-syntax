@@ -1611,8 +1611,6 @@ contexts:
 #
 #       === Level 2 Section
 #
-# FIXME Do "markup.heading.level.1.asciidoc" etc. really need "level"? I think "markup.heading.1.asciidoc" should suffice, plus it's what I've seen color schemes expect. -- polyglot-jones
-# FIXME How about changing "markup.heading.level.0.asciidoc" "markup.title.asciidoc"? -- polyglot-jones
 
   section_titles:
     - include: title_level_5
@@ -1624,14 +1622,14 @@ contexts:
 
   title_level_0:
     - match: ^(=) (`?\w.*)$\n?
-      scope: markup.heading.level.0.asciidoc
+      scope: markup.heading.0.asciidoc
       captures:
         1: punctuation.definition.heading.asciidoc
         2: entity.name.section.asciidoc
 
   title_level_1:
     - match: ^(==) (`?\w.*)$\n?
-      scope: markup.heading.level.1.asciidoc
+      scope: markup.heading.1.asciidoc
       captures:
         1: punctuation.definition.heading.asciidoc
         2: entity.name.section.asciidoc
@@ -1639,7 +1637,7 @@ contexts:
 
   title_level_2:
     - match: ^(===) (`?\w.*)$\n?
-      scope: markup.heading.level.2.asciidoc
+      scope: markup.heading.2.asciidoc
       captures:
         1: punctuation.definition.heading.asciidoc
         2: entity.name.section.asciidoc
@@ -1647,21 +1645,21 @@ contexts:
 
   title_level_3:
     - match: ^(====) (`?\w.*)$\n?
-      scope: markup.heading.level.3.asciidoc
+      scope: markup.heading.3.asciidoc
       captures:
         1: punctuation.definition.heading.asciidoc
         2: entity.name.section.asciidoc
 
   title_level_4:
     - match: ^(=====) (`?\w.*)$\n?
-      scope: markup.heading.level.4.asciidoc
+      scope: markup.heading.4.asciidoc
       captures:
         1: punctuation.definition.heading.asciidoc
         2: entity.name.section.asciidoc
 
   title_level_5:
     - match: ^(======) (`?\w.*)$\n
-      scope: markup.heading.level.5.asciidoc
+      scope: markup.heading.5.asciidoc
       captures:
         1: punctuation.definition.heading.asciidoc
         2: entity.name.section.asciidoc
