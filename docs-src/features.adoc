@@ -15,24 +15,6 @@ The following file extensions are automatically recognized as AsciiDoc files:
 * `.asciidoc`
 
 
-== Color Schemes
-
-The package ships with a dedicated color scheme (AsciiDoc Dark) which is enable by default in `Asciidoctor.sublime-settings`:
-
-[source,json]
--------------------------------------------------------
-{
-  "color_scheme": "AsciiDoc Dark.sublime-color-scheme",
--------------------------------------------------------
-
-You can always override this setting and enforce a color scheme of your choice by creating your own `Asciidoctor.sublime-settings` in the `Packages/User` directory.
-
-The reason I'm currently enforcing the package default scheme is because the package is still under development, and this color scheme reflects the overall direction of my efforts in term of what I believe should be visually highlighted while working with the AsciiDoc syntax.
-Therefore, I would like all collaborators to the project to appreciate the native package scheme and its "`flavor,`" so to speak.
-
-Many elements of the AsciiDoc syntax rely on scopes names which are peculiar to AsciiDoc, and very unlikely to be covered by general purpose color schemes designed for programming languages or lightweight markup syntaxes (like Markdown, reST, etc.).
-
-
 == Snippets
 
 The following table lists the package snippets and their features.
