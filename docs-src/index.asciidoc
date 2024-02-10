@@ -40,6 +40,9 @@ package.
 
 
 include::intro.adoc[]
+
 include::features.adoc[]
+
+include::color-schemes.adoc[]
 
 // EOF //
