@@ -15,17 +15,6 @@ The following file extensions are automatically recognized as AsciiDoc files:
 * `.asciidoc`
 
 
-== Color Schemes
-
-This package ships with a dedicated color scheme ("`AsciiDoc Dark`") which takes full advantage of this package's AsciiDoc syntax specification.
-For example, the "`Molokai`", "`Breakers`", and "`Celeste`" color schemes that ship with ST4 do not bother to highlight the list bullets, nor the fences around tables, nor any of the markers that start and end various blocks (examples, sidebar, etc.).
-
-To enable the "`AsciiDoc Dark`" scheme, or pick any other color scheme of your choice, simply pull down the "`Preferences`" menu and use "`Select Color Scheme...`".
-
-IMPORTANT: Since this package is still very much under development, it is important that collaborators use an AsciiDoc-specific color scheme in order to appreciate/experience/test the syntax highlighting nuances.
-Many elements of the AsciiDoc syntax rely on (fine-grained) scope names which are peculiar to AsciiDoc, and very unlikely to be covered by general-purpose color schemes designed for programming languages or lightweight markup syntaxes (like Markdown, reST, etc.).
-
-
 == Snippets
 
 The following table lists the package snippets and their features.

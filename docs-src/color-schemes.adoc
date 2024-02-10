@@ -1,0 +1,197 @@
+= Color Schemes
+
+== Using ST4's Default Color Schemes
+
+ST4 ships with five default colors schemes: "`Breakers,`" "`Celeste,`" "`Mariana,`" "`Monokai,`" and "`Sixteen.`"
+
+They all have minimal support for colorizing markup files, in general, but none of them are nuanced in the particulars imparted by our AsciiDoc syntax specification, since our specification did not exist at the time that these schemes were created.
+Nonetheless, a main objective of our syntax specification is to conform to the naming conventions expected by these default color schemes, so that they will continue to provide that minimal, generic support when it comes to AsciiDoc files in particular.
+
+=== Basic Scope Names
+
+Here is a cumulative list of the scope names that are recognized by the default color schemes; however, not all of these scopes are recognized by all of the schemes.
+For example, all of them colorize `comment`, but not all of them colorize the corresponding `punctuation.definition.comment` (by the choice of that color scheme's designer).
+
+For another example, all of them colorize `invalid.illegal` and `invalid.deprecated`, but they do it differently.
+Some will colorize the two specifically by name, while others first colorize `invalid` in general, and then specify a different color for `invalid.deprecated` qualifier in particular -- which, by the way, is the recommended way of doing it.
+
+NOTE: Anyone who sets out to create a fresh color scheme that does support the AsciiDoc nuances, should also ensure that the basics are covered first.
+
+To understand the semantics of these scope names, see: https://www.sublimetext.com/docs/scope_naming.html[]
+
+*comment*:
+
+(`comment` has no qualifiers.)
+
+*constant*:
+
+* `constant.character`
+* `constant.character.escape`
+* `constant.language`
+* `constant.numeric`
+* `constant.numeric.line-number.find-in-files`
+* `constant.numeric.line-number.match`
+* `constant.other`
+* `constant.other.color`
+* `constant.other.language-name`
+
+*diff*:
+
+* `diff.deleted`
+* `diff.deleted.char`
+* `diff.inserted`
+* `diff.inserted.char`
+
+*entity*:
+
+* `entity.name`
+* `entity.name.filename`
+* `entity.name.function`
+* `entity.name.label`
+* `entity.name.section`
+* `entity.name.tag`
+* `entity.name.tag.yaml`
+* `entity.other.attribute-name`
+* `entity.other.attribute-name.id`
+* `entity.other.inherited-class`
+* `entity.other.pseudo-class`
+
+*invalid*:
+
+* `invalid.deprecated`
+* `invalid.illegal`
+
+*keyword*:
+
+* `keyword.declaration`
+* `keyword.operator`
+* `keyword.operator.word`
+
+*markup*:
+
+* `markup.bold`
+* `markup.changed`
+* `markup.deleted`
+* `markup.heading`
+* `markup.heading.1`
+* `markup.heading.2`
+* `markup.inserted`
+* `markup.italic`
+* `markup.list`
+* `markup.list.numbered`
+* `markup.list.numbered.bullet`
+* `markup.list.unnumbered.bullet`
+* `markup.quote`
+* `markup.raw`
+* `markup.raw.inline`
+* `markup.underline`
+* `markup.underline.link`
+
+*match*:
+
+(`match` has no qualifiers.)
+
+*message*:
+
+* `message.error`
+
+*meta*:
+
+* `meta.diff`
+* `meta.diff.header`
+* `meta.function-call`
+* `meta.structure.dictionary.json`
+* `meta.table.header`
+
+*punctuation*:
+
+* `punctuation.accessor`
+* `punctuation.definition`
+* `punctuation.definition.annotation`
+* `punctuation.definition.blockquote`
+* `punctuation.definition.bold`
+* `punctuation.definition.comment`
+* `punctuation.definition.constant`
+* `punctuation.definition.heading`
+* `punctuation.definition.image`
+* `punctuation.definition.italic`
+* `punctuation.definition.link`
+* `punctuation.definition.list_item`
+* `punctuation.definition.metadata`
+* `punctuation.definition.numeric.base`
+* `punctuation.definition.raw`
+* `punctuation.definition.string`
+* `punctuation.definition.thematic-break`
+* `punctuation.section`
+* `punctuation.section.embedded`
+* `punctuation.section.table-header`
+* `punctuation.separator`
+* `punctuation.separator.table-cell`
+* `punctuation.terminator`
+
+*source*:
+
+* `source.c`
+* `source.c++`
+* `source.css`
+* `source.objc`
+* `source.objc++`
+* `source.ruby`
+* `source.yaml`
+
+*storage*:
+
+* `storage.type`
+* `storage.type.numeric`
+
+*string*:
+
+* `string.other.link`
+* `string.quoted.double.json`
+* `string.regexp`
+* `string.unquoted`
+* `string.unquoted.yaml`
+
+*support*:
+
+* `support.class`
+* `support.class.builtin`
+* `support.class.dollar.only.js`
+* `support.constant`
+* `support.function`
+* `support.function.builtin`
+* `support.macro`
+* `support.other.variable`
+* `support.type`
+* `support.type.property-name`
+* `support.type.sys-types`
+* `support.type.vendor-prefix`
+
+*text*:
+
+(`text` has no qualifiers.)
+
+*variable*:
+
+* `variable.annotation`
+* `variable.function`
+* `variable.interpolation`
+* `variable.language`
+* `variable.member`
+* `variable.other.dollar.only.js`
+* `variable.other.object.dollar.only.js`
+* `variable.parameter`
+* `variable.type.dollar.only.js`
+
+
+== AsciiDoc-Specific Color Schemes
+
+This package ships with a dedicated color scheme ("`AsciiDoc Dark`") which takes full advantage of this package's AsciiDoc syntax specification.
+For example, the "`Molokai`", "`Breakers`", and "`Celeste`" color schemes that ship with ST4 do not bother to highlight the list bullets, nor the fences around tables, nor any of the markers that start and end various blocks (examples, sidebar, etc.).
+
+To enable the "`AsciiDoc Dark`" scheme, or pick any other color scheme of your choice, simply pull down the "`Preferences`" menu and use "`Select Color Scheme...`".
+
+IMPORTANT: Since this package is still very much under development, it is important that collaborators use an AsciiDoc-specific color scheme in order to appreciate/experience/test the syntax highlighting nuances.
+Many elements of the AsciiDoc syntax rely on (fine-grained) scope names which are peculiar to AsciiDoc, and very unlikely to be covered by general-purpose color schemes designed for programming languages or lightweight markup syntaxes (like Markdown, reST, etc.).
+
+
