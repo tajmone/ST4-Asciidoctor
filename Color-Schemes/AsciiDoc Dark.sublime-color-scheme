@@ -213,7 +213,7 @@
         {
             "name": "Block Title",
             "scope": "markup.heading.block",
-            "foreground": "dodgerblue",
+            "background": "dodgerblue",
         },
         // =====================================================================
         // BLOCKS
