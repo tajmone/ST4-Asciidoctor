@@ -23,21 +23,21 @@ https://docs.asciidoctor.org/asciidoc/latest/lists/unordered/[Unordered Lists^]
 
 ======================================
 * Level 1
-//<-          punctuation.definition.list_item
-//^          -punctuation.definition.list_item
+//<-          punctuation.definition.list.unordered
+//^          -punctuation.definition.list.unordered
 ** Level 2
 *** Level 3
-//<-          punctuation.definition.list_item
-//^           punctuation.definition.list_item
-// ^         -punctuation.definition.list_item
+//<-          punctuation.definition.list.unordered
+//^           punctuation.definition.list.unordered
+// ^         -punctuation.definition.list.unordered
 **** Level 4
-//<-          punctuation.definition.list_item
-//^^          punctuation.definition.list_item
-//  ^        -punctuation.definition.list_item
+//<-          punctuation.definition.list.unordered
+//^^          punctuation.definition.list.unordered
+//  ^        -punctuation.definition.list.unordered
 ***** Level 5
-//<-          punctuation.definition.list_item
-//^^^         punctuation.definition.list_item
-//   ^       -punctuation.definition.list_item
+//<-          punctuation.definition.list.unordered
+//^^^         punctuation.definition.list.unordered
+//   ^       -punctuation.definition.list.unordered
 ======================================
 
 
@@ -61,14 +61,14 @@ But a change in marker from hyphen to asterisk (or the inverse) will create a ne
 
 ======================================
 * Level 1
-//<-          punctuation.definition.list_item
-//^          -punctuation.definition.list_item
+//<-          punctuation.definition.list.unordered
+//^          -punctuation.definition.list.unordered
 - Level 2
-//<-          punctuation.definition.list_item
-//^          -punctuation.definition.list_item
+//<-          punctuation.definition.list.unordered
+//^          -punctuation.definition.list.unordered
 * Level 1
-//<-          punctuation.definition.list_item
-//^          -punctuation.definition.list_item
+//<-          punctuation.definition.list.unordered
+//^          -punctuation.definition.list.unordered
 ======================================
 
 
@@ -76,24 +76,24 @@ But a change in marker from hyphen to asterisk (or the inverse) will create a ne
 == Loose Tests
 
   - Level 1 (hyphen marker)
-//^        punctuation.definition.list_item
-// ^      -punctuation.definition.list_item
-//<-      -punctuation.definition.list_item
+//^        punctuation.definition.list.unordered
+// ^      -punctuation.definition.list.unordered
+//<-      -punctuation.definition.list.unordered
   * Level 2
-//^        punctuation.definition.list_item
-// ^      -punctuation.definition.list_item
-//<-      -punctuation.definition.list_item
+//^        punctuation.definition.list.unordered
+// ^      -punctuation.definition.list.unordered
+//<-      -punctuation.definition.list.unordered
   ** Level 3
-//^^       punctuation.definition.list_item
-//  ^     -punctuation.definition.list_item
+//^^       punctuation.definition.list.unordered
+//  ^     -punctuation.definition.list.unordered
   *** Level 4
-//^^^      punctuation.definition.list_item
-//   ^    -punctuation.definition.list_item
+//^^^      punctuation.definition.list.unordered
+//   ^    -punctuation.definition.list.unordered
   **** Level 5
-//^^^^     punctuation.definition.list_item
-//    ^   -punctuation.definition.list_item
+//^^^^     punctuation.definition.list.unordered
+//    ^   -punctuation.definition.list.unordered
   ***** Level 6
-//^^^^^    punctuation.definition.list_item
-//     ^  -punctuation.definition.list_item
+//^^^^^    punctuation.definition.list.unordered
+//     ^  -punctuation.definition.list.unordered
 
 // EOF //
