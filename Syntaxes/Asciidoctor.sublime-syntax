@@ -1525,7 +1525,7 @@ contexts:
   ulist_item_marker:
     - match: ^\s*(\-|\*{1,5})\s+(?=\S)
       captures:
-        1: punctuation.definition.list_item.asciidoc
+        1: punctuation.definition.list.unordered.asciidoc
 
 # Markdwon scopes:
 #    text.html.markdown.gfm
@@ -1589,7 +1589,7 @@ contexts:
   olist_item_marker:
     - match: ^\s*(\.{1,5})\s+(?=\S)
       captures:
-        1: punctuation.definition.list_item.asciidoc
+        1: punctuation.definition.list.ordered.asciidoc
 
 
 # ==============================================================================
@@ -1622,14 +1622,14 @@ contexts:
 
   title_level_0:
     - match: ^(=) (`?\w.*)$\n?
-      scope: markup.heading.0.asciidoc
+      scope: markup.heading.level.0.asciidoc
       captures:
         1: punctuation.definition.heading.asciidoc
         2: entity.name.section.asciidoc
 
   title_level_1:
     - match: ^(==) (`?\w.*)$\n?
-      scope: markup.heading.1.asciidoc
+      scope: markup.heading.level.1.asciidoc
       captures:
         1: punctuation.definition.heading.asciidoc
         2: entity.name.section.asciidoc
@@ -1637,7 +1637,7 @@ contexts:
 
   title_level_2:
     - match: ^(===) (`?\w.*)$\n?
-      scope: markup.heading.2.asciidoc
+      scope: markup.heading.level.2.asciidoc
       captures:
         1: punctuation.definition.heading.asciidoc
         2: entity.name.section.asciidoc
@@ -1645,21 +1645,21 @@ contexts:
 
   title_level_3:
     - match: ^(====) (`?\w.*)$\n?
-      scope: markup.heading.3.asciidoc
+      scope: markup.heading.level.3.asciidoc
       captures:
         1: punctuation.definition.heading.asciidoc
         2: entity.name.section.asciidoc
 
   title_level_4:
     - match: ^(=====) (`?\w.*)$\n?
-      scope: markup.heading.4.asciidoc
+      scope: markup.heading.level.4.asciidoc
       captures:
         1: punctuation.definition.heading.asciidoc
         2: entity.name.section.asciidoc
 
   title_level_5:
     - match: ^(======) (`?\w.*)$\n
-      scope: markup.heading.5.asciidoc
+      scope: markup.heading.level.5.asciidoc
       captures:
         1: punctuation.definition.heading.asciidoc
         2: entity.name.section.asciidoc

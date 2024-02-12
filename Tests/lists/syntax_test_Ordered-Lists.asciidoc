@@ -20,21 +20,21 @@ https://docs.asciidoctor.org/asciidoc/latest/lists/ordered/[Ordered Lists^]
 
 ======================================
 . Level 1
-//<-          punctuation.definition.list_item
-//^          -punctuation.definition.list_item
+//<-          punctuation.definition.list.ordered
+//^          -punctuation.definition.list.ordered
 .. Level 2
 ... Level 3
-//<-          punctuation.definition.list_item
-//^           punctuation.definition.list_item
-// ^         -punctuation.definition.list_item
+//<-          punctuation.definition.list.ordered
+//^           punctuation.definition.list.ordered
+// ^         -punctuation.definition.list.ordered
 .... Level 4
-//<-          punctuation.definition.list_item
-//^^          punctuation.definition.list_item
-//  ^        -punctuation.definition.list_item
+//<-          punctuation.definition.list.ordered
+//^^          punctuation.definition.list.ordered
+//  ^        -punctuation.definition.list.ordered
 ..... Level 5
-//<-          punctuation.definition.list_item
-//^^^         punctuation.definition.list_item
-//   ^       -punctuation.definition.list_item
+//<-          punctuation.definition.list.ordered
+//^^^         punctuation.definition.list.ordered
+//   ^       -punctuation.definition.list.ordered
 ======================================
 
 
@@ -42,20 +42,20 @@ https://docs.asciidoctor.org/asciidoc/latest/lists/ordered/[Ordered Lists^]
 == Loose Tests
 
   . Level 1
-//^        punctuation.definition.list_item
-// ^      -punctuation.definition.list_item
-//<-      -punctuation.definition.list_item
+//^        punctuation.definition.list.ordered
+// ^      -punctuation.definition.list.ordered
+//<-      -punctuation.definition.list.ordered
   .. Level 2
-//^^       punctuation.definition.list_item
-//  ^     -punctuation.definition.list_item
+//^^       punctuation.definition.list.ordered
+//  ^     -punctuation.definition.list.ordered
   ... Level 3
-//^^^      punctuation.definition.list_item
-//   ^    -punctuation.definition.list_item
+//^^^      punctuation.definition.list.ordered
+//   ^    -punctuation.definition.list.ordered
   .... Level 4
-//^^^^     punctuation.definition.list_item
-//    ^   -punctuation.definition.list_item
+//^^^^     punctuation.definition.list.ordered
+//    ^   -punctuation.definition.list.ordered
   ..... Level 5
-//^^^^^    punctuation.definition.list_item
-//     ^  -punctuation.definition.list_item
+//^^^^^    punctuation.definition.list.ordered
+//     ^  -punctuation.definition.list.ordered
 
 // EOF //
