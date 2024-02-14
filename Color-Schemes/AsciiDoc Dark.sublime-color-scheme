@@ -258,7 +258,7 @@
         // =====================================================================
         {
             "name": "Section Titles",
-            "scope": "markup.heading.level",
+            "scope": "markup.heading -markup.heading.block",
             "background": "dodgerblue",
             "font_style": "bold",
         },
