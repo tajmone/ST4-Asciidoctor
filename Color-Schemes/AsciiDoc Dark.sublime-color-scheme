@@ -335,5 +335,28 @@
             "scope": "variable.parameter.xref.display",
             "foreground": "var(tint4)",
         },
+        // =====================================================================
+        // PREPROCESSOR
+        // =====================================================================
+        // Keywords
+        {
+            "scope": "keyword.control.preprocessor",
+            "foreground": "color(var(purple) lightness(70%))",
+        },
+        // Punctuation and brackets
+        {
+            "scope": "punctuation.definition.keyword.preprocessor | punctuation.section.brackets",
+            "foreground": "var(purple)",
+        },
+        // Preprocessor strings (filenames & URIs) in "include::"
+        {
+            "scope": "string.unquoted.preprocessor",
+            "foreground": "var(green)",
+        },
+        // Attributes separators: ',' (OR) '+' (AND)
+        {
+            "scope": "keyword.operator.logical",
+            "foreground": "var(yellow)",
+        },
     ]
 }

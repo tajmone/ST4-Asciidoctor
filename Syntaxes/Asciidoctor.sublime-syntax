@@ -28,11 +28,13 @@ file_extensions:
 
 variables:
   block_delimiters: '^[_=\.\-]{4,}$'
+  attribute_name: '[A-Za-z0-9_][A-Za-z0-9-]*'
 
 contexts:
   prototype:
   - include: escapes
   - include: xml_entities
+  - include: preprocessor
   main:
   - include: lists
   - include: blocks
@@ -57,6 +59,10 @@ contexts:
   pop-at-EOL:
     - match: '(?=[\n$])'
       pop: true
+
+  pop2-at-EOL:
+    - match: '(?=[\n$])'
+      pop: 2
 
   consume-whitespace:
     - match: '[ \t]+'
@@ -1767,5 +1773,87 @@ contexts:
     # Examples: &nbsp; &sup2;
     - match: '&([a-zA-Z][a-zA-Z0-9]*);'
       scope: constant.character.entity.xml.named.asciidoc
+
+# ==============================================================================
+#                P R E P R O C E S S O R   D I R E C T I V E S
+# ==============================================================================
+
+  preprocessor:
+    - include: pp_def
+    - include: pp_eval
+    - include: pp_endif
+    - include: pp_include
+
+  pp_endif:
+    - match: '^(endif)(\:\:)({{attribute_name}})?((\[)(\]))'
+      captures:
+        0: meta.preprocessor.conditional.endif.asciidoc
+        1: keyword.control.preprocessor.conditional.endif.asciidoc
+        2: punctuation.definition.keyword.preprocessor.asciidoc
+        3: support.variable.attribute.asciidoc
+        4: meta.brackets.asciidoc
+        5: punctuation.section.brackets.begin.preprocessor.asciidoc
+        6: punctuation.section.brackets.end.preprocessor.asciidoc
+
+  pp_def:
+    - match: '^((ifdef)|(ifndef))(\:\:)'
+      captures:
+        2: keyword.control.preprocessor.conditional.ifdef.asciidoc
+        3: keyword.control.preprocessor.conditional.ifndef.asciidoc
+        4: punctuation.definition.keyword.preprocessor.asciidoc
+      push: pp_def_inside
+  pp_def_inside:
+    - meta_scope: meta.preprocessor.conditional.asciidoc
+    - include: pop-at-EOL # fail-safe: bail out if malformed
+    # TBD: Handle malformed attribute names (See #51)
+    # TBD: Support multiple attributes via ',' and '+' operators
+    - match: '(({{attribute_name}})((,)|(\+))?)?'
+      captures:
+        2: support.variable.attribute.asciidoc
+        4: keyword.operator.logical.or.asciidoc
+        5: keyword.operator.logical.and.asciidoc
+    - match: '\['
+      scope: punctuation.section.brackets.begin.preprocessor.asciidoc
+      push: pp_def_inside2
+  pp_def_inside2:
+    - meta_scope: meta.brackets.asciidoc
+    - include: pop2-at-EOL # fail-safe: bail out if malformed
+    - match: '\]'
+      scope: punctuation.section.brackets.end.preprocessor.asciidoc
+      pop: 2
+
+  pp_eval:
+    - match: '^(ifeval)(\:\:)(\[)'
+      captures:
+        1: keyword.control.preprocessor.conditional.ifeval.asciidoc
+        2: punctuation.definition.keyword.preprocessor.asciidoc
+        3: punctuation.section.brackets.begin.preprocessor.asciidoc
+      push: pp_eval_inside
+  pp_eval_inside:
+    - meta_scope: meta.preprocessor.conditional.asciidoc
+                  meta.brackets.asciidoc
+    - include: pop-at-EOL # fail-safe: bail out if malformed
+    # TBD: capture attributes, operators, false/true, values, etc.
+    - match: '\]'
+      scope: punctuation.section.brackets.end.preprocessor.asciidoc
+      pop: true
+
+  pp_include:
+    # TBD: Distinguish between include by file and URI.
+    - match: '^(include)(\:\:)([^\[]+)(\[)'
+      captures:
+        1: keyword.control.preprocessor.conditional.include.asciidoc
+        2: punctuation.definition.keyword.preprocessor.asciidoc
+        3: string.unquoted.preprocessor.asciidoc
+        4: punctuation.section.brackets.begin.preprocessor.asciidoc
+      push: pp_include_inside
+  pp_include_inside:
+    - meta_scope: meta.preprocessor.conditional.asciidoc
+                  meta.brackets.asciidoc
+    - include: pop-at-EOL # fail-safe: bail out if malformed
+    # TBD: capture tags, line-ranges, level-offsets, etc.
+    - match: '\]'
+      scope: punctuation.section.brackets.end.preprocessor.asciidoc
+      pop: true
 
 # /// EOF ///

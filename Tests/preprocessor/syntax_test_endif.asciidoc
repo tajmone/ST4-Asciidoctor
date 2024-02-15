@@ -1,0 +1,76 @@
+// SYNTAX TEST "Packages/ST4-Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+= endif Directive
+
+AsciiDoc Documentation reference:
+https://docs.asciidoctor.org/asciidoc/latest/directives/ifdef-ifndef/#ifdef[Conditionals » ifdef directive^]
+
+[WARNING]
+====================================
+Escaped preprocessor directives (and directives mid-text) are currently being captured by the "`macro`" context as:
+
+...................................
+keyword.control.name.macro.asciidoc
+...................................
+
+This needs to be fixed: the "`macro`" context is too generic, and it should at least account for escaped directives and treat them as raw content (i.e. the whole directive).
+====================================
+
+
+
+== Short-form endif
+
+[.big.red]*Source*
+
+[source,asciidoc]
+......................................
+\ifdef::backend-html5[]
+This only shows in HTML5.
+\endif::[]
+......................................
+
+
+[.big.red]*Result*
+
+======================================
+ifdef::backend-html5[]
+This only shows in HTML5.
+endif::[]
+//<-                        meta.preprocessor.conditional.endif
+//^^^^^^^                   meta.preprocessor.conditional.endif
+//^^^                       keyword.control.preprocessor.conditional.endif
+//   ^^^^                  -keyword.control.preprocessor.conditional.endif
+//   ^^                     punctuation.definition.keyword.preprocessor
+//     ^^                   meta.brackets
+//     ^                    punctuation.section.brackets.begin.preprocessor
+//      ^                   punctuation.section.brackets.end.preprocessor
+======================================
+
+
+== Long-form endif
+
+[.big.red]*Source*
+
+[source,asciidoc]
+......................................
+\ifdef::backend-html5[]
+This only shows in HTML5.
+\endif::backend-html5[]
+......................................
+
+
+[.big.red]*Result*
+
+======================================
+ifdef::backend-html5[]
+This only shows in HTML5.
+endif::backend-html5[]
+//<-                        meta.preprocessor.conditional.endif
+//^^^^^^^^^^^^^^^^^^^^      meta.preprocessor.conditional.endif
+//^^^                       keyword.control.preprocessor.conditional.endif
+//   ^^^^^^^^^^^^^^^^^     -keyword.control.preprocessor.conditional.endif
+//   ^^                     punctuation.definition.keyword.preprocessor
+//     ^^^^^^^^^^^^^        support.variable.attribute
+//                  ^^      meta.brackets
+//                  ^       punctuation.section.brackets.begin.preprocessor
+//                   ^      punctuation.section.brackets.end.preprocessor
+======================================

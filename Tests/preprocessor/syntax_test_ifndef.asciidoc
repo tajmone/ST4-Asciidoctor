@@ -1,0 +1,112 @@
+// SYNTAX TEST "Packages/ST4-Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+= ifndef Directive
+
+AsciiDoc Documentation reference:
+https://docs.asciidoctor.org/asciidoc/latest/directives/ifdef-ifndef/#ifndef[Conditionals » ifndef directive^]
+
+
+== Single attribute
+
+[.big.red]*Source*
+
+[source,asciidoc]
+......................................
+\ifndef::backend-docbook5[]
+This won't show in DockBook.
+\endif::[]
+......................................
+
+
+[.big.red]*Result*
+
+======================================
+ifndef::backend-docbook5[]
+//<-                          meta.preprocessor.conditional
+//^^^^^^^^^^^^^^^^^^^^^^^^    meta.preprocessor.conditional
+//<-                          keyword.control.preprocessor.conditional.ifndef
+//^^^^                        keyword.control.preprocessor.conditional.ifndef
+//    ^^^^^^^^^^^^^^^^^^^^   -keyword.control.preprocessor.conditional.ifndef
+//    ^^                      punctuation.definition.keyword.preprocessor
+//      ^^^^^^^^^^^^^^^^      support.variable.attribute
+//                      ^^    meta.brackets
+//                      ^     punctuation.section.brackets.begin.preprocessor
+//                       ^    punctuation.section.brackets.end.preprocessor
+This won't show in DockBook.
+endif::[]
+//<-                          meta.preprocessor.conditional.endif
+//^^^^^^^                     meta.preprocessor.conditional.endif
+//^^^                         keyword.control.preprocessor.conditional.endif
+//   ^^^^                    -keyword.control.preprocessor.conditional.endif
+//     ^^                     meta.brackets
+//     ^                      punctuation.section.brackets.begin.preprocessor
+//      ^                     punctuation.section.brackets.end.preprocessor
+======================================
+
+
+
+== Multiple attributes OR
+
+[.big.red]*Source*
+
+[source,asciidoc]
+.......................................
+\ifndef::backend-docbook5,backend-pdf[]
+This won't show in DockBook or PDF.
+\endif::[]
+.......................................
+
+
+[.big.red]*Result*
+
+======================================
+ifndef::backend-docbook5,backend-pdf[]
+//<-                                     meta.preprocessor.conditional
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   meta.preprocessor.conditional
+//<-                                     keyword.control.preprocessor.conditional.ifndef
+//^^^^                                   keyword.control.preprocessor.conditional.ifndef
+//    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  -keyword.control.preprocessor.conditional.ifndef
+//    ^^                                 punctuation.definition.keyword.preprocessor
+//      ^^^^^^^^^^^^^^^^                 support.variable.attribute
+//                       ^^^^^^^^^^^     support.variable.attribute
+//                      ^               -support.variable.attribute
+//                      ^                keyword.operator.logical.or
+//                                  ^^   meta.brackets
+//                                  ^    punctuation.section.brackets.begin.preprocessor
+//                                   ^   punctuation.section.brackets.end.preprocessor
+This won't show in DockBook or PDF.
+endif::[]
+======================================
+
+
+== Multiple attributes AND
+
+[.big.red]*Source*
+
+[source,asciidoc]
+.......................................
+\ifndef::backend-docbook5+backend-pdf[]
+This won't show in DockBook or PDF.
+\endif::[]
+.......................................
+
+
+[.big.red]*Result*
+
+======================================
+ifndef::backend-docbook5+backend-pdf[]
+//<-                                     meta.preprocessor.conditional
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   meta.preprocessor.conditional
+//<-                                     keyword.control.preprocessor.conditional.ifndef
+//^^^^                                   keyword.control.preprocessor.conditional.ifndef
+//    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  -keyword.control.preprocessor.conditional.ifndef
+//    ^^                                 punctuation.definition.keyword.preprocessor
+//      ^^^^^^^^^^^^^^^^                 support.variable.attribute
+//                       ^^^^^^^^^^^     support.variable.attribute
+//                      ^               -support.variable.attribute
+//                      ^                keyword.operator.logical.and
+//                                  ^^   meta.brackets
+//                                  ^    punctuation.section.brackets.begin.preprocessor
+//                                   ^   punctuation.section.brackets.end.preprocessor
+This won't show in DockBook or PDF.
+endif::[]
+======================================

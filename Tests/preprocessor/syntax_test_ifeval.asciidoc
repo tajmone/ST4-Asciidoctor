@@ -1,0 +1,46 @@
+// SYNTAX TEST "Packages/ST4-Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+= ifeval Directive
+:sectnumlevels: 3
+
+AsciiDoc Documentation reference:
+https://docs.asciidoctor.org/asciidoc/latest/directives/ifeval[Conditionals » ifeval directive^]
+
+
+== Simple
+
+[.big.red]*Source*
+
+[source,asciidoc]
+......................................
+\ifeval::[{sectnumlevels} == 3]
+Only shown if `sectnumlevels` is 3.
+\endif::[]
+......................................
+
+
+[.big.red]*Result*
+
+======================================
+ifeval::[{sectnumlevels} == 3]
+//<-                                  meta.preprocessor.conditional
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^        meta.preprocessor.conditional
+//<-                                  keyword.control.preprocessor.conditional.ifeval
+//^^^^                                keyword.control.preprocessor.conditional.ifeval
+//    ^^^^^^^^^^^^^^^^^^^^^^^^       -keyword.control.preprocessor.conditional.ifeval
+//    ^^                              punctuation.definition.keyword.preprocessor
+//      ^^^^^^^^^^^^^^^^^^^^^^        meta.brackets
+//      ^                             punctuation.section.brackets.begin.preprocessor
+//                           ^        punctuation.section.brackets.end.preprocessor
+Only shown if `sectnumlevels` is 3.
+endif::[]
+//<-                                  meta.preprocessor.conditional.endif
+//^^^^^^^                             meta.preprocessor.conditional.endif
+//^^^                                 keyword.control.preprocessor.conditional.endif
+//   ^^^^                            -keyword.control.preprocessor.conditional.endif
+//   ^^                               punctuation.definition.keyword.preprocessor
+//     ^^                             meta.brackets
+//     ^                              punctuation.section.brackets.begin.preprocessor
+//      ^                             punctuation.section.brackets.end.preprocessor
+======================================
+
+NOTE: The evaluation passes because this document sets `sectnumlevels` to 3 in the document header.

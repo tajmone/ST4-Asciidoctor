@@ -1,0 +1,72 @@
+// SYNTAX TEST "Packages/ST4-Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+= include Directive
+
+AsciiDoc Documentation reference:
+https://docs.asciidoctor.org/asciidoc/latest/directives/include/[Includes^]
+
+[WARNING]
+==============================
+Currently the `include:` directive doesn't distinguish between including content by file and by URI:
+
+https://docs.asciidoctor.org/asciidoc/latest/directives/include-uri/[Include Content by URI^]
+
+Furthermore, parameters inside the brackets are not currently being scoped -- i.e. tags, line-ranges, level-offset options, etc.
+==============================
+
+
+== Simple File
+
+[.big.red]*Source*
+
+[source,asciidoc]
+.......................
+\include::sample.adoc[]
+.......................
+
+
+[.big.red]*Result*
+
+The contents of the included file (`sample.adoc`):
+
+======================
+include::sample.adoc[]
+//<-                       meta.preprocessor.conditional
+//^^^^^^^^^^^^^^^^^^^^     meta.preprocessor.conditional
+//<-                       keyword.control.preprocessor.conditional.include
+//^^^^^                    keyword.control.preprocessor.conditional.include
+//     ^^^^^^^^^^^^^^^    -keyword.control.preprocessor.conditional.include
+//     ^^                  punctuation.definition.keyword.preprocessor
+//       ^^^^^^^^^^^       string.unquoted.preprocessor
+//                  ^^     meta.brackets
+//                  ^      punctuation.section.brackets.begin.preprocessor
+//                   ^     punctuation.section.brackets.end.preprocessor
+======================
+
+
+== Tagged Regions
+
+[.big.red]*Source*
+
+[source,asciidoc]
+...................................
+\include::sample.adoc[tag=kingdoms]
+...................................
+
+
+[.big.red]*Result*
+
+The contents of the included file (`sample.adoc`) tagged as `kingdoms`:
+
+==================================
+include::sample.adoc[tag=kingdoms]
+//<-                                   meta.preprocessor.conditional
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^     meta.preprocessor.conditional
+//<-                                   keyword.control.preprocessor.conditional.include
+//^^^^^                                keyword.control.preprocessor.conditional.include
+//     ^^^^^^^^^^^^^^^^^^^^^^^^^^^    -keyword.control.preprocessor.conditional.include
+//     ^^                              punctuation.definition.keyword.preprocessor
+//       ^^^^^^^^^^^                   string.unquoted.preprocessor
+//                  ^^^^^^^^^^^^^^     meta.brackets
+//                  ^                  punctuation.section.brackets.begin.preprocessor
+//                               ^     punctuation.section.brackets.end.preprocessor
+==================================

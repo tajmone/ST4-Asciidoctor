@@ -1,0 +1,157 @@
+// SYNTAX TEST "Packages/ST4-Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+= ifdef Directive
+:experimental: true
+
+AsciiDoc Documentation reference:
+https://docs.asciidoctor.org/asciidoc/latest/directives/ifdef-ifndef/#ifdef[Conditionals » ifdef directive^]
+
+[WARNING]
+====================================
+Escaped preprocessor directives (and directives mid-text) are currently being captured by the "`macro`" context as:
+
+...................................
+keyword.control.name.macro.asciidoc
+...................................
+
+This needs to be fixed: the "`macro`" context is too generic, and it should at least account for escaped directives and treat them as raw content (i.e. the whole directive).
+====================================
+
+
+
+== Single attribute
+
+[.big.red]*Source*
+
+[source,asciidoc]
+......................................
+\ifdef::backend-html5[]
+This only shows in HTML5.
+\endif::[]
+......................................
+
+
+[.big.red]*Result*
+
+======================================
+ifdef::backend-html5[]
+//<-                        meta.preprocessor.conditional
+//^^^^^^^^^^^^^^^^^^^^      meta.preprocessor.conditional
+//<-                        keyword.control.preprocessor.conditional.ifdef
+//^^^                       keyword.control.preprocessor.conditional.ifdef
+//   ^^^^^^^^^^^^^^^^^     -keyword.control.preprocessor.conditional.ifdef
+//   ^^                     punctuation.definition.keyword.preprocessor
+//     ^^^^^^^^^^^^^        support.variable.attribute
+//                  ^^      meta.brackets
+//                  ^       punctuation.section.brackets.begin.preprocessor
+//                   ^      punctuation.section.brackets.end.preprocessor
+This only shows in HTML5.
+endif::[]
+//<-                        meta.preprocessor.conditional.endif
+//^^^^^^^                   meta.preprocessor.conditional.endif
+//^^^                       keyword.control.preprocessor.conditional.endif
+//   ^^^^                  -keyword.control.preprocessor.conditional.endif
+//   ^^                     punctuation.definition.keyword.preprocessor
+//     ^^                   meta.brackets
+//     ^                    punctuation.section.brackets.begin.preprocessor
+//      ^                   punctuation.section.brackets.end.preprocessor
+======================================
+
+
+== Multiple attributes OR
+
+[.big.red]*Source*
+
+[source,asciidoc]
+........................................
+\ifdef::backend-html5,backend-docbook5[]
+Only shown in HTML5 or DocBook.
+\endif::[]
+........................................
+
+
+[.big.red]*Result*
+
+======================================
+ifdef::backend-html5,backend-docbook5[]
+//<-                                      meta.preprocessor.conditional
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   meta.preprocessor.conditional
+//<-                                      keyword.control.preprocessor.conditional.ifdef
+//^^^                                     keyword.control.preprocessor.conditional.ifdef
+//   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  -keyword.control.preprocessor.conditional.ifdef
+//   ^^                                   punctuation.definition.keyword.preprocessor
+//     ^^^^^^^^^^^^^                      support.variable.attribute
+//                   ^^^^^^^^^^^^^^^^     support.variable.attribute
+//                  ^                    -support.variable.attribute
+//                  ^                     keyword.operator.logical.or
+//                                   ^^   meta.brackets
+//                                   ^    punctuation.section.brackets.begin.preprocessor
+//                                    ^   punctuation.section.brackets.end.preprocessor
+Only shown in HTML5 or DocBook.
+endif::[]
+======================================
+
+
+== Multiple attributes AND
+
+[.big.red]*Source*
+
+[source,asciidoc]
+.......................................
+\ifdef::backend-html5+experimental[]
+Only shown if HTML5 and `experimental`.
+\endif::[]
+.......................................
+
+
+[.big.red]*Result*
+
+===================================
+ifdef::backend-html5+experimental[]
+//<-                                  meta.preprocessor.conditional
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   meta.preprocessor.conditional
+//<-                                  keyword.control.preprocessor.conditional.ifdef
+//^^^                                 keyword.control.preprocessor.conditional.ifdef
+//   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  -keyword.control.preprocessor.conditional.ifdef
+//   ^^                               punctuation.definition.keyword.preprocessor
+//     ^^^^^^^^^^^^^                  support.variable.attribute
+//                   ^^^^^^^^^^^^     support.variable.attribute
+//                  ^                -support.variable.attribute
+//                  ^                 keyword.operator.logical.and
+//                               ^^   meta.brackets
+//                               ^    punctuation.section.brackets.begin.preprocessor
+//                                ^   punctuation.section.brackets.end.preprocessor
+Only shown if HTML5 and `experimental`.
+endif::[]
+===================================
+
+NOTE: The evaluation passes because this document sets `experimental` to `true` in the document header.
+
+
+== Contents in Brackets
+
+If you’re only dealing with a single line of text, you can put the content directly inside the square brackets and drop the `endif` directive.
+
+[.big.red]*Source*
+
+[source,asciidoc]
+......................................
+\ifdef::backend-html5[Only shown in HTML5.]
+......................................
+
+
+[.big.red]*Result*
+
+======================================
+ifdef::backend-html5[Only shown in HTML5.]
+//<-                                            meta.preprocessor.conditional
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^      meta.preprocessor.conditional
+//<-                                            keyword.control.preprocessor.conditional.ifdef
+//^^^                                           keyword.control.preprocessor.conditional.ifdef
+//   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^     -keyword.control.preprocessor.conditional.ifdef
+//   ^^                                         punctuation.definition.keyword.preprocessor
+//     ^^^^^^^^^^^^^                            support.variable.attribute
+//                  ^                           punctuation.section.brackets.begin.preprocessor
+//                  ^^^^^^^^^^^^^^^^^^^^^^      meta.brackets
+//                                       ^      punctuation.section.brackets.end.preprocessor
+======================================
+

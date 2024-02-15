@@ -1,0 +1,24 @@
+// SYNTAX TEST "Packages/ST4-Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+= ifeval malformed directives
+
+We need to ensure that malformed (incomplete) directives are
+handled properly by gracefully popping out of their contexts.
+
+ifeval::[{sectnumlevels} == 3
+Back to normal text.
+//<-                   -meta.preprocessor
+
+
+ifeval::{sectnumlevels} == 3]
+Back to normal text.
+//<-                   -meta.preprocessor
+
+
+ifeval::{sectnumlevels} == 3
+Back to normal text.
+//<-                   -meta.preprocessor
+
+
+ifeval::
+Back to normal text.
+//<-                   -meta.preprocessor
