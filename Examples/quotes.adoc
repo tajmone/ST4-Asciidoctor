@@ -1,0 +1,12 @@
+// tag::kingdoms[]
+[quote,Thomas Stephen Szasz]
+In the animal kingdom, the rule is, eat or be eaten; in the human kingdom, define or be defined.
+// end::kingdoms[]
+
+'''
+
+// tag::schizophrenia[]
+[quote,Thomas Stephen Szasz]
+If you talk to God, you are praying.
+If God talks to you, you have schizophrenia.
+// end::schizophrenia[]

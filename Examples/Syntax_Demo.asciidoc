@@ -1,21 +1,24 @@
 = AsciiDoc Examples That Demonstrate Syntax Highlighting
+Author Name <author.email@example.com>
+:revision: 1.0
+:toc:
+:toclevels: 1
+:experimental:
+:icons: font
+
+// Custom attributes
+:some-attribute: Some value
 
 // This example is heavily based on
 // https://github.com/powerman/asciidoc-cheatsheet/blob/master/full.adoc
-Author Name <author.email@example.com>
-:Revision: 1.0
-:Some-Attribute: Some value
-:toc:
-:toclevels: 1
 
 toc::[]
 
 
-
 == Attributes
 
-Author is "{author}" with email <{email}>,
-some attribute's value is {someattribute}.
+Author is "`{author}`" with email <{email}>,
+``some-attribute```'s value is "`{some-attribute}`".
 
 // Any line with an unknown attribute is removed.
 Line with attribute like {nosuchattribute}.
@@ -26,37 +29,41 @@ Escaped: \{author} and +++{author}+++
 
 == Headers
 
-== Level 1
+== Level 2
 Text.
 
-=== Level 2
+=== Level 3
 Text.
 
-==== Level 3
+==== Level 4
 Text.
 
-===== Level 4
+===== Level 5
 Text.
 
 
 
-IMPORTANT: This syntax definition does not recognize the following old-style headings, and in fact chokes on them:
+IMPORTANT: This syntax definition does not recognize the following old-style and deprecated headings, and in fact chokes on them:
 
 ....
-=Level 1
+Level 1
 -------
+
 Text.
 
 Level 2
 ~~~~~~~
+
 Text.
 
 Level 3
 ^^^^^^^
+
 Text.
 
 Level 4
 +++++++
+
 Text.
 ....
 
@@ -64,7 +71,7 @@ Text.
 
 == Horizontal Rule
 
-(aka. thematic break, aka. scene break)
+(aka thematic break, aka scene break)
 
 '''
 
@@ -90,7 +97,7 @@ Second paragraph.
 [source,perl]
 die 'connect: '.$dbh->errstr;
 
-Not a code in next paragraph.
+This paragraph is not part of the previous code.
 
 
 
@@ -98,6 +105,10 @@ Not a code in next paragraph.
 
 // Type of admonition (NOTE/TIP/…) should be
 // shown as an icon, not as text.
+
+
+=== Label and Colon Notation
+
 .Optional Title
 NOTE: This is an example
       single-paragraph note.
@@ -114,6 +125,30 @@ IMPORTANT: Some important text.
 WARNING: Some warning text.
 
 CAUTION: Some caution text.
+
+
+=== Block Attribute Notation
+
+.Optional Title
+[NOTE]
+=================================================
+This is an multi-paragraph example note.
+
+Which is why it needs to be delimited as a block.
+=================================================
+
+
+[TIP]
+Some tip text, undelimited.
+
+[IMPORTANT]
+Some important text.
+
+[WARNING]
+Some warning text.
+
+[CAUTION]
+Some caution text.
 
 
 
@@ -153,6 +188,7 @@ Use: examples :)
 
 // Example caption removed
 [caption="Custom: "]
+.Optional Title for Example Block
 ==========================
 Default caption "Example:"
 can be changed.
@@ -203,6 +239,7 @@ ____
 
 
 == Text
+
 (with "`constrained formatting`")
 
 This paragraph has a forced +
@@ -216,18 +253,20 @@ normal, ^super^, ~sub~.
 
 Command: `ls -al`
 
-+mono with *bold*+
+`monospace with *bold*`
 
-`passthrough with *bold*`
++passthrough with *bold*+
 
 Path: '/some/filez.txt', '.b'
 
 [red]#red text# [yellow-background]#on yellow#
-[big]#large# [red yellow-background big]*all bold*
+[big]#large#
+[red yellow-background big]*all bold*
 
 
 
 == Characters
+
 (with "`unconstrained formatting`")
 
 n__i__**b**++m++[red]##r##
@@ -289,11 +328,11 @@ link="/images/font/640-screen2.gif"]
 This is example how files
 can be included.
 
-include::footer.txt[]
+include::quotes.adoc[tag=kingdoms]
 
-[source,perl]
+[source,ruby]
 ----
-include::script.pl[]
+include::ruby.rb[]
 ----
 
 
@@ -481,11 +520,12 @@ Something to be called out <1>
 
 Middle text.
 
-Something else to be called out <42>
+Something else to be called out <2> <3>
 ----
 
-<1> a callout
-<42> another callout
+<1> A callout.
+<2> Another callout.
+<3> yet another callout.
 
 
 
