@@ -37,7 +37,7 @@ contexts:
   - include: lists
   - include: blocks
   - include: section_titles
-  - include: lines
+  - include: one_liners
   - include: inline
   - include: characters
 
@@ -131,7 +131,7 @@ contexts:
         - include: lists
         # - include: block_listing
         - include: blocks   # FIXME Is this supposed to be here? It's not in the original, and it looks like a circular reference.
-        - include: lines
+        - include: one_liners
         - include: inline
         - include: characters
 
@@ -228,7 +228,7 @@ contexts:
         - include: block_comment
         # - include: block_listing
         - include: block_pass
-        - include: lines
+        - include: one_liners
         - include: inline
         - include: characters
 
@@ -271,7 +271,7 @@ contexts:
         - match: ^\1\s*$\n?
           scope: constant.delimiter.block.quote.end.asciidoc
           pop: true
-        - include: lines
+        - include: one_liners
         - include: inline
         - include: characters
         #  Note: Might need to add more includes.
@@ -297,37 +297,11 @@ contexts:
         - include: lists
         - include: block_comment
         - include: block_listing
-        - include: lines
+        - include: one_liners
         - include: inline
         - include: characters
         #  Note: Might need to add more includes.
 
-
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # block_sidebar:
-  #   comment: |
-  #     Examples:
-  #       ****
-  #       Lorem ipsum
-  #       ****
-  #
-  #     Note: Might need to add more includes, but these are the ones that arise
-  #     for me in practice.
-  #   name: string.quoted.block.sidebar.asciidoc
-  #   contentName: meta.block.sidebar.content.asciidoc
-  #   begin: ^(\*{4,})\s*$\n?
-  #   beginCaptures:
-  #     '0': {name: constant.delimiter.block.sidebar.begin.asciidoc}
-  #   end: ^\1\s*$\n?
-  #   endCaptures:
-  #     '0': {name: constant.delimiter.block.sidebar.end.asciidoc}
-  #   - include: lists
-  #   - include: block_comment
-  #   - include: block_listing
-  #   - include: lines
-  #   - include: inline
-  #   - include: characters
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 # -------------------------------------
 # @NOTE: Was commented out in original!
@@ -341,7 +315,7 @@ contexts:
 #  #  end: ^(?:\s*$|(?=[ ]{,3}>.))|(?=[ \t]*\n)(?<=^===|^====|=====|^---|^----|-----)[\t]*\n
 
   #################
-  # INLINE CALLOUTS
+  # INLINE CALLOUTS [TBD!] -- isn't this already implemented elsewhere?
   #################
   # Callout label
   #
@@ -534,36 +508,8 @@ contexts:
         8: constant.character.attributes.macro.end.asciidoc
 
 
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # macro:
-  #   comment: |
-  #     Note: There are other macro notations, but I match only those that end in
-  #     square brackets.
-  #   name: meta.macro.asciidoc
-  #   match: |-
-  #     (?x)
-  #     (?:
-  #       ((?:https?|mailto|ftp|file)  # specify separately so we can mark them as links that TextMate opens
-  #       ?:{1}  # inline only
-  #       \S*)   # (others such as image are partial URLs and/or TextMate cannot handle them)
-  #     |
-  #       (([a-zA-Z0-9][a-zA-Z0-9_]*)
-  #       (:{1,2})
-  #       (\S*))
-  #     )
-  #     (?:(\[)([^\]]*)(\]))
-  #   captures:
-  #     '1': {name: markup.underline.link.macro.asciidoc}
-  #     '3': {name: keyword.control.name.macro.asciidoc}
-  #     '4': {name: constant.character.separator.macro.asciidoc}
-  #     '5': {name: markup.underline.target.macro.asciidoc}
-  #     '6': {name: constant.character.attributes.macro.begin.asciidoc}
-  #     '7': {name: variable.parameter.attributes.macro.asciidoc}
-  #     '8': {name: constant.character.attributes.macro.end.asciidoc}
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
-
   ############
-  # PASS MACRO
+  # PASS MACRO [TBD!]
   ############
   # Passthrough macro
   # Examples:
@@ -598,7 +544,7 @@ contexts:
   # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
   ##############
-  # REPLACEMENTS
+  # REPLACEMENTS [TBD!]
   ##############
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>
   #  replacement:
@@ -1264,8 +1210,13 @@ contexts:
 #                   S I N G L E - L I N E    E L E M E N T S                   *
 #                                                                              *
 #*******************************************************************************
+# Syntax constructs that appear on a single-line, on their own, including those
+# which can span across multiple lines via a line-continuation (' \' or ' + \'):
+#
+# https://docs.asciidoctor.org/asciidoc/latest/attributes/wrap-values/
+# https://docs.asciidoctor.org/asciidoc/latest/attributes/wrap-values/#hard
 
-  lines:
+  one_liners:
     - include: line_comment
     - include: list_continuation
     - include: inline_break
@@ -1291,30 +1242,19 @@ contexts:
         1: punctuation.definition.comment.line.asciidoc
         2: meta.line.comment.content.asciidoc
 
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # inline_comment:
-  #   comment: |
-  #     Inline comment.
-  #
-  #     Examples:
-  #       // This is just a comment!
-  #   name: comment.line.double-slash.asciidoc
-  #   match: ^(//)([^/\n].*|)$\n?
-  #   captures:
-  #     '1': {name: punctuation.definition.comment.line.asciidoc}
-  #     '2': {name: meta.line.comment.content.asciidoc}
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
-
   #################
   # ATTRIBUTE ENTRY
   #################
   # An attribute entry.
+  # Technically, this is not strictly a single-line construct since it can
+  # span multiple lines via a ' \' or ' + \' line-continuation token.
   # Examples:
   #   :my-attribute: value
   #   :sectnums!:
   #   :!sectnums:
 
   attribute_entry:
+    # TODO: Support line continuations via ' \' (soft-wrap) or ' + \' (hard-wrap)
     - match: |
         (?x)
         ^(:)                          # 1: opening delimiter
@@ -1336,26 +1276,12 @@ contexts:
           pop: true
         #   - include: characters
 
-
-  #####################
-  # ATTRIBUTE LIST LINE
-  #####################
-  # Attribute list as paragraph: single brackets. No need for special
-  # treatment of escape; follows literal block, section template as being a
-  # more general regex.
-
-  attribute_list_line:
-    - match: ^(\[)[^\[\]]*(\])\s*$\n?
-      captures:
-        0: support.variable.attributelist.asciidoc
-        1: punctuation.definition.attributelistline.begin.asciidoc
-        2: punctuation.definition.attributelistline.end.asciidoc
-
   #############
   # BLOCK TITLE
   #############
   # Title of a block. Excludes custom block titles for better
   # scoping / preventing overlap.
+  # NOTE: Does this construct support line-continuation via ' \'?
   # Examples:
   #   .My title
   #   Lorem ipsum dolor.
@@ -1367,25 +1293,8 @@ contexts:
         2: markup.heading.block.asciidoc
 
 
-  ##########
-  # BLOCK ID
-  ##########
-  # A block id (i.e. anchor).
-  # Examples:
-  #   [[myid]]
-  #   Lorem ipsum dolor.
-
-  block_id:
-    - match: ^(\[\[)([^\[].*)(\]\])\s*$\n?
-      captures:
-        0: meta.tag.blockid.asciidoc
-        1: punctuation.definition.blockid.begin.asciidoc
-        2: entity.name.label.asciidoc
-        3: punctuation.definition.blockid.end.asciidoc
-
-
   ###########
-  # BLOCK REQ
+  # BLOCK REQ [TBD!]
   ###########
   # A requirement id (i.e. anchor).
   # Examples:
@@ -1468,10 +1377,135 @@ contexts:
     - match: ^'{3,}$\n?
       scope: meta.separator.ruler.asciidoc
 
+# ==============================================================================
+#                P R E P R O C E S S O R   D I R E C T I V E S
+# ==============================================================================
+# Although conditional directives might define logical blocks, from a syntax
+# standpoint they are just single-line constructs, so they belong here.
+# NOTE: 'preprocessor' belongs to the 'prototype' context!
+
+  preprocessor:
+    - include: pp_def
+    - include: pp_eval
+    - include: pp_endif
+    - include: pp_include
+
+  pp_endif:
+    - match: '^(endif)(\:\:)({{attribute_name}})?((\[)(\]))'
+      captures:
+        0: meta.preprocessor.conditional.endif.asciidoc
+        1: keyword.control.preprocessor.conditional.endif.asciidoc
+        2: punctuation.definition.keyword.preprocessor.asciidoc
+        3: support.variable.attribute.asciidoc
+        4: meta.brackets.asciidoc
+        5: punctuation.section.brackets.begin.preprocessor.asciidoc
+        6: punctuation.section.brackets.end.preprocessor.asciidoc
+
+  pp_def:
+    - match: '^((ifdef)|(ifndef))(\:\:)'
+      captures:
+        2: keyword.control.preprocessor.conditional.ifdef.asciidoc
+        3: keyword.control.preprocessor.conditional.ifndef.asciidoc
+        4: punctuation.definition.keyword.preprocessor.asciidoc
+      push: pp_def_inside
+  pp_def_inside:
+    - meta_scope: meta.preprocessor.conditional.asciidoc
+    - include: pop-at-EOL # fail-safe: bail out if malformed
+    # TBD: Handle malformed attribute names (See #51)
+    # TBD: Support multiple attributes via ',' and '+' operators
+    - match: '(({{attribute_name}})((,)|(\+))?)?'
+      captures:
+        2: support.variable.attribute.asciidoc
+        4: keyword.operator.logical.or.asciidoc
+        5: keyword.operator.logical.and.asciidoc
+    - match: '\['
+      scope: punctuation.section.brackets.begin.preprocessor.asciidoc
+      push: pp_def_inside2
+  pp_def_inside2:
+    - meta_scope: meta.brackets.asciidoc
+    - include: pop2-at-EOL # fail-safe: bail out if malformed
+    - match: '\]'
+      scope: punctuation.section.brackets.end.preprocessor.asciidoc
+      pop: 2
+
+  pp_eval:
+    - match: '^(ifeval)(\:\:)(\[)'
+      captures:
+        1: keyword.control.preprocessor.conditional.ifeval.asciidoc
+        2: punctuation.definition.keyword.preprocessor.asciidoc
+        3: punctuation.section.brackets.begin.preprocessor.asciidoc
+      push: pp_eval_inside
+  pp_eval_inside:
+    - meta_scope: meta.preprocessor.conditional.asciidoc
+                  meta.brackets.asciidoc
+    - include: pop-at-EOL # fail-safe: bail out if malformed
+    # TBD: capture attributes, operators, false/true, values, etc.
+    - match: '\]'
+      scope: punctuation.section.brackets.end.preprocessor.asciidoc
+      pop: true
+
+  pp_include:
+    # TBD: Distinguish between include by file and URI.
+    - match: '^(include)(\:\:)([^\[]+)(\[)'
+      captures:
+        1: keyword.control.preprocessor.conditional.include.asciidoc
+        2: punctuation.definition.keyword.preprocessor.asciidoc
+        3: string.unquoted.preprocessor.asciidoc
+        4: punctuation.section.brackets.begin.preprocessor.asciidoc
+      push: pp_include_inside
+  pp_include_inside:
+    - meta_scope: meta.preprocessor.conditional.asciidoc
+                  meta.brackets.asciidoc
+    - include: pop-at-EOL # fail-safe: bail out if malformed
+    # TBD: capture tags, line-ranges, level-offsets, etc.
+    - match: '\]'
+      scope: punctuation.section.brackets.end.preprocessor.asciidoc
+      pop: true
+
+# ==============================================================================
+#             S Q U A R E - B R A C K E T E D   O N E - L I N E R S
+# ==============================================================================
+# All single-line constructs enclosed within square-brackets '[ ... ]' should
+# be placed in this group.
+
+# IMPORTANT: These constructs tolerate trailing spaces and tabs, so we must
+#            ensure that RegEx pattern consume them without scoping them.
+
+
+  #####################
+  # ATTRIBUTE LIST LINE
+  #####################
+  # Attribute list as paragraph: single brackets. No need for special
+  # treatment of escape; follows literal block, section template as being a
+  # more general regex.
+
+  attribute_list_line:
+    - match: ^(\[)[^\[\]]*(\])\s*$\n?
+      captures:
+        0: support.variable.attributelist.asciidoc
+        1: punctuation.definition.attributelistline.begin.asciidoc
+        2: punctuation.definition.attributelistline.end.asciidoc
+
+
+  ##########
+  # BLOCK ID
+  ##########
+  # A block id (i.e. anchor).
+  # Examples:
+  #   [[myid]]
+  #   Lorem ipsum dolor.
+
+  block_id:
+    - match: ^(\[\[)([^\[].*)(\]\])\s*$\n?
+      captures:
+        0: meta.tag.blockid.asciidoc
+        1: punctuation.definition.blockid.begin.asciidoc
+        2: entity.name.label.asciidoc
+        3: punctuation.definition.blockid.end.asciidoc
 
 
   ##################
-  # SECTION TEMPLATE
+  # SECTION TEMPLATE [TBD!]
   ##################
   # Fixed list of known template names
   # See: §16.9. Section Styles
@@ -1697,6 +1731,12 @@ contexts:
 #*******************************************************************************
 # Reusable contexts...
 
+# TBD: context for "line continuation" via ' \' (soft-wrap) and ' + \' (hard-wrap)
+#      which should be reusable by all contexts that allow it:
+#      https://docs.asciidoctor.org/asciidoc/latest/attributes/wrap-values/
+#      https://docs.asciidoctor.org/asciidoc/latest/attributes/wrap-values/#hard
+
+
   #####################
   # ERROR ON EMPTY LINE
   #####################
@@ -1708,7 +1748,7 @@ contexts:
       pop: true
 
   ##############
-  # ANY COMMENTS     ( UNUSED! )
+  # ANY COMMENTS
   ##############
   # Include any type of comments.
   any_comments:
@@ -1792,87 +1832,5 @@ contexts:
     # Examples: &nbsp; &sup2;
     - match: '&([a-zA-Z][a-zA-Z0-9]*);'
       scope: constant.character.entity.xml.named.asciidoc
-
-# ==============================================================================
-#                P R E P R O C E S S O R   D I R E C T I V E S
-# ==============================================================================
-
-  preprocessor:
-    - include: pp_def
-    - include: pp_eval
-    - include: pp_endif
-    - include: pp_include
-
-  pp_endif:
-    - match: '^(endif)(\:\:)({{attribute_name}})?((\[)(\]))'
-      captures:
-        0: meta.preprocessor.conditional.endif.asciidoc
-        1: keyword.control.preprocessor.conditional.endif.asciidoc
-        2: punctuation.definition.keyword.preprocessor.asciidoc
-        3: support.variable.attribute.asciidoc
-        4: meta.brackets.asciidoc
-        5: punctuation.section.brackets.begin.preprocessor.asciidoc
-        6: punctuation.section.brackets.end.preprocessor.asciidoc
-
-  pp_def:
-    - match: '^((ifdef)|(ifndef))(\:\:)'
-      captures:
-        2: keyword.control.preprocessor.conditional.ifdef.asciidoc
-        3: keyword.control.preprocessor.conditional.ifndef.asciidoc
-        4: punctuation.definition.keyword.preprocessor.asciidoc
-      push: pp_def_inside
-  pp_def_inside:
-    - meta_scope: meta.preprocessor.conditional.asciidoc
-    - include: pop-at-EOL # fail-safe: bail out if malformed
-    # TBD: Handle malformed attribute names (See #51)
-    # TBD: Support multiple attributes via ',' and '+' operators
-    - match: '(({{attribute_name}})((,)|(\+))?)?'
-      captures:
-        2: support.variable.attribute.asciidoc
-        4: keyword.operator.logical.or.asciidoc
-        5: keyword.operator.logical.and.asciidoc
-    - match: '\['
-      scope: punctuation.section.brackets.begin.preprocessor.asciidoc
-      push: pp_def_inside2
-  pp_def_inside2:
-    - meta_scope: meta.brackets.asciidoc
-    - include: pop2-at-EOL # fail-safe: bail out if malformed
-    - match: '\]'
-      scope: punctuation.section.brackets.end.preprocessor.asciidoc
-      pop: 2
-
-  pp_eval:
-    - match: '^(ifeval)(\:\:)(\[)'
-      captures:
-        1: keyword.control.preprocessor.conditional.ifeval.asciidoc
-        2: punctuation.definition.keyword.preprocessor.asciidoc
-        3: punctuation.section.brackets.begin.preprocessor.asciidoc
-      push: pp_eval_inside
-  pp_eval_inside:
-    - meta_scope: meta.preprocessor.conditional.asciidoc
-                  meta.brackets.asciidoc
-    - include: pop-at-EOL # fail-safe: bail out if malformed
-    # TBD: capture attributes, operators, false/true, values, etc.
-    - match: '\]'
-      scope: punctuation.section.brackets.end.preprocessor.asciidoc
-      pop: true
-
-  pp_include:
-    # TBD: Distinguish between include by file and URI.
-    - match: '^(include)(\:\:)([^\[]+)(\[)'
-      captures:
-        1: keyword.control.preprocessor.conditional.include.asciidoc
-        2: punctuation.definition.keyword.preprocessor.asciidoc
-        3: string.unquoted.preprocessor.asciidoc
-        4: punctuation.section.brackets.begin.preprocessor.asciidoc
-      push: pp_include_inside
-  pp_include_inside:
-    - meta_scope: meta.preprocessor.conditional.asciidoc
-                  meta.brackets.asciidoc
-    - include: pop-at-EOL # fail-safe: bail out if malformed
-    # TBD: capture tags, line-ranges, level-offsets, etc.
-    - match: '\]'
-      scope: punctuation.section.brackets.end.preprocessor.asciidoc
-      pop: true
 
 # /// EOF ///
