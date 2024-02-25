@@ -1473,25 +1473,10 @@ contexts:
 #            ensure that RegEx pattern consume them without scoping them.
 
   one_liners_sq-bracketed:
-    - include: attribute_list_line
     - include: block_id_legacy
-  #   - include: block_req                              # <- ADDED by @bsmith-n4
+    - include: attribute_list_line # keep last! (generic fallback)
+  #   - include: block_req         # <- ADDED by @bsmith-n4
   #   - include: section_template
-
-  #####################
-  # ATTRIBUTE LIST LINE
-  #####################
-  # Attribute list as paragraph: single brackets. No need for special
-  # treatment of escape; follows literal block, section template as being a
-  # more general regex.
-
-  attribute_list_line:
-    - match: ^(\[)[^\[\]]*(\])\s*$\n?
-      captures:
-        0: support.variable.attributelist.asciidoc
-        1: punctuation.definition.attributelistline.begin.asciidoc
-        2: punctuation.definition.attributelistline.end.asciidoc
-
 
   ##########################
   # BLOCK ID (legacy syntax)
@@ -1509,6 +1494,24 @@ contexts:
         2: punctuation.definition.blockid.begin.asciidoc
         3: entity.name.label.asciidoc
         4: punctuation.definition.blockid.end.asciidoc
+
+
+  #####################
+  # ATTRIBUTE LIST LINE
+  #####################
+  # Attribute list as paragraph: single brackets.
+  # Should be included last because of its generic RegEx tends to catch-all.
+  # No need for special treatment of escape sequences.
+
+  # TODO: Implement proper handling and scoping of parameters.
+
+  attribute_list_line:
+    # We consume trailing WS but we don't scope it.
+    - match: '^((\[)[^\[\]]*(\]))\s*$\n?'
+      captures:
+        1: support.variable.attributelist.asciidoc
+        2: punctuation.definition.attributelistline.begin.asciidoc
+        3: punctuation.definition.attributelistline.end.asciidoc
 
 
   ##################

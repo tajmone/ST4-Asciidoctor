@@ -23,10 +23,11 @@ Their contents must be properly handled to prevent false-positive matches that c
 [.big.red]*Result*
 
 [cols="<.^h,<.<a"]
-// <-                punctuation.definition.attributelistline.begin
-//               ^   punctuation.definition.attributelistline.end
-//^^^^^^^^^^^^^^^^   support.variable.attributelist
-//       ^         - punctuation.definition.string.superscript
+// <-                   punctuation.definition.attributelistline.begin
+//               ^      punctuation.definition.attributelistline.end
+//^^^^^^^^^^^^^^^^      support.variable.attributelist
+//       ^             -punctuation.definition.string.superscript
+//                ^    -support.variable.attributelist
 |=================
 | R1 | Lorem.
 | R2 | Ipsum.
