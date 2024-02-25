@@ -79,7 +79,19 @@ Text.
 
 '''''''''''''''''''''''''
 
+== Page Breaks
 
+A line with three less-than characters (`<<<`) hints to the converter to insert a page break:
+
+<<<
+
+Like other block forms, the line must be offset by a preceding paragraph by at least one empty line.
+
+If the page break macro falls at the top of an empty page, it will be ignored.
+This behavior can be overridden by setting the always option on the macro:
+
+[%always]
+<<<
 
 == Paragraphs
 
@@ -154,6 +166,8 @@ Some caution text.
 
 == Blocks
 
+=== Listing Blocks
+
 .Optional Title for Listing Block
 ----
 *Listing* Block
@@ -172,16 +186,41 @@ my $dbh = DBI->connect('...',$u,$p)
     or die "connect: $dbh->errstr";
 ----
 
+.Listing Block with `include` Directive
+[source,ruby]
+------------------
+ifdef::backend-html5+experimental[]
+include::ruby.rb[]
+endif::[]
+------------------
+
+
+=== Sidebar Blocks
+
 .Optional Title for Sidebar Block
 ****
 *Sidebar* Block
 
+// Just a comment
+
 Use: sidebar notes :)
 ****
+
+.Sidebar Block with `include` Directive
+****
+ifdef::backend-html5+experimental[]
+include::quotes.adoc[tag=schizophrenia]
+endif::[]
+****
+
+
+=== Example Blocks
 
 .Optional Title for Example Block
 ==========================
 *Example* Block
+
+// Just a comment
 
 Use: examples :)
 ==========================
@@ -193,6 +232,25 @@ Use: examples :)
 Default caption "Example:"
 can be changed.
 ==========================
+
+.Example Block with `include` Directive
+=======================================
+ifdef::backend-html5+experimental[]
+include::quotes.adoc[tag=schizophrenia]
+endif::[]
+=======================================
+
+.Nested Example Blocks
+======================
+Parent block
+.Child Example (nested)
+==================================
+include::quotes.adoc[tag=kingdoms]
+==================================
+======================
+
+
+=== Example Blocks as Admonitions
 
 .Optional Title for Example Block Used as Admonition
 [NOTE]
@@ -208,6 +266,9 @@ Use: multi-paragraph notes.
 Use: hide comments
 ////
 
+
+=== Passthrough Blocks
+
 ++++
 *Passthrough* Block
 <p>
@@ -216,6 +277,9 @@ Use: backend-specific markup like
 <tr><td>1</td><td>2</td></tr>
 </table>
 ++++
+
+
+=== Literal Blocks
 
 .Optional Title for Literal Block
 ....
@@ -228,14 +292,34 @@ paragraph (indented) like
 incorrectly processed as list.
 ....
 
+
+.Literal Block with `include` Directive
+.......................................
+Here's the Ruby code:
+ifdef::backend-html5+experimental[]
+include::ruby.rb[]
+endif::[]
+.......................................
+
+
+=== Quoted  Blocks
+
 .Optional Title for Quote Block
 [quote, cite author, cite source]
 ____
 *Quote* Block
 
+// Just a comment
+
 Use: cite somebody
 ____
 
+.Quote Block with `include` Directive
+____
+ifdef::backend-html5+experimental[]
+include::lorem.adoc[tag=short]
+endif::[]
+____
 
 
 == Text
@@ -276,7 +360,7 @@ n__i__**b**++m++[red]##r##
 
 === Escaped
 
-\_italic_, +++_italic_+++,
+\_not-italic_, +++_not-italic_+++,
 
 +++<b>bold</b>+++, $$<b>normal</b>$$
 
@@ -289,6 +373,9 @@ n__i__**b**++m++[red]##r##
 If you'll need to use space in url/path you should replace it with %20.
 
 [[anchor-1]]
+Paragraph or block 1.
+
+[#anchor-2]
 Paragraph or block 1.
 
 

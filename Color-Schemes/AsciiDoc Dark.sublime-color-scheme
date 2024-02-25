@@ -1,6 +1,6 @@
 // *****************************************************************************
 // *                                                                           *
-// *                    AsciiDoc Dark v0.1.0 (2024/02/04)                      *
+// *                    AsciiDoc Dark v0.2.0 (2024/02/25)                      *
 // *                                                                           *
 // *****************************************************************************
 {
@@ -8,54 +8,77 @@
     "author": "Tristano Ajmone",
     "variables":
     {
-        "black":        "#090b0c", // Almost black
+    //  "base_hue":       "#3f4a54", // Base color  (unused)
 
-        "shade2":       "#1b2024", // Even darker
-        "shade1":       "#2d353c", // Darker
-        "base_hue":     "#3f4a54", // Base color
-        "tint1":        "#4b5864", // Less dark
-        "tint2":        "#566573", // Even less less dark
+        // Interface:
+        "shade1":         "#2d353c", // Darkest
+        "shade2":         "#4b5864", // Dark
+        "shade3":         "#566573", // Less dark
 
-        "tint3":        "#b1d0ec", // Midtone (complement 2 of 'base_hue')
-        "tint4":        "#d3e4f4", // between 'tint3' and 'white'
-        "white":        "#f5f9fd", // Almost white
-        "grey":         "#b4b9be", // (matching Grey of 'tint3')
-        "grey2":        "#8d949b", // darker grey (blend 2/4 of 'grey' with 'base_hue')
+        "comment":        "#79736a", // Pablo
 
-        "blue":         "#5396d1", // Blue
-        "green":        "#60cf55", // Green
-        "orange":       "#ffa125", // Orange
-        "purple":       "#9e5aca", // Purple
-        "red":          "#ff2525", // Red
-        "yellow":       "#ffff25", // Yellow
+        "grey":           "#b4b9be", // (matching Grey of 'azureish_dark')
+        "grey_dark":      "#8d949b", // darker grey (blend 2/4 of 'grey' with 'base_hue')
+
+        "azureish":       "#d3e4f4", // between 'azureish_dark' and 'white'
+        "azureish_dark":  "#b1d0ec", // Midtone (complement 2 of 'base_hue')
+
+        "tea_green":      "#d6f5de", // [ unused ]
+        "tea_green_dark": "#a0b8a6", // [ unused ]
+
+        // Misc. Colors:
+        // (also used: "darkslategray", "dodgerblue", "gainsboro")
+        "black":          "#090b0c", // Almost black
+        "white":          "#f5f9fd", // Almost white
+        "fluo":           "#ccff00", // Fluorescent yellow
+
+        // Primary Colors:
+        "blue":           "#216fc2",
+        "blue_light":     "#6ea2da",
+        "blue_dark":      "#1c5fa7",
+        "green":          "#20c02a",
+        "green_light":    "#6dd973",
+        "green_dark":     "#1ca725",
+        "orange":         "#ffa82b",
+        "orange_light":   "#ffcb80",
+        "orange_dark":    "#c37300",
+        "purple":         "#881fb8",
+        "purple_light":   "#b36ad4",
+        "purple_dark":    "#590e7b",
+        "red":            "#ff342b",
+        "red_light":      "#ff8580",
+        "red_dark":       "#c30800",
+        "yellow":         "#f8ff2b",
+        "yellow_light":   "#fbff80",
+        "yellow_dark":    "#bdc300",
     },
     "globals":
     {
-        "foreground": "var(tint4)",
+        "foreground": "var(azureish)",
         "background": "var(shade1)",
 
         "caret": "var(white)",
         "invisibles": "color(var(white) alpha(0.35))",
-        "line_highlight": "var(tint1)",
+        "line_highlight": "var(shade2)",
 
         // Accents
         "misspelling": "color(var(red) alpha(0.5))",
-        "minimap_border": "var(tint3)",
+        "minimap_border": "var(azureish_dark)",
         "accent": "color(var(red) alpha(0.5))",
         "fold_marker": "var(yellow)",
 
         // Gutter
         "gutter": "var(shade1)",
-        "gutter_foreground": "var(grey2)",
+        "gutter_foreground": "var(grey_dark)",
 
         // Selection
-        "selection": "var(tint4)",
+        "selection": "var(azureish)",
         "selection_foreground": "var(black)",
-        "selection_border": "var(tint3)",
+        "selection_border": "var(azureish_dark)",
         "selection_border_width": "1",
         "selection_corner_style": "round",  // round | cut | square
         "selection_corner_radius": "3.5",   // (only for round or cut)
-        "inactive_selection": "var(grey2)",
+        "inactive_selection": "var(grey_dark)",
         "inactive_selection_foreground": "var(black)",
 
         // Find
@@ -64,9 +87,9 @@
         "find_highlight_foreground": "var(black)",
 
         // Guides
-        "guide": "var(tint2)",
-        "active_guide": "color(var(tint3) alpha(0.6))",
-        "stack_guide":  "color(var(tint3) alpha(0.35))",
+        "guide": "var(shade3)",
+        "active_guide": "color(var(azureish_dark) alpha(0.6))",
+        "stack_guide":  "color(var(azureish_dark) alpha(0.35))",
 
         // Brackets
         "brackets_options": "underline",
@@ -89,31 +112,33 @@
         // COMMENTS
         // =====================================================================
             "name": "Comment",
-            "scope": "comment",
-            "foreground": "var(grey2)",
+            "scope": "comment | punctuation.definition.comment",
+            "foreground": "var(comment)", // was: "var(grey_dark)"
             "font_style": "italic"
         },
         // =====================================================================
         // MISC PUNCTUATION
         // =====================================================================
+        // List continuation / Line-Breaks
         {
             "name": "Line-Breaks & List Continuations",
             "scope": "constant.linebreak | constant.listcontinuation",
-            "foreground": "red",
+            "foreground": "var(red)",
+        },
+        // List bullets
+        {
+            "name": "List Bullets",
+            "scope": "text.asciidoc punctuation.definition.list_item",
+            "foreground": "var(red_dark)",
         },
         // =====================================================================
         // HORIZIONTAL RULES & PAGE-BREAKS
         // =====================================================================
         {
-            "name": "Page-Breaks",
-            "scope": "meta.separator.pagebreak",
-            "foreground": "orange",
-        },
-        {
-            "name": "Horizontal Rule",
-            "scope": "meta.separator.ruler",
-            "foreground": "orange",
-            "foreground": "orange",
+            "name": "Page-Breaks & Horizontal Rule",
+            "scope": "meta.separator.(pagebreak | ruler)",
+            "foreground": "var(orange_dark)",
+            "font_style": "bold"
         },
         // =====================================================================
         // TEXT FORMATTING
@@ -121,25 +146,28 @@
         {
             "name": "Delimiters",
             "scope": "punctuation.definition -punctuation.definition.comment",
-            "foreground": "red",
+            "foreground": "var(red)",
         },
+        // Bold
         {
             "name": "Bold",
             "scope": "markup.bold",
-            "foreground": "orange",
+            "foreground": "var(orange)",
             "font_style": "bold",
         },
+        // Italic
         {
             "name": "Italic",
             "scope": "markup.italic",
-            "foreground": "yellow",
+            "foreground": "var(yellow)",
             "font_style": "italic",
         },
+        // Monospace
         {
             "name": "Monospace",
             "scope": "string.other.literal",
-            "background": "gainsboro",
-            "foreground": "black",
+            "background": "gainsboro", // => #dcdcdc
+            "foreground": "var(black)",
         },
         {
             "name": "Monospace: Delimiter",
@@ -147,16 +175,50 @@
             "background": "color(gainsboro alpha(0.8))",
             "font_style": "bold",
         },
+        // Highlight aka Marked / Span
         {
-            "name": "Mark",
+            "name": "Marked",
             "scope": "string.other.unquoted",
-            "background": "#ccff00",
-            "foreground": "black",
+            "background": "var(fluo)", // => fluorescent yellow
+            "foreground": "var(black)",
         },
         {
-            "name": "Mark: Delimiter",
+            "name": "Marked: Delimiter",
             "scope": "punctuation.definition.string.unquoted",
             "font_style": "bold",
+        },
+        {
+            "name": "Marked: Brackets + Attributes",
+            "scope": "string.other.unquoted support.variable.attributelist",
+            "foreground": "var(red_dark)",
+        },
+        // =====================================================================
+        // MACROS
+        // =====================================================================
+        {
+            "name": "Macro: Name",
+            "scope": "keyword.control.name.macro",
+            "foreground": "var(red)",
+        },
+        {
+            "name": "Macro: Separator",
+            "scope": "constant.character.separator.macro | constant.character.attributes.macro.(begin|end)",
+            "foreground": "var(red_dark)",
+        },
+        {
+            "name": "Macro: Target",
+            "scope": "markup.underline.target.macro",
+            "foreground": "var(green)",
+        },
+        {
+            "name": "Macro: Attributes",
+            "scope": "variable.parameter.attributes.macro",
+            "foreground": "var(yellow)",
+        },
+        {
+            "name": "Macro: Attributes Lists",
+            "scope": "support.variable.attributelist",
+            "foreground": "var(yellow_dark)",
         },
         // =====================================================================
         // PASSTHROUGH INLINE
@@ -164,7 +226,7 @@
         {
             "name": "Passthrough: Delimiter",
             "scope": "constant.character.passthrough",
-            "foreground": "red",
+            "foreground": "var(red)",
         },
         {
             "name": "Passthrough: Contents",
@@ -174,30 +236,35 @@
         {
             "name": "Passthrough: All",
             "scope": "meta.passthrough.inline",
-            "background": "var(tint4)",
+            "background": "var(azureish)",
         },
         // =====================================================================
         // ATTRIBUTES
         // =====================================================================
         {
-            "name": "Attribute Definition: Identifier",
+            "name": "Attribute Inline: Identifier",
             "scope": "support.variable.attribute",
-            "foreground": "dodgerblue",
+            "foreground": "dodgerblue", // => #1e90ff
+        },
+        {
+            "name": "Attribute Inline: Curly Braces",
+            "scope": "constant.character.attributes.reference.(begin|end)",
+            "foreground": "var(red)",
         },
         {
             "name": "Attribute Definition: Delimiter",
             "scope": "punctuation.definition.attributeentry.attrname",
-            "foreground": "red",
+            "foreground": "var(red)",
         },
         {
             "name": "Attribute Definition: Unset",
             "scope": "punctuation.definition.attributeentry.unset",
-            "foreground": "yellow",
+            "foreground": "var(yellow)",
         },
         {
             "name": "Attribute Definition: Value",
             "scope": "meta.attributeentry.value",
-            "foreground": "orange",
+            "foreground": "var(orange)",
         },
         // =====================================================================
         // BLOCK ID
@@ -219,14 +286,14 @@
         // BLOCKS
         // =====================================================================
         {
-            "name": "Block Delimiters",
+            "name": "Block Delimiters (all)",
             "scope": "constant.delimiter",
-            "foreground": "red",
+            "foreground": "var(red)",
         },
         {
             "name": "Fallback Blocks",
             "scope": "constant.delimiter | string.literal.block",
-            "background": "darkslategray",
+            "background": "darkslategray", // => #2f4f4f
         },
         {
             "name": "Fallback Blocks: Delimiter",
@@ -239,20 +306,52 @@
             "scope": "constant.delimiter.example | string.unquoted.block.example",
             "background": "color(var(yellow) alpha(0.1))",
         },
+        // PASSTHROUGH BLOCK
+        {
+            "name": "Passthrough: Contents",
+            "scope": "text.xml.block.passthrough.content",
+            "background": "color(var(orange) alpha(0.15))",
+        },
+        {
+            "name": "Passthrough: Delimiter",
+            "scope": "constant.delimiter.block.passthrough",
+            "background": "color(var(orange) alpha(0.09))",
+        },
+        // QUOTED BLOCK
+        {
+            "name": "Quoted Block: Contents",
+            "scope": "markup.quote.block",
+            "background": "color(var(azureish_dark) alpha(0.1))",
+        },
+        {
+            "name": "Quoted Block: Delimiter",
+            "scope": "constant.delimiter.block.quote",
+            "background": "color(var(azureish_dark) alpha(0.075))",
+        },
+        // SIDEBAR BLOCK
+        {
+            "name": "Sidebar: Contents",
+            "scope": "string.quoted.block.sidebar",
+            "background": "color(var(blue) alpha(0.35))",
+        },
+        {
+            "name": "Sidebar: Delimiter",
+            "scope": "constant.delimiter.block.sidebar",
+            "background": "color(var(blue) alpha(0.15))",
+        },
         // SOURCE CODE BLOCK
         {
-            "name": "Source Code",
+            "name": "Source Code: Contents",
             "scope": "constant.delimiter.listing | source.block.listing",
             "background": "gainsboro",
-            "foreground": "black",
+            "foreground": "var(black)",
         },
         {
             "name": "Source Code: Delimiter",
             "scope": "constant.delimiter.listing",
             "background": "color(gainsboro alpha(0.9))",
-            "foreground": "red",
+            "foreground": "var(red)",
         },
-
         // =====================================================================
         // SECTION TITLES
         // =====================================================================
@@ -265,51 +364,89 @@
         {
             "name": "Section Titles: Delimiter",
             "scope": "punctuation.definition.heading",
-            "foreground": "white",
-            "foreground": "transparent",
             "foreground": "var(shade1)",
         },
         {
             "name": "Section Titles: Text",
-            "scope": "entity.name.section.asciidoc",
+            "scope": "entity.name.section",
             "font_style": "bold",
-            "foreground": "white",
+            "foreground": "var(white)",
         },
         // =====================================================================
         // INVALID
         // =====================================================================
         {
-            "name": "Invalid",
+            "name": "Invalid (Illegal + fallback)",
             "scope": "invalid",
             "foreground": "var(white)",
             "background": "var(red)",
         },
         {
+            "name": "Invalid: Deprecated",
+            "scope": "invalid.deprecated",
+            "background": "var(orange)",
+        },
+        {
             "scope": "message.error",
-            "foreground": "color(var(red) alpha(0.5))",
+            "background": "var(red_dark)",
+        },
+        // =====================================================================
+        // INDEX TERMS
+        // =====================================================================
+        {
+            "name": "Index Term: Entry",
+            "scope": "text.asciidoc variable.other.indexterm",
+            "foreground": "var(purple_light)",
+        },
+        {
+            "name": "Index Term: Bracketing",
+            "scope": "constant.character.indexterm",
+            "foreground": "var(orange)",
         },
         // =====================================================================
         // CONSTANTS
         // =====================================================================
+        // Escapes
         {
+            "name": "Escaped Characters",
             "scope": "constant.character.escape",
-            "foreground": "var(purple)",
+            "foreground": "var(purple_light)",
+        },
+        // XML/SGML Entities
+        {
+            "name": "XML Entities",
+            "scope": "constant.character.entity.xml",
+            "foreground": "var(blue_light)",
+        },
+        {
+            "name": "XML Entities inside Listing (darker)",
+            "scope": "source.block.listing.content  constant.character.entity.xml",
+            "foreground": "var(blue)",
+        },
+        // Anchors (=> "labels")
+        {
+            "scope": "entity.name.label",
+            "foreground": "var(yellow)",
         },
         // Bibliographic Anchors
         {
+            "name": "Bibliography Anchor: Entry",
             "scope": "storage.type.reference.biblioanchor",
-            "foreground": "var(purple)",
+            "foreground": "var(purple_light)",
         },
         {
+            "name": "Bibliography Anchor: Bracketing",
             "scope": "constant.character.entity",
             "foreground": "var(orange)",
         },
         // Callouts
         {
+            "name": "Callout: Brackets (< >)",
             "scope": "punctuation.definition.calloutlistnumber",
             "foreground": "var(red)",
         },
         {
+            "name": "Callout: Number",
             "scope": "constant.numeric.callout",
             "foreground": "var(yellow)",
         },
@@ -320,43 +457,96 @@
         },
         // X-Refs
         {
+            "name": "X-Ref: fallback color",
             "scope": "meta.xref",
-            "foreground": "color(var(red) lightness(70%))",
+            "foreground": "var(red_light)",
         },
         {
+            "name": "X-Ref Brackets (<< >>)",
             "scope": "constant.character.xref.(begin|end)",
-            "foreground": "color(var(red) lightness(70%))",
+            "foreground": "var(red_light)",
         },
         {
+            "name": "X-Ref Param: anchor/link",
             "scope": "variable.parameter.xref.link",
-            "foreground": "color(var(purple) lightness(70%))",
+            "foreground": "var(purple_light)",
         },
         {
+            "name": "X-Ref Param: shown text",
             "scope": "variable.parameter.xref.display",
-            "foreground": "var(tint4)",
+            "foreground": "var(azureish)",
         },
         // =====================================================================
         // PREPROCESSOR
         // =====================================================================
         // Keywords
         {
+            "name": "PP Keywords",
             "scope": "keyword.control.preprocessor",
-            "foreground": "color(var(purple) lightness(70%))",
+            "foreground": "var(purple_light)",
+        },
+        {
+            "name": "PP Keywords inside Listing Block (darker)",
+            "scope": "source.block.listing.content keyword.control.preprocessor",
+            "foreground": "var(purple)",
+        },
+        {
+            "name": "PP Keywords inside Sidebar Block (lighter)",
+            "scope": "string.quoted.block.sidebar keyword.control.preprocessor",
+            "foreground": "var(purple_light)",
         },
         // Punctuation and brackets
         {
+            "name": "PP Punctuation and Brackets",
             "scope": "punctuation.definition.keyword.preprocessor | punctuation.section.brackets",
             "foreground": "var(purple)",
         },
-        // Preprocessor strings (filenames & URIs) in "include::"
         {
+            "name": "PP Punctuation and Brackets inside Example Block (lighter)",
+            "scope": "string.unquoted.block.example punctuation.definition.keyword.preprocessor | string.unquoted.block.example punctuation.section.brackets",
+            "foreground": "color(var(purple_light) lightness(55%))",
+        },
+        {
+            "name": "PP Punctuation and Brackets inside Listing Block (darker)",
+            "scope": "source.block.listing.content punctuation.definition.keyword.preprocessor | source.block.listing.content punctuation.section.brackets",
+            "foreground": "var(purple_dark)",
+        },
+        {
+            "name": "PP Punctuation and Brackets inside Literal Block (lighter)",
+            "scope": "string.literal.block.delimited punctuation.definition.keyword.preprocessor | string.literal.block.delimited punctuation.section.brackets",
+            "foreground": "color(var(purple_light) lightness(55%))",
+        },
+        {
+            "name": "PP Punctuation and Brackets inside Quoted Block (lighter)",
+            "scope": "markup.quote.block punctuation.definition.keyword.preprocessor | markup.quote.block punctuation.section.brackets",
+            "foreground": "color(var(purple_light) lightness(55%))",
+        },
+        {
+            "name": "PP Punctuation and Brackets inside Sidebar Block (lighter)",
+            "scope": "string.quoted.block.sidebar punctuation.definition.keyword.preprocessor | string.quoted.block.sidebar punctuation.section.brackets",
+            "foreground": "color(var(purple_light) lightness(55%))",
+        },
+        // Preprocessor Strings (filenames & URIs) in "include::"
+        {
+            "name": "PP Strings",
             "scope": "string.unquoted.preprocessor",
             "foreground": "var(green)",
         },
-        // Attributes separators: ',' (OR) '+' (AND)
         {
+            "name": "PP Strings inside Listing Block (darker)",
+            "scope": "source.block.listing.content string.unquoted.preprocessor",
+            "foreground": "var(green_dark)",
+        },
+        // Attributes Separators: ',' (OR) '+' (AND)
+        {
+            "name": "PP Attributes Separators",
             "scope": "keyword.operator.logical",
             "foreground": "var(yellow)",
+        },
+        {
+            "name": "PP Attributes Separators inside Listing Block (darker)",
+            "scope": "source.block.listing.content keyword.operator.logical",
+            "foreground": "var(orange_dark)",
         },
     ]
 }
