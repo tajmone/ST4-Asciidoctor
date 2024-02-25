@@ -1216,18 +1216,18 @@ contexts:
 # https://docs.asciidoctor.org/asciidoc/latest/attributes/wrap-values/
 # https://docs.asciidoctor.org/asciidoc/latest/attributes/wrap-values/#hard
 
+# Try to keep them in order of importance (most common first):
+
   one_liners:
     - include: line_comment
     - include: list_continuation
-    - include: inline_break
+    - include: inline_break # Not a single-liner! Move to reusables!
+    - include: block_title
+    - include: attribute_entry
+    - include: attribute_list_line
+    - include: one_liners_sq-bracketed # i.e. all '[...]' elements
     - include: block_page_break
     - include: block_thematic_break
-    - include: block_title
-    - include: block_id
-  #   - include: block_req                              # <- ADDED by @bsmith-n4
-  #   - include: section_template
-    - include: attribute_list_line
-    - include: attribute_entry
 
   ######################
   # SINGLE-LINE COMMENTS
@@ -1302,6 +1302,7 @@ contexts:
   #   Lorem ipsum dolor.
 
   # IMPORTANT: This element was ADDED by @bsmith-n4!
+  #            Can't find any references to this in the docs.
 
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>                         # <- ADDED by @bsmith-n4
   # block_req:
@@ -1471,6 +1472,11 @@ contexts:
 # IMPORTANT: These constructs tolerate trailing spaces and tabs, so we must
 #            ensure that RegEx pattern consume them without scoping them.
 
+  one_liners_sq-bracketed:
+    - include: attribute_list_line
+    - include: block_id
+  #   - include: block_req                              # <- ADDED by @bsmith-n4
+  #   - include: section_template
 
   #####################
   # ATTRIBUTE LIST LINE
