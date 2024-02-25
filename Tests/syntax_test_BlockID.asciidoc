@@ -1,8 +1,14 @@
 // SYNTAX TEST "Packages/ST4-Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
 = Block ID
 
-AsciiDoc Documentation reference:
-https://docs.asciidoctor.org/asciidoc/latest/sections/custom-ids/[Assign Custom IDs and Reference Text^]
+AsciiDoc Documentation references:
+
+* https://docs.asciidoctor.org/asciidoc/latest/sections/custom-ids/[Assign Custom IDs and Reference Text^]
+* https://docs.asciidoctor.org/asciidoc/latest/attributes/id/#on-block-element[ID Attribute » On block element^]
+
+
+== Legacy Syntax
+
 
 [.big.red]*Source*
 
@@ -16,12 +22,12 @@ A paragraph with a custom ID anchor.
 [.big.red]*Result*
 
 [[my_id]]
-//<-      meta.tag.blockid
-//^^^^^^^ meta.tag.blockid
-//^^^^^   entity.name.label.asciidoc
-//<-      punctuation.definition.blockid.begin
-//     ^^ punctuation.definition.blockid.end
-
+//<-          meta.tag.blockid
+//^^^^^^^     meta.tag.blockid
+//^^^^^       entity.name.label.asciidoc
+//<-          punctuation.definition.blockid.begin
+//     ^^     punctuation.definition.blockid.end
+//       ^   -meta.tag.blockid
 A paragraph with a custom ID anchor.
 
 

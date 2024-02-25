@@ -1474,7 +1474,7 @@ contexts:
 
   one_liners_sq-bracketed:
     - include: attribute_list_line
-    - include: block_id
+    - include: block_id_legacy
   #   - include: block_req                              # <- ADDED by @bsmith-n4
   #   - include: section_template
 
@@ -1493,21 +1493,22 @@ contexts:
         2: punctuation.definition.attributelistline.end.asciidoc
 
 
-  ##########
-  # BLOCK ID
-  ##########
-  # A block id (i.e. anchor).
+  ##########################
+  # BLOCK ID (legacy syntax)
+  ##########################
+  # A block id (i.e. anchor) using the legacy block anchor syntax.
   # Examples:
   #   [[myid]]
   #   Lorem ipsum dolor.
 
-  block_id:
-    - match: ^(\[\[)([^\[].*)(\]\])\s*$\n?
+  block_id_legacy:
+    # We consume trailing WS but we don't scope it.
+    - match: '^((\[\[)([^\[].*)(\]\]))\s*$\n?'
       captures:
-        0: meta.tag.blockid.asciidoc
-        1: punctuation.definition.blockid.begin.asciidoc
-        2: entity.name.label.asciidoc
-        3: punctuation.definition.blockid.end.asciidoc
+        1: meta.tag.blockid.asciidoc
+        2: punctuation.definition.blockid.begin.asciidoc
+        3: entity.name.label.asciidoc
+        4: punctuation.definition.blockid.end.asciidoc
 
 
   ##################
