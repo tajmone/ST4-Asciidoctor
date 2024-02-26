@@ -1219,13 +1219,12 @@ contexts:
 # Try to keep them in order of importance (most common first):
 
   one_liners:
+    - include: one_liners_sq-bracketed # keep first! (i.e. all '[...]' elements)
     - include: line_comment
     - include: list_continuation
     - include: inline_break # Not a single-liner! Move to reusables!
     - include: block_title
     - include: attribute_entry
-    - include: attribute_list_line
-    - include: one_liners_sq-bracketed # i.e. all '[...]' elements
     - include: block_page_break
     - include: block_thematic_break
 
@@ -1473,10 +1472,66 @@ contexts:
 #            ensure that RegEx pattern consume them without scoping them.
 
   one_liners_sq-bracketed:
+    - include: special_section     # keep first!
     - include: block_id_legacy
     - include: attribute_list_line # keep last! (generic fallback)
   #   - include: block_req         # <- ADDED by @bsmith-n4
   #   - include: section_template
+
+  ##################
+  # SPECIAL SECTIONS
+  ##################
+  # Built-in "special sections" for specialized front- and back-matter sections
+  # for articles and/or books.
+  # Example:
+  #   [appendix]
+  #   == First Appendix
+
+  #       abstract, acknowledgments, appendix, bibliography,
+  #       colophon, dedication, glossary, index, preface.
+
+  special_section:
+    # I couldn't think of better scope names, but 'support.constant' seems to
+    # make sense here since they are hard-wired values; I didn't like the
+    # original 'sectiontemplate' scope, and opted for 'sectionstyle' instead.
+    # The original syntax didn't scope the actual style name, it just relied
+    # on the outer 'meta' scoping.
+    - match: '^(?x)((\[)(
+                abstract|acknowledgments|appendix|bibliography|
+                colophon|dedication|glossary|index|partintro|preface
+              )(\]))\s*$\n?'
+      captures:
+        1: meta.tag.sectionstyle.asciidoc
+        2: punctuation.definition.sectionstyle.begin.asciidoc
+        3: support.constant.sectionstyle.asciidoc
+        4: punctuation.definition.sectionstyle.end.asciidoc
+
+  # TODO: Asciidoctor DOES support the alternative quoted syntax:
+  #
+  #           ["appendix"]
+  #
+  #       So we'll need to implement it, even though is less idiomatic.
+
+  # NOTE: Asciidoctor DOES NOT support AsciiDoc Python template syntax, e.g.:
+  #
+  #           [template="appendix"]
+  #
+  #       The original package supported it, but we dropped it since Asciidoctor
+  #       doesn't (probably deprecated, maybe was never standard).
+  #       For more info, see AsciiDoc Python documentation:
+  #       https://asciidoc-py.github.io/chunked/ch08.html#_sections
+
+  # TODO: Some converters also support the 'notitle' option, which can only be
+  #       set on special sections; e.g.:
+  #
+  #           [dedication%notitle]
+  #
+  #       with alternative 'opts=notitle' syntax, and maybe the old option name
+  #       'untitled' too. The problem is that I can't test any of these since
+  #       the HTML backend of Asciidoctor Ruby just ignores them.
+  #       Currently, this seem to work with the DocBook backend only. See:
+  #       https://docs.asciidoctor.org/asciidoc/latest/sections/special-section-titles/
+
 
   ##########################
   # BLOCK ID (legacy syntax)
@@ -1513,42 +1568,6 @@ contexts:
         2: punctuation.definition.attributelistline.begin.asciidoc
         3: punctuation.definition.attributelistline.end.asciidoc
 
-
-  ##################
-  # SECTION TEMPLATE [TBD!]
-  ##################
-  # Fixed list of known template names
-  # See: §16.9. Section Styles
-  # https://asciidoctor.org/docs/user-manual/#section-styles
-
-  # IMPORTANT: This element differs in @bsmith-n4 and original!
-  #
-  # section_template:
-  #   comment: fixed list of known template names
-  #   name: variable.parameter.sectiontemplate.asciidoc
-  #   match: |-
-
-
-
-  # >>>>>>>>>>>>>>>>>>>>>>>>>>>
-  # section_template:
-  #   comment: fixed list of known template names
-  #   name: variable.parameter.sectiontemplate.asciidoc
-  #   match: |                       # <- CHANGED by @bsmith-n4 (was: match: |-)
-  #     (?x)^
-  #     (\[)  # in square brackets
-  #     (template\s*=\s*)?(")?  # might start with template-equals and might have template name in quotes
-  #     (
-  #     sect\d|abstract|preface|colophon|dedication|glossary|bibliography|synopsis|appendix|index # fixed list of known templates
-  #     )
-  #     (".*(\])|(\]))  # either close the quote (and perhaps go on) and close the bracket, or close the bracket immediately
-  #     \s*$\n?
-  #   captures:
-  #     '1': {name: punctuation.definition.sectiontemplate.begin.asciidoc}
-  #     '4': {name: meta.tag.sectiontemplate.asciidoc}
-  #     '6': {name: punctuation.definition.sectiontemplate.end.asciidoc}
-  #     '7': {name: punctuation.definition.sectiontemplate.end.asciidoc}
-  # <<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 #*******************************************************************************
 #                                                                              *

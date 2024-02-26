@@ -439,6 +439,12 @@
             "scope": "constant.character.entity",
             "foreground": "var(orange)",
         },
+        // Special Sections Styles
+        {
+            "name": "Special Sections: Style name",
+            "scope": "support.constant.sectionstyle",
+            "foreground": "dodgerblue",
+        },
         // Callouts
         {
             "name": "Callout: Brackets (< >)",

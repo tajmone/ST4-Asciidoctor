@@ -1,0 +1,175 @@
+// SYNTAX TEST "Packages/ST4-Asciidoctor/Syntaxes/Asciidoctor.sublime-syntax"
+= Special Sections for Book
+:doctype: book
+
+Test special section style for `book` document type, which covers all the available section styles (unlike `article` documents).
+
+AsciiDoc Documentation reference:
+https://docs.asciidoctor.org/asciidoc/latest/sections/styles/[Section Styles for Articles and Books^]
+
+****
+AsciiDoc provides built-in styles for the specialized front matter and back matter sections found in journal articles, academic papers, and books.
+These styled sections are referred to as *special sections*.
+The document type, `article` or `book`, determines which section styles are available for use.
+****
+
+[NOTE]
+===================
+This begin a `book` document, it requires setting up Parts contexts to cover all book special sections while remaining a well formed AsciiDoc document that passes the Rake build.
+
+It's a more verbose approach, but it allows us to test all existing section styles in a single document, since `article` documents support only a subset of special sections.
+===================
+
+[WARNING]
+===================
+Currently the syntax of our package doesn't support the `notitle` option (e.g., `%notitle` or `opts=notitle`) which allows to turn off the title of a special section in those converters that supports it:
+
+* https://docs.asciidoctor.org/asciidoc/latest/sections/special-section-titles/[Hide Special Section Titles^]
+
+.Option `notitle` Example
+[source,asciidoc]
+--------------------
+[dedication%notitle]
+== Dedication
+--------------------
+
+It seems that this feature is currently only supported by the DocBook backend.
+In any case, in the future we should add support for it, so that its presence doesn't prevent correct highlighting and scoping of special sections.
+===================
+
+// =============================================================================
+//                                   COLOPHON
+// =============================================================================
+////
+Since this is the first test, we'll be more thorough in covering the scope of
+every character, checking that scopes don't spill, etc. In further tests we'll
+just focus on fewer details...
+////
+[colophon]
+//<-          meta.tag.sectionstyle
+//^^^^^^^^    meta.tag.sectionstyle
+//        ^  -meta.tag.sectionstyle
+//<-          punctuation.definition.sectionstyle.begin
+//^^^^^^^     support.constant.sectionstyle
+//       ^   -support.constant.sectionstyle
+//       ^    punctuation.definition.sectionstyle.end
+== Colophon
+
+The ST4 Asciidoctor "`Syntax Tests Suite`".
+
+(C) 2024 by Tristano Ajmone.
+
+// =============================================================================
+//                                   DEDICATION
+// =============================================================================
+[dedication]
+//^^^^^^^^^      support.constant.sectionstyle
+//          ^   -meta.tag.sectionstyle
+= Dedication
+
+This test is dedicated to @polyglot-jones for all his support and contributions.
+
+// =============================================================================
+//                                ACKNOWLEDGMENTS
+// =============================================================================
+[acknowledgments]
+//^^^^^^^^^^^^^^      support.constant.sectionstyle
+//               ^   -meta.tag.sectionstyle
+== Acknowledgments
+
+Thanks to the SublimeText and Asciidoctor online communities for all their support.
+
+
+= Part One
+
+_The Pragmatic Programmer_ <<pp>> should be required reading for all developers.
+To learn all about design patterns, refer to the book by the "`Gang of Four`" <<gof>>.
+
+// =============================================================================
+//                                   ABSTRACT
+// =============================================================================
+[abstract]
+//<-          meta.tag.sectionstyle
+//<-          punctuation.definition.sectionstyle.begin
+//^^^^^^^     support.constant.sectionstyle
+//       ^    punctuation.definition.sectionstyle.end
+== Abstract (Section)
+
+The `abstract` section in a book becomes a chapter.
+
+See also AsciiDoc Documentation for `abstract` block (currently untested here):
+
+* https://docs.asciidoctor.org/asciidoc/latest/sections/abstract-block/[Abstract (Block)^]
+
+
+= Part Two
+
+// =============================================================================
+//                                   PARTINTRO
+// =============================================================================
+[partintro]
+//^^^^^^^^    support.constant.sectionstyle
+--
+This is an explicit `partintro` (must be first child of part), wrapped in an open block -- although it would be implicitly so even without the special section style:
+
+* https://docs.asciidoctor.org/asciidoc/latest/sections/parts/#part-intro[AsciiDoc Manual » Part intro^]
+--
+
+// =============================================================================
+//                                    PREFACE
+// =============================================================================
+[preface]
+//^^^^^^    support.constant.sectionstyle
+//      ^   punctuation.definition.sectionstyle.end
+== Part Two Preface
+
+Book Parts can have their `preface` too.
+
+// =============================================================================
+//                                    APPENDIX
+// =============================================================================
+[appendix]
+//^^^^^^^    support.constant.sectionstyle
+= Appendix One
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua.
+
+
+// =============================================================================
+//                                    GLOSSARY
+// =============================================================================
+[glossary]
+//^^^^^^^    support.constant.sectionstyle
+== Glossary
+
+In addition to setting `glossary` on the section, the block style `glossary` must be set on the description list in the section.
+
+[glossary]
+mud:: wet, cold dirt
+rain::
+  water falling from the sky
+
+// =============================================================================
+//                                 BIBLIOGRAPHY
+// =============================================================================
+[bibliography]
+//^^^^^^^^^^^    support.constant.sectionstyle
+= Bibliographic References
+
+* [[[pp]]] Andy Hunt & Dave Thomas. The Pragmatic Programmer:
+From Journeyman to Master. Addison-Wesley. 1999.
+* [[[gof,gang]]] Erich Gamma, Richard Helm, Ralph Johnson & John Vlissides.
+Design Patterns: Elements of Reusable Object-Oriented Software. Addison-Wesley. 1994.
+
+// =============================================================================
+//                                     INDEX
+// =============================================================================
+[index]
+//^^^^    support.constant.sectionstyle
+== Index
+
+WARNING: The built-in HTML5 converter in Asciidoctor does not generate an index.
+
+
+// EOF //
